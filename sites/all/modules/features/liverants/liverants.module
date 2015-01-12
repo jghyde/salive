@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the liverants feature.
+ */
+
+include_once 'liverants.features.inc';

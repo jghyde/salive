@@ -1,0 +1,5 @@
+name = LIVE Breaking News
+description = Creates sites mods if there are breaking news stories, particularly the BREAKING page top banner.
+dependencies[] = radioactivity
+package = LIVE Platform
+core = 7.x

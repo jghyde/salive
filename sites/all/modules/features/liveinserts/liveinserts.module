@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the liveinserts feature.
+ */
+
+include_once 'liveinserts.features.inc';

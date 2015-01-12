@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_page_build().
+ *
+ * Use this hook rather than hook_init() so that the JS snippet is not added
+ * in AJAX calls.
+ */
+function image_mobile_camera_page_build(&$page) {
+  drupal_add_js(drupal_get_path('module', 'image_mobile_camera') .'/image_mobile_camera.js');
+}

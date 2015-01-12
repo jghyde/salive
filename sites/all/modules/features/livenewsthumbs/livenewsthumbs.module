@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the livenewsthumbs feature.
+ */
+
+include_once 'livenewsthumbs.features.inc';

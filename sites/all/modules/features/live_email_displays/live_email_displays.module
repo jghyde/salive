@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LIVE Email Displays feature.
+ */
+
+include_once 'live_email_displays.features.inc';

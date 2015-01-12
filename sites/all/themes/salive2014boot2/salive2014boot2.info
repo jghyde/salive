@@ -1,0 +1,57 @@
+name = SA LIVE 2014 Bootstrap 2
+description = Bootstrap 2.3.2 San Angelo Live Theme
+core = 7.x
+base theme = bootstrap
+
+; Regions
+; Home Page Regions:
+regions[ioslider_home] = 'iosSlider Home Page'
+regions[topplace]       = 'Top Place Banner'
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[bottomplace]       = 'Bottom Place Banner'
+regions[footer]         = 'Footer'
+
+; Stylesheets
+stylesheets[all][] = css/style.css
+; stylesheets[all][] = css/glyphicons.css
+;**********************************
+; METHOD 1: Bootstrap Source Files
+;**********************************
+; 
+; ; Scripts
+scripts[] = 'bootstrap/js/affix.js'
+scripts[] = 'bootstrap/js/alert.js'
+scripts[] = 'bootstrap/js/button.js'
+scripts[] = 'bootstrap/js/carousel.js'
+scripts[] = 'bootstrap/js/collapse.js'
+scripts[] = 'bootstrap/js/dropdown.js'
+scripts[] = 'bootstrap/js/modal.js'
+scripts[] = 'bootstrap/js/tooltip.js'
+scripts[] = 'bootstrap/js/popover.js'
+scripts[] = 'bootstrap/js/scrollspy.js'
+scripts[] = 'bootstrap/js/transition.js'
+scripts[] = 'bootstrap/js/typeahead.js'
+scripts[] = 'js/salbootstrap.js'
+; 
+; ; Settings inherited by base theme, uncomment to override.
+; ;settings[toggle_name] = 0
+; ;settings[toggle_search] = 1
+; ; Disable the CDN as we are using our own source files.
+; settings[cdn_bootstrap] = 0
+
+
+;*************************
+; METHOD 2: Bootstrap CDN
+;*************************
+; 
+; ; Settings inherited by base theme, uncomment to override.
+; ;settings[toggle_name] = 0
+; ;settings[toggle_search] = 1
+; ;settings[cdn_bootstrap] = 1
+; ;settings[cdn_bootstrap_version] = 2.3.2

@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ *   User IP Log module file.
+ */
+/**
+ * Implements hook_form_alter()
+ */
+function uiplog_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_admin_settings') {
+    $form['uiplog_user_delete_log'] = array(
+      '#type' => 'radios',
+      '#title' => t('User IP on account delete'),
+      '#default_value' => variable_get('uiplog_user_delete_log', 0),
+      '#options' => array(
+        1 => t('Yes, Delete IP logged'),
+        0 => t("No, Don't delete"),
+      ),
+      '#description' => t('Choose "Yes" to delete IP logging pertaining to user on his account delete. "No" to preserve all.'),
+    );
+  }
+}
+
+/**
+ * Implements hook_views_api()
+ */
+function uiplog_views_api() {
+  return array(
+    'api' => views_api_version(),
+    'path' => drupal_get_path('module', 'uiplog') . '/views',
+  );
+}
+
+/**
+ * Implements hook_user_login()
+ */
+function uiplog_user_login(&$edit, $account) {
+  _uiplog_log_ip($account->uid);
+}
+
+/**
+ * Implements hook_user_insert()
+ */
+function uiplog_user_insert(&$edit, $account, $category) {
+  global $user;
+  if ($account->uid && !$user->uid) {
+    _uiplog_log_ip($account->uid);
+  }
+}
+
+/**
+ * Implements hook_user_delete()
+ */
+function uiplog_user_delete($account) {
+  if (variable_get('uiplog_user_delete_log') == 1) {
+    db_delete('uiplog')
+      ->condition('uid', $account->uid)
+      ->execute();
+  }
+}
+
+function _uiplog_log_ip($uid) {
+  $ip_address = ip_address();
+  if (filter_var($ip_address, FILTER_VALIDATE_IP)) {
+    db_insert('uiplog')
+      ->fields(array(
+        'ip' => $ip_address,
+        'uid' => $uid,
+        'timestamp' => REQUEST_TIME,
+      ))
+      ->execute();
+  }
+}

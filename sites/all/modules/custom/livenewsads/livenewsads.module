@@ -1,0 +1,189 @@
+<?php
+
+/**
+ * Implements hook_menu().
+
+function livenewsads_menu() {
+  $items = array();
+  $items['ajax/selfies'] = array (
+    'page callback' => 'livenewsads_selfie_page',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Page callback
+
+function livenewsads_selfie_page() {
+
+{
+    success: true,
+    message: "Pricing (in pennies)",
+    pricing_grid: {
+        day: 1000,
+        week: 2000,
+        month: 5000,
+        year: 10000
+    }
+  
+}
+
+  $arr = array(
+    'success' => TRUE,
+    'message' => 'Pricing',
+    'pricing_grid' => array(
+      'day' => 500,
+      'week' => 2000,
+      'month' => 6000,
+      'year' => 25000,
+    ),
+  );
+  drupal_json_output($arr);
+}
+*/
+/**
+ * Implements hook_node_view().
+ */
+function livenewsads_node_view($node, $view_mode, $langcode) {
+	$t = '';
+  if ($view_mode == 'full' && $node->type == 'article') {
+	  drupal_add_css(drupal_get_path('module', 'livenewsads') .  '/css/livenewsads.css');
+    if (isset($node->field_category[LANGUAGE_NONE]) && !empty($node->field_category[LANGUAGE_NONE])) {
+      foreach($node->field_category[LANGUAGE_NONE] as $k => $v) {
+        if (empty($t)) {
+          if ($v['tid'] == '31') {
+            $t = 'crime';
+          }
+          if ($v['tid'] == '44' || $v['tid'] == '16') {
+            $t = 'crashes';
+          }
+        }
+      }
+    }
+    /*
+    // place the selfie ad
+    $js = <<<EOT
+<script type="text/javascript">
+  broadstreet.zone(18602, {
+    keywords: 'post:$node->nid',
+    selfieCallback: function () { return '<h4>Shout Out</h4><p>Put your Shout Out here right now and it shows on this story today. Shout Outs for birthdays, weddings, or special sales $5. Click to start typing.</p>'; }
+  });
+</script>
+EOT; */
+    //Determine if this is a crime page, to put a separate News Body ad slot on crime pages:
+    if ($t =='crime') {
+      $zone = '30704';
+    }
+    else {
+      $zone = '18600';
+    }
+    $two = $three = $four = $five = $six = $seven = $eight = $nine = FALSE;
+    if (strlen($node->content['body'][0]['#markup']) > 550) {
+      $two = FALSE;
+      $dom = new simple_html_dom();
+      $dom->load($node->content['body'][0]['#markup']);
+      // Count paragraphs
+      $paras = $dom->find("p");
+      if (count($paras) > 7) {
+        $two = TRUE;
+      }
+      if (count($paras) > 12) {
+        $three = TRUE;
+      }
+      if (count($paras) > 17) {
+        $four = TRUE;
+      }
+      if (count($paras) > 22) {
+        $five = TRUE;
+      }
+      if (count($paras) > 27) {
+        $six = TRUE;
+      }
+      if (count($paras) > 32) {
+        $seven = TRUE;
+      }
+      if (count($paras) > 37) {
+        $eight = TRUE;
+      }
+      if (count($paras) > 42) {
+        $nine = TRUE;
+      }
+      $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>")+4);
+      // add the banner ad code
+      $banner_added = $string . '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script>
+</div>';
+      // add the first banner the old fashioned way
+      $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
+      if ($two) {
+        $string2 = $paras[5];
+        $banner_added2 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string2;
+        $node->content['body'][0]['#markup'] = str_replace($string2, $banner_added2, $node->content['body'][0]['#markup']);
+      }
+      if ($three) {
+        $string3 = $paras[10];
+        $banner_added3 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string3;
+        $node->content['body'][0]['#markup'] = str_replace($string3, $banner_added3, $node->content['body'][0]['#markup']);
+      }
+      if ($four) {
+        $string4 = $paras[15];
+        $banner_added4 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string4;
+        $node->content['body'][0]['#markup'] = str_replace($string4, $banner_added4, $node->content['body'][0]['#markup']);
+      }
+      if ($five) {
+        $string5 = $paras[20];
+        $banner_added5 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string5;
+        $node->content['body'][0]['#markup'] = str_replace($string5, $banner_added5, $node->content['body'][0]['#markup']);
+      }
+      if ($six) {
+        $string6 = $paras[25];
+        $banner_added6 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string6;
+        $node->content['body'][0]['#markup'] = str_replace($string6, $banner_added6, $node->content['body'][0]['#markup']);
+      }
+      if ($seven) {
+        $string7 = $paras[30];
+        $banner_added7 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string7;
+        $node->content['body'][0]['#markup'] = str_replace($string7, $banner_added7, $node->content['body'][0]['#markup']);
+      }
+      if ($eight) {
+        $string8 = $paras[35];
+        $banner_added8 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string8;
+        $node->content['body'][0]['#markup'] = str_replace($string8, $banner_added8, $node->content['body'][0]['#markup']);
+      }
+      if (isset($nine) && $nine == TRUE) {
+        $string9 = $paras[40];
+        $banner_added9 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(' . $zone . ');</script></div>' . $string9;
+        $node->content['body'][0]['#markup'] = str_replace($string9, $banner_added9, $node->content['body'][0]['#markup']);
+      }
+    }
+    /*
+    // Add the selfie
+    $node->content['body'][0]['#markup']  = '<div id="selfie" class="well">' . $js . '</div>' . $node->content['body'][0]['#markup'];
+    */
+  }
+  // Add the ad placement at the end of the article
+  // For Crime:
+
+  if ($node->type == 'article') {
+    switch ($t) {
+      case 'crime':
+        $node->content['body'][0]['#markup'] .= '<div class="story-bottom ads"><script type="text/javascript">broadstreet.zone(24028);</script></div>';
+        break;
+      case 'crashes':
+        $node->content['body'][0]['#markup'] .= '<div class="story-bottom ads"><script type="text/javascript">broadstreet.zone(29009);</script></div>';
+        break;
+      default:
+        if ($node->nid != '6') {
+          $node->content['body'][0]['#markup'] .= '<div class="story-bottom ads"><script type="text/javascript">broadstreet.zone(29010);</script></div>';
+        }
+        break;
+    }
+    $thumbs = views_embed_view('news_thumbs', 'block');
+    $node->content['body'][0]['#markup'] .= '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';  
+  }
+	if ($node->type == 'venue') {
+	  $node->content['field_map'][0]['#markup'] .= '<div class="story-bottom ads"><script type="text/javascript">broadstreet.zone(39888);</script></div>';
+	}
+  return $node;
+}
+

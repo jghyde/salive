@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Live People Profile feature.
+ */
+
+include_once 'liveprofile.features.inc';

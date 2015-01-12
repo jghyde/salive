@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Code for the liveevent feature.
+ */
+
+include_once 'liveevent.features.inc';
+
+/**
+  * Implements hook_form_alter()
+  */
+function liveevent_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'event_free_node_form') {
+    $form['actions']['submit']['#value'] = "Submit Free Event for Review";
+  }
+  if ($form_id == 'event_paid_node_form' || $form_id == 'event_free_node_form') {
+    $form['#validate'][] = 'live_event_form_validate';
+  }
+}
+
+/**
+ * Validation for live_event_form_alter()
+ */
+function live_event_form_validate($form, &$form_state) {
+  $i = o;
+  $start = $form_state['values']['field_date']['und'][0]['value'];
+  $end = $form_state['values']['field_date']['und'][0]['value2'];
+  $start_day = explode('T', $start);
+  $end_day = explode('T', $end);
+  if ($start_day[0] != $end_day[0]) {
+    form_set_error('field_date', t('Event listings end time cannot be after midnight on the start day of the first occurance of the event. Please select an end time and date that ends on the same day as the start date under the <strong>When</strong> field'));
+  }
+}

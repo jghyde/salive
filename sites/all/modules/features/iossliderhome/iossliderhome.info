@@ -1,0 +1,12 @@
+name = iossliderhome
+description = iosSlider for the home page
+core = 7.x
+package = LIVE
+php = 5.2.4
+dependencies[] = image
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[image][] = iosslider_home
+features[views_view][] = home_page_slider
+features_exclude[dependencies][ctools] = ctools

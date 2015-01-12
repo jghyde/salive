@@ -1,0 +1,1 @@
+!function($){Drupal.behaviors.livebreaking={attach:function(i,t){var e=$("html").outerWidth()+$(window).scrollLeft();$("#slides").css("max-width",e-20+"px"),$(window).on("resize",function(){e=$("html").outerWidth()+$(window).scrollLeft(),$("#slides").css("max-width",e-20+"px")}),$("#fade").cycle()}}}(jQuery);

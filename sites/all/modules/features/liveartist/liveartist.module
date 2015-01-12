@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the liveartist feature.
+ */
+
+include_once 'liveartist.features.inc';

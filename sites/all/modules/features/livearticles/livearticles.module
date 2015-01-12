@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the livearticles feature.
+ */
+
+include_once 'livearticles.features.inc';

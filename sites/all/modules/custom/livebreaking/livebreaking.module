@@ -1,0 +1,209 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function livebreaking_block_info() {
+  // This example comes from node.module.
+  $blocks['breaking'] = array(
+    'info' => t('Breaking Now'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function livebreaking_block_view($delta = '') {
+  // Get the latest "Promoted to Front Page" that's less than 1 hour old
+  $query = new EntityFieldQuery();
+  $breaking = array();
+  $result = $query
+  ->entityCondition('entity_type', 'node')
+  ->entityCondition('bundle', 'article')
+  ->propertyCondition('status', 1)
+  ->propertyCondition('promote', 1)
+  // 3600 is 1 hour
+  ->propertyCondition('created',  time() - variable_get('breaking_promoted', 3600), '>=')
+  ->propertyOrderBy('created', 'DESC')
+  ->execute();
+  
+  if (!empty($result)) {
+    $nids = array_keys($result['node']);
+    $nodes = node_load_multiple($nids);
+  }
+  if (!empty($nodes)) {
+    foreach ($nodes as $node) {
+      $title = $node->title;
+      $nid = $node->nid;
+      $breaking[] = array(
+        'title' => 'Breaking: ' . l($title, 'node/' . $nid, array('attributes' => array('title'=> $title, 'class' => array('promoted', 'breaking')))),
+        'type' => 'bell',
+      );
+    }
+  }
+
+  // Get the highest radioactivity that's less than 1 day old.
+  $query2 = new EntityFieldQuery();
+  $i = variable_get('breaking_level', 5000);
+  $query2->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'article')
+    ->propertyCondition('status', 1)
+    // 86400 is one day of seconds.
+    ->propertyCondition('created',  time() - variable_get('breaking_hot', 365 * 86400), '>=')
+    ->fieldCondition('field_radioactivity', 'radioactivity_energy', variable_get('breaking_level', 5000), '>=')
+    ->fieldOrderBy('field_radioactivity', 'radioactivity_energy', 'DESC')
+    ->range(0, 5);
+  $result2 = $query2->execute();
+  if (!empty($result2['node'])) {
+    $news_items_nids = array_keys($result2['node']);
+    $news_items = entity_load('node', $news_items_nids);
+    foreach($news_items as $item) {
+      $title = $item->title;
+      $nid = $item->nid;
+      $breaking[] = array(
+        'title' => 'Hot: ' . l($title, 'node/' . $nid, array('attributes' => array('title'=> $title, 'class' => array('hot', 'breaking')))),
+        'type' => 'fire',
+      );
+    }
+  }
+  $sponsor_image_fid = variable_get('livebreaking_image_fid');
+  if ($sponsor_image_fid != '') {
+    $sponsor_link = variable_get('livebreaking_link'); 
+    // Now render the image
+    $img = file_load($sponsor_image_fid);
+    $sponsor_image = theme('image', array('path' => $img->uri, 'target' => '_blank', 'width' => '270', 'height' => '39', 'alt' => t('Sponsored by')));
+  }
+  $block = array();
+
+  switch ($delta) {
+    case 'breaking':
+      $block['subject'] = '';// t('Breaking Now');
+      if (count($breaking > 0)) {
+        drupal_add_css(drupal_get_path('module', 'livebreaking') .  '/css/livebreaking.css');
+        drupal_add_js(libraries_get_path('jquery-cycle') . '/jquery.cycle.all.js');
+        drupal_add_js(drupal_get_path('module', 'livebreaking') . '/js/livebreaking.js');
+        $block['content'] = array(
+          '#title' => t('Breaking Now'),
+          '#breaking_items' => $breaking,
+          '#theme' => 'livebreaking_block',
+          '#sponsor' => (!empty($sponsor_image) ? l($sponsor_image, $sponsor_link, array('html' => TRUE)) : ''),
+        );
+      }
+      else {
+        $block['content'] = array();
+      }
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function livebreaking_block_configure($delta = '') {
+  // This example comes from node.module.
+  $form = array();
+  if ($delta == 'breaking') {
+    $form['breaking_promoted'] = array(
+      '#type' => 'select',
+      '#title' => t('Number hours to keep a "Promoted to Front Page" story active in the Breaking banner'),
+      '#default_value' => variable_get('breaking_promoted', 3600),
+      '#options' => array(
+        3600 => t('1 Hour'),
+        10800 => t('3 Hours'),
+        21600 => t('6 hours'),
+        43200 => t('12 Hours'),
+        86400 => t('24 Hours'),
+      ),
+      '#description' => t('Select how long you desire the Breaking News items that have been Promoted to Front Page will be active.'),
+    );
+    $form['breaking_hot'] = array(
+      '#type' => 'select',
+      '#title' => t('Number hours to keep a "High radiactivity" story active in the Breaking banner'),
+      '#default_value' => variable_get('breaking_hot', 3600),
+      '#options' => array(
+        3600 => t('1 Hour'),
+        10800 => t('3 Hours'),
+        21600 => t('6 hours'),
+        43200 => t('12 Hours'),
+        86400 => t('24 Hours'),
+      ),
+      '#description' => t('Select how long you desire the High Radioactivity news items that have been Promoted to Front Page will be active.'),
+    );
+    $form['breaking_level'] = array(
+      '#type' => 'select',
+      '#title' => t('Radioactivity Level to consider hot enough to place in the Breaking News Banner'),
+      '#default_value' => variable_get('breaking_level', 5000),
+      '#options' => array(
+        50000 => t('50000'),
+        75000 => t('75000'),
+        100000 => t('100000'),
+        125000 => t('125000'),
+        150000 => t('150000'),
+        200000 => t('200000'),
+      ),
+      '#description' => t('Select how long you desire the High Radioactivity news items that have been Promoted to Front Page will be active.'),
+    );
+    // File selection form element
+    $form['livebreaking_image'] = array(
+      '#name' => 'livebreaking_image',
+      '#type' => 'managed_file',
+      '#title' => t('Choose an Image File'),
+      '#description' => t('Select an Image for the sponsor.  Only *.gif, *.png, *.jpg, and *.jpeg images allowed.'),
+      '#default_value' => variable_get('livebreaking_image_fid', ''),
+      '#upload_location' => 'public://livebreaking/',
+      '#upload_validators' => array(
+        'file_validate_extensions' => array('gif png jpg jpeg'),
+      ),
+    );
+    // The url to link the image to
+    $form['livebreaking_link'] = array(
+      '#type' => 'textfield',
+      '#title' => 'Link for Sponsor Image',
+      '#default_value' => variable_get('livebreaking_link', 'http://sanangelolive.com/'),
+    );
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function livebreaking_block_save($delta = '', $edit = array()) {
+  // This example comes from node.module.
+  if ($delta == 'breaking') {
+    variable_set('livebreaking_link', $edit['livebreaking_link']);
+    variable_set('breaking_hot', $edit['breaking_hot']);
+    variable_set('breaking_level', $edit['breaking_level']);
+    variable_set('breaking_promoted', $edit['breaking_promoted']);
+    // Saving the file, setting it to a permanent state, setting a FID variable
+    $file = file_load($edit['livebreaking_image']);
+    $file->status = FILE_STATUS_PERMANENT;
+    file_save($file);
+    $block = block_load('livebreaking', $delta);
+    file_usage_add($file, 'livebreaking', 'block', $block->bid);
+    variable_set('livebreaking_image_fid', $file->fid);
+  }
+}
+
+/**
+ * Implements hook_node_load().
+ */
+function livebreaking_node_load($nodes, $types) {
+
+}
+
+/**
+ * Implements hook_theme()
+ */
+function livebreaking_theme($existing, $type, $theme, $path) {
+  return array(
+    'livebreaking_block' => array(
+      'template' => 'livebreaking-block',
+      'variables' => array('breaking_items' => '', 'sponsor' => ''),
+      'path' => drupal_get_path('module', 'livebreaking') . '/templates'
+    )
+  );
+}

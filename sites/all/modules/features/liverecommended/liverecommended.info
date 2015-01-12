@@ -1,0 +1,13 @@
+name = LiveRecommended
+description = Recommend stories
+core = 7.x
+package = LIVE
+php = 5.2.4
+dependencies[] = file_entity
+dependencies[] = image
+dependencies[] = views
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[image][] = news_thumbs__144x108_
+features[views_view][] = news_thumbs
+features_exclude[dependencies][ctools] = ctools

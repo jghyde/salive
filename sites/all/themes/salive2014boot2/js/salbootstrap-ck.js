@@ -1,0 +1,2 @@
+// $Id: $ mods for bootstrap for salive 2014
+(function(e){Drupal.behaviors.salivebootstrap={attach:function(t,n){e(".dropdown-toggle").dropdown();e(".nav-collapse").collapse({toggle:!0});e(".view-events img.event-feed-image").mouseover(function(){e(this).closest(".views-row").children(".views-field-body").slideDown(300)}).mouseout(function(){e(this).closest(".views-row").children(".views-field-body").slideUp(300)})}};e(window).resize(function(){e(".nav-collapse").collapse({toggle:!0})});e("div.accordion").collapse({toggle:!1})})(jQuery);

@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LiveRecommended feature.
+ */
+
+include_once 'liverecommended.features.inc';

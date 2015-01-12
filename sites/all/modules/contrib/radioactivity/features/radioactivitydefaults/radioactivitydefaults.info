@@ -1,0 +1,14 @@
+name = Radioactivity defaults
+core = 7.x
+package = Radioactivity
+version = 7.x-2.9+9-dev
+project = radioactivity
+dependencies[] = ctools
+dependencies[] = radioactivity
+datestamp = 1400672928
+features[ctools][] = radioactivity:radioactivity_decay_profile:1
+features[features_api][] = api:2
+features[radioactivity_decay_profile][] = default_daily
+features[radioactivity_decay_profile][] = default_now
+features[radioactivity_decay_profile][] = default_weekly
+mtime = 1416954007

@@ -1,0 +1,17 @@
+name = livenewsthumbs
+description = Bootstrap thumbs of articles and events for home page
+core = 7.x
+package = LIVE
+dependencies[] = ctools
+dependencies[] = file_entity
+dependencies[] = image
+dependencies[] = quicktabs
+dependencies[] = views
+features[ctools][] = quicktabs:quicktabs:1
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[image][] = event_feed_image
+features[image][] = video_newsthumb
+features[quicktabs][] = san_angelo_news
+features[views_view][] = newsthumbs
+mtime = 1410401353

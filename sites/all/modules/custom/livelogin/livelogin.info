@@ -1,0 +1,4 @@
+name = LIVE Log-in
+description = Creates custom login workflows for users on LIVE platform sites
+package = LIVE
+core = 7.x

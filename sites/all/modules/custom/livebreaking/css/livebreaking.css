@@ -1,0 +1,54 @@
+.block-livebreaking {
+  background-color: #000000;
+}
+.block-livebreaking .livebreaking-item {
+  display: none;
+  padding: 10px;
+  line-height: 2em;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.4em;
+  width: 100%;
+}
+.block-livebreaking .livebreaking-item.first {
+  display: block;
+}
+.block-livebreaking .livebreaking-item .icon-white {
+  margin-right: 0.3em;
+}
+.block-livebreaking .livebreaking-item a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-size: 0.8em;
+}
+.block-livebreaking .livebreaking-item.bell {
+  background-color: #F1142C;
+}
+.block-livebreaking .livebreaking-item.fire {
+  background-color: #BF5700;
+}
+.block-livebreaking .livebreaking-item .span3 a {
+  height:auto !important;
+  width: 100% !important;
+}
+/** Responsive **/
+@media all and (max-width: 960px) {
+  .block-livebreaking .livebreaking-item {
+		text-align: center;
+    font-size: 1.2em;
+    height: auto;
+  }
+}
+@media (max-width: 767px) {
+  .block-livebreaking .livebreaking-item {
+    height: auto;
+  }	
+}
+
+@media all and (min-width: 767px) {
+  .block-livebreaking .livebreaking-item .span9, .block-livebreaking .livebreaking-item .span3 {
+    margin-left: 10px !important;
+  }
+}
+

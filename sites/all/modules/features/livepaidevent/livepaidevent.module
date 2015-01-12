@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Code for the livepaidevent feature.
+ */
+
+include_once 'livepaidevent.features.inc';
+
+/**
+ * Implements hook_form_alter()
+ */
+function livepaidevent_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'paid_event_node_form') {
+    //$aa = drupal_get_destination();
+      $link_free = l('Continue', 'node/add/event', array('attributes' => array('class' => array('btn'))));
+    $form['field_submitted_address'][LANGUAGE_NONE][0]['name_block']['name_line']['#title'] = "Name of Location";
+    if (!user_access('administer content')) {
+      // Add the well classes
+      $form['field_image']['#attributes']['class'][] = 'well';
+      $form['field_image']['#attributes']['class'][] = 'well-large';
+      // Uset some form fields
+      unset($form['field_venue']);
+      unset($form['field_artist']);
+      $form['actions']['#prefix'] = 'Paid event listings are moderated for accuracy and presentation within 24 hours of successful payment. Paid events are a one-time fee of $29.99, and the event will be published on San Angelo LIVE! until the start time of the event. If the event duration is more than one day, an additional event listing may be purchased for each day of the event. Call (325) 340-1238 for details.';
+      $form['actions']['submit']['#value'] = 'Click to Post';
+      $form['actions']['submit']['#attributes'] = array (
+        'class' => array(
+          'btn-primary',
+        ),
+      );
+    }
+  }
+}

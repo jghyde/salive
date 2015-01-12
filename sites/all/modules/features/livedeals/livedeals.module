@@ -1,0 +1,265 @@
+<?php
+/**
+ * @file
+ * Code for the livedeals feature.
+ */
+
+include_once 'livedeals.features.inc';
+
+/**
+ * Implements hook_permission
+ */
+function livedeals_permission() {
+  return array(
+    'claim coupons' => array(
+      'title' => t('Claim Coupons'),
+      'description' => t('Claim coupons that are posted.'),
+    ),
+  );
+}
+/**
+ * Implements hook_menu
+ */
+function livedeals_menu() {
+  $items = array();
+  $items['deal/%node/claim'] = array(
+    'page callback' => 'livedeals_claim',
+    'page arguments' => array(1),
+    'access arguments' => array('claim coupons'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['deal/%node/redeem'] = array(
+    'page callback' => 'livedeals_redeem',
+    'page arguments' => array(1),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function livedeals_claim($node) {
+  global $user;
+  $uid = (int)$user->uid;
+  $nid = (int)$node->nid;
+  // Check to see if the user has already claimed a coupon
+  $r = db_query('select * from {deal_redemption} d where d.uid=:uid and d.nid=:nid', array(':uid' => (int)$uid, ':nid' => $nid))->fetchAll();
+  if (empty($r)) {
+    $can_claim = 1;
+  }
+  else {
+    $can_claim = 0;
+  }
+  if ($can_claim == 1) {
+    $claim = db_insert('deal_redemption')
+    ->fields(array(
+      'uid' => $uid,
+      'nid' => $nid,
+      'date' => REQUEST_TIME,
+    ))->execute();
+    if ($claim != 0) {
+      // decrement the number of coupons left
+      if ($node->field_number_of_coupons_left[LANGUAGE_NONE][0]['value'] != 0) {
+        $node->field_number_of_coupons_left[LANGUAGE_NONE][0]['value'] = (int)$node->field_number_of_coupons_left[LANGUAGE_NONE][0]['value'] - 1;
+        node_save($node);
+      }
+      drupal_set_message(t('You have claimed coupon !coupon. Please check your email for your coupon that you can present to the advertiser on your smartphone, or print the email. The email will arrive from webmaster@sanangelolive.com. If it does not arrive immediately, please email webmaster@sanangelolive.com or call (325) 340-1238.',
+      array('!coupon' => '<strong>' . $node->title . '</strong>')));
+    }
+  }
+  else {
+    drupal_set_message(t('You have already claimed this coupon. We emailed you another one just in case.'));
+  }
+  // Mail the coupon
+  //drupal_mail($module, $key, $to, $language, $params = array(), $from = NULL, $send = TRUE)
+  // First build the inners of the email:
+  $params['user'] = profile2_load_by_user($user->uid, 'main');
+  $account = '';
+  if (!empty($params['user']->field_first_name['und'][0]['safe_value'])) {
+    $account .= $params['user']->field_first_name['und'][0]['safe_value'];
+  }
+  if (!empty($params['user']->field_last_name['und'][0]['safe_value'])) {
+    $account .= ' ' . $params['user']->field_last_name['und'][0]['safe_value'];
+  }
+  if (empty($account)) {
+    $account = $user->name;
+  }
+  $params = array();
+  $params['message'] = $node->body['und'][0]['safe_value'];
+  $imgvars = $node->field_image[LANGUAGE_NONE][0];
+  $picarray = array(
+    'style_name' => 'dailydeal',
+    'path' => $imgvars['uri'],
+    'width' => 284,
+    'alt' => $imgvars['alt'],
+    'title' => $imgvars['title'],
+  );
+  $params['image'] = theme('image_style', $picarray);
+
+  $display = array('settings' => array('format_type' => 'grammar'));
+  $params['expires'] = field_view_field('node', $node, 'field_deal_end_date', $display);
+  $params['terms'] = $node->field_terms_and_conditions['und'][0]['safe_value'];
+  $params['venue'] = node_load($node->field_venue['und'][0]['target_id']);
+  $msg .= '<hr />';
+  $msg .= '<table border="0" cellspacing="0" cellpadding="0" width="100%"><tr><td width="294">' . $params['image'] . '</td>';
+  $msg .= '<td align="center"><h1 style="color: #000000; font-family: Arial, sans-serif; font-size: 36px;">' . $node->title . '</h1>';
+  $msg .= '</td></tr></table>';
+  $msg .= '<p>' . $params['message'] . "</p> \n";
+
+  $msg .= render($params['expires']);
+  $msg .= '<h3 style="font-family: Arial, sans-serif;">To Redeem this Coupon:</h3>';
+  $msg .= 'Present this email with your coupon at the store by showing the cashier or salesperson the email on your smartphone. Or, you may print the email and present the printed coupon at the point-of-purchase.';
+  $msg .= '<p><a href="' . $params['venue']->field_venue_website['und'][0]['value'] . '">' . $params['venue']->title . '</a><br />';
+  $msg .= $params['venue']->field_address['und'][0]['thoroughfare'] . '<br />';
+  $msg .= $params['venue']->field_address['und'][0]['locality'] . ', ' .
+    $params['venue']->field_address['und'][0]['administrative_area'] . ' ' .
+    $params['venue']->field_address['und'][0]['postal_code'];
+  $msg .= '<div id="claimant" style="width: 600px; padding: 10px; margin: 10px auto; background-color: #efefef;">';
+  $msg .= '<p align="center"><em>This coupon was claimed by:</em></p>';
+  $msg .= '<h3 align="center">' . $account . '</h3>';
+  $msg .= '<center><a href="mailto:' . $user->mail . '">' . $user->mail . '</a>';
+  $msg .= '</div>';
+  $msg .= '<p style="color: #999999; font-size: 10px;">' . $node->field_terms_and_conditions['und'][0]['safe_value'] . '</p><br /><br />';
+
+  
+    $message = array(
+      'to' => $user->mail,
+      'subject' => 'LIVE! Daily Deal: ' . $node->title,
+      'body' => $msg,
+      'headers'=>array(),   //needed
+    );
+    
+    
+    $MimeMailSystem = drupal_mail_system('mimemail', 'livedeals');
+    $message = $MimeMailSystem->format($message);
+    if($MimeMailSystem->mail($message)){
+      drupal_set_message(t('CONGRATULATIONS! Your coupon has been sent to !email.', array('!email' => $user->mail)));
+    }else{
+      drupal_set_message('Sending the email Failed. Please try again or email webmaster@sanangelolive.com to notify us.', 'error');
+    }
+  //livedeals_mail_it('livedeals', $message, $params);
+  //drupal_mail('livedeals', 'deal', $user->mail, user_preferred_language($user), $params, variable_get('site_mail', 'webmaster@sanangelolive.com'), TRUE);
+  $client = user_load($params['venue']->uid);
+  $msg2 = "<hi>People are Liking Your Coupon!</h1>";
+  $msg2 .= '<h3>Coupon <b>' . $node->title . '</b> claimed by:</h3>';
+  $msg2 .= '<p>' . $account . '</p>';
+  $msg2 .= '<p>' . $user->mail . '</p>';
+  $message2 = array(
+    'to' => $client->mail,
+    'subject' => 'Your Coupon Offer Was Claimed by ' . $account,
+    'body' => $msg2,
+    'headers' => array(),
+  );
+  $message2 = $MimeMailSystem->format($message2);
+    if($MimeMailSystem->mail($message2)){
+      watchdog('livedeals', t('CONGRATULATIONS! Your coupon has been sent to !email.', array('!email' => $user->mail)));
+    }else{
+      watchdog('livedeals', 'Sending the email Failed. Please try again or email webmaster@sanangelolive.com to notify us.', 'error');
+    }
+  drupal_goto('node/' . $node->nid);
+}
+
+function livedeals_redeem($node) {
+  return;
+}
+
+function livedeals_button($nid, $uid) {
+  if (user_is_anonymous()) {
+    $out = l('Claim', 'user/login', array('query' => drupal_get_destination(), 'attributes' => array('class' => array('ios-link', 'btn-large', 'btn', 'btn-primary', 'claim'))));
+    $out .= '<p class="coupons-left">You can ' . l('log in', 'user/login', array('query' => drupal_get_destination())) . ' or ' . l('register', 'user/register',  array('query' => drupal_get_destination())) . ' to claim.</p>';
+  }
+  else {
+    $r = db_query('select * from {deal_redemption} d where d.uid=:uid and d.nid=:nid', array(':uid' => (int)$uid, ':nid' => $nid))->fetchAll();
+    if (empty($r)) {
+      $redeemed = 0;
+    }
+    else {
+      $redeemed = 1;
+    }
+    if ($redeemed == 0) {
+      $out = l('Claim', 'deal/' . $nid . '/claim', array('attributes' => array('class' => array('ios-link', 'btn-large', 'btn', 'btn-primary', 'claim'))));
+    }
+    else {
+      $out = '<div class="claim btn btn-primary disabled">Claimed</div>';
+    }
+  }
+  return $out;
+}
+
+/*
+ * Implements preprocess_node
+ */
+function livedeals_preprocess_node(&$vars) {
+  if ($vars['node']->type == 'deal') {
+    $vars['content']['livedeal_button'] = array(
+      '#access' => 1,
+      '#weight' => 5,
+    );
+    $vars['content']['livedeal_button'][0]['#markup'] = livedeals_button($vars['node']->nid, $vars['user']->uid);
+    
+  }
+}
+
+/**
+ * Implements hook_theme()
+ */
+function livedeals_theme($existing, $type, $theme, $path) {
+  return array (
+    'node__deal' => array (
+        'variables' => (object)array(),
+        'template' => 'node--deal',
+        'base hook' => 'node',
+        'path' => drupal_get_path('module', 'livedeals') . '/templates',
+      ),
+  );
+}
+
+/**
+ * implements hook_mail
+ */
+function livedeals_mail_it($key, &$message, $params) {
+  global $user;
+  $data['user'] = $user;
+  $account = '';
+  if (!empty($params['user']->field_first_name['und'][0]['safe_value'])) {
+    $account .= $params['user']->field_first_name['und'][0]['safe_value'];
+  }
+  if (!empty($params['user']->field_last_name['und'][0]['safe_value'])) {
+    $account .= ' ' . $params['user']->field_last_name['und'][0]['safe_value'];
+  }
+  if (empty($account)) {
+    $account = $user->name;
+  }
+  $langcode = $message['language']->language;
+  $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+  //$message = drupal_mail('livedeals', $key, $to, $language, $params, $from, $send);
+  $message['subject'] = 'example submission from '. $account;
+  $msg = '<h4 align="center" style="color: #B20717; font-family: Arial, sans-serif;">San Angelo LIVE! Daily Deal</h4>' . "\n";
+  $msg .= '<hr /><h1 align="center" style="color: #B20717; font-family: Arial, sans-serif;">' . $params['title'] . '</h1>';
+  $msg .= '<center>' . $params['image'] . '</center>' . "\n";
+  $msg .= $params['message'] . "\n";
+  $msg .= '<p style="font-weight: bold; text-align: center;">Expires: ' . render($params['expires']) . '</p>';
+  $msg .= '<p><strong>Redeem at:</strong></p>';
+  $msg .= '<p>' . $params['venue']->title . '<br />';
+  $msg .= $params['venue']->field_address['und'][0]['thoroughfare'] . '<br />';
+  $msg .= $params['venue']->field_address['und'][0]['locality'] . ', ' .
+    $params['venue']->field_address['und'][0]['administrative_area'] . ' ' .
+    $params['venue']->field_address['und'][0]['postal_code'];
+  $msg .= '<div id="claimant" style="width: 600px; padding: 10px; margin: 10px auto; background-color: #efefef;">';
+  $msg .= '<h3 align="center">' . $account . '</h3>';
+  $msg .= '<center><a href="mailto:' . $user->mail . '">' . $user->mail . '</a>';
+  $msg .= '</div>';
+  $message['body'][] = $msg;
+  $system = drupal_mail_system('livedeals', 'deal');
+  // Format the message body.
+  $message = $system->format($message);
+  //Send e-mail.
+  $message['result'] = $system->mail($message);
+
+  if($message['result'] == TRUE) {
+    drupal_set_message(t('Your coupon has been emailed to you at !mail.', array('!mail' => $user->mail)));
+    return TRUE;
+  }
+  else{
+    drupal_set_message(t('There was a problem sending your coupon to your email address and it was not sent.'), 'error');
+    return FALSE;
+  }
+}

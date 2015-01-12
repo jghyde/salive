@@ -1,0 +1,220 @@
+<?php
+
+
+/**
+ * Implements hook_block_info().
+ */
+function waterblock_block_info() {
+  // This example comes from node.module.
+  $blocks['water'] = array(
+    'info' => t('Water Info for San Angelo Block'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function waterblock_block_view($delta = '') {
+  // This example is adapted from node.module.
+  $block = array();
+
+  switch ($delta) {
+    case 'water':
+      // build the html
+      $date = variable_get('wb_date');
+      list($year, $month, $day) = explode('-', $date);
+      $date_end = strtotime($date);
+      $date_start = time();
+      $diff = $date_end - $date_start;
+      $days = floor($diff/(60*60*24));
+      $wb_buttes = variable_get('wb_buttes');
+      $wb_date = variable_get('wb_date');
+      $wb_fisher = variable_get('wb_fisher');
+      //$wb_hist_use = variable_get('wb_hist_use');
+      $wb_ivie = variable_get('wb_ivie');
+      $wb_nasworthy = variable_get('wb_nasworthy');
+      $wb_year = variable_get('wb_year');
+      $wb_yesterday = (int)variable_get('wb_yesterday');
+      $wb_yesterday_use = (int)variable_get('wb_yesterday_use');
+      // convert to ac-ft
+      $wb_yesterday_use = round($wb_yesterday_use/325851.431889, 2);
+      
+      $wb_ytd_use = variable_get('wb_ytd_use');
+      $wb_ytd_use = round($wb_ytd_use/325851.431889, 2);
+      $out = '<div id="date-wrapper"><div id="date">' . $days . ' Days</div></div>';
+      $out .= '<div id="lake-wrapper">';
+      $out .= '<table class="table table-condensed"><caption>Lake Levels</caption><tr><th>Lake</th><th>Ac.-Ft.</th></tr>';
+      $out .= '<tr><td class="left">Nasworthy</td><td class="right">' . $wb_nasworthy . ' ac.-ft.</td></tr>';
+      $out .= '<tr><td class="left">Ivie</td><td class="right">' . $wb_ivie . ' ac.-ft.</td></tr>';
+      $out .= '<tr><td class="left">O.C. Fisher</td><td class="right">' . $wb_fisher . ' ac.-ft.</td></tr>';
+      $out .= '<tr><td class="left">Twin Buttes</td><td class="right">' . $wb_buttes . ' ac.-ft.</td></tr>';
+      $out .= '</table>';
+      $out .= '</div>';
+      $out .= '<div id="rain-wrapper">';
+      $out .= '<table class="table table-condensed"><caption>Rainfall</caption><tr><th>Timeframe</th><th>Rain Amount</th></tr>';
+      $out .= '<tr><td class="left">Yesterday</td><td class="right">' . $wb_yesterday . ' inches</td></tr>';
+      $out .= '<tr><td class="left">Year to Date</td><td class="right">' . $wb_year . ' inches</td></tr>';
+      $out .= '</table>';
+      $out .= '</div>';
+      $out .= '<div id="water-wrapper">';
+      $out .= '<table class="table table-condensed"><caption>Water Usage</caption><tr><th>Timeframe</th><th>Water Use</th></tr>';
+      $out .= '<tr><td class="left">Fresh Water In</td><td class="right">' . $wb_yesterday_use . ' ac.-ft.</td></tr>';
+      $out .= '<tr><td class="left">Wastewater Out</td><td class="right">' . $wb_ytd_use . ' ac.-ft.</td></tr>';
+      $out .= '</table>';
+      $out .= '</div>';
+      $out .= '<p class="wb-caption">Updated as of ' . date('M j, Y', variable_get('wb_updated')) . '</p>';
+      $block['subject'] = t('LIVE! Water Watch');
+      $block['content'] = array(
+        '#title' => t('LIVE! Hickory Countdown'),
+        '#markup' => $out,
+      );
+      $block['content']['#attached']['css'][] = drupal_get_path('module', 'waterblock') . '/waterblock.css';
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function waterblock_block_configure($delta = '') {
+  $form = array();
+  if ($delta == 'water') {
+    $form = array();
+    $form['date_online']['online'] = array(
+      '#weight' => '0',
+      '#default_value' => variable_get('wb_date_online', '2014-11-19'),
+      '#date_format' => 'd/m/Y',
+      '#required' => '0',
+      '#type' => 'date_popup',
+      '#title' => t('Countdown Date'),
+    );
+    $form['water_levels'] = array(
+      '#weight' => '1',
+      '#description' => t('Enter the level in inches of each lake.'),
+      '#type' => 'fieldset',
+      '#collapsible' => '1',
+      '#collapsed' => '0',
+      '#title' => t('Lake Levels'),
+    );
+    $form['water_levels']['nasworthy'] = array(
+      '#default_value' => variable_get('wb_nasworthy', 0),
+      '#required' => '0',
+      '#description' => t('Enter the level in inches (no suffix)'),
+      '#weight' => '0',
+      '#type' => 'textfield',
+      '#title' => t('Lake Nasworthy Level'),
+    );
+    $form['water_levels']['buttes'] = array(
+      '#default_value' => variable_get('wb_buttes', 0),
+      '#required' => '0',
+      '#description' => t('Enter the level in inches (no suffix)'),
+      '#weight' => '2',
+      '#type' => 'textfield',
+      '#title' => t('Twin Buttes Reservoir Level'),
+    );
+    $form['water_levels']['ivie'] = array(
+      '#required' => '0',
+      '#default_value' => variable_get('wb_ivie', 0),
+      '#descri' => t('Enterption the level in inches (no suffix)'),
+      '#weight' => '3',
+      '#type' => 'textfield',
+      '#title' => t('Lake Ivie Level'),
+    );
+    $form['water_levels']['fisher'] = array(
+      '#required' => '0',
+      '#default_value' => variable_get('wb_fisher', 0),
+      '#description' => t('Enter Lake Level in inches (no suffix)'),
+      '#weight' => '4',
+      '#type' => 'textfield',
+      '#title' => t('Lake O.C. Fisher Level'),
+    );
+    $form['rain'] = array(
+      '#weight' => '5',
+      '#description' => t('Enter the rainfall information.'),
+      '#type' => 'fieldset',
+      '#title' => t('Rainfall'),
+      '#collapsible' => '1',
+      '#collapsed' => '0',
+    );
+    $form['rain']['year'] = array(
+      '#required' => '0',
+      '#default_value' => variable_get('wb_year', 0),
+      '#description' => t('The amount of rainfall for the year, starting Jan. 1, 2014.'),
+      '#weight' => '0',
+      '#type' => 'textfield',
+      '#title' => t('Rainfall Year-to-Date'),
+    );
+    $form['rain']['yesterday'] = array(
+      '#required' => '0',
+      '#default_value' => variable_get('wb_yesterday', 0),
+
+      '#description' => t('Amount of rainfall yesterday (in inches)'),
+      '#weight' => '1',
+      '#type' => 'textfield',
+      '#title' => t('Rainfall Yesterday'),
+    );
+    $form['use'] = array(
+      '#weight' => '6',
+      '#default_value' => variable_get('wb_use', 0),
+
+      '#title' => t('Water Usage'),
+      '#collapsed' => '0',
+      '#collapsible' => '1',
+      '#type' => 'fieldset',
+    );
+    $form['use']['yesterday_use'] = array(
+      '#required' => '0',
+      '#default_value' => variable_get('wb_yesterday_use', 0),
+
+      '#description' => t('Fresh Water In'),
+      '#weight' => '0',
+      '#type' => 'textfield',
+      '#title' => t('Fresh Water In'),
+    );
+    $form['use']['ytd_use'] = array(
+      '#weight' => '1',
+      '#required' => '0',
+      '#type' => 'textfield',
+      '#default_value' => variable_get('wb_ytd_use', 0),
+
+      '#title' => t('Wastewater Out'),
+    );
+    /*
+    $form['use']['hist_use'] = array(
+      '#weight' => '2',
+      '#required' => '0',
+      '#default_value' => variable_get('wb_hist_use', 0),
+
+      '#type' => 'textfield',
+      '#title' => t('Historical Annual Water Usaage'),
+    );
+  */
+  }
+
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function waterblock_block_save($delta = '', $edit = array()) {
+  // This example comes from node.module.
+  if ($delta == 'water') {
+    // set everything
+    variable_set('wb_date_online', $edit['online']);
+    variable_set('wb_buttes', $edit['buttes']);
+    variable_set('wb_date', $edit['online']);
+    variable_set('wb_fisher', $edit['fisher']);
+    variable_set('wb_hist_use', $edit['hist_use']);
+    variable_set('wb_ivie', $edit['ivie']);
+    variable_set('wb_nasworthy', $edit['nasworthy']);
+    variable_set('wb_year', $edit['year']);
+    variable_set('wb_yesterday', $edit['yesterday']);
+    variable_set('wb_yesterday_use', $edit['yesterday_use']);
+    variable_set('wb_ytd_use', $edit['ytd_use']);
+    variable_set('wb_updated', time());
+  }
+}

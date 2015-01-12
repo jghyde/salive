@@ -1,0 +1,98 @@
+// Universal Styling for Article views
+.views-list-words ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.views-list-words ul li {
+  list-style: none;
+  float: right;
+  margin-left: 1em;
+}
+.views-list-words ul li:last-child {
+  margin: 0;
+}
+h2.node-title {
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+// Views Article Featured Story Block
+
+.view-display-id-block_2 .views-row .views-list-image {
+  width: 100%;
+}
+.view-display-id-block_2 .views-row .views-list-words {
+  clear: both;
+}
+
+// View Article Page (list style) Styling
+.view-display-id-page .views-row .views-list-image {
+  width: 180px;
+  height: 132px;
+  margin: 0 20px 0 0;
+  float: left;
+}
+.view-display-id-page .views-row .views-list-words {
+  margin-left: 200px;
+}
+.view-display-id-page .views-row {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cccccc;
+}
+.view-display-id-page .views-row-last {
+  padding: 0;
+  border: none;
+}
+div.field-name-field-image {
+  margin-bottom: 10px;
+}
+.field-name-field-date {
+  width: 100%;
+  padding: 10px;
+  background: @grayLighter;
+  border-radius: @borderRadiusLarge;
+  -moz-border-radius: @borderRadiusLarge;
+  -webkit-border-radius: @borderRadiusLarge;
+  margin-bottom: 10px;
+}
+.field-name-field-venue.field-type-entityreference {
+  margin-bottom: 10px;
+}
+.address h2 {
+  margin: 0;
+}
+
+// Events nodes
+.node-event {
+  .field-name-body .field-items {
+    margin-left: 10px;
+  }
+  .field-name-field-artist {
+    .field-name-body {
+      margin-left: 10px;
+    }
+    .field-name-field-youtube .field-label {
+      margin-bottom: 10px;
+    }
+    .field-name-field-artist-website {
+      background: @grayLighter;
+      .roundedCorners (@borderRadiusLarge);
+      padding: 10px;
+      .field-label {
+        padding: none!important;
+        background: none;
+        .roundedCorners (0px);
+      }
+    }
+  }
+}
+/*
+ *    .field-label {
+      padding: 10px;
+      background-color: @grayLighter;
+      .roundedCorners (10px);
+    }
+    */
+    

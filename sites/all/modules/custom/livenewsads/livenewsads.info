@@ -1,0 +1,3 @@
+name = LIVE News Body Ads
+description = Inserts ads inside the BODY of a node.
+core = 7.x

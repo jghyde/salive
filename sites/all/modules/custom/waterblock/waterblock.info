@@ -1,0 +1,4 @@
+name = Water Block
+description = Informative block about water on all pages.
+core = 7.x
+

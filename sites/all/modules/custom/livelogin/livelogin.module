@@ -1,0 +1,222 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ *
+function livelogin_menu() {
+  $items['example'] = array(
+    'title' => 'Example Page',
+    'page callback' => 'example_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+  );
+  $items['example/feed'] = array(
+    'title' => 'Example RSS feed',
+    'page callback' => 'example_feed',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_block_info().
+ *
+function livelogin_block_info() {
+  // This example comes from node.module.
+  $blocks['syndicate'] = array(
+    'info' => t('Syndicate'),
+    'cache' => DRUPAL_NO_CACHE
+  );
+
+  $blocks['recent'] = array(
+    'info' => t('Recent content'),
+    // DRUPAL_CACHE_PER_ROLE will be assumed.
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+function livelogin_block_view($delta = '') {
+  // This example is adapted from node.module.
+  $block = array();
+
+  switch ($delta) {
+    case 'syndicate':
+      $block['subject'] = t('Syndicate');
+      $block['content'] = array(
+        '#theme' => 'feed_icon',
+        '#url' => 'rss.xml',
+        '#title' => t('Syndicate'),
+      );
+      break;
+
+    case 'recent':
+      if (user_access('access content')) {
+        $block['subject'] = t('Recent content');
+        if ($nodes = node_get_recent(variable_get('node_recent_block_count', 10))) {
+          $block['content'] = array(
+            '#theme' => 'node_recent_block',
+            '#nodes' => $nodes,
+          );
+        } else {
+          $block['content'] = t('No content available.');
+        }
+      }
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Implements hook_block_configure().
+ *
+function livelogin_block_configure($delta = '') {
+  // This example comes from node.module.
+  $form = array();
+  if ($delta == 'recent') {
+    $form['node_recent_block_count'] = array(
+      '#type' => 'select',
+      '#title' => t('Number of recent content items to display'),
+      '#default_value' => variable_get('node_recent_block_count', 10),
+      '#options' => drupal_map_assoc(array(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30)),
+    );
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ *
+function livelogin_block_save($delta = '', $edit = array()) {
+  // This example comes from node.module.
+  if ($delta == 'recent') {
+    variable_set('node_recent_block_count', $edit['node_recent_block_count']);
+  }
+}
+// */
+/**
+ * Implements hook_user_login().
+ *
+function livelogin_user_login(&$edit, $account) {
+  // If the user has a NULL time zone, notify them to set a time zone.
+  if (!$account->timezone && variable_get('configurable_timezones', 1) && variable_get('empty_timezone_message', 0)) {
+    drupal_set_message(t('Configure your <a href="@user-edit">account time zone setting</a>.', array('@user-edit' => url("user/$account->uid/edit", array('query' => drupal_get_destination(), 'fragment' => 'edit-timezone')))));
+  }
+}
+
+/**
+ * form builder for making comment login
+ */
+function livelogin_comment_form($form, &$form_state) {
+  $query = drupal_get_destination();
+  $form = array();
+  $form['#title'] = t('Sign up and comment');
+  $form['#action'] = 'https://secure.sanangelolive.com/user/register?destination=' . $query['destination'];
+  $form['username'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Username'),
+    '#required' => TRUE,
+    '#weight' => 0,
+  );
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Your email address'),
+    '#required' => TRUE,
+    '#weight' => 1,
+  );
+  $form['comment'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Your Comment'),
+    '#weight' => 3,
+    '#prefix' => '<p style="clear: both;">' . t('Please check your email inbox after signing up. Your comment will not post until you have confirmed your identity.') . '</p>',
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Comment'),
+    '#weight' => 10,
+  );
+  return $form;
+}
+
+/**
+ * Implements hook form alter
+ */
+function livelogin_form_alter(&$form, &$form_state, $form_id) {
+  $i = 0;
+  if ($form_id == 'user_register_form') {
+    (isset($_POST['username']) ? $form['account']['name']['#default_value'] = $_POST['username'] : '');
+    (isset($_POST['email']) ? $form['account']['mail']['#default_value'] = $_POST['email'] : '');
+    if (isset($_POST['comment']['value'])) {
+      // Set some cookies.
+      setcookie("register_comment_words", $_POST['comment']['value'], time() + 36000, '/');
+    }
+    $return_path = $_REQUEST['destination'];
+    setcookie("register_comment_path", $return_path, time() + 36000, '/');
+  }
+}
+
+/**
+ * Implements hook_user_login
+ */
+function livelogin_user_login(&$edit, $account) {
+  if (isset($_COOKIE['register_comment_path'])) {
+    $edit['redirect'] = htmlspecialchars_decode($_COOKIE['register_comment_path']);
+    setcookie("register_comment_path", '', time() - 10);
+  }
+}
+
+/**
+ * Implements hook_node_view()
+ */
+function livelogin_node_view($node, $view_mode, $langcode) {
+  drupal_add_js(drupal_get_path('module', 'livelogin') . '/js/livelogin.js');
+}
+
+/**
+ * Implements hook_init()
+ */
+function livelogin_init() {
+  // jquery.cookie plugin is not being loaded for anonymous users
+  // causing all jQuery and Javascript to break on the site.
+  drupal_add_library('system', 'jquery.cookie');
+}
+
+/**
+ * implements hook_comment_presave()
+ *
+function livelogin_comment_presave($comment) {
+  // Remove leading & trailing spaces from the comment subject.
+  $comment->subject = trim($comment->subject);
+  /*
+function _radioactivity_update_energy(
+  $entity_type,
+  $bundle,
+  $field_name,
+  $language,
+  $entity_id,
+  $energy_delta,
+  $time,
+  $force = FALSE
+)
+
+  if (strpos($comment->node_type, 'node')) {
+    $list = explode('_', $comment->node_type);
+    $bundle = $list[2];
+    $nn = node_load($comment->nid);
+    $entity_type = 'node';
+    $field_name = 'field_radioactivity';
+    $language = LANGUAGE_NONE;
+    $entity_id = $comment->nid;
+    $energy_delta = 100;
+    _radioactivity_update_energy($entity_type, $bundle, $field_name, $language, $entity_id, $energy_delta, time(), FALSE);
+    // clear field caches just to be sure
+    field_cache_clear();
+  }
+  
+} */
+

@@ -1,0 +1,10 @@
+name = LIVE Email Displays
+description = Views for cutting and pasting content into email
+core = 7.x
+package = LIVE
+dependencies[] = ctools
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = article_view_for_mailchimp
+features_exclude[dependencies][views] = views
+mtime = 1410219049

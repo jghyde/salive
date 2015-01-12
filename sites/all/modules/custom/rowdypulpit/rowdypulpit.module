@@ -1,0 +1,728 @@
+<?php
+/**
+ * @file
+ * Code for the rowdypulpit feature.
+ */
+
+include_once('rowdypulpit.features.inc');
+
+/**
+ * Implements hook_menu()
+ */
+function rowdypulpit_menu() {
+  $items = array();
+  $items['rowdy/getformelements'] = array(
+    'title' => 'Rowdy Get Form Elements',
+    'page callback' => '_rowdy_ahah',
+    'type' => MENU_CALLBACK,
+    'access callback' => 'user_access',
+    'access arguments' => array('access content'),
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_permission()
+ */
+function rowdypulpit_permission() {
+  return array(
+    'contribute to rowdypulpit' => array(
+      'title' => t('Contribute to Rowdypulpit'),
+      'description' => t('Add a link to the Rowdypulpit'),
+    ),
+  );
+}
+
+/**
+ * helper func to fill return json to render form
+ */
+function _rowdy_ahah() {
+  $url = $_GET['u'];
+  
+  // valid url?
+  $url = _rowdy_validate_url($url);
+  if (isset($url)) {
+    $url_dup = rowdyconbtrib_check_for_existing_url($url);
+  }
+  if ($url && !$url_dup) {
+    // make the scraper work here. See http://davidwalsh.name/php-notifications
+    
+    // In case the site checks user agent:
+    ini_set('user_agent', 'RowdyPulpit.com/1.0');
+    
+    // grab the contents of the page
+    $summary = file_get_html($url);
+    
+    // Get image possibilities
+    
+    $img = array();
+
+    // First, if the webpage has an og:image meta tag, it's easy:
+    if ($summary->find('meta[property=og:image]')) {
+      foreach ($summary->find('meta[property=og:image]') as $e) {
+        $img[] = $e->attr['content'];
+      }
+    }
+    else {
+      // No open graph on the page, so gotta give user some options:
+      // image urls to ignore:
+      $ignore = array(
+        'quantcast.com',
+        'openx.org',
+        'twimg.com',
+        'ad.doubleclick.net',
+        'adtechus.com',
+      );
+      foreach($summary->find('img') as $e) {
+        if (count($img) < 6 && !empty($e->attr['src'])) {
+          $w = FALSE;
+          
+          // if $w remains false, then it is a valid image, and not a quantcast pixel image or twitter logo
+          foreach($ignore as $i) {
+            if (!_rowdy_validate_url($e->attr['src'])) {
+              $w = TRUE;
+              break;
+            }
+            if (strpos($e->attr['src'], $i)) {
+              $w = TRUE;
+              break;
+            }
+            if ($w === TRUE) {
+              break;
+            }
+          }
+          if (!$w) {
+            $s = getimagesize($e->attr['src']);
+            if ($s[0] > 40 && $s[0] < 1600 && $s[1] > 40 && $s[1] < 1200) {
+              $img[] = $e->attr['src'];
+            }
+          }
+        }
+      }
+    }
+
+  
+    // format the $imgs' into an unordered list:
+    $no_imgs = count($img);
+    if ($no_imgs > 0) {
+      // Get rid of duplicates:
+      $img = array_unique($img);
+      $images = '<ul id="rowdy-images">';
+      $cursor = 0;
+      if (count($img) > 1) {
+        $cursor = 1;
+      }
+      foreach ($img as $ii) {
+        $images .= '<li class="rowdy-img-li"><img src="' . $ii . '" width="120" alt="An image to choose" /></li>';
+      }
+      $images .= '</ul>';
+    }
+    else {
+      $images = 'none';
+    }
+    // Get the title:
+    //$title = 'Enter a Title of the Article Here';
+    if ($summary->find('meta[property=og:title]')) {
+      foreach ($summary->find('meta[property=og:title]') as $e) {
+        $title = trim($e->attr['content']);
+      }
+    }
+    elseif ($summary->find('title')) {
+      foreach ($summary->find('title') as $e) {
+        $title = trim($e->plaintext);
+      }
+    }
+    // If no title tag, then look for the first h1 tag:
+    else {
+      if ($summary->find('h1')) {
+        foreach ($summary->find('h1') as $e) {
+          $title = trim($e->plaintext);
+        }
+      }
+      else {
+        $title = 'ENTER A TITLE';
+      }
+    }
+    $title = mb_convert_encoding($title, 'UTF-8', 'HTML-ENTITIES');
+    
+    // Get the description, as available:
+    
+    $teaser = '';
+    if ($summary->find('meta[property=og:description]')) {
+      foreach($summary->find('meta[property=og:description]') as $e) {
+        $teaser = trim($e->attr['content']);
+      }
+    }
+    elseif ($summary->find('meta[name=description]')) {
+      foreach($summary->find('meta[name=description]') as $e) {
+        $teaser = trim($e->attr['content']);
+      }
+    }
+
+    else {
+      // Grab the first 4 paragraphs just to be sure, then truncate to 300 chars.
+      $c = 0;
+      foreach($summary->find('p') as $e) {
+        if ($c < 5) {
+          $text = $e->plaintext;
+          if (strlen($text) > 22) {
+            $teaser .= _rowdy_teaser($text) . ' ';
+            $c++;
+            if ($c > 4) {
+              break;
+            }
+          }
+        }
+      }
+    }
+    if (module_exists('views')) {
+      $alter = array(
+        'max_length' => 300,
+        'ellipsis' => TRUE,
+      );
+      $teaser = views_trim_text($alter, trim($teaser));     
+    }
+    else {
+      $teaser = substr($teaser, 0, 300) . '&hellip;';
+    }
+    $teaser = mb_convert_encoding($teaser, 'UTF-8', 'HTML-ENTITIES');
+    $teaser = filter_xss($teaser, array('a', 'em', 'strong', 'code'));
+    // Create an initial img src for json, for jquery to insert into the hidden img src field.
+    if (count($img) > 0) {
+      $initial = $img[0];
+    }
+    // Arrage into a json array:
+    $json = array(
+      'url' => $url,
+      'summary' => $teaser,
+      'title' => $title,
+      'img' => $images,
+      'initial' => $initial,
+      'cursor' => $cursor,
+      'dowhat' => 'expand',
+    );
+    
+    // Get rid of the simplehtmldom object to clear memory
+    $summary->clear(); 
+    unset($summary);
+  }
+  elseif (count($url_dup > 0) && $url) {
+    if (count($url_dup) == 1) {
+      $dupes = $url_dup[0];
+    }
+    else {
+      $dupes = theme('item_list', array('items' => $url_dup));
+    }
+    $json = array(
+      'dupes' => t('Error: This url has already been published on this site. You can view it here: !dupes', array('!dupes' => $dupes,)),
+      'dowhat' => 'dupes',
+    );
+  }
+  else {
+    $json = array(
+      'url' => 'Invalid URL',
+      'dowhat' => 'Invalid URL',
+    );
+  }
+  return drupal_json_output($json);
+  exit;
+}
+
+/**
+ * Helper func to validate urls
+ * string $url = a string that is the url to test
+ * returns $count = the number of times the pattern matched a valid url.
+ */
+function _rowdy_validate_url($url) {
+  if (preg_match("#^http(s)?://[a-z0-9-_.]+\.[a-z]{2,4}#i", $url)) {
+    $headers = @get_headers($url);
+    if ($headers != 0 && count($headers) > 0) {
+      if (strpos($headers[0], '200')) {
+        return $url;
+      }
+      if (strpos($headers[0], '301')) {
+        list($location, $redirect_url) = explode(' ', $headers[2]);
+        return $redirect_url;
+      }
+      if (strpos($headers[0], '302')) {
+        return $url;
+      }
+    }
+    return FALSE;
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Implements hook_views_pre_render(&$view)
+ */
+function rowdypulpit_views_pre_render(&$view) {
+  if ($view->name == 'contrib') {
+    global $user;
+    if (arg(2) != 'edit') {
+      drupal_add_js(drupal_get_path('module', 'rowdypulpit') . '/js/rowdypulpit.js');
+      drupal_add_css(drupal_get_path('module', 'rowdypulpit') . '/css/rowdypulpit.css');
+    }
+    if (arg(0) != 'admin' && $view->display_handler->display->display_plugin == 'page') {
+      
+      if (user_access('contribute to rowdypulpit')) {
+        $form = _rowdypulpit_get_form($user, 'contrib');
+        $view->attachment_before = '<div id="contrib-ajax" class="clearfix">' . drupal_render($form). '</div>';
+      }
+    }
+    // Only apply the following to issue views
+    $img_styled = '';
+    $date = '';
+    $timestamp = '';
+    if ($view->current_display == 'page_1') {
+      $tid = '';
+      if (isset($view->query->where[1]['conditions'][2]['value']) && !empty($view->query->where[1]['conditions'][2]['value'])) {
+        $tid = $view->query->where[1]['conditions'][2]['value'];
+      }
+      elseif (isset($view->args[0])) {
+          $tid = $view->args[0];
+        }
+      else {
+        if (is_numeric(arg(3)) ){
+          $tid = arg(3);
+        }
+      }
+      if (!empty($tid)) {
+        $t = taxonomy_term_load($tid);
+        if (!isset($t->field_issue_date[LANGUAGE_NONE][0]['value']) || empty($t->field_issue_date[LANGUAGE_NONE][0]['value'])) {
+          drupal_set_message(t('You have broken the Rowdy Pulpit. That is because the issue name does not have a date assigned to it. Please assign one !here.', array('!here' => l('here', 'taxonomy/term/' . $tid . '/edit'))));
+        }
+        else {
+          $timestamp = strtotime($t->field_issue_date[LANGUAGE_NONE][0]['value']);
+          $timezone = $t->field_issue_date['und'][0]['timezone'];
+          $date = format_date($timestamp, 'month', $format = '', $timezone, NULL);
+        }
+        if (in_array('admin', array_values($user->roles))) {
+          $items = array(
+            l(t('Sort these stories'), 'admin/rowdy/sort/' . $tid, array('query' => drupal_get_destination(), 'attributes' => array('title' => 'Sort the current issue stories into an order you desire.'))),
+            l(t('View to copy the email version'), 'rowdy/email/' . $tid, array('query' => drupal_get_destination(), 'attributes' => array('title' => 'View the HTML suitable for copying and pasting into MailChimp.'))),
+            l(t('Create New Issue'), 'admin/structure/taxonomy/issue/add', array('query' => drupal_get_destination(), 'attributes' => array('title' => 'Create a new issue. The new issue will become the home page of the News section.'))),
+            l(t('Add issue !tid to menu', array('!tid' => $tid)), 'admin/structure/menu/manage/main-menu', array('query' => drupal_get_destination(), 'attributes' => array('title' => 'Add issue ' . $tid . ' to the Main Menu.'))),
+          );
+          $view->attachment_before .= theme('item_list', array('items' => $items));
+        }
+        // Render the image
+        $img_styled = '';
+        if (isset($t->field_image[LANGUAGE_NONE][0]['uri']) && !empty($t->field_image[LANGUAGE_NONE][0]['uri'])) {
+          $img = array(
+            'style_name' => 'top_page_hero',
+            'path' => $t->field_image[LANGUAGE_NONE][0]['uri'],
+            'alt' => $t->name,
+            'title' => $t->name,
+            'width' => '659',
+            'height' => '249',
+            'attributes' => array('class' => 'rowdy-issue-image', 'id' => 'rowdy-issue-' . $t->tid . '-image'),
+          );
+          $img_styled = theme('image_style', $img);
+        }
+        else {
+          drupal_set_message(t('You have not uploaded a cover image for this issue of the Rowdy Pulpit. Please do so !here.', array('!here' => l('here', 'taxonomy/term/' . $tid . '/edit'))));
+        }
+      }
+      $view->attachment_before = $view->attachment_before . $img_styled . '<p>' . $date . '</p><h2>' . $t->name . '</h2>' . '<p>' . $t->description . '</p><p>See previous news editions linked in the right side bar.</p>';
+      // taxonomy/term/198/edit?destination=admin/structure/taxonomy/issue
+      if (in_array('admin', array_values($user->roles))) {
+        $view->attachment_before .= '<p>' . l('[Edit this issue summary, title, and representive image]', 'taxonomy/term/' . $tid . '/edit', array('query' => array(drupal_get_destination()))) . '</p>';
+      }
+    }
+  }
+  if ($view->current_display == 'rowdyemail') {
+    // Include the email-only css
+    drupal_add_css(drupal_get_path('module', 'rowdypulpit') . '/css/rowdyemail.css');
+  }
+  
+}
+
+/**
+ * Implements hook_form_alter
+ */
+function rowdypulpit_form_alter(&$form, &$form_state, $form_id) {
+
+  
+  if ($form_id == 'contrib_node_form' && arg(2) != 'edit') {
+
+    $form['actions']['submit']['#attributes']['class'][] = 'red';
+    $form['actions']['submit']['#attributes']['class'][] = 'button';
+    // get rid of the preview button if it's configured:
+    unset($form['actions']['preview']);
+    // This is a throbber.
+    $loader = libraries_get_path('showLoading');
+    $loaderjs = $loader. '/js/jquery.showLoading.js';
+    if (file_exists($loaderjs)) {
+      drupal_add_js($loaderjs);
+    }
+    else {
+      drupal_set_message(t('The loader script @script could not be found or opened. Check the libraries.', array('@script' => $loaderjs,)), 'error');
+    }
+    if (file_exists($loader . '/css/showLoading.css')) {
+      drupal_add_css($loader . '/css/showLoading.css');
+    }
+    else {
+      drupal_set_message(t('The loader css @script could not be found or opened. Check the libraries.', array('@script' => $loader . '/css/showLoading.css')), 'error');
+    }
+    // Add the malsup cycle plugin
+    if (!$cycle = libraries_get_path('jquery.cycle')) {
+      drupal_set_message(t('The jqery.cycle module is not installed. !download and install it into your sites/all/libraries directory.'), array('!download' => l('download it here', 'http://jquery.malsup.com/cycle/')));
+    }
+    drupal_add_js($cycle . '/jquery.cycle.all.js');  
+    
+    // Add the rowdypulpit css
+    $css_flag = 0;
+    if (arg(0) != 'news') {
+      $css_flag = 1;
+    }
+    if ($css_flag == 0) {
+      drupal_add_css(drupal_get_path('module', 'rowdypulpit') . '/css/rowdypulpit.css');
+    }
+    
+    // add a submit handler that so we can process the image upload.
+    $form['#submit'][] = 'rowdypulpit_injectimages_submit';
+    $form['#submit'][] = 'rowdypulpit_redirect_submit';
+    $form['actions']['submit']['#submit'][] = 'rowdypulpit_injectimages_submit';
+    // Redirect function that forces the user back to /contrib
+    $form['actions']['submit']['#submit'][] = 'rowdypulpit_redirect_submit';
+  }
+}
+/**
+ * Ajax sumbit handler to inject
+ * ajax commands and the special ajax form
+ */
+function rowdypulpit_ajax_submit_return($form, $form_state) {
+  global $user;
+  $content_type = 'contrib';
+  $html = _rowdypulpit_get_form($user, $content_type);
+  //$html = '<h2>Thanks for the contribution!</h2>';
+  $commands = array(
+    ajax_command_html('#contrib-ajax', $html),
+    ajax_command_invoke('form#contrib-node-form', 'clearForm', array()),
+    ajax_command_invoke('filedset#node_contrib_form_group_contribpanel', 'removeClass', array('collapsible')),
+    ajax_command_invoke('filedset#node_contrib_form_group_contribpanel', 'addClass', array('collapsed')),
+  );
+  $page = array('#type' => 'ajax', '#commands' => $commands);
+  return $page;
+}
+
+/**
+ * Submit handler for Youtube
+ */
+function rawdycontrib_media_youtube_submit($form,&$form_state) {
+  $i = 0;
+}
+
+/**
+ * Submit handler for processing image upload
+ */
+function rowdypulpit_injectimages_submit($form, &$form_state) {
+  // This is a @HACK, which downloads the remote image as specified in
+  // the field_contrib_img_url, validates it, and then replaces the blank array in field_contrib_img.
+  
+  // Fetch the image via the url entered in the field_contrib_img_url.
+  if (!empty($form_state['values']['field_contrib_img_url'][LANGUAGE_NONE][0]['value'])) {
+    $url = $form_state['values']['field_contrib_img_url'][LANGUAGE_NONE][0]['value'];
+    if ($url = _rowdy_validate_url($url)) {
+      
+      // Inspect the remote image
+      // Check the headers to make sure it exists and is within the allowed size.
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_HEADER, TRUE);
+      curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+      //curl_setopt($ch, CURLOPT_HEADERFUNCTION, '_filefield_source_remote_parse_header');
+      // Causes a warning if PHP safe mode is on.
+      @curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+      curl_exec($ch);
+      $info = curl_getinfo($ch);
+      curl_close($ch);
+  
+      if ($info['http_code'] != 200) {
+        switch ($info['http_code']) {
+          case 403:
+            form_error($url, t('The remote file could not be transfered because access to the file was denied.'));
+            break;
+          case 404:
+            form_error($url, t('The remote file could not be transfered because it was not found.'));
+            break;
+          default:
+            form_error($url, t('The remote file could not be transfered due to an HTTP error (@code).', array('@code' => $info['http_code'])));
+        }
+        return;
+      }
+      // Determine the file extension (some urls do not have them in the url, eg http://example.com/path/to/image/generator instead of image.jpg)
+      $acceptable_imgs = array(
+        'jpeg' => 'jpg',
+        'gif' => 'gif',
+        'png' => 'png',
+      );
+      $type = '';
+      $ext = '';
+      list ($type, $ext) = explode('/', $info['content_type']);
+      if (!empty($acceptable_imgs[$ext])) {
+        $suffix = $acceptable_imgs[$ext];
+      }
+      else {
+        form_error($url, t('The remote file type (@code) is not supported.', array('@code' => $info['content_type'])));
+      }
+
+      // Update the $url variable to reflect any redirects.
+      $url = $info['url'];
+      $url_info = parse_url($url);
+      $form_state['values']['field_contrib_img_url'][LANGUAGE_NONE][0]['value'] = $url;
+      
+      // Fetch the remote image
+      $img = file_get_contents($url);
+      $title = preg_replace("/&#?[a-z0-9]+;/i","", $form_state['values']['title']);
+      $name = $title;
+      //$name = str_replace(' ', '_', trim($form_state['values']['title']));
+      $name = preg_replace('/[^a-z0-9]/i', '_', $name);
+      $name = preg_replace('/_+/m', '_', $name);
+      $name = truncate_utf8($name, 50, FALSE, FALSE, 1);
+      // Remove last char if it's an "_"
+      $name = rtrim($name, '_');
+      $name = $name . '.' . $suffix;
+      $file = file_save_data($img, 'public://field/image/' . $name, FILE_EXISTS_RENAME);
+      if (is_object($file)) {
+        $form_state['values']['field_contrib_img'][LANGUAGE_NONE][0]['fid'] = $file->fid;
+        $form_state['values']['field_contrib_img'][LANGUAGE_NONE][0]['alt'] = $title;
+        $form_state['values']['field_contrib_img'][LANGUAGE_NONE][0]['title'] = $title;
+        $form_state['values']['field_contrib_img'][LANGUAGE_NONE][0]['description'] = t($form_state['values']['field_contrib_teaser']['und'][0]['value']);
+      }
+    }
+  }
+}
+
+/**
+ * helper func to retrive a node form
+ */
+function _rowdypulpit_get_form($user, $content_type) {
+  $node = (object) array('uid' => $user->uid, 'name' => (isset($user->name) ? $user->name : ''), 'type' => $content_type, 'language' => LANGUAGE_NONE);
+  $form_state['build_info']['args'] = array($node);
+  form_load_include($form_state, 'inc', 'node', 'node.pages');
+  return drupal_build_form($content_type . '_node_form', $form_state);
+}
+
+/**
+ * helper function to get the
+ * domain name out of a full url
+ */
+function _rowdy_gethost($address) {
+   $parseurl = parse_url(trim($address));
+   return str_replace('www.', '', trim($parseurl['host'] ? $parseurl['host'] : array_shift(explode('/', $parseurl['path'], 2))));
+}
+
+/**
+ * helper func to get the 1st sentence of a web page
+ * see http://www.tildemark.com/getting-website-title-and-description/
+ * $content = string of (usually) the entire html of the web page fetched
+ * returns string of first sentence of the web page content.
+ */
+function _rowdy_teaser($content) {
+  $text = trim($content);
+  $text = str_replace("\t", '', $text);
+  $text = preg_replace( '/\s+/', ' ', $text);
+  $array = preg_split('/(^.*\w+.*[\.\?!][\s])/', $text, -1, PREG_SPLIT_DELIM_CAPTURE);
+  if (count($array > 0)) {
+    $out = '';
+    foreach ($array as $sentence) {
+      if (preg_match('/^[A-Z]/', $sentence)) {
+        $out .= trim($sentence);
+      }
+    }
+    return trim($out);
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Implements hook_node_view()
+ */
+function rowdypulpit_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'contrib') {
+    $node->content['field_contrib_url']['#theme'] = 'field_contrib_url';
+  }
+  return $node;
+}
+
+/**
+ * Implements hook_theme()
+ */
+function rowdypulpit_theme() {
+  return array(
+    // The field_contrib_url field theme:
+    'field_contrib_url' => array(
+      'render element' => 'field_contrib_url',
+    ),
+    'views_view_fields__contrib' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--contrib',
+      'base hook' => 'views_view_fields',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',
+    ),
+    'views_view_unformatted__contrib' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-unformatted--contrib',
+      'base hook' => 'views_view_unformatted',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',
+    ),
+    'views_view_fields__contrib__rowdyemail' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--contrib--rowdyemail',
+      'base hook' => 'views_view_fields',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',      
+    ),
+    'views_view_fields__contentlibrary__page' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--contentlibrary--page',
+      'base hook' => 'views_view_fields',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',        
+    ),
+    'views_view_fields__contentlibrary__block_2' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--contentlibrary--block-2',
+      'base hook' => 'views_view_fields',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',        
+    ),
+    'views_view_fields__contentlibrary__block_1' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--contentlibrary--block-1',
+      'base hook' => 'views_view_fields',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',        
+    ),
+    'views_view_fields__contentlibrary__page_1' => array(
+      'variables' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-fields--contentlibrary--page-1',
+      'base hook' => 'views_view_fields',
+      'path' => drupal_get_path('module', 'rowdypulpit') . '/theme',        
+    ),
+  );
+}
+
+
+/**
+ * Theme func
+ */
+function theme_field_contrib_url($items) {
+  if (count($items > 0)) {
+    $out = array();
+    foreach ($items['field_contrib_url']['#items'] as $k => $v) {
+      $out[] = l(t('Read it here'), $v['value'], array('attributes' => array(
+            'rel' => 'nofollow',
+            'target' => '_blank',
+            'class' => array(
+              'contriblink',
+              'red',
+              'button',
+            )
+          )
+        )
+      );
+    }
+    if (count($out) > 1) {
+      $output = theme('item_list', array('items' => $out));
+    }
+    else {
+      $output = $out[0];
+    }
+    return $output;
+  }
+  else {
+    drupal_set_message(t('No $items were sent to the theme_field_contrib_url() func.', 'error'));
+  }
+}
+
+/**
+ * form validation for emergency notificaiton that only allows 1 major notification.
+ *
+ */
+
+function rowdyconbtrib_check_for_existing_url($url) {
+  $nids = array();
+  // get all contrib node types with the same url.
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'contrib')
+        ->fieldCondition('field_contrib_url', 'value', $url, '=');
+  $result = $query->execute();
+  if ($result) {
+    
+    foreach ($result['node'] as $k => $v) {
+      $node = node_load($v->nid);
+      $nids[] = l($node->title, drupal_get_path_alias('node/' . $v->nid), array('attributes' => array('title' => $node->title,)));
+    }
+  }
+  if (count($nids) > 0) {
+    return $nids;
+  }
+  else {
+    return FALSE;
+  }
+}
+
+/**
+ * Helper func to format pictures in the tpl
+ */
+function _rowdypulpit_format_image($fid, $style, $alt) {
+  if (!isset($fid) || $fid === 0 || empty($fid)) {
+    drupal_set_message(t('An empty fid was set to _rowdypulpit_format_image'), 'error');
+    return;
+  }
+  if (!isset($style)) {
+    $style = 'rowdywide';
+  }
+  switch ($style) {
+    case 'rowdywide':
+      $width = '570';
+      $height = '428';
+      $class = array(
+        'img-polaroid',
+      );
+      break;
+    default:
+      $width = '180';
+      $height = '132';
+      $class = array(
+        'img-polaroid',
+        'pull-left',
+      );
+  } 
+  $file = file_load($fid);
+  if (is_object($file)) {
+    $items = array(
+      'style_name' => $style,
+      'path' => $file->uri,
+      'width' => $width,
+      'height' => $height,
+      'alt' => $alt,
+      'title' => $alt,
+      'attributes' => array(
+        'class' => $class
+      ),
+    );
+    return theme('image_style', $items);
+  }
+}
+function rowdypulpit_redirect_submit($form, &$form_state) {
+  $form_state['redirect'] = $form['#action'];
+}
+
+/**
+ * Implements hook_views_query_alter(&$view, &$query)
+ *
+function rowdypulpit_views_query_alter(&$view, &$query) {
+  if ($view->description == 'RowdyPulpit Articles' && $view->name == 'contrib' && !isset($view->args[0])) {
+    // Find out what vocab is "issue" in case the taxonomy got re-imported and mis-matches the orig.
+    $vid = db_query('select vid from {taxonomy_vocabulary} where name=:issue', array(':issue' => 'issue'))->fetchField();
+    $q = db_query('select * from {taxonomy_term_data} where vid=:vid order by tid DESC', array(':vid' => $vid))->fetchfield();
+    $query->where[1]['conditions'][2]['value'] = $q;
+  }  
+}
+*/

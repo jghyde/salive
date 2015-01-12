@@ -1,0 +1,34 @@
+<?php
+function livedeals_schema() {
+  $schema['deal_redemption'] = array(
+    'description' => 'TODO: please describe this table!',
+    'fields' => array(
+      'did' => array(
+        'description' => 'Deal ID',
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => 'UID of claimer',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'Node ID of the Deal',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'date' => array(
+        'description' => 'The date Deal was claimed',
+        'type' => 'varchar',
+        'length' => '30',
+        'not null' => TRUE,
+      ),
+    ),
+    'unique keys' => array(
+      'did' => array('did')
+    ),
+  );
+  return $schema;
+}
+
