@@ -6979,6 +6979,18 @@ jp-current {
   background-color: #8c0017 !important;
   border: 1 solid #8c0017 !important;
 }
+#logo {
+  margin: 5px 0 0 0;
+  text-align: center;
+}
+#logo a {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+#logo .slogan {
+  text-align: center;
+  font-size: larger;
+}
 #nav {
   font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   background: #000000;
@@ -13630,17 +13642,6 @@ tr.even {
 #header {
   margin-bottom: 17px;
 }
-#logo {
-  margin: 5px 0 0 0;
-  text-align: center;
-}
-#logo a {
-  font-size: 2.5em;
-  font-weight: bold;
-}
-#logo .slogan {
-  text-align: center;
-}
 .withheadlines #slider {
   float: left;
 }
@@ -15631,6 +15632,14 @@ ul li.leaf {
     margin-right: 0;
   }
 }
+.view-id-News .views-row {
+  float: left;
+  border-bottom: 3px solid #e6e6e6;
+  margin-bottom: 20px;
+}
+.view-id-News .views-row .thumbnail {
+  margin-bottom: 0 !important;
+}
 #slider .views-field-title {
   font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   font-size: 2em;
@@ -15803,8 +15812,27 @@ ul li.leaf {
   color: inherit;
   letter-spacing: -1px;
 }
-#quickset-san_angelo_news .ui-accordion-content {
-  height: auto !important;
+#block-views-editorspick-block .views-row {
+  text-align: center;
+}
+#block-views-editorspick-block .views-row .views-field {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#block-views-editorspick-block .views-row .views-field a {
+  font-family: 'gotham-black-headers';
+  font-style: normal;
+  font-weight: bold;
+  font-size: larger;
+}
+.view-id-category_news .rows-first {
+  border-right: none;
+  margin-right: 5px;
+}
+.view-id-category_news .rows-others {
+  padding-left: 10px;
+  border-left: 1px solid #e6e6e6;
 }
 #block-views-lunch_specials-block .view-content ul li {
   display: inline-block;
@@ -15820,4 +15848,27 @@ ul li.leaf {
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+}
+.block-views .view-rants div {
+  margin-bottom: 0.8em;
+  padding-bottom: 0.8em;
+  border-bottom: 1px solid #efefef;
+}
+.block-views .view-rants div h4.comment-block {
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.block-views .view-rants div span.comment-author {
+  color: #777777;
+  font-size: 0.7em;
+  font-size: 0.7rem;
+}
+.block-views .view-rants div p.comment-node {
+  font-size: 0.8em;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin: 0;
 }
