@@ -1,2 +1,0 @@
-// $Id: $ mods for bootstrap for salive 2014
-(function(e){function t(t){tallest=0;t.each(function(){thisHeight=e(this).height();thisHeight>tallest&&(tallest=thisHeight)});t.height(tallest)}Drupal.behaviors.salivemasonry={attach:function(n,r){var i=e(".view-events .view-content");i.imagesLoaded(function(){e(".view-events .views-row").width(i.width()/4-20);t(e(".view-events .views-row"))})}}})(jQuery);

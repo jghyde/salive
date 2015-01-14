@@ -3,7 +3,7 @@
 }
 .block-livebreaking .livebreaking-item {
   display: none;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   line-height: 2em;
   color: #ffffff;
   text-decoration: none;
@@ -24,9 +24,11 @@
 }
 .block-livebreaking .livebreaking-item.bell {
   background-color: #F1142C;
+  font-size: x-large;
 }
 .block-livebreaking .livebreaking-item.fire {
   background-color: #BF5700;
+  font-size: x-large;
 }
 .block-livebreaking .livebreaking-item .span3 a {
   height:auto !important;

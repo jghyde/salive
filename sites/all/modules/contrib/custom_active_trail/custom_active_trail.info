@@ -1,0 +1,10 @@
+name = Custom active trail
+description = This module allows you to choose a menu item to use for the active trail of a node even when the node isn't included in the menu structure.
+package = Site Navigation
+core = 7.x
+; Information added by Drupal.org packaging script on 2014-10-31
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "custom_active_trail"
+datestamp = "1414799629"
+

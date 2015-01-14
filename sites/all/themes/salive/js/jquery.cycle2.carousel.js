@@ -1,4 +1,4 @@
-/*! carousel transition plugin for Cycle2;  version: BETA-20121016 */
+/*! carousel transition plugin for Cycle2;  version: 20130528 */
 (function($) {
 "use strict";
 
@@ -11,6 +11,16 @@ $( document ).on('cycle-bootstrap', function( e, opts, API ) {
         var i = slides.index( el );
         return i % slides.length;
     };
+
+    // override default 'next' function
+    API.next = function() {
+        var count = opts.reverse ? -1 : 1;
+        if ( opts.allowWrap === false && ( opts.currSlide + count ) > opts.slideCount - opts.carouselVisible )
+            return;
+        opts.API.advanceSlide( count );
+        opts.API.trigger('cycle-next', [ opts ]).log('cycle-next');
+    };
+
 });
 
 
@@ -22,17 +32,21 @@ $.fn.cycle.transitions.carousel = {
         opts.container.on('cycle-destroyed', $.proxy(this.onDestroy, opts.API));
         // override default API implementation
         opts.API.stopTransition = this.stopTransition;
+
+        // issue #10
+        for (var i=0; i < opts.startingSlide; i++) {
+            opts.container.append( opts.slides[0] );
+        }        
     },
 
     // transition API impl
     postInit: function( opts ) {
-        var pagerCutoffIndex, wrap;
+        var i, j, slide, pagerCutoffIndex, wrap;
         var vert = opts.carouselVertical;
         if (opts.carouselVisible && opts.carouselVisible > opts.slideCount)
             opts.carouselVisible = opts.slideCount - 1;
         var visCount = opts.carouselVisible || opts.slides.length;
-        //var slideCSS = { display: vert ? 'block' : 'inline-block', position: 'static' };
-		var slideCSS = {position: 'static', float: 'left' };
+        var slideCSS = { display: vert ? 'block' : 'inline-block', position: 'static' };
 
         // required styles
         opts.container.css({ position: 'relative', overflow: 'hidden' });
@@ -40,11 +54,10 @@ $.fn.cycle.transitions.carousel = {
 
         opts._currSlide = opts.currSlide;
 
-		var wrapwidth = opts.slideCount * (opts.container.width() / opts.carouselVisible) * 3;
         // wrap slides in a div; this div is what is animated
-        wrap = $('<div class="cycle-carousel-wrap clearfix"></div')
+        wrap = $('<div class="cycle-carousel-wrap"></div>')
             .prependTo( opts.container )
-            .css({ margin: 0, padding: 0, top: 0, left: 0, position: 'absolute', width: wrapwidth })
+            .css({ margin: 0, padding: 0, top: 0, left: 0, position: 'absolute' })
             .append( opts.slides );
 
         opts._carouselWrap = wrap;
@@ -57,12 +70,19 @@ $.fn.cycle.transitions.carousel = {
             // near the end of the carousel.  for fluid containers, add even more clones
             // so there is plenty to fill the screen
             // @todo: optimzie this based on slide sizes
-            opts.slides.slice(0, opts.slideCount).clone().css( slideCSS ).appendTo( wrap );
-            if ( opts.carouselVisible === undefined )
-                opts.slides.slice(0, opts.slideCount).clone().css( slideCSS ).appendTo( wrap );
-            opts.slides.slice(0, opts.slideCount).clone().css( slideCSS ).prependTo( wrap );
-            if ( opts.carouselVisible === undefined )
-                opts.slides.slice(0, opts.slideCount).clone().css( slideCSS ).prependTo( wrap );
+
+            for ( j=0; j < (opts.carouselVisible === undefined ? 2 : 1); j++ ) {
+                for ( i=0; i < opts.slideCount; i++ ) {
+                    wrap.append( opts.slides[i].cloneNode(true) );
+                }
+                i = opts.slideCount;
+                while ( i-- ) { // #160, #209
+                    wrap.prepend( opts.slides[i].cloneNode(true) );
+                }
+            }
+
+            wrap.find('.cycle-slide-active').removeClass('cycle-slide-active');
+            opts.slides.eq(opts.startingSlide).addClass('cycle-slide-active');
         }
 
         if ( opts.pager && opts.allowWrap === false ) {
@@ -77,7 +97,7 @@ $.fn.cycle.transitions.carousel = {
     },
 
     prepareDimensions: function( opts ) {
-        var dim, offset, pagerCutoffIndex, tmp;
+        var dim, offset, pagerCutoffIndex, tmp, j;
         var vert = opts.carouselVertical;
         var visCount = opts.carouselVisible || opts.slides.length;
 
@@ -107,7 +127,7 @@ $.fn.cycle.transitions.carousel = {
             else {
                 // calculate offset based on actual slide dimensions
                 tmp = opts._carouselWrap.children();
-                for (var j=0; j < (opts.slideCount + opts.currSlide); j++) {
+                for (j=0; j < (opts.slideCount + opts.currSlide); j++) {
                     offset -= $(tmp[j])[vert?'outerHeight':'outerWidth'](true);
                 }
             }
@@ -149,6 +169,7 @@ $.fn.cycle.transitions.carousel = {
         var moveBy, props = {};
         var hops = opts.nextSlide - opts.currSlide;
         var vert = opts.carouselVertical;
+        var speed = opts.speed;
 
         // handle all the edge cases for wrapping & non-wrapping
         if ( opts.allowWrap === false ) {
@@ -190,7 +211,13 @@ $.fn.cycle.transitions.carousel = {
         }
 
         props[ vert ? 'top' : 'left' ] = fwd ? ( "-=" + moveBy ) : ( "+=" + moveBy );
-        opts._carouselWrap.animate( props, opts.speed, opts.easing, callback );
+
+        // throttleSpeed means to scroll slides at a constant rate, rather than
+        // a constant speed
+        if ( opts.throttleSpeed )
+            speed = (moveBy / $(opts.slides[0])[vert ? 'height' : 'width']() ) * opts.speed;
+
+        opts._carouselWrap.animate( props, speed, opts.easing, callback );
     },
 
     getDim: function( opts, index, vert ) {
@@ -216,7 +243,7 @@ $.fn.cycle.transitions.carousel = {
         // returns callback fn that resets the left/top wrap position to the "real" slides
         return function() {
             var pos = $(opts.slides[opts.nextSlide]).position();
-            var offset = 0 - pos[vert?'top':'left'] - (opts.carouselOffset || 0);
+            var offset = 0 - pos[vert?'top':'left'] + (opts.carouselOffset || 0);
             opts._carouselWrap.css( opts.carouselVertical ? 'top' : 'left', offset );
             callback();
         };

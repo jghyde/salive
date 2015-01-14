@@ -52,39 +52,18 @@ stylesheets[print][] = less/css/print.css
 ;; Scripts
 ;;;;;;;;;;;;;;;;;;;;;
  
-scripts[] = 'bootstrap/js/affix.js'
-scripts[] = 'bootstrap/js/alert.js'
-scripts[] = 'bootstrap/js/button.js'
-scripts[] = 'bootstrap/js/carousel.js'
-scripts[] = 'bootstrap/js/collapse.js'
-scripts[] = 'bootstrap/js/dropdown.js'
-scripts[] = 'bootstrap/js/modal.js'
-scripts[] = 'bootstrap/js/tooltip.js'
-scripts[] = 'bootstrap/js/popover.js'
-scripts[] = 'bootstrap/js/scrollspy.js'
-scripts[] = 'bootstrap/js/tab.js'
-scripts[] = 'bootstrap/js/transition.js'
-
-scripts[] = 'js/salbootstrap.js'
-
-; DEFAULT THEME SETTINGS
-
-settings[toggle_name] = 0
-settings[toggle_slogan] = 0
-settings[toggle_node_user_picture] = 0
-settings[shortcut_module_link] = 0
-
-settings[responsive] = 1
-settings[skins] = 0
-settings[bg_repeat] = repeat
-settings[bg_position] = left top
-settings[breadcrumb_separator] = » 
-settings[node_show_twitter_default] = 1
-settings[node_show_facebook_default] = 1
-settings[sidebar_position] = 2
-settings[bottom_blocks] = 4
-settings[css3_textarea] = 1
-settings[design_fluid] = 1
+;scripts[] = 'bootstrap/js/affix.js'
+;scripts[] = 'bootstrap/js/alert.js'
+;scripts[] = 'bootstrap/js/button.js'
+;scripts[] = 'bootstrap/js/carousel.js'
+;scripts[] = 'bootstrap/js/collapse.js'
+;scripts[] = 'bootstrap/js/dropdown.js'
+;scripts[] = 'bootstrap/js/modal.js'
+;scripts[] = 'bootstrap/js/tooltip.js'
+;scripts[] = 'bootstrap/js/popover.js'
+;scripts[] = 'bootstrap/js/scrollspy.js'
+;scripts[] = 'bootstrap/js/tab.js'
+;scripts[] = 'bootstrap/js/transition.js'
 
 
 version = "7.x-2.0"

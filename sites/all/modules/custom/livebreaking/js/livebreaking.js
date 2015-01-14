@@ -8,7 +8,10 @@
         width = $('html').outerWidth()+$(window).scrollLeft();
         $('#slides').css('max-width',width - 20 + 'px');
       });
-      $('#fade').cycle();
+      $('#breakingFade').cycle({ 
+        fx:      'turnDown', 
+        delay:   -4000 
+      });
     }
   }
 })(jQuery);

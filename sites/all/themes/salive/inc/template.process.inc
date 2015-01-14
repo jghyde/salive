@@ -20,23 +20,30 @@ function salive_preprocess_html(&$vars) {
 		drupal_add_js($headlines_js, "inline");
 		$css .= '#hlitemContainer li:nth-child(' . $headline_pager . 'n+' . $headline_pager . ') {border: none;}';
 	}
-	
-	// Add add-to-homescreen bookmark web app thing
-  drupal_add_js(libraries_get_path('add-to-homescreen') . '/src/addtohomescreen.min.js');
-  drupal_add_css(libraries_get_path('add-to-homescreen') . '/style/addtohomescreen.css');
-  // Add equalheights.js
-  drupal_add_js(libraries_get_path('equalheights') . '/jquery.equalheights.min.js');
-  // Add infield labels
-  drupal_add_js(libraries_get_path('infieldlabels') . '/src/jquery.infieldlabel.js');
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/livemasonry-ck.js');
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/min/salbootstrap-min.js');
-  drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
 
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.min.js');
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
 	drupal_add_js('jQuery.fn.cycle.defaults.autoSelector = \'.mdslideshow\';', "inline");
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/script.js');
+	// Add add-to-homescreen bookmark web app thing
+  drupal_add_js(libraries_get_path('add-to-homescreen') . '/src/addtohomescreen.min.js');
+  drupal_add_css(libraries_get_path('add-to-homescreen') . '/style/addtohomescreen.css');
+  // Add imagesloaded.js
+  //drupal_add_js(libraries_get_path('eventEmitter') . '/EventEmitter.min.js');
+  //drupal_add_js(libraries_get_path('eventie') . '/eventie.js');
+  //drupal_add_js(libraries_get_path('imagesloaded') . '/imagesloaded.js');
+  // Add equalheights.js
+  drupal_add_js(libraries_get_path('equalheights') . '/jquery.equalheights.min.js');
+  // Add infield labels
+  //drupal_add_js(libraries_get_path('infieldlabels') . '/src/jquery.infieldlabel.js');
+  // Add the masonry library:
+  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/masonry.pkgd.min.js');
+  // Replacing masonry with Isotope
+  //drupal_add_js(libraries_get_path('isotope') . '/jquery.isotope.min.js');
+  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/livemasonry-ck.js');
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js');
+  drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
 
 	// remove no-sidebars class
 	if ($index = array_search('no-sidebars', $vars['classes_array'])) {
@@ -69,6 +76,12 @@ function salive_preprocess_html(&$vars) {
         );
         drupal_add_html_head($vp, 'viewport');
 	}
+	
+	// Superfish menu
+	if (!empty($vars['page']['superfish'])) {
+		drupal_add_css(drupal_get_path('theme', 'salive') . '/css/superfish.css');
+        $vars['classes_array'][] = 'nav-superfish';
+  }
 
 	drupal_add_css(path_to_theme() . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
 }
@@ -191,7 +204,7 @@ function salive_process_maintenance_page(&$vars) {
   $vars['hide_site_slogan'] = theme_get_setting('toggle_slogan') ? FALSE : TRUE;
   if ($vars['hide_site_name']) {
     // If toggle_name is FALSE, the site_name will be empty, so we rebuild it.
-    $vars['site_name'] = filter_xss_admin(variable_get('site_name', 'Drupal'));
+    $vars['site_name'] = filter_xss_admin(variable_get('site_name', 'San Angelo LIVE!'));
   }
   if ($vars['hide_site_slogan']) {
     // If toggle_site_slogan is FALSE, the site_slogan will be empty, so we rebuild it.
@@ -384,7 +397,8 @@ function salive_preprocess_comment(&$variables) {
     $variables['content']['links']['comment']['#links']['comment-reply']['href'] = drupal_get_path_alias('node/' . $variables['content']['comment_body']['#object']->nid);
   }
 }
-/**
+
+/**
  * implements hook_form_alter()
  */
 function salive_form_user_register_form_alter(&$form, &$form_state, $form_id) {

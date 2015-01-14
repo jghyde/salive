@@ -9,17 +9,6 @@
 			html = html.replace(/-->/g, '');
 			jQuery(this).html(html);
 		});
-		
-		$('.node-photo-teaser').wrapAll('<div class="photo-list clearfix" />');
-		$('.node-video-teaser').wrapAll('<div class="video-list clearfix" />');
-		
-		$('.photo-3col .node-photo-teaser:nth-child(3n), .photo-4col .node-photo-teaser:nth-child(4n), .video-3col .node-video-teaser:nth-child(3n), .video-4col .node-video-teaser:nth-child(4n)').css({
-			'margin-right':0
-		});
-		
-		$('.photo-3col .node-photo-teaser:nth-child(3n+4), .photo-4col .node-photo-teaser:nth-child(4n+5), .video-3col .node-video-teaser:nth-child(3n+4), .video-4col .node-video-teaser:nth-child(4n+5)').css({
-			'clear': 'both'
-		});
     //
     $('.the-nav').cbFlyout();
 		// Hover to change block title

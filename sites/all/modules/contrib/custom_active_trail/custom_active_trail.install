@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function custom_active_trail_schema() {
+  $schema['custom_active_trail'] = array(
+    'description' => 'The base table for active trail per node.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The primary identifier for a node.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE),
+      'type' => array(
+        'description' => 'Node type for default active trails.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE),
+      'menu_name' => array(
+        'description' => 'The menu name. All links with the same menu name (such as ’navigation’) are part of the same menu.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => ''),
+      'mlid' => array(
+        'description' => 'The menu link ID (mlid) is the integer primary key.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE),
+      ),
+    'foreign keys' => array(
+      'node' => array(
+        'table' => 'node',
+        'columns' => array('nid' => 'nid'),
+        ),
+       ),
+       'mlid' => array(
+         'table' => 'menu_links',
+         'columns' => array('mlid' => 'mlid'),
+       ),
+    'primary key' => array('nid', 'type'),
+  );
+  return $schema;
+}
+

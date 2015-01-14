@@ -5,15 +5,15 @@
  * Theme settings .
  */
 
-function md_thenews_theme_settings_code(&$form, &$form_state) {
-	$form['md_thenews_settings']['code'] = array(
+function salive_theme_settings_code(&$form, &$form_state) {
+	$form['salive_settings']['code'] = array(
 		'#type' 					=> 'fieldset',
 		'#weight' 				=> 0,
 		'#prefix'  				=> '<div id="md-custom-code" class="md-tabcontent clearfix">',
 		'#suffix'        => '</div><!-- / #md-custom-code -->',
 	);
 	
-	$form['md_thenews_settings']['code']['code_htmllist'] = array(
+	$form['salive_settings']['code']['code_htmllist'] = array(
 		'#markup' 				=> '<div class="md-listleft">
 				<ul>
 					<li><a href="#code-header">Header Code</a></li>
@@ -23,12 +23,12 @@ function md_thenews_theme_settings_code(&$form, &$form_state) {
 		'#weight' 				=> -15,
 	);
 	
-	$form['md_thenews_settings']['code']['code_htmllistclose'] = array(
+	$form['salive_settings']['code']['code_htmllistclose'] = array(
 		'#markup' 				=> '</div><!-- /.md-listleft -->',
 		'#weight' 				=> 15,
 	);
 	
-	$form['md_thenews_settings']['code']['header_code'] = array(
+	$form['salive_settings']['code']['header_code'] = array(
 		'#type' => 'textarea',
 		'#resizable' => FALSE,
 		'#rows' => 10,
@@ -38,7 +38,7 @@ function md_thenews_theme_settings_code(&$form, &$form_state) {
 		'#suffix'        => '</div><!-- / #code-header -->',
 	);
 	
-	$form['md_thenews_settings']['code']['footer_code'] = array(
+	$form['salive_settings']['code']['footer_code'] = array(
 		'#type' => 'textarea',
 		'#resizable' => FALSE,
 		'#rows' => 10,
@@ -48,7 +48,7 @@ function md_thenews_theme_settings_code(&$form, &$form_state) {
 		'#suffix'        => '</div><!-- / #code-footer -->',
 	);
 	
-	$form['md_thenews_settings']['code']['custom_css'] = array(
+	$form['salive_settings']['code']['custom_css'] = array(
 		'#type' => 'textarea',
 		'#resizable' => FALSE,
 		'#rows' => 10,

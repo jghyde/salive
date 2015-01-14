@@ -10,7 +10,7 @@
 if (isset($breaking_items) && count($breaking_items) > 0) {
   $i = 0;
   $first = '';
-  print '<div class="breaking" id="fade">';
+  print '<div class="breaking" id="breakingFade">';
   foreach ($breaking_items as $item) {
     if ($i == 0) {
       $first = ' first';

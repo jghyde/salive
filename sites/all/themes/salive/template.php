@@ -2,37 +2,23 @@
 
 include_once './' . drupal_get_path('theme', 'salive') . '/inc/template.process.inc';
 //include_once './' . drupal_get_path('theme', 'salive') . '/inc/template.pager.inc';
+/**
+ * Implementation of hook_theme().
+ */
+function salive_theme() {
+  $items = array();
 
-function salive_page_alter($page) {
-	$mobileoptimized = array(
-		'#type' => 'html_tag',
-		'#tag' => 'meta',
-		'#attributes' => array(
-		'name' =>  'MobileOptimized',
-		'content' =>  'width'
-		)
-	);
-	$handheldfriendly = array(
-		'#type' => 'html_tag',
-		'#tag' => 'meta',
-		'#attributes' => array(
-		'name' =>  'HandheldFriendly',
-		'content' =>  'true'
-		)
-	);
-	$viewport = array(
-		'#type' => 'html_tag',
-		'#tag' => 'meta',
-		'#attributes' => array(
-		'name' =>  'viewport',
-		'content' =>  'width=device-width, initial-scale=1'
-		)
-	);
-	drupal_add_html_head($mobileoptimized, 'MobileOptimized');
-	drupal_add_html_head($handheldfriendly, 'HandheldFriendly');
-	drupal_add_html_head($viewport, 'viewport');
+  // Split out pager list into separate theme function.
+  $items['pager_list'] = array('arguments' => array(
+    'tags' => array(),
+    'limit' => 10,
+    'element' => 0,
+    'parameters' => array(),
+    'quantity' => 9,
+  ));
+
+  return $items;
 }
-
 /**
  * Overrides theme_menu_link().
  */

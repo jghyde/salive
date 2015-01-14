@@ -1,5 +1,5 @@
 (function ($) {
-Drupal.behaviors.md_thenews = {
+Drupal.behaviors.salive = {
 	attach: function () {
 			$('#edit-logo').appendTo($('#edit-favicon-webclip > .fieldset-wrapper'));
 			$('#edit-favicon').appendTo($('#edit-favicon-webclip > .fieldset-wrapper'));
