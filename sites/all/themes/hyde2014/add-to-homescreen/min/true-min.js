@@ -1,0 +1,1 @@
+addToHomescreen({detectHomescreen:!0});

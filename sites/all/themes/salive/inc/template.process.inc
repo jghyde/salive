@@ -29,6 +29,7 @@ function salive_preprocess_html(&$vars) {
 	// Add add-to-homescreen bookmark web app thing
   drupal_add_js(libraries_get_path('add-to-homescreen') . '/src/addtohomescreen.min.js');
   drupal_add_css(libraries_get_path('add-to-homescreen') . '/style/addtohomescreen.css');
+  drupal_add_js(libraries_get_path('add-to-homescreen') . '/true.js');
   // Add imagesloaded.js
   //drupal_add_js(libraries_get_path('eventEmitter') . '/EventEmitter.min.js');
   //drupal_add_js(libraries_get_path('eventie') . '/eventie.js');
@@ -211,7 +212,7 @@ function salive_process_maintenance_page(&$vars) {
   }
   if ($vars['hide_site_slogan']) {
     // If toggle_site_slogan is FALSE, the site_slogan will be empty, so we rebuild it.
-    $vars['site_slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
+    $vars['site_slogan'] = filter_xss_admin(variable_get('site_slogan', 'San Angelo, TX News Leader!'));
   }
 }
 
@@ -284,7 +285,7 @@ function salive_preprocess_node(&$vars) {
       $social = theme('item_list', array('items' => $items));
       $out = '<h4>About the Author</h4><div class="profile2-image thumbnail">' . $pic . '</div>';
       (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $linked_name = l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) : $linked_name = l($name, 'user/' . $account->uid));
-      $out .= '<div class="profile2-words clearfix"><h3>' . $linked_name . '</h3>' . '<p>' . $bio . '</p>' . $social . '</div>';
+      $out .= '<div class="profile2-words clearfix"><h3>' . $linked_name . '</h3>' . '<p>' . $bio . '</p><div class="social-icons">' . $social . '</div></div>';
       $vars['submitted'] =  $out;
       if (isset($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value'])) {
         $byline = 'by ' . l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']);
@@ -490,4 +491,121 @@ function salive_preprocess_search_result(&$vars) {
   $vars['info_split'] = $info;
   $vars['info'] = implode(' - ', $info);
   $vars['info_separator'] = filter_xss(theme_get_setting('search_info_separator'));
+}
+
+/**
+ * Override theme_breadrumb().
+ *
+ * Print breadcrumbs as a list, with separators.
+ */
+function salive_breadcrumb($variables) {
+  $output = '';
+  if (drupal_is_front_page()) {
+    return $output;
+  }
+  $output = '';
+  $add_to_path = '';
+  $breadcrumb = $variables['breadcrumb'];
+  $path = current_path();
+  $pieces = explode('/', $path);
+  if ($pieces[0] == 'node') {
+    $breadcrumb = array();
+    // add the home page
+    $breadcrumb[] = l('Home ', '<front>', array('attributes' => array('title' => 'San Angelo LIVE! Home')));
+    $last = $path;
+    $node = node_load($pieces['1']);
+    switch ($node->type) {
+      case 'article':
+        $tids = array($node->field_category[LANGUAGE_NONE][0]['tid']);
+        $termname = taxonomy_term_load_multiple($tids);
+        $i = 0;
+        foreach($termname as $term) {
+          if ($i == 0) {
+            $term_use = $term->name;
+          }
+          $i++;
+        }
+        $breadcrumb[] = l('News ', 'news', array('attributes' => array('title' => 'San Angelo News')));
+        // Create dashed term name
+        $termnamedash = str_replace(' ', '-', $term_use);
+        $breadcrumb[] = l(ucfirst($term_use), 'news/' . strtolower($termnamedash), array('attributes' => array('title' => $term_use)));
+      break;
+      
+      case 'event':
+        $tids = array($node->field_event_category[LANGUAGE_NONE][0]['tid']);
+        $termname = taxonomy_term_load_multiple($tids);
+        $i = 0;
+        foreach($termname as $term) {
+          if ($i == 0) {
+            $term_use = $term->name;
+          }
+          $i++;
+        }
+        $breadcrumb[] = l('Events ', 'events', array('attributes' => array('title' => 'All San Angelo Upcoming Events')));
+        // Create dashed term name
+        $termnamedash = str_replace(' ', '-', $term_use);
+        $breadcrumb[] = l(ucfirst($term_use), 'events/' . strtolower($termnamedash), array('attributes' => array('title' => 'All Upcoming ' . $term_use . ' events in San Angelo')));
+      break;
+       case 'event_paid':
+        $tids = array($node->field_event_category[LANGUAGE_NONE][0]['tid']);
+        $termname = taxonomy_term_load_multiple($tids);
+        $i = 0;
+        foreach($termname as $term) {
+          if ($i == 0) {
+            $term_use = $term->name;
+          }
+          $i++;
+        }
+        $breadcrumb[] = l('Events ', 'events', array('attributes' => array('title' => 'All San Angelo Upcoming Events')));
+        // Create dashed term name
+        $termnamedash = str_replace(' ', '-', $term_use);
+        $breadcrumb[] = l(ucfirst($term_use), 'events/' . strtolower($termnamedash), array('attributes' => array('title' => 'All Upcoming ' . $term_use . ' events in San Angelo')));
+      break;
+      case 'event_free':
+        $tids = array($node->field_event_category[LANGUAGE_NONE][0]['tid']);
+        $termname = taxonomy_term_load_multiple($tids);
+        $i = 0;
+        foreach($termname as $term) {
+          if ($i == 0) {
+            $term_use = $term->name;
+          }
+          $i++;
+        }
+        $breadcrumb[] = l('Events ', 'events', array('attributes' => array('title' => 'All San Angelo Upcoming Events')));
+        // Create dashed term name
+        $termnamedash = str_replace(' ', '-', $term_use);
+        $breadcrumb[] = l(ucfirst($term_use), 'events/' . strtolower($termnamedash), array('attributes' => array('title' => 'All Upcoming ' . $term_use . ' events in San Angelo')));
+      break;
+      default:
+        // just follow the $_REQUEST['path']
+        $pieces = explode('/', $_SERVER['REQUEST_URI']);
+        // take off the last item
+        array_pop($pieces);
+        foreach($pieces as $piece) {
+          if (!empty($piece)) {
+            if (drupal_valid_path($add_to_path . $piece, TRUE)) {
+              $breadcrumb[] = l(ucfirst($piece), $add_to_path . $piece, array('attributes' => array('title' => ucfirst($piece))));
+            }
+            else {
+              $breadcrumb[] = ucfirst($piece);
+            }
+            $add_to_path .= $piece . '';
+          }
+        }
+      break;
+    }
+  }
+  else {
+    // it's a views page
+  }
+  if (!empty($breadcrumb)) {
+    $breadcrumbs = '<ul class="breadcrumb">';
+    
+    foreach ($breadcrumb as $key => $value) {
+       $breadcrumbs .= '<li>' . $value . '</li>';
+    }
+    $breadcrumbs .= '<li>' . drupal_get_title() . '</li>';
+    $breadcrumbs .= '</ul>';  
+    return $breadcrumbs;
+  }
 }

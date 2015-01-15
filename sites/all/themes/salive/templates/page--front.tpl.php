@@ -2,6 +2,12 @@
 <?php include 'page.header.inc'; ?>
 <div class="container">
 	
+  <?php if ($messages): ?>
+  <div id="messages">
+    <?php print $messages; ?>
+  </div> <!-- /#messages -->
+  <?php endif; ?>
+	
 	<?php if ($page['slider'] || $page['headlines'] || $page['headlines_ad']): ?>
 		<div id="spotlight" class="<?php print $withheadlines;?>">
 			<div class="row clearfix">

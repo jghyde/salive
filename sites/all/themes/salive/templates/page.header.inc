@@ -8,7 +8,8 @@
         <br />
         <?php if ($site_slogan): ?>
           <span class="slogan<?php if ($hide_site_slogan) { print ' element-invisible'; } ?>">
-            <h3><?php print $site_name; ?><br /><?php print $site_slogan; ?></h3>
+            <h1><?php print $site_name; ?><br /><?php print $site_slogan; ?></h1>
+            <noscript><h2>#WRSA</h2></noscript>
           </span>
         <?php endif; ?>
       </div>

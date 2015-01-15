@@ -4,6 +4,9 @@
 			font-size: 1.567em;
 			line-height: 1.65749;
 		}
+		a {
+			color: @tredmaroon !important;
+		}
 	}
   article {
     .comment-wrapper {
@@ -113,27 +116,34 @@
         margin-bottom: 10px;
       }
     }
-    .submitted {
-      .profile2-image {
-        width: 100px;
-        height: 120px;
-        float: left;
-        margin: 0 1.2em 1.2em 0;
-      }
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        li {
-          display: block;
-          float: left;
-          font-size: 0px;
-          a.social:hover:before,
-          a.social:hover {
-            color: @tredmaroon;
-          }
-        }
-      }
-    }
   }
+}
+.submitted {
+	.profile2-image {
+	  width: 100px;
+	  height: 120px;
+	  float: left;
+	  margin: 0 1.2em 1.2em 0;
+	}
+	.profile2-words {
+	  .social-icons {
+		  margin-top: -15px;
+	    ul {
+	      list-style: none;
+	      margin: 0;
+	      padding: 0;
+	      li {
+	        display: inline;
+	        float: left;
+	        a {
+	          font-size: 0px;
+	        }
+	        a.social:hover:before,
+	        a.social:hover {
+	          color: @tredmaroon;
+	        }
+	      }
+	    }
+	  }
+	}
 }
