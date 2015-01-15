@@ -108,8 +108,6 @@
 			text-align: center;
 			ul {
 				li {
-					background: -webkit-linear-gradient(#e6e6e6 0%, #f4f4f4 100%);
-					.border-radius(3px, 3px, 3px, 3px);
 					padding: 2px;
 					img {
 						width: 100% !important;
@@ -124,44 +122,32 @@
 	}
 }
 .hero-unit {
-padding: 20px;
-margin-top: 1em;
-margin-bottom: 30px;
-font-size: 18px;
-font-weight: 200;
-line-height: 30px;
-color: inherit;
-background-color: #eeeeee;
--webkit-border-top-right-radius: 6px;
--webkit-border-bottom-right-radius: 0;
--webkit-border-bottom-left-radius: 0;
--webkit-border-top-left-radius: 0;
--moz-border-radius-topright: 6px;
--moz-border-radius-bottomright: 0;
--moz-border-radius-bottomleft: 0;
--moz-border-radius-topleft: 0;
-border-top-right-radius: 6px;
-border-bottom-right-radius: 0;
-border-bottom-left-radius: 0;
-border-top-left-radius: 0;
--moz-background-clip: padding-box;
--webkit-background-clip: padding-box;
-background-clip: padding-box;
--webkit-border-radius: 6px;
--moz-border-radius: 6px;
-border-radius: 6px;
-}
-.hero-unit h1 {
-margin-bottom: 0;
-font-size: 60px;
-line-height: 1;
-color: inherit;
-letter-spacing: -1px;
+	padding: 20px;
+	font-size: 18px;
+	font-weight: 200;
+	line-height: 30px;
+	color: inherit;
+	h1 {
+		margin-bottom: 0;
+		font-size: 60px;
+		line-height: 1;
+		color: inherit;
+		letter-spacing: -1px;
+	}
+	p {
+		margin: 0;
+	}
 }
 
 #block-views-editorspick-block {
 	.views-row {
 		text-align: center;
+		.views-field-field-category {
+			font-size: smaller;
+			a {
+				color: @gray-light !important;
+			}
+		}
 		.views-field {
 			width: 75%;
 			margin-left: auto;

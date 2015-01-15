@@ -11,7 +11,8 @@
       $('.events-wrapper .thumbnail').equalHeights();
       $('.view-obituaries .obit').equalHeights();
       $('.view-newsthumbs li.col-md-2').equalHeights();
-      
+      $('#block-views-news-thumbs-block li.views-row').equalHeights();
+      $('.view-id-News .col-md-6').equalHeights();
     }
   };
 })(jQuery);

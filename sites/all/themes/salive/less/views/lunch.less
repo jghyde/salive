@@ -2,7 +2,9 @@
 	.view-content{
 		ul {
 			li {
-				display: inline-block;
+				float: left;
+				width: 42%;
+				height: auto;
 				.thumbnail {
 					display: inherit;
 					padding: 0;
@@ -14,6 +16,10 @@
 					-webkit-transition: all .2s ease-in-out;
 					-o-transition: all .2s ease-in-out;
 					transition: all .2s ease-in-out;
+					img {
+						width: 100% !important;
+						height: auto !important;
+					}
 				}
 			}
 		}

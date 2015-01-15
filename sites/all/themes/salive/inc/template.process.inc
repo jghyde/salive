@@ -174,6 +174,9 @@ function salive_preprocess_field(&$vars, $hook) {
   if ($vars['field_name_css'] == 'field-funeral-home') {
     $vars['classes_array'] = array_merge($vars['classes_array'], array('clearfix'));
   }
+  if ($vars['field_name_css'] == 'field-name-field-article-bullets') {
+    $vars['classes_array'][] = 'well';
+  }
 }
 
 /**
