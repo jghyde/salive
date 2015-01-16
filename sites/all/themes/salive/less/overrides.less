@@ -803,16 +803,21 @@ span.cycle-pager-active,
 .pagination > li > a {
 	color: @treddarker !important;
 	border: 1px solid @tredmaroon !important ;
-	.ajax-progress, .ajax-progress-throbber, .glyphicon-spin, a.glyphicon-spin {
-		display: none;
-	}
 }
 .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus {
 	color: @treddarker !important;
 	border: 1px solid @tredmaroon !important ;
 }
-.pagination ul > li > a.progress-disabled {
-	float: none !important;
+.pagination li.next {
+  float: right;
+  display: inline-block;
+}
+.pagination li.prev {
+  float: left;
+  display: inline-block;
+}
+.view .pagination .progress-disabled {
+	float: left; 
 }
 .glyphicons:before {
 	padding: 0 6px 0px 3px;

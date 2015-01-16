@@ -1,0 +1,14 @@
+name = Views Sexy Throbber
+description = Changes the style of the views throbber (AJAX loading icon). Check the README.txt for more information and performance tips.
+configure = admin/structure/views/settings/trobber
+package = Views
+dependencies[] = views
+
+core = 7.x
+
+; Information added by drupal.org packaging script on 2013-10-19
+version = "7.x-2.0+14-dev"
+core = "7.x"
+project = "views_sexy_throbber"
+datestamp = "1382165110"
+

@@ -1,0 +1,14 @@
+; Id:
+
+name = Olark Chat
+description = Olark chat integration.
+core = 7.x
+version = "7.x-1.0"
+project = "olark"
+files[] = plugins/olark_context_reaction_add.inc
+; Information added by drupal.org packaging script on 2013-10-01
+version = "7.x-1.0-beta1+1-dev"
+core = "7.x"
+project = "olark"
+datestamp = "1380595862"
+

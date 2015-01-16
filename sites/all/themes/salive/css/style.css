@@ -6960,12 +6960,6 @@ span.cycle-pager-active,
   color: #bb001e !important;
   border: 1px solid #8c0017 !important;
 }
-.pagination > li > a .ajax-progress,
-.pagination > li > a .ajax-progress-throbber,
-.pagination > li > a .glyphicon-spin,
-.pagination > li > a a.glyphicon-spin {
-  display: none;
-}
 .pagination > .disabled > span,
 .pagination > .disabled > span:hover,
 .pagination > .disabled > span:focus,
@@ -6975,8 +6969,16 @@ span.cycle-pager-active,
   color: #bb001e !important;
   border: 1px solid #8c0017 !important;
 }
-.pagination ul > li > a.progress-disabled {
-  float: none !important;
+.pagination li.next {
+  float: right;
+  display: inline-block;
+}
+.pagination li.prev {
+  float: left;
+  display: inline-block;
+}
+.view .pagination .progress-disabled {
+  float: left;
 }
 .glyphicons:before {
   padding: 0 6px 0px 3px;
@@ -12754,10 +12756,12 @@ ul.social-icons li a.social:hover:before {
   .hero-unit button {
     width: 100% !important;
   }
-  #block-views-administration_profiles-block .media div {
-    float: none !important;
+  #block-views-administration_profiles-block .views-row .img-circle {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
   }
-  #block-views-administration_profiles-block .media div img {
+  #block-views-administration_profiles-block .views-row .img-circle img {
     width: 100% !important;
     height: auto !important;
   }
@@ -15620,6 +15624,9 @@ ul li.leaf {
 .view-id-News .views-row .thumbnail {
   margin-bottom: 0 !important;
 }
+.news-insert {
+  margin-bottom: 15px;
+}
 #slider .views-field-title {
   font-family: 'gotham-black-headers';
   font-size: 1.5em;
@@ -15834,7 +15841,26 @@ ul li.leaf {
   font-style: italic;
   margin: 0;
 }
-#block-views-administration_profiles-block .media {
+#block-views-administration_profiles-block .views-row {
   border-bottom: 3px solid #e6e6e6;
   padding-bottom: 5px;
+  padding-top: 15px;
+}
+#block-views-administration_profiles-block .views-row .img-circle {
+  float: left;
+  margin: 0px 15px 8px 0px;
+}
+#block-views-administration_profiles-block .views-row .img-circle img {
+  border-radius: 500px;
+  box-shadow: 0px 0px 5px black;
+  border: 2px solid #5e000f;
+  width: 300px;
+  height: auto;
+}
+#block-views-administration_profiles-block .views-row .views-field-field-last-name {
+  font-size: xx-large;
+}
+#block-views-administration_profiles-block .views-row .views-field-field-last-name .field-content {
+  font-family: 'gotham-black-headers';
+  font-weight: bold;
 }
