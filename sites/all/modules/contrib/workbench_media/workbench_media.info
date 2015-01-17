@@ -5,9 +5,9 @@ core = 7.x
 dependencies[] = workbench
 dependencies[] = media
 
-; Information added by drupal.org packaging script on 2012-09-05
-version = "7.x-1.1"
+; Information added by drupal.org packaging script on 2013-10-26
+version = "7.x-1.1+1-dev"
 core = "7.x"
 project = "workbench_media"
-datestamp = "1346858332"
+datestamp = "1382797174"
 
