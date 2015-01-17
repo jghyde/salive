@@ -1,1 +1,0 @@
-addToHomescreen({detectHomescreen:!0});

@@ -1,1 +1,0 @@
-!function($){Drupal.behaviors.salivebootstrap={attach:function(e,t){$(".death-notice-controls").hide(),$(".death-notice").click(function(){$(this).children(".death-notice-controls").toggle()}),$(".event-sale").equalHeights(),$(".events-wrapper .thumbnail").equalHeights(),$(".view-obituaries .obit").equalHeights(),$(".view-newsthumbs .col-md-2").equalHeights()}}}(jQuery);
