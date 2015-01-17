@@ -7014,9 +7014,6 @@ form#search-block-form {
 .view-editorspick .views-field-title a {
   font-size: 1em !important;
 }
-.view-job-network .rows-first .views-field {
-  padding: 15px !important;
-}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
@@ -15884,7 +15881,12 @@ ul.sharebar li:last-child {
   margin-right: 5px;
 }
 .view-job-network .rows-first .views-field {
-  padding: 15px !important;
+  padding-left: 15px !important;
+}
+.view-job-network .rows-first .views-field-timestamp {
+  color: #b4b4b4;
+  font-size: 0.917em;
+  text-transform: uppercase;
 }
 .view-job-network .rows-others {
   padding-left: 10px;
