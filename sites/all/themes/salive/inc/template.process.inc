@@ -291,10 +291,10 @@ function salive_preprocess_node(&$vars) {
         $byline = 'by ' . l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']);
       }
       else {
-        $byline = 'by ' . l($name, 'user/' . $account->uid);
+        $byline = 'By ' . $name;
       }
-      $date = date('M j, Y', $vars['created']);
-      $vars['byline'] = '<p class="author">' . $byline . '</p><p class="published-date">' . $date . '</p>';
+      $date = date('M j, Y g:i a', $vars['created']);
+      $vars['byline'] = '<p class="author">' . $byline . ' | ' . $date . '</p>';
     }
   }
 }

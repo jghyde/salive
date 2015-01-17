@@ -12707,7 +12707,9 @@ ul.social-icons li a.social:hover:before {
   }
   #block-views-newsthumbs-block_1 .view-newsthumbs .col-md-2,
   #block-views-newsthumbs-block_2 .view-newsthumbs .col-md-2,
-  #block-views-newsthumbs-block_3 .view-newsthumbs .col-md-2 {
+  #block-views-newsthumbs-block_3 .view-newsthumbs .col-md-2,
+  #block-views-newsthumbs-block_4 .view-newsthumbs .col-md-2,
+  #block-views-newsthumbs-block_5 .view-newsthumbs .col-md-2 {
     width: 19.666667% !important;
   }
   #slider .cycle-pager {
@@ -12744,13 +12746,17 @@ ul.social-icons li a.social:hover:before {
     display: inherit;
   }
   #block-views-newsthumbs-block_2 .view .view-content ul li.col-md-2,
-  #block-views-newsthumbs-block_3 .view .view-content ul li.col-md-2 {
+  #block-views-newsthumbs-block_3 .view .view-content ul li.col-md-2,
+  #block-views-newsthumbs-block_4 .view .view-content ul li.col-md-2,
+  #block-views-newsthumbs-block_5 .view .view-content ul li.col-md-2 {
     width: 45% !important;
     margin: 5px !important;
     float: left;
   }
   #block-views-newsthumbs-block_2 .view .view-content ul .views-row-last,
-  #block-views-newsthumbs-block_3 .view .view-content ul .views-row-last {
+  #block-views-newsthumbs-block_3 .view .view-content ul .views-row-last,
+  #block-views-newsthumbs-block_4 .view .view-content ul .views-row-last,
+  #block-views-newsthumbs-block_5 .view .view-content ul .views-row-last {
     display: none;
   }
   .hero-unit button {
@@ -15437,6 +15443,71 @@ ul li.leaf {
 .submitted .profile2-words .social-icons ul li a.social:hover {
   color: #8c0017;
 }
+ul.sharebar {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+ul.sharebar li {
+  list-style: none;
+  display: inline-block;
+  width: 49%;
+  margin-right: 1%;
+}
+ul.sharebar li a {
+  display: block;
+  cursor: pointer;
+  padding: 3px;
+  height: 40px;
+  width: 100%;
+  line-height: 27px;
+  border-radius: 3px;
+}
+ul.sharebar li a span.social:before {
+  color: #ffffff;
+  display: inline-block;
+  font: 24px/1em 'Glyphicons Social Regular';
+  left: 3px;
+  top: -5px;
+  margin: 0 5px 0 0;
+  padding: 0;
+  position: absolute;
+  text-transform: none;
+}
+ul.sharebar li a span.bigshare {
+  text-decoration: none;
+  font-weight: bold;
+  color: #ffffff;
+}
+ul.sharebar li a.fb-share {
+  background-color: #3C5A98;
+}
+ul.sharebar li a.twitter-popup {
+  background-color: #00D1FE;
+}
+ul.sharebar li a:hover {
+  text-decoration: none;
+}
+ul.sharebar li a.fb-share:hover {
+  background-color: #45619D;
+}
+ul.sharebar li a.twitter-popup:hover {
+  background-color: #00AFEF;
+}
+ul.sharebar li a:visited {
+  text-decoration: none;
+}
+ul.sharebar li:last-child {
+  margin-right: 0;
+}
+@media (max-width: 480px) {
+  ul.sharebar li {
+    display: block;
+    clear: both;
+    width: 98%;
+    margin: 5px 0;
+  }
+}
 .imglunch {
   margin: 7px;
   background-color: #f0f0f0;
@@ -15735,20 +15806,28 @@ ul li.leaf {
   background: #c33 !important;
 }
 #block-views-newsthumbs-block_2 .view .view-content,
-#block-views-newsthumbs-block_3 .view .view-content {
+#block-views-newsthumbs-block_3 .view .view-content,
+#block-views-newsthumbs-block_4 .view .view-content,
+#block-views-newsthumbs-block_5 .view .view-content {
   text-align: center;
 }
 #block-views-newsthumbs-block_2 .view .view-content ul li,
-#block-views-newsthumbs-block_3 .view .view-content ul li {
+#block-views-newsthumbs-block_3 .view .view-content ul li,
+#block-views-newsthumbs-block_4 .view .view-content ul li,
+#block-views-newsthumbs-block_5 .view .view-content ul li {
   padding: 2px;
 }
 #block-views-newsthumbs-block_2 .view .view-content ul li img,
-#block-views-newsthumbs-block_3 .view .view-content ul li img {
+#block-views-newsthumbs-block_3 .view .view-content ul li img,
+#block-views-newsthumbs-block_4 .view .view-content ul li img,
+#block-views-newsthumbs-block_5 .view .view-content ul li img {
   width: 100% !important;
   height: auto !important;
 }
 #block-views-newsthumbs-block_2 .view .view-content ul li .thumbnail,
-#block-views-newsthumbs-block_3 .view .view-content ul li .thumbnail {
+#block-views-newsthumbs-block_3 .view .view-content ul li .thumbnail,
+#block-views-newsthumbs-block_4 .view .view-content ul li .thumbnail,
+#block-views-newsthumbs-block_5 .view .view-content ul li .thumbnail {
   margin-bottom: 5px !important;
 }
 .hero-unit {

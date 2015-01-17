@@ -2,7 +2,7 @@
 /**
  * @file
  * Theme setting callbacks for the MD thenews theme.
-
+ */
 
 drupal_add_css(drupal_get_path('theme', 'salive') . '/css/theme-settings.css', array('group' => CSS_THEME));
 drupal_add_css(drupal_get_path('theme', 'salive') . '/js/colorpicker/css/colorpicker.css');
@@ -36,7 +36,7 @@ drupal_add_js(drupal_get_path('theme', 'salive') . '/js/theme-settings.js');
  *   The form.
  * @param $form_state
  *   The form state.
-
+ */
 function salive_form_system_theme_settings_alter(&$form, &$form_state) {
 
 	
@@ -222,4 +222,3 @@ function salive_settings_submit($form, &$form_state) {
   }
 
 } 
-*/
