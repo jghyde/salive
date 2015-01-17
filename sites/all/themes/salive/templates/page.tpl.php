@@ -52,6 +52,11 @@
 		          <?php print render($action_links); ?>
 		        </ul>
 		      <?php endif; ?>
+		      <?php if ($page['content_top']): ?>
+		      <div id="content-top">
+			      <?php print render($page['content_top']); ?>
+			    </div>
+			    <?php endif; ?>
 		      <?php print render($page['content']); ?>
 		      <?php if ($page['content_bottom']): ?>
 		      <div id="content-bottom">
