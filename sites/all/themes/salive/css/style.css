@@ -7010,6 +7010,13 @@ span.cycle-pager-active,
 form#search-block-form {
   margin-bottom: -20px;
 }
+.view h5,
+.view-editorspick .views-field-title a {
+  font-size: 1em !important;
+}
+.view-job-network .rows-first .views-field {
+  padding: 15px !important;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
@@ -12712,9 +12719,6 @@ ul.social-icons li a.social:hover:before {
   #block-views-newsthumbs-block_5 .view-newsthumbs .col-md-2 {
     width: 19.666667% !important;
   }
-  #slider .cycle-pager {
-    bottom: -55px !important;
-  }
   #block-views-news-thumbs-block .view-content ul li {
     width: 19.666667% !important;
   }
@@ -15746,7 +15750,7 @@ ul.sharebar li:last-child {
   clear: both;
   position: absolute;
   right: 5px;
-  bottom: 0px;
+  bottom: -30px;
   z-index: 111;
 }
 #slider .cycle-pager span {
@@ -15875,6 +15879,17 @@ ul.sharebar li:last-child {
   padding-left: 10px;
   border-left: 1px solid #e6e6e6;
 }
+.view-job-network .rows-first {
+  border-right: none;
+  margin-right: 5px;
+}
+.view-job-network .rows-first .views-field {
+  padding: 15px !important;
+}
+.view-job-network .rows-others {
+  padding-left: 10px;
+  border-left: 1px solid #e6e6e6;
+}
 #block-views-lunch_specials-block .view-content ul li {
   float: left;
   width: 45%;
@@ -15897,24 +15912,24 @@ ul.sharebar li:last-child {
   width: 100% !important;
   height: auto !important;
 }
-.block-views .view-rants div {
+.block-views .view-rants .view-content div {
   margin-bottom: 0.8em;
   padding-bottom: 0.8em;
   border-bottom: 1px solid #efefef;
 }
-.block-views .view-rants div h4.comment-block {
+.block-views .view-rants .view-content div h4.comment-block {
   width: 100%;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.block-views .view-rants div span.comment-author {
+.block-views .view-rants .view-content div span.comment-author {
   color: #777777;
   font-size: 0.7em;
   font-size: 0.7rem;
 }
-.block-views .view-rants div p.comment-node {
+.block-views .view-rants .view-content div p.comment-node {
   font-size: 0.8em;
   font-size: 0.8rem;
   font-style: italic;

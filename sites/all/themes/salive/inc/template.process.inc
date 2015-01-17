@@ -20,12 +20,7 @@ function salive_preprocess_html(&$vars) {
 		drupal_add_js($headlines_js, "inline");
 		$css .= '#hlitemContainer li:nth-child(' . $headline_pager . 'n+' . $headline_pager . ') {border: none;}';
 	}
-
-	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.js');
-	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
-	drupal_add_js('jQuery.fn.cycle.defaults.autoSelector = \'.mdslideshow\';', "inline");
-	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/script.js');
+	
 	// Add add-to-homescreen bookmark web app thing
   drupal_add_js(libraries_get_path('add-to-homescreen') . '/src/addtohomescreen.min.js');
   drupal_add_css(libraries_get_path('add-to-homescreen') . '/style/addtohomescreen.css');
@@ -45,6 +40,12 @@ function salive_preprocess_html(&$vars) {
   //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/livemasonry-ck.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js');
   drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
+
+	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.js');
+	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
+	drupal_add_js('jQuery.fn.cycle.defaults.autoSelector = \'.mdslideshow\';', "inline");
+	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/script.js');
 
 	// remove no-sidebars class
 	if ($index = array_search('no-sidebars', $vars['classes_array'])) {
