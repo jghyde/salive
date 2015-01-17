@@ -295,7 +295,7 @@ function salive_preprocess_node(&$vars) {
         $byline = 'By ' . $name;
       }
       $date = date('M j, Y g:i a', $vars['created']);
-      $vars['byline'] = '<p class="author">' . $byline . ' | ' . $date . '</p>';
+      $vars['byline'] = '<p class="author">' . $byline . ' | ' . $date;
     }
   }
 }

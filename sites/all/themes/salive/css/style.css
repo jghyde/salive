@@ -16713,49 +16713,50 @@ ul li.leaf {
   clear: both;
   width: 82%;
 }
-.node-obituary .field-name-field-write-your-tribute,
-.node-obit-paid .field-name-field-write-your-tribute,
-.node-obituary .field-name-field-tribute-link a,
-.node-obit-paid .field-name-field-tribute-link a {
+.page-type-obituary .field-name-field-write-your-tribute,
+.page-type-obit-paid .field-name-field-write-your-tribute,
+.page-type-obituary .field-name-field-tribute-link a,
+.page-type-obit-paid .field-name-field-tribute-link a {
   clear: both;
   margin-bottom: -4em;
   z-index: 100;
   color: white;
 }
-.node-obituary .field-name-field-funeral-home,
-.node-obit-paid .field-name-field-funeral-home {
+.page-type-obituary .field-name-field-funeral-home,
+.page-type-obit-paid .field-name-field-funeral-home {
   clear: both;
 }
-.node-obituary .node-venue,
-.node-obit-paid .node-venue {
+.page-type-obituary .node-venue,
+.page-type-obit-paid .node-venue {
   clear: both;
   border-top: 1px solid #eeeeee;
   width: 100% !important;
   padding-bottom: 15px;
 }
-.node-obituary .node-venue .story-bottom,
-.node-obit-paid .node-venue .story-bottom {
+.page-type-obituary .node-venue .story-bottom,
+.page-type-obit-paid .node-venue .story-bottom {
   display: none;
 }
-.node-obituary .field-name-body,
-.node-obit-paid .field-name-body {
-  font-size: 1.567em;
-  line-height: 1.65749;
+.page-type-obituary .field-name-body,
+.page-type-obit-paid .field-name-body {
+  font-size: 1.367em;
+  line-height: 1.5749;
 }
-.node-obituary .field-name-field-portrait-image,
-.node-obit-paid .field-name-field-portrait-image {
+.page-type-obituary .field-name-field-portrait-image,
+.page-type-obit-paid .field-name-field-portrait-image {
   margin: 0px 7px 7px 0px;
 }
-.node-obituary .node-venue .field-name-field-business-phone,
-.node-obit-paid .node-venue .field-name-field-business-phone {
+.page-type-obituary .node-venue .field-name-field-business-phone,
+.page-type-obit-paid .node-venue .field-name-field-business-phone {
   display: none;
 }
-.node-obituary .field-type-image,
-.node-obit-paid .field-type-image {
+.page-type-obituary .field-type-image,
+.page-type-obit-paid .field-type-image {
   margin: 0 10px 10px 0;
+  max-width: 350px;
 }
-.node-obituary .field-type-image img,
-.node-obit-paid .field-type-image img {
+.page-type-obituary .field-type-image img,
+.page-type-obit-paid .field-type-image img {
   margin: 0 !important;
 }
 .page-type-obituary .obit-dates {
@@ -16995,8 +16996,8 @@ ul li.leaf {
   text-align: center;
 }
 .page-type-article .field-name-body .field-item {
-  font-size: 1.567em;
-  line-height: 1.65749;
+  font-size: 1.367em;
+  line-height: 1.5749;
 }
 .page-type-article .field-name-body a {
   color: #8c0017 !important;

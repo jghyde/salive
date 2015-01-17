@@ -1,5 +1,9 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 	<?php print $byline; ?>
+	<?php if ($node->changed): ?>
+	<br />Updated on: <?php echo date('M j, Y g:i a', $node->changed); ?>
+	<?php endif; ?>
+	</p>
 	
   <?php
     // Hide comments, tags, and links now so that we can render them later.

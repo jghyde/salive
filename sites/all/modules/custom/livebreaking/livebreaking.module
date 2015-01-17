@@ -146,24 +146,6 @@ function livebreaking_block_configure($delta = '') {
       ),
       '#description' => t('Select how long you desire the High Radioactivity news items that have been Promoted to Front Page will be active.'),
     );
-    // File selection form element
-    $form['livebreaking_image'] = array(
-      '#name' => 'livebreaking_image',
-      '#type' => 'managed_file',
-      '#title' => t('Choose an Image File'),
-      '#description' => t('Select an Image for the sponsor.  Only *.gif, *.png, *.jpg, and *.jpeg images allowed.'),
-      '#default_value' => variable_get('livebreaking_image_fid', ''),
-      '#upload_location' => 'public://livebreaking/',
-      '#upload_validators' => array(
-        'file_validate_extensions' => array('gif png jpg jpeg'),
-      ),
-    );
-    // The url to link the image to
-    $form['livebreaking_link'] = array(
-      '#type' => 'textfield',
-      '#title' => 'Link for Sponsor Image',
-      '#default_value' => variable_get('livebreaking_link', 'http://sanangelolive.com/'),
-    );
   }
   return $form;
 }
