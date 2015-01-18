@@ -7016,6 +7016,9 @@ form#search-block-form {
 .view-editorspick .views-field-title a {
   font-size: 1em !important;
 }
+.ajax-progress-throbber {
+  display: none;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
