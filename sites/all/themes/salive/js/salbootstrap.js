@@ -2,9 +2,6 @@
 (function ($) {
   Drupal.behaviors.salivebootstrap = {
     attach: function (context, settings) {
-	    $(window).resize(function() {
-				equalHeights();
-			});
       $('.death-notice-controls').hide();
       $('.death-notice').click(function() {
         $(this).children('.death-notice-controls').toggle();

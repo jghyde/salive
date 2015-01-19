@@ -10,7 +10,10 @@
 if (isset($breaking_items) && count($breaking_items) > 0) {
   $i = 0;
   $first = '';
-  print '<div class="breaking" id="breakingFade">';
+  print '<div id="breakingFade" class="breaking cycle-slideshow" 
+    data-cycle-timeout="4500"
+    data-cycle-slides="> div"
+    >';
   foreach ($breaking_items as $item) {
     if ($i == 0) {
       $first = ' first';
@@ -19,9 +22,11 @@ if (isset($breaking_items) && count($breaking_items) > 0) {
     print '"><div class="container"><div class="col-md-9">';
     print '<i class="glyphicons ' . $item['type'] . ' white"></i>';
     print $item['title'];
-    print '</div><div class="col-md-3"><script type="text/javascript">broadstreet.zone(35189);</script></div></div></div>';
+    print '</div><div class="col-md-3"><a href="//ad.broadstreetads.com/zone_static/35189/click/0"><img src="//ad.broadstreetads.com/zone_static/35189/image/0"/></a></div></div></div>';
     $i++;
     $first = '';
   }
   print '</div>';
 }
+
+

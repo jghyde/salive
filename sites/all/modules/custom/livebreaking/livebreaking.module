@@ -82,13 +82,12 @@ function livebreaking_block_view($delta = '') {
       $block['subject'] = '';// t('Breaking Now');
       if (count($breaking > 0)) {
         drupal_add_css(drupal_get_path('module', 'livebreaking') .  '/css/livebreaking.css');
-        drupal_add_js(libraries_get_path('jquery-cycle') . '/jquery.cycle.all.js');
+        //drupal_add_js(libraries_get_path('jquery-cycle') . '/jquery.cycle.all.js');
         drupal_add_js(drupal_get_path('module', 'livebreaking') . '/js/livebreaking.js');
         $block['content'] = array(
           '#title' => t('Breaking Now'),
           '#breaking_items' => $breaking,
           '#theme' => 'livebreaking_block',
-          '#sponsor' => (!empty($sponsor_image) ? l($sponsor_image, $sponsor_link, array('html' => TRUE)) : ''),
         );
       }
       else {
@@ -160,13 +159,7 @@ function livebreaking_block_save($delta = '', $edit = array()) {
     variable_set('breaking_hot', $edit['breaking_hot']);
     variable_set('breaking_level', $edit['breaking_level']);
     variable_set('breaking_promoted', $edit['breaking_promoted']);
-    // Saving the file, setting it to a permanent state, setting a FID variable
-    $file = file_load($edit['livebreaking_image']);
-    $file->status = FILE_STATUS_PERMANENT;
-    file_save($file);
     $block = block_load('livebreaking', $delta);
-    file_usage_add($file, 'livebreaking', 'block', $block->bid);
-    variable_set('livebreaking_image_fid', $file->fid);
   }
 }
 

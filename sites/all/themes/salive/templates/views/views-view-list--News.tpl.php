@@ -9,7 +9,7 @@
 		$wrapper  = 4;                  // put a wrapper around every 3 rows
 	?>
 	<?php foreach ($rows as $id => $row): ?>
-		<?php if ($id % $wrapper == 0) {print '<div class="group-'.$group_nr.'">'; $i = 0; $group_nr++; } ?>
+		<?php if ($id % $wrapper == 0) {print '<div class="group-'.$group_nr.' clearfix">'; $i = 0; $group_nr++; } ?>
     <div class="views-row-<?php print $id+1; ?>">
       <li class="<?php print $classes_array[$id]; ?>"><?php print $row; ?></li>
     </div>

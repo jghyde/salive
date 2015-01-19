@@ -9,8 +9,7 @@
         $('#slides').css('max-width',width - 20 + 'px');
       });
       $('#breakingFade').cycle({ 
-        fx:      'turnDown', 
-        delay:   -4000 
+        fx:      'fade',  
       });
     }
   }

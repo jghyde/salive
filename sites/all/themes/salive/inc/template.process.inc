@@ -307,7 +307,8 @@ function salive_sellthelogin() {
   if (user_is_anonymous()) {
     $out = '<div class="comment-signup well clearfix">';
     $out .= '<div class="title-wrapper">';
-    $out .= '<h3>Sign-Up and Comment</h3>';
+    $out .= '<div class="clearfix"><h3>Sign-Up and Comment</h3></div>';
+    $out .= '</div><div class="clearfix">';
     $out .= l('Login', 'user/login', array('query' => drupal_get_destination(), 'attributes' => array('class' => array('btn', 'btn-success', 'pull-right', 'btn-lg',))));
     $out .= '</div>';
     $out .= '<div class="comment-anonymous-image pull-left">';
