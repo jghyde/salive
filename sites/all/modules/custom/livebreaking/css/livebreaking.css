@@ -3,8 +3,7 @@
 }
 .block-livebreaking .livebreaking-item {
   display: none;
-  padding: 10px 10px 0 10px;
-  line-height: 2em;
+  padding: 10px 0px;
   color: #ffffff;
   text-decoration: none;
   font-weight: bold;
@@ -14,13 +13,17 @@
 .block-livebreaking .livebreaking-item.first {
   display: block;
 }
-.block-livebreaking .livebreaking-item .icon-white {
+.block-livebreaking .livebreaking-item .white {
   margin-right: 0.3em;
 }
 .block-livebreaking .livebreaking-item a {
   color: #ffffff;
   text-decoration: underline;
   font-size: 0.8em;
+  text-decoration: none;
+}
+.block-livebreaking .livebreaking-item .col-md-9 {
+	margin-top: 10px;
 }
 .block-livebreaking .livebreaking-item.bell {
   background-color: #F1142C;
@@ -30,7 +33,7 @@
   background-color: #BF5700;
   font-size: x-large;
 }
-.block-livebreaking .livebreaking-item .span3 a {
+.block-livebreaking .livebreaking-item .col-md-3 a {
   height:auto !important;
   width: 100% !important;
 }
