@@ -250,11 +250,8 @@ function salive_preprocess_node(&$vars) {
     }
     $vars['sell'] = $sell;
     if ($vars['display_submitted']) {
-      $account = profile2_load_by_user($vars['uid'], 'main');
+      $account = profile2_load_by_user($vars['uid'], 'main_profile_admin', 'main');
       $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];
-      if ($vars['is_admin'] == TRUE && empty($account->field_first_name[LANGUAGE_NONE][0]['safe_value']) || empty($account->field_last_name[LANGUAGE_NONE][0]['safe_value'])) {
-        drupal_set_message(t('The author bio sheet is incomplete. Specificall a first or last name is not set. !fix', array('!fix' => l('Please fix it here.', 'user/' . $accout->uid . '/edit'))));
-      }
       $name = ($account->field_first_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_first_name[LANGUAGE_NONE][0]['safe_value'] . ' ': '');
       $name .= ($account->field_last_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_last_name[LANGUAGE_NONE][0]['safe_value'] : '');
       (empty($imgvars['title']) ? $imgvars['title'] = $name : '');
@@ -345,7 +342,7 @@ function salive_preprocess_comment(&$variables) {
   $node = $variables['elements']['#node'];
   $variables['comment'] = $comment;
   $variables['node'] = $node;
-  $account = profile2_load_by_user($comment->uid, 'main');
+  $account = profile2_load_by_user($comment->uid, 'main_profile_admin');
   if (!empty($account)) {
     if (!empty($account->field_profile_picture[LANGUAGE_NONE][0]['fid'])) {
       $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];

@@ -16217,7 +16217,7 @@ ul.links {
   padding: 0 0.5em 0 0;
 }
 .indented {
-  margin-left: 60px;
+  margin-left: 2em;
 }
 .comment-unpublished {
   margin-right: 5px;
@@ -16635,7 +16635,7 @@ ul li.leaf {
 .view-rants .ajax-comment-wrapper .motherhood .picture,
 #comments .comment .motherhood .picture,
 .view-rants .comment .motherhood .picture {
-  width: 50px;
+  width: 56px;
   margin-right: 10px;
 }
 #comments .ajax-comment-wrapper .motherhood .comment-title-block,

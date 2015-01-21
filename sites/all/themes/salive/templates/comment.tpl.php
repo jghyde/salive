@@ -12,7 +12,6 @@
       <?php endif; ?>
       <?php print render($title_suffix); ?>
         <?php print $submitted; ?>
-        <?php print $permalink; ?>
     </div>
   </div>
   <div class="content"<?php print $content_attributes; ?>>

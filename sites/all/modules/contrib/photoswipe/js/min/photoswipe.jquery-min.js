@@ -1,0 +1,1 @@
+!function($){Drupal.behaviors.photoswipe={attach:function(o,p){var t=$(".photoswipe-gallery",o);t.length?t.each(function(){$(this).find("a.photoswipe").photoSwipe(p.photoswipe.options)}):$("a.photoswipe",o).length&&$("a.photoswipe",o).each(function(){$(this).photoSwipe(p.photoswipe.options)})}}}(jQuery);
