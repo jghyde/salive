@@ -23,7 +23,7 @@ function livebreaking_block_view($delta = '') {
   ->entityCondition('entity_type', 'node')
   ->entityCondition('bundle', 'article')
   ->propertyCondition('status', 1)
-  ->propertyCondition('promote', 1)
+  ->propertyCondition('breakingnews', 1)
   // 3600 is 1 hour
   ->propertyCondition('created',  time() - variable_get('breaking_promoted', 3600), '>=')
   ->propertyOrderBy('created', 'DESC')

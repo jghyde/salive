@@ -248,55 +248,59 @@ function salive_preprocess_node(&$vars) {
         $sell = salive_sellthelogin();
       }
     }
-    $vars['sell'] = $sell;
-    if ($vars['display_submitted']) {
-      $account = profile2_load_by_user($vars['uid'], 'main_profile_admin', 'main');
-      $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];
-      $name = ($account->field_first_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_first_name[LANGUAGE_NONE][0]['safe_value'] . ' ': '');
-      $name .= ($account->field_last_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_last_name[LANGUAGE_NONE][0]['safe_value'] : '');
-      (empty($imgvars['title']) ? $imgvars['title'] = $name : '');
-      (empty($imgvars['alt']) ? $imgvars['alt'] = $name : '');
-      $picarray = array(
-        'style_name' => 'profile',
-        'path' => $imgvars['uri'],
-        'width' => $imgvars['width'],
-        'height' => $imgvars['height'],
-        'alt' => $imgvars['alt'],
-        'title' => $imgvars['title'],
-      );
-      (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $link = $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']: $link = '');
-      $pic = theme('image_style', $picarray);
-      if (!empty($link)) {
-        $pic = l($pic, $link, array('attributes' => array('class' => array('img-polaroid')), 'html' => TRUE));
-      }
-      $bio = $account->field_short_bio[LANGUAGE_NONE][0]['safe_value'];
-      $items = array();
-      (!empty($account->field_facebook_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Facebook', $account->field_facebook_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Facebook', 'class' => array('social', 'facebook')))) : '');
-      (!empty($account->field_twitter_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Twitter', $account->field_twitter_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Twitter', 'class' => array('social', 'twitter')))) : '');
-      (!empty($account->field_linkedin_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on LinkedIn', $account->field_linkedin_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'LinkedIn', 'class' => array('social', 'linked_in')))) : '');
-      (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Google +', $account->field_google_plus_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Google Plus', 'class' => array('social', 'google_plus')))) : '');
-      // If the Author allows Contact Form:
-      $account_drupal = user_load($vars['uid']);
-      if (isset($account_drupal->data['contact']) && $account_drupal->data['contact'] == 1) {
-        $items[] = l('Email', 'user/' . $account_drupal->uid . '/contact', array('attributes' => array('title' => 'e-mail', 'class' => array('social', 'e-mail'))));
-      }
-      $social = theme('item_list', array('items' => $items));
-      $out = '<h4>About the Author</h4><div class="profile2-image thumbnail">' . $pic . '</div>';
-      (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $linked_name = l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) : $linked_name = l($name, 'user/' . $account->uid));
-      $out .= '<div class="profile2-words clearfix"><h3>' . $linked_name . '</h3>' . '<p>' . $bio . '</p><div class="social-icons">' . $social . '</div></div>';
-      $vars['submitted'] =  $out;
-      if (isset($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value'])) {
-        $byline = 'by ' . l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']);
-      }
-      else {
-        $byline = 'By ' . $name;
-      }
-      $date = date('M j, Y g:i a', $vars['created']);
-      $vars['byline'] = '<p class="author">' . $byline . ' | ' . $date;
+  }
+	$vars['sell'] = $sell;
+  if ($vars['display_submitted']) {
+		$author = user_load($vars['uid']);
+		if (in_array('administrator', $author->roles)) {
+			$account = profile2_load_by_user($vars['uid'], 'main_profile_admin');
+		} else {
+			$account = profile2_load_by_user($vars['uid'], 'main');
+		}
+    $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];
+    $name = ($account->field_first_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_first_name[LANGUAGE_NONE][0]['safe_value'] . ' ': '');
+    $name .= ($account->field_last_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_last_name[LANGUAGE_NONE][0]['safe_value'] : '');
+    (empty($imgvars['title']) ? $imgvars['title'] = $name : '');
+    (empty($imgvars['alt']) ? $imgvars['alt'] = $name : '');
+    $picarray = array(
+      'style_name' => 'profile',
+      'path' => $imgvars['uri'],
+      'width' => $imgvars['width'],
+      'height' => $imgvars['height'],
+      'alt' => $imgvars['alt'],
+      'title' => $imgvars['title'],
+    );
+    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $link = $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']: $link = '');
+    $pic = theme('image_style', $picarray);
+    if (!empty($link)) {
+      $pic = l($pic, $link, array('attributes' => array('class' => array('img-polaroid')), 'html' => TRUE));
     }
+    $bio = $account->field_short_bio[LANGUAGE_NONE][0]['safe_value'];
+    $items = array();
+    (!empty($account->field_facebook_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Facebook', $account->field_facebook_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Facebook', 'class' => array('social', 'facebook')))) : '');
+    (!empty($account->field_twitter_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Twitter', $account->field_twitter_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Twitter', 'class' => array('social', 'twitter')))) : '');
+    (!empty($account->field_linkedin_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on LinkedIn', $account->field_linkedin_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'LinkedIn', 'class' => array('social', 'linked_in')))) : '');
+    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Google +', $account->field_google_plus_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Google Plus', 'class' => array('social', 'google_plus')))) : '');
+    // If the Author allows Contact Form:
+    $account_drupal = user_load($vars['uid']);
+    if (isset($account_drupal->data['contact']) && $account_drupal->data['contact'] == 1) {
+      $items[] = l('Email', 'user/' . $account_drupal->uid . '/contact', array('attributes' => array('title' => 'e-mail', 'class' => array('social', 'e-mail'))));
+    }
+    $social = theme('item_list', array('items' => $items));
+    $out = '<h4>About the Author</h4><div class="profile2-image thumbnail">' . $pic . '</div>';
+    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $linked_name = l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) : $linked_name = l($name, 'user/' . $account->uid));
+    $out .= '<div class="profile2-words clearfix"><h3>' . $linked_name . '</h3>' . '<p>' . $bio . '</p><div class="social-icons">' . $social . '</div></div>';
+    $vars['submitted'] =  $out;
+    if (isset($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value'])) {
+      $byline = 'by ' . l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']);
+    }
+    else {
+      $byline = 'By ' . $name;
+    }
+    $date = date('M j, Y g:i a', $vars['created']);
+    $vars['byline'] = '<p class="author">' . $byline . ' | ' . $date;
   }
 }
-
 /**
  * Helper func to create anonymous login for comments
  */
@@ -342,7 +346,12 @@ function salive_preprocess_comment(&$variables) {
   $node = $variables['elements']['#node'];
   $variables['comment'] = $comment;
   $variables['node'] = $node;
-  $account = profile2_load_by_user($comment->uid, 'main_profile_admin');
+  $author = user_load($comment->uid);
+  if (in_array('administrator', $author->roles)) {
+    $account = profile2_load_by_user($comment->uid, 'main_profile_admin');
+  } else {
+    $account = profile2_load_by_user($comment->uid, 'main');
+  };
   if (!empty($account)) {
     if (!empty($account->field_profile_picture[LANGUAGE_NONE][0]['fid'])) {
       $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];

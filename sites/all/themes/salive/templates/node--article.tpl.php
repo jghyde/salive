@@ -1,3 +1,6 @@
+<?php
+
+?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 	<?php print $byline; ?>
 	<?php if ($node->changed): ?>
@@ -28,7 +31,7 @@
   if (!empty($sell)) {
     print $sell;
   }
-  ?>
+	?>
   
   <div id="comments">
   <?php print render($content['comments']); ?>

@@ -41,7 +41,7 @@
 @media all and (max-width: 960px) {
   .block-livebreaking .livebreaking-item {
 		text-align: center;
-    font-size: 1.2em;
+    font-size: 1.2em !important;
     height: auto;
   }
 }
