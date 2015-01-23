@@ -260,6 +260,11 @@ function salive_preprocess_node(&$vars) {
     $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];
     $name = ($account->field_first_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_first_name[LANGUAGE_NONE][0]['safe_value'] . ' ': '');
     $name .= ($account->field_last_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_last_name[LANGUAGE_NONE][0]['safe_value'] : '');
+		if (in_array('administrator', $author->roles)) {
+			$title = ($account->field_job_title[LANGUAGE_NONE][0]['safe_value'] ? $account->field_job_title[LANGUAGE_NONE][0]['safe_value'] : '');
+		} else {
+			$title = t('Contributor');
+		}
     (empty($imgvars['title']) ? $imgvars['title'] = $name : '');
     (empty($imgvars['alt']) ? $imgvars['alt'] = $name : '');
     $picarray = array(
@@ -277,19 +282,13 @@ function salive_preprocess_node(&$vars) {
     }
     $bio = $account->field_short_bio[LANGUAGE_NONE][0]['safe_value'];
     $items = array();
-    (!empty($account->field_facebook_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Facebook', $account->field_facebook_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Facebook', 'class' => array('social', 'facebook')))) : '');
-    (!empty($account->field_twitter_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Twitter', $account->field_twitter_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Twitter', 'class' => array('social', 'twitter')))) : '');
-    (!empty($account->field_linkedin_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on LinkedIn', $account->field_linkedin_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'LinkedIn', 'class' => array('social', 'linked_in')))) : '');
-    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['value']) ? $items[] = l($name . ' on Google +', $account->field_google_plus_url[LANGUAGE_NONE][0]['value'], array('attributes' => array('title' => 'Google Plus', 'class' => array('social', 'google_plus')))) : '');
     // If the Author allows Contact Form:
     $account_drupal = user_load($vars['uid']);
     if (isset($account_drupal->data['contact']) && $account_drupal->data['contact'] == 1) {
       $items[] = l('Email', 'user/' . $account_drupal->uid . '/contact', array('attributes' => array('title' => 'e-mail', 'class' => array('social', 'e-mail'))));
-    }
-    $social = theme('item_list', array('items' => $items));
+    } 
     $out = '<h4>About the Author</h4><div class="profile2-image thumbnail">' . $pic . '</div>';
-    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $linked_name = l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) : $linked_name = l($name, 'user/' . $account->uid));
-    $out .= '<div class="profile2-words clearfix"><h3>' . $linked_name . '</h3>' . '<p>' . $bio . '</p><div class="social-icons">' . $social . '</div></div>';
+    $out .= '<div class="profile2-words clearfix"><h3>' . $name . '<small> - ' . $title . '</small></h3><p>' . $bio . '</p></div>';
     $vars['submitted'] =  $out;
     if (isset($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value'])) {
       $byline = 'by ' . l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']);
