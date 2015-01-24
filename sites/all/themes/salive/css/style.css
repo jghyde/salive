@@ -17388,6 +17388,9 @@ ul.sharebar li:last-child {
 .news-insert {
   margin-bottom: 15px;
 }
+#block-quicktabs-accordion_block .ui-accordion-content {
+  min-height: 250px;
+}
 #slider .views-field-title {
   font-family: 'gotham-black-headers';
   font-size: 1.5em;
