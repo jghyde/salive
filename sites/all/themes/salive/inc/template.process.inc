@@ -263,7 +263,7 @@ function salive_preprocess_node(&$vars) {
 		if (in_array('administrator', $author->roles)) {
 			$title = ($account->field_job_title[LANGUAGE_NONE][0]['safe_value'] ? $account->field_job_title[LANGUAGE_NONE][0]['safe_value'] : '');
 		} elseif (in_array('Past Employee', $author->roles)) {
-      $title = t('Past Employee');
+      $title = t('Past Reporter');
 		} else {
 			$title = t('Contributor');
 		}
@@ -280,7 +280,7 @@ function salive_preprocess_node(&$vars) {
     (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $link = $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']: $link = '');
     $pic = theme('image_style', $picarray);
     if (!empty($link)) {
-      $pic = l($pic, $link, array('attributes' => array('class' => array('img-polaroid')), 'html' => TRUE));
+      $pic = l($pic, $link, array('attributes' => array('class' => array('img-thumbnail')), 'html' => TRUE));
     }
     $bio = $account->field_short_bio[LANGUAGE_NONE][0]['safe_value'];
     $items = array();
