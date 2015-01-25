@@ -219,9 +219,9 @@ function rrssb_get_buttons() {
   }
   // Add css and js here, so it's always available when we're showing buttons.
   // Don't have to worry about adding them more than once.
-  drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
+  //drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_css(drupal_get_path('module','rrssb') . '/css/rrssb-overrides.css');
-  drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
+  //drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
 
   return theme('item_list', array('items' => $items, 'title' => '', 'type' => $type, 'attributes' => $attributes));
 }
