@@ -1,5 +1,12 @@
 .block-livebreaking {
   background-color: #000000;
+	margin-top: 35px;
+	z-index: 600;
+}
+@media (max-width: 992px) {
+	.block-livebreaking {
+		margin-top: 0px;
+	}
 }
 .block-livebreaking .livebreaking-item {
   display: none;
@@ -34,6 +41,10 @@
   font-size: x-large;
 }
 .block-livebreaking .livebreaking-item .col-md-3 a {
+  height:auto !important;
+  width: 100% !important;
+}
+.block-livebreaking .livebreaking-item .col-md-3 a img {
   height:auto !important;
   width: 100% !important;
 }

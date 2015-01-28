@@ -68,26 +68,6 @@ function salive_preprocess_html(&$vars) {
       }
     }
   }
-	// Enable Responsive
-	if (theme_get_setting('responsive')) {
-    drupal_add_css(drupal_get_path('theme', 'salive') . '/css/media-queries.css', array('group' => CSS_THEME));
-    drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cbFlyout.js');
-		$vp = array(
-          '#type' => 'html_tag',
-          '#tag' => 'meta',
-          '#attributes' => array(
-            'name' =>  'viewport',
-            'content' =>  'width=100%, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no'
-          )
-        );
-        drupal_add_html_head($vp, 'viewport');
-	}
-	
-	// Superfish menu
-	if (!empty($vars['page']['superfish'])) {
-		drupal_add_css(drupal_get_path('theme', 'salive') . '/css/superfish.css');
-        $vars['classes_array'][] = 'nav-superfish';
-  }
 
 	drupal_add_css(path_to_theme() . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
 }
@@ -149,6 +129,11 @@ function salive_preprocess_page(&$vars) {
     if ($vars['node']->type == 'article') {
       if ($vars['node']->field_category['und'][0]['tid'] == 22) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Opinion</span>';
+      }
+    }
+		if ($vars['node']->type == 'article') {
+      if ($vars['node']->pressrelease == 1) {
+        $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Press Release</span>';
       }
     }
     if ($vars['node']->type == 'insert') {

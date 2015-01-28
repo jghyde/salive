@@ -132,6 +132,32 @@ function salive_textarea($variables) {
   return $output;
 }
 
-/**
- * Add class two Superfish Menu
- */
+function salive_page_alter($page) {
+	$mobileoptimized = array(
+		'#type' => 'html_tag',
+		'#tag' => 'meta',
+		'#attributes' => array(
+		'name' =>  'MobileOptimized',
+		'content' =>  'width'
+		)
+	);
+	$handheldfriendly = array(
+		'#type' => 'html_tag',
+		'#tag' => 'meta',
+		'#attributes' => array(
+		'name' =>  'HandheldFriendly',
+		'content' =>  'true'
+		)
+	);
+	$viewport = array(
+		'#type' => 'html_tag',
+		'#tag' => 'meta',
+		'#attributes' => array(
+		'name' =>  'viewport',
+		'content' =>  'width=device-width, initial-scale=1'
+		)
+	);
+	drupal_add_html_head($mobileoptimized, 'MobileOptimized');
+	drupal_add_html_head($handheldfriendly, 'HandheldFriendly');
+	drupal_add_html_head($viewport, 'viewport');
+}

@@ -2,10 +2,6 @@
 (function ($) {
   Drupal.behaviors.salivebootstrap = {
     attach: function (context, settings) {
-      $('.death-notice-controls').hide();
-      $('.death-notice').click(function() {
-        $(this).children('.death-notice-controls').toggle();
-      });
       $(document).ready(function(){
         $('.event-sale').equalHeights();
         $('.view-id-events .thumbnail').equalHeights();
@@ -14,8 +10,16 @@
         $('#block-views-news-thumbs-block li.views-row').equalHeights();
         $('.view-id-News .views-row').equalHeights();
         $('#editorspick .view-content, #editorspick .views-row').equalHeights();
+        
+        // colorbox
+        $('img.imgbody').click(function() {
+          $(this).colorbox({href: $(this).attr('src')});
+        });
+        $('img.imgbody').each(function(){
+          $(this).attr('alt', this.title?this.title:'');
+        });
+        $("img.imgbody").colorbox({maxWidth: '90%'});
       });
-
     }
   };
 })(jQuery);

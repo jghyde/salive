@@ -1,10 +1,7 @@
-<?php
-
-?>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 	<?php print $byline; ?>
-	<?php if ($node->changed): ?>
-	<br />Updated on: <?php echo date('M j, Y g:i a', $node->changed); ?>
+	<?php if ($num_revisions < '1'): ?>
+	<br />Last Updated: <?php echo date('M j, Y g:i a', $node->changed); ?>
 	<?php endif; ?>
 	</p>
 	
@@ -16,7 +13,7 @@
     print render($content);
   ?>
 	
-	<?php if (!empty($content['field_tags']) || !empty($content['links'])): ?>
+	<?php if (!empty($content['field_tags'])): ?>
   <footer>
     <?php print render($content['field_tags']); ?>
     <?php if ($display_submitted): ?>
