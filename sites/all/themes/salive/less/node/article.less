@@ -109,12 +109,6 @@
         margin-left: 5px;
         margin-bottom: 10px;
       }
-      .author {
-        display: inline;
-        padding-right: 5px;
-        border-right: 1px dotted #000;
-        margin-bottom: 10px;
-      }
     }
   }
 }
@@ -256,6 +250,12 @@ ul.sharebar {
     }
   }
 }
+#block-rrssb-rrssb {
+	.blcontent {
+		border-bottom: none;
+		padding: 0px;
+	}
+}
 
 img.imgbody {
 	margin: 7px;
@@ -298,4 +298,24 @@ img.imgbody {
 		width: 90% !important;
 		height: auto !important;
 	}
+}
+.copyright {
+	font-size: 0.75rem;
+	font-family: "Georgia", "Times New Roman", Serif;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.node-author {
+	background: url(../images/page-title.png) repeat-x left bottom;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  .pub {
+	  font-weight: bold;
+	  margin-left: 15px;
+  }
+  .updated {
+	  font: italic bold 12px/25px Georgia, serif;
+	  color: @gray-light;
+	  margin-left: 25px;
+  }
 }

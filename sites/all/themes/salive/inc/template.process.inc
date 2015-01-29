@@ -28,7 +28,7 @@ function salive_preprocess_html(&$vars) {
 
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
-
+	
   // Add imagesloaded.js
   //drupal_add_js(libraries_get_path('eventEmitter') . '/EventEmitter.min.js');
   //drupal_add_js(libraries_get_path('eventie') . '/eventie.js');
@@ -51,6 +51,7 @@ function salive_preprocess_html(&$vars) {
 	drupal_add_js('jQuery.fn.cycle.defaults.autoSelector = \'.mdslideshow\';', "inline");
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/script.js');
 
+	
 	// remove no-sidebars class
 	if ($index = array_search('no-sidebars', $vars['classes_array'])) {
     unset($vars['classes_array'][$index]);
@@ -127,11 +128,10 @@ function salive_preprocess_page(&$vars) {
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
     }
     if ($vars['node']->type == 'article') {
+      drupal_add_js(libraries_get_path('addtocopy') . '/addtocopy.js');
       if ($vars['node']->field_category['und'][0]['tid'] == 22) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Opinion</span>';
       }
-    }
-		if ($vars['node']->type == 'article') {
       if ($vars['node']->pressrelease == 1) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Press Release</span>';
       }
@@ -146,7 +146,7 @@ function salive_preprocess_page(&$vars) {
       $birth = date_format(date_create($vars['node']->field_date_of_birth[LANGUAGE_NONE][0]['value']), 'M j, Y');
       $vars['title'] = drupal_get_title();
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
-    }  
+    }
   }
 }
 
@@ -288,7 +288,11 @@ function salive_preprocess_node(&$vars) {
       $byline = 'By ' . $name;
     }
     $date = date('M j, Y g:i a', $vars['created']);
-    $vars['byline'] = '<p class="author">' . $byline . ' | ' . $date;
+		$changed = date('M j, Y g:i a', $vars['changed']);
+		if ($vars['changed']) {
+				$updated = '<br /><span class="updated">Last Updated: ' . $changed . '</span>';
+		}
+		$vars['byline'] = '<span class="pub">' . $byline . ' | ' . $date .'</span>' . $updated;
   }
 }
 /**

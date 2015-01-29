@@ -7268,6 +7268,13 @@ ul.social-icons li a.social:hover:before {
 .filter-wrapper {
   display: none;
 }
+.breadcrumb {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.breadcrumb:hover {
+  white-space: normal;
+}
 .block-aggregator ul {
   list-style: none;
   margin: 0;
@@ -14811,6 +14818,9 @@ ul.social-icons li a.social:hover:before {
   #block-views-news-thumbs-block .view-content ul li {
     width: 19.666667% !important;
   }
+  #nav {
+    display: none;
+  }
 }
 @media (min-width: 550px) {
   .field-name-field-business-phone {
@@ -17017,10 +17027,7 @@ ul li.leaf {
 }
 .ads {
   text-align: center;
-  padding: 0px 3px 3px 3px;
-  background-color: #eeeeee;
-  border-radius: 3px;
-  border: 1px solid #cccccc;
+  padding: 3px 3px 0px 3px;
   color: darkgray;
 }
 .ads a {
@@ -17036,7 +17043,7 @@ ul li.leaf {
 .ads .adsbygoogle {
   text-align: center;
 }
-.ads:before {
+.ads:after {
   content: "Advertisment";
   font-size: xx-small;
   display: block;
@@ -17527,12 +17534,6 @@ ul li.leaf {
   margin-left: 5px;
   margin-bottom: 10px;
 }
-.page-type-article article header .author {
-  display: inline;
-  padding-right: 5px;
-  border-right: 1px dotted #000;
-  margin-bottom: 10px;
-}
 .submitted h4 {
   font-size: 1.25em !important;
 }
@@ -17663,6 +17664,10 @@ ul.sharebar li:last-child {
 #block-views-news-thumbs-block .view-content ul li.views-row-last {
   margin-right: 0;
 }
+#block-rrssb-rrssb .blcontent {
+  border-bottom: none;
+  padding: 0px;
+}
 img.imgbody {
   margin: 7px;
   background-color: #f0f0f0;
@@ -17704,6 +17709,26 @@ img.imgbody {
     width: 90% !important;
     height: auto !important;
   }
+}
+.copyright {
+  font-size: 0.75rem;
+  font-family: "Georgia", "Times New Roman", Serif;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.node-author {
+  background: url(../images/page-title.png) repeat-x left bottom;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+.node-author .pub {
+  font-weight: bold;
+  margin-left: 15px;
+}
+.node-author .updated {
+  font: italic bold 12px/25px Georgia, serif;
+  color: #777777;
+  margin-left: 25px;
 }
 .imglunch {
   margin: 7px;
