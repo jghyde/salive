@@ -1,0 +1,4 @@
+name = LIVE! PhotoSwipe
+description = Implements a field formatter for the PhotoSwipe responsive image gallery. http://photoswipe.com/
+package = LIVE! Platform
+core = 7.x

@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file livephotoswipe.module
+ * TODO: Enter file description here.
+ */
+
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function livephotoswipe_field_formatter_info() {
+  return array(
+    'image_photoswipe' => array(
+      'label' => t('PhotoSwipe Gallery'),
+      'field types' => array('field_image', 'image'),
+      'multiple values' => FIELD_BEHAVIOR_DEFAULT,
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_formatter_prepare_view().
+ */
+function livephotoswipe_field_formatter_prepare_view($entity_type, $entities, $field, $instances, $langcode, &$items, $displays) {
+  $i = 0;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function livephotoswipe_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  // Add JS and CSS
+  drupal_add_js(libraries_get_path('Photoswipe') . '/dist/photoswipe.min.js');
+  drupal_add_js(libraries_get_path('Photoswuipe') . '/dist/photoswipe-ui-default.min.js');
+  drupal_add_css(libraries_get_path('Photoswipe') . '/dist/photoswipe.css');
+  drupal_add_css(libraries_get_path('Photoswipe') . '/dist/default-skin/default-skin.css');
+  $elements = array();
+  $element = array();
+  $elements['#markup'] = theme('livephotoswipe_formatter_image', $items);
+  
+  $elements['#prefix'] = '';
+  $elements['#suffix'] = '';
+  return $elements;
+}
+// */
+function livephotoswipe_field_formatter_info_alter(&$info) {
+  // Add a setting to a formatter type.
+  $info['image']['settings'] += array(
+    'image_photoswipe' => 'default value',
+  );
+
+  // Let a new field type re-use an existing formatter.
+  $info['image']['field types'][] = 'field_image';
+}
+
+/**
+* Implements hook_theme().
+*/
+function livephotoswipe_theme() {
+  return array(
+    'livephotoswipe_formatter_image' => array(
+      'variables' => array('element' => NULL),
+    ),
+  );
+}
+/**
+ * Theme func for photoswiper
+ */
+function theme_livephotoswipe_formatter_image($element) {
+  $i = 0;
+  // create html string of the stacked photos.
+  return $output;
+}
