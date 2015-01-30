@@ -16,7 +16,7 @@ regions[help] = Help
 regions[page_top] = Page top
 regions[page_bottom] = Page bottom
 regions[highlighted] = Highlighted
-
+regions[news_view_ad] = News View Ad
 regions[slider] = Slider
 regions[headlines] = Headlines
 regions[headlines_ad] = Headlines Ad

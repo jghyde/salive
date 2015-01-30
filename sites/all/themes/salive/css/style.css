@@ -1,3 +1,10 @@
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -7154,9 +7161,6 @@ ul#main-menu-links li a {
   height: auto !important;
   min-height: 52px !important;
 }
-#superfish-2 {
-  float: right;
-}
 mean-container .mean-bar {
   margin-top: 10px;
   margin-bottom: 5px;
@@ -7196,6 +7200,9 @@ mean-container .mean-bar {
 .node .submitted .item-list ul li a.social:hover:before,
 .node .submitted .item-list ul li a.social:hover {
   color: #8c0017;
+}
+.obit-dates {
+  color: darkgray;
 }
 .content-inner {
   padding: 15px 0px 15px 0px;
@@ -7260,6 +7267,13 @@ ul.social-icons li a.social:hover:before {
 }
 .filter-wrapper {
   display: none;
+}
+.breadcrumb {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.breadcrumb:hover {
+  white-space: normal;
 }
 .block-aggregator ul {
   list-style: none;
@@ -14755,7 +14769,7 @@ ul.social-icons li a.social:hover:before {
     display: none;
   }
   .mean-push {
-    border-bottom: 20px solid black;
+    border-bottom: 10px solid #8c0017;
   }
   #headlines {
     width: 100%;
@@ -14803,6 +14817,9 @@ ul.social-icons li a.social:hover:before {
   }
   #block-views-news-thumbs-block .view-content ul li {
     width: 19.666667% !important;
+  }
+  #nav {
+    display: none;
   }
 }
 @media (min-width: 550px) {
@@ -14857,6 +14874,12 @@ ul.social-icons li a.social:hover:before {
     width: 100% !important;
     height: auto !important;
   }
+  #slider .cycle-pager {
+    bottom: -10px !important;
+  }
+  .rrssb-buttons .text {
+    display: none;
+  }
 }
 @media (max-width: 1584px) and (min-width: 992px) {
   #block-views-news-thumbs-block .view-content ul li {
@@ -14865,7 +14888,7 @@ ul.social-icons li a.social:hover:before {
 }
 @media (max-width: 1584px) and (min-width: 1200px) {
   #block-block-12 iframe {
-    height: 230px;
+    height: 200px;
   }
 }
 html,
@@ -16332,8 +16355,9 @@ a.cycle-next:hover {
 }
 h1#page-title {
   background: url(../images/page-title.png) repeat-x left bottom;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
   font-size: 2.143em;
+  margin-bottom: 5px;
 }
 .node-content a:hover,
 .node-content a:active,
@@ -17001,6 +17025,11 @@ ul li.leaf {
   list-style: none;
   list-style-image: none;
 }
+.ads {
+  text-align: center;
+  padding: 3px 3px 0px 3px;
+  color: darkgray;
+}
 .ads a {
   width: 100% !important;
   height: auto !important;
@@ -17009,10 +17038,16 @@ ul li.leaf {
   width: 100% !important;
   height: auto !important;
   text-align: center;
-  margin-bottom: -10px;
+  margin-bottom: -5px;
 }
 .ads .adsbygoogle {
   text-align: center;
+}
+.ads:after {
+  content: "Advertisment";
+  font-size: xx-small;
+  display: block;
+  line-height: 15px;
 }
 .block-livebreaking .livebreaking-item .col-md-3 a {
   height: auto !important;
@@ -17499,12 +17534,6 @@ ul li.leaf {
   margin-left: 5px;
   margin-bottom: 10px;
 }
-.page-type-article article header .author {
-  display: inline;
-  padding-right: 5px;
-  border-right: 1px dotted #000;
-  margin-bottom: 10px;
-}
 .submitted h4 {
   font-size: 1.25em !important;
 }
@@ -17635,6 +17664,10 @@ ul.sharebar li:last-child {
 #block-views-news-thumbs-block .view-content ul li.views-row-last {
   margin-right: 0;
 }
+#block-rrssb-rrssb .blcontent {
+  border-bottom: none;
+  padding: 0px;
+}
 img.imgbody {
   margin: 7px;
   background-color: #f0f0f0;
@@ -17676,6 +17709,26 @@ img.imgbody {
     width: 90% !important;
     height: auto !important;
   }
+}
+.copyright {
+  font-size: 0.75rem;
+  font-family: "Georgia", "Times New Roman", Serif;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.node-author {
+  background: url(../images/page-title.png) repeat-x left bottom;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+.node-author .pub {
+  font-weight: bold;
+  margin-left: 15px;
+}
+.node-author .updated {
+  font: italic bold 12px/25px Georgia, serif;
+  color: #777777;
+  margin-left: 25px;
 }
 .imglunch {
   margin: 7px;

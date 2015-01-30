@@ -8,5 +8,6 @@
 		<div class="clearfix" <?php print $content_attributes; ?>>
 		  <?php print $content; ?>
 		</div>
+		<br />
 
 </div> <!-- /.block -->

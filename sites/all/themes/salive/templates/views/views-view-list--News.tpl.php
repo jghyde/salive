@@ -4,9 +4,9 @@
   <?php endif; ?>
   <ul >
 	<?php 
-		$group_nr = 1;                  // first group number
-		$last_row = count($rows) -1;    // last row
-		$wrapper  = 4;                  // put a wrapper around every 3 rows
+		$group_nr = 1;
+		$last_row = count($rows) -1;
+		$wrapper  = 4;
 	?>
 	<?php foreach ($rows as $id => $row): ?>
 		<?php if ($id % $wrapper == 0) {print '<div class="group-'.$group_nr.' clearfix">'; $i = 0; $group_nr++; } ?>
