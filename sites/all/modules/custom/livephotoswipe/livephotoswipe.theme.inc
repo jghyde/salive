@@ -1,0 +1,84 @@
+<?php
+
+/**
+ * @file
+ * Photoswipe theme functions.
+ */
+
+/**
+ * Returns HTML for an Photoswipe image field formatter.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - item: An array of image data.
+ *   - image_style: An optional image style.
+ *   - path: An array containing the link 'path' and link 'options'.
+ *
+ * @ingroup themeable
+ */
+function theme_livephotoswipe_image_formatter($variables) {
+  $item = $variables['item'];
+  $node = $variables['node'];
+  $field = $variables['field'];
+  $settings = $variables['display_settings'];
+  $alt = !empty($item['alt']) ? $item['alt'] : '';
+  $title = !empty($item['title']) ? $item['title'] : '';
+
+  if (empty($alt) && !empty($item['field_file_image_alt_text'][LANGUAGE_NONE])) {
+    $alt = $item['field_file_image_alt_text'][LANGUAGE_NONE][0]['value'];
+  }
+  if (empty($title) && !empty($item['field_file_image_title_text'][LANGUAGE_NONE])) {
+    $title = $item['field_file_image_title_text'][LANGUAGE_NONE][0]['value'];
+  }
+  $image = array(
+    'path' => $item['uri'],
+    'alt' => $alt,
+    'title' => $title,
+    'style_name' => $settings['livephotoswipe_node_style'],
+  );
+
+  if (isset($item['width']) && isset($item['height'])) {
+    $image['width'] = $item['width'];
+    $image['height'] = $item['height'];
+  }
+
+  if ($style_name = $settings['livephotoswipe_image_style']) {
+    $path = image_style_url($style_name, $image['path']);
+  }
+  else {
+    $path = file_create_url($image['path']);
+  }
+
+  return theme('livephotoswipe_imagefield', array('image' => $image, 'path' => $path));
+}
+
+
+/**
+ * Returns HTML for an image using a specific Photoswipe image style.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - image: image item as array.
+ *   - path: The path of the image that should be displayed in the Photoswipe.
+ *
+ * @ingroup themeable
+ */
+function theme_livephotoswipe_imagefield($variables) {
+  $class = array('pswp__img--main');
+
+  if (!empty($variables['image']['style_name'])) {
+    $image = theme('image_style', $variables['image']);
+  }
+  else {
+    $image = theme('image', $variables['image']);
+  }
+
+  $options = array(
+    'html' => TRUE,
+    'attributes' => array(
+      'class' => implode(' ', $class),
+    )
+  );
+
+  return l($image, $variables['path'], $options);
+}

@@ -20,6 +20,12 @@
         });
         $("img.imgbody").colorbox({maxWidth: '90%'});
       });
+      var $galleries = $('.photoswipe', context);
+      if ($galleries.length) {
+        $galleries.each(function () {
+          $(this).find('a.pswp__img--main').photoSwipe(settings.photoswipe.options);
+        });
+      }
     }
   };
 })(jQuery);

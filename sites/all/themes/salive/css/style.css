@@ -17039,9 +17039,13 @@ ul li.leaf {
   height: auto !important;
   text-align: center;
   margin-bottom: -5px;
+  border: solid 1px black;
 }
 .ads .adsbygoogle {
   text-align: center;
+}
+.ads iframe {
+  border: solid 1px black;
 }
 .ads:after {
   content: "Advertisment";

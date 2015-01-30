@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Install, uninstall and update hooks for Photswipe module.
+ */
+
+
+/**
+ * Implements hook_enable().
+ */
+function livephotoswipe_enable() {
+  // Set jquery 1.7 as the jquery_update version.
+  if (variable_get('jquery_update_jquery_version', 0) < 1.7) {
+    variable_set('jquery_update_jquery_version', '1.7');
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function livephotoswipe_uninstall() {
+  // Remove photoswipe variables.
+  db_delete('variable')
+  ->condition('name', 'photoswipe_%', 'LIKE')
+  ->execute();
+  cache_clear_all('variables', 'cache_bootstrap');
+}
