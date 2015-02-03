@@ -29,9 +29,22 @@ function salive_preprocess_html(&$vars) {
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
 	
+  // Add imagesloaded.js
+  //drupal_add_js(libraries_get_path('eventEmitter') . '/EventEmitter.min.js');
+  //drupal_add_js(libraries_get_path('eventie') . '/eventie.js');
+  //drupal_add_js(libraries_get_path('imagesloaded') . '/imagesloaded.js');
+  // Add equalheights.js
+  drupal_add_js(libraries_get_path('equalheights') . '/jquery.equalheights.min.js');
+  // Add infield labels
+  //drupal_add_js(libraries_get_path('infieldlabels') . '/src/jquery.infieldlabel.js');
+  // Add the masonry library:
+  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/masonry.pkgd.min.js');
+  // Replacing masonry with Isotope
+  //drupal_add_js(libraries_get_path('isotope') . '/jquery.isotope.min.js');
+  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/livemasonry-ck.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js');
   drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
-	
+
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
@@ -605,56 +618,3 @@ function salive_breadcrumb($variables) {
     return $breadcrumbs;
   }
 }
-
- /**
-  * Implements theme_field()
-function salive_field__field_image($vars) {
-  if (!in_array('field__field_image__insert', $vars['theme_hook_suggestions']) &&
-  !in_array('field__field_image__venue', $vars['theme_hook_suggestions']) &&
-  $vars['element']['#bundle'] != 'video') {
-    $out = '';
-    $rendered_pager = '';
-    $pager = array();
-    $count = 1;
-    foreach($vars['items'] as $k => $v) {
-      $out .= '<div class="slide img-polaroid">';
-      // Create Image Style Array:
-      // First, fix the alt and titles
-      if (empty($v['#item']['alt'])) {
-        //try
-        if (!empty($v['#item']['field_file_image_alt_text']['und'][0]['safe_value'])) {
-          $v['#item']['alt'] = $v['#item']['field_file_image_alt_text']['und'][0]['safe_value'];
-        }
-      }
-      if (empty($v['#item']['title'])) {
-        //try
-        if (!empty($v['#item']['field_file_image_title_text']['und'][0]['safe_value'])) {
-          $v['#item']['title'] = $v['#item']['field_file_image_title_text']['und'][0]['safe_value'];
-        }
-      }
-      $items = array(
-        'style_name' => (isset($vars['items'][$k]['#image_style']) ? $vars['items'][$k]['#image_style'] : 'i640x360'),
-        'path' => (isset($vars['items'][$k]['#item']['uri']) ? $v['#item']['uri'] : $v['#file']->uri),
-        'width' => (isset($vars['items'][$k]['#item']['width']) ? $vars['items'][$k]['#item']['width'] : $v['#file']->metadata['width']),
-        'height' => (isset($v['#item']['height']) ? $v['#item']['height'] : $v['#file']->metadata['width']),
-        'alt' => (isset($v['#item']['alt']) ? $v['#item']['alt'] : $v['file']['#alt']),
-        'title' => (isset($v['#item']['title']) ? $v['#item']['title'] : $v['file']['#title']),
-      );
-      $out .= theme('image_style', $items);
-      $out .= '<div class="ios-caption">' . $v['#item']['title'] . '</div>';
-      $out .= '</div>';
-      $pager[] = $count;
-      $count++;
-      unset($items);
-    }
-    if (count($pager) < 2) {
-      unset($pager);
-    }
-    else {
-      $rendered_pager = theme('item_list', array('items' => $pager, 'attributes' => array('class' => array('pager'))));
-    }
-    $unique_class = end($vars['theme_hook_suggestions']);
-    return '<div class="iosSlider clearfix field-image-node ' . str_replace('_', '-', $unique_class) . '"><div class="slider">' . $out . '</div>' . $rendered_pager . '</div>';
-  }
-}
-*/
