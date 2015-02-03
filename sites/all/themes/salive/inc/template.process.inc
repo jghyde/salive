@@ -29,28 +29,26 @@ function salive_preprocess_html(&$vars) {
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
 	
-  // Add imagesloaded.js
-  //drupal_add_js(libraries_get_path('eventEmitter') . '/EventEmitter.min.js');
-  //drupal_add_js(libraries_get_path('eventie') . '/eventie.js');
-  //drupal_add_js(libraries_get_path('imagesloaded') . '/imagesloaded.js');
+  drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.carousel.css');
+	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
+  drupal_add_js(libraries_get_path('owlcarousel') . '/owl.carousel.min.js');
+	drupal_add_js(libraries_get_path('owlcarousel') . '/jquery.mousewheel.min.js');
   // Add equalheights.js
   drupal_add_js(libraries_get_path('equalheights') . '/jquery.equalheights.min.js');
-  // Add infield labels
-  //drupal_add_js(libraries_get_path('infieldlabels') . '/src/jquery.infieldlabel.js');
-  // Add the masonry library:
-  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/masonry.pkgd.min.js');
-  // Replacing masonry with Isotope
-  //drupal_add_js(libraries_get_path('isotope') . '/jquery.isotope.min.js');
-  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/livemasonry-ck.js');
+
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js');
-  drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
 
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
 	drupal_add_js('jQuery.fn.cycle.defaults.autoSelector = \'.mdslideshow\';', "inline");
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/script.js');
 
+	//if (in_array('administrator', $vars['user']->roles)) {
+    //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/no-ads.js');
+  //} else {
+    drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
+  //}
+	
 	
 	// remove no-sidebars class
 	if ($index = array_search('no-sidebars', $vars['classes_array'])) {

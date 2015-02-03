@@ -18,8 +18,41 @@
         $(this).attr('alt', this.title?this.title:'');
       });
       $('img.imgbody').colorbox({maxWidth: '90%'});
-      $('#nodeSlide').cycle({ 
-        fx:'fade',  
+      $('#nodeSlide img').colorbox({maxWidth: '90%'});
+      $(document).ready(function(){
+        // Node Images
+        $("#nodeSlide").owlCarousel({
+          items:1,
+          //loop:true,
+          center:true,
+          margin:10,
+          lazyLoad:true,
+          autoHeight:true,
+          //autoplay:true,
+          //autoplayTimeout:3000,
+          //autoplayHoverPause:true
+        });
+        $("#editorPick").owlCarousel({
+          loop:true,
+          margin:10,
+          responsive:{
+            0:{
+              items:1
+            },
+            600:{
+              items:3
+            },
+            1000:{
+              items:5
+            }
+          }
+        });
+        jQuery(".next").click(function(){
+          owl.trigger('owl.next');
+        })
+        jQuery(".prev").click(function(){
+          owl.trigger('owl.prev');
+        })
       });
     }
   };

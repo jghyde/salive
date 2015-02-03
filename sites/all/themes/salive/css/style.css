@@ -7099,7 +7099,10 @@ img {
 }
 .header-ads {
   float: right;
-  margin: 12px 0 0;
+  margin: 25px 0 0;
+}
+.header-ads .block {
+  margin: 0px;
 }
 .header-ads .ads {
   margin: 0;
@@ -17728,13 +17731,9 @@ img.imgbody {
   color: #777777;
   margin-left: 25px;
 }
-#nodeSlide .item {
-  margin: 3px;
-}
-#nodeSlide .item img {
+#nodeSlide {
   display: block;
-  width: 100%;
-  height: auto;
+  overflow: hidden;
 }
 .imglunch {
   margin: 7px;
@@ -18150,6 +18149,11 @@ img.imgbody {
 .view-job-network .rows-others {
   padding-left: 10px;
   border-left: 1px solid #e6e6e6;
+}
+#editorPick {
+  display: block;
+  overflow: hidden;
+  max-height: 230px;
 }
 #block-views-lunch_specials-block .view-content ul li {
   float: left;

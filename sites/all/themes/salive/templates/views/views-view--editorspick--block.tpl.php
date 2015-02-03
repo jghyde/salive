@@ -27,36 +27,9 @@
         <a id="editorprev"  class="prev cycle-prev">&lt;&lt;Prev </a>
         <a id="editornext"  class="next cycle-next"> Next&gt;&gt;</a>
     </div>
-    <div class="mdowlslide owl-carousel owl-theme view-content">
+    <div id="editorPick" class="owl-carousel">
       <?php print $rows; ?>
     </div>
-    <script>
-      jQuery(document).ready(function() {
-        var owl = jQuery(".mdowlslide");
-       
-        owl.owlCarousel({
-          itemsCustom : [
-  					[320, 1],
-  					[450, 2],
-  					[600, 3],
-  					[750, 3],
-            [800,4],
-  					[980, 5],
-  					[1200, 5],
-  					[1400, 5],
-  					[1600, 5]
-					],
-        });
-       
-        // Custom Navigation Events
-        jQuery(".next").click(function(){
-          owl.trigger('owl.next');
-        })
-        jQuery(".prev").click(function(){
-          owl.trigger('owl.prev');
-        })
-      });
-    </script>
   <?php elseif ($empty): ?>
     <div class="view-empty">
       <?php print $empty; ?>

@@ -16,7 +16,7 @@
     <?php endif; ?>
 
     <?php if (!empty($page['header_ads'])): ?>
-        <div class="col-md-7 header-ads">
+        <div class="col-md-8 header-ads">
           <?php print render($page['header_ads']);?>
         </div>
     <?php endif; ?>

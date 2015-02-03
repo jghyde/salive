@@ -9,7 +9,7 @@
   <?php endif; ?>
 	
 	<?php if ($page['slider'] || $page['headlines'] || $page['headlines_ad']): ?>
-		<div id="spotlight" class="<?php print $withheadlines;?>">
+		<div id="spotlight">
 			<div class="row clearfix">
 			<?php if ($page['slider']): ?>
 				<div id="slider" class="col-md-6 match">
