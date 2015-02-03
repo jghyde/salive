@@ -18,9 +18,7 @@
         $(this).attr('alt', this.title?this.title:'');
       });
       $('img.imgbody').colorbox({maxWidth: '90%'});
-      $('#nodeSlide').cycle({ 
-        fx:'fade',  
-      });
+      $('#nodeSlide').cycle();
     }
   };
 })(jQuery);
