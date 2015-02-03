@@ -23,9 +23,9 @@ Installation
 1. Create and configure an account at [Olark](http://www.olark.com).
 2. Place this module in your modules directory and enable it.
 3. Visit http://www.olark.com/install and copy the code chunk
-4. Visit admin/settings/services/olark on your Drupal site and paste the code chunk 
+4. Visit admin/settings/olark on your Drupal site and paste the code chunk 
 into the textarea. Submit the settings form.
 
 Optional: If using Context module, enable the "use Context" setting on the 
-admin/settings/services/olark page. Then visit admin/build/context and add the "Olark" 
+admin/settings/olark page. Then visit admin/build/context and add the "Olark" 
 reaction to one of your context items.

@@ -16805,12 +16805,6 @@ span.container-collapsed:hover {
 .item-list .throbber {
   display: none;
 }
-#block-search-form {
-  padding-bottom: 7px;
-}
-#block-search-form .content {
-  margin-top: 0;
-}
 ol.search-results {
   padding-left: 0;
 }
@@ -17734,6 +17728,14 @@ img.imgbody {
   color: #777777;
   margin-left: 25px;
 }
+#nodeSlide .item {
+  margin: 3px;
+}
+#nodeSlide .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .imglunch {
   margin: 7px;
   background-color: #f0f0f0;
@@ -17795,6 +17797,68 @@ img.imgbody {
 }
 .node-venue.node-teaser .geofieldMap {
   margin-bottom: 7px;
+}
+.page-type-birth .node-venue {
+  clear: both;
+  border-top: 1px solid #eeeeee;
+  width: 100% !important;
+  padding-bottom: 15px;
+}
+.page-type-birth .node-venue .story-bottom {
+  display: none;
+}
+.page-type-birth .field-name-body {
+  font-size: 1.367em;
+  line-height: 1.5749;
+}
+.page-type-birth .field-name-field-portrait-image {
+  margin: 0px 7px 7px 0px;
+}
+.page-type-birth .node-venue .field-name-field-business-phone {
+  display: none;
+}
+.page-type-birth .field-type-image {
+  margin: 0 10px 10px 0;
+  max-width: 350px;
+}
+.page-type-birth .field-type-image img {
+  margin: 0 !important;
+}
+.page-type-birth .birht-dates {
+  color: #999;
+  display: block;
+  margin-bottom: 1em;
+}
+.view-births .births {
+  width: 30%;
+  min-height: 325px;
+  margin: 5px;
+  float: left;
+}
+.view-births .births .media-body h3 {
+  text-align: center;
+  min-height: 2.5em;
+}
+.view-births .births .birth-dates {
+  text-align: center;
+}
+@media (max-width: 500px) {
+  .page-type-birth .field-name-field-portrait-image {
+    margin: 0 0 10px 0;
+    width: 96% !important;
+    height: auto;
+  }
+  .page-type-birth .field-name-field-portrait-image img {
+    width: 100% !important;
+    height: auto;
+  }
+  .page-type-birth .node-venue {
+    margin-top: 0px;
+  }
+  .view-birth .birth {
+    width: 97% !important;
+    height: auto !important;
+  }
 }
 .view-events h3 {
   font-size: 1.8em;

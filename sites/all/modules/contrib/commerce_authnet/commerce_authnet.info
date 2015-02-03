@@ -10,9 +10,9 @@ core = 7.x
 ; Simple tests
 ; files[] = tests/commerce_authnet.test
 
-; Information added by Drupal.org packaging script on 2014-09-11
-version = "7.x-1.1+12-dev"
+; Information added by Drupal.org packaging script on 2015-01-20
+version = "7.x-1.1+13-dev"
 core = "7.x"
 project = "commerce_authnet"
-datestamp = "1410471229"
+datestamp = "1421721184"
 

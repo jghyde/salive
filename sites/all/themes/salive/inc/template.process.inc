@@ -29,22 +29,9 @@ function salive_preprocess_html(&$vars) {
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
 	
-  // Add imagesloaded.js
-  //drupal_add_js(libraries_get_path('eventEmitter') . '/EventEmitter.min.js');
-  //drupal_add_js(libraries_get_path('eventie') . '/eventie.js');
-  //drupal_add_js(libraries_get_path('imagesloaded') . '/imagesloaded.js');
-  // Add equalheights.js
-  drupal_add_js(libraries_get_path('equalheights') . '/jquery.equalheights.min.js');
-  // Add infield labels
-  //drupal_add_js(libraries_get_path('infieldlabels') . '/src/jquery.infieldlabel.js');
-  // Add the masonry library:
-  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/masonry.pkgd.min.js');
-  // Replacing masonry with Isotope
-  //drupal_add_js(libraries_get_path('isotope') . '/jquery.isotope.min.js');
-  //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/livemasonry-ck.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js');
   drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
-
+	
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/owl.carousel.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
@@ -127,6 +114,14 @@ function salive_preprocess_page(&$vars) {
       $vars['title'] = drupal_get_title();
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
     }
+		if ($vars['node']->type == 'obit_paid') {
+      // date_format_date($date, $type = 'medium', $format = '', $langcode = NULL)
+      //date_format(date_create($time), $format);
+      $death = date_format(date_create($vars['node']->field_date_of_death[LANGUAGE_NONE][0]['value']), 'M j, Y');
+      $birth = date_format(date_create($vars['node']->field_date_of_birth[LANGUAGE_NONE][0]['value']), 'M j, Y');
+      $vars['title'] = drupal_get_title();
+      $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
+    }
     if ($vars['node']->type == 'article') {
       drupal_add_js(libraries_get_path('addtocopy') . '/addtocopy.js');
       if ($vars['node']->field_category['und'][0]['tid'] == 22) {
@@ -139,13 +134,12 @@ function salive_preprocess_page(&$vars) {
     if ($vars['node']->type == 'insert') {
       $vars['theme_hook_suggestions'][] = 'page__insert';
     }
-    if ($vars['node']->type == 'obit_paid') {
+    if ($vars['node']->type == 'birth') {
       // date_format_date($date, $type = 'medium', $format = '', $langcode = NULL)
       //date_format(date_create($time), $format);
-      $death = date_format(date_create($vars['node']->field_date_of_death[LANGUAGE_NONE][0]['value']), 'M j, Y');
       $birth = date_format(date_create($vars['node']->field_date_of_birth[LANGUAGE_NONE][0]['value']), 'M j, Y');
       $vars['title'] = drupal_get_title();
-      $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
+      $vars['title_suffix']['obit_dates']['#markup'] = '<span class="birth-dates">' . $birth . '</span>';
     }
   }
 }
@@ -252,7 +246,7 @@ function salive_preprocess_node(&$vars) {
 		if (in_array('administrator', $author->roles)) {
 			$title = ($account->field_job_title[LANGUAGE_NONE][0]['safe_value'] ? $account->field_job_title[LANGUAGE_NONE][0]['safe_value'] : '');
 		} elseif (in_array('Past Employee', $author->roles)) {
-      $title = t('Past Reporter');
+      $title = t('Former Correspondent');
 		} else {
 			$title = t('Contributor');
 		}
@@ -287,8 +281,8 @@ function salive_preprocess_node(&$vars) {
     else {
       $byline = 'By ' . $name;
     }
-    $date = date('M j, Y g:i a', $vars['created']);
-		$changed = date('M j, Y g:i a', $vars['changed']);
+    $date = date('M j, Y g:i a T', $vars['created']);
+		$changed = date('M j, Y g:i a T', $vars['changed']);
 		if ($vars['changed']) {
 				$updated = '<br /><span class="updated">Last Updated: ' . $changed . '</span>';
 		}
@@ -366,14 +360,14 @@ function salive_preprocess_comment(&$variables) {
   (empty($picture) ? $picture = '<img src ="/' . drupal_get_path('theme', 'salive') . '/images/anonymous_pic.png" height="50" width="50" alt="No Picture" />' : '');
   $variables['author'] = l($name, 'user/' . $comment->uid . '/contact');
 
-  $variables['created'] = date('M d, Y g:i a', $comment->created);
+  $variables['created'] = date('M d, Y g:i a T', $comment->created);
 
   // Avoid calling format_date() twice on the same timestamp.
   if ($comment->changed == $comment->created) {
     $variables['changed'] = $variables['created'];
   }
   else {
-    $variables['changed'] = date('M d, Y g:i a', $comment->changed);
+    $variables['changed'] = date('M d, Y g:i a T', $comment->changed);
   }
 
   $variables['new'] = !empty($comment->new) ? t('new') : '';
@@ -611,3 +605,56 @@ function salive_breadcrumb($variables) {
     return $breadcrumbs;
   }
 }
+
+ /**
+  * Implements theme_field()
+function salive_field__field_image($vars) {
+  if (!in_array('field__field_image__insert', $vars['theme_hook_suggestions']) &&
+  !in_array('field__field_image__venue', $vars['theme_hook_suggestions']) &&
+  $vars['element']['#bundle'] != 'video') {
+    $out = '';
+    $rendered_pager = '';
+    $pager = array();
+    $count = 1;
+    foreach($vars['items'] as $k => $v) {
+      $out .= '<div class="slide img-polaroid">';
+      // Create Image Style Array:
+      // First, fix the alt and titles
+      if (empty($v['#item']['alt'])) {
+        //try
+        if (!empty($v['#item']['field_file_image_alt_text']['und'][0]['safe_value'])) {
+          $v['#item']['alt'] = $v['#item']['field_file_image_alt_text']['und'][0]['safe_value'];
+        }
+      }
+      if (empty($v['#item']['title'])) {
+        //try
+        if (!empty($v['#item']['field_file_image_title_text']['und'][0]['safe_value'])) {
+          $v['#item']['title'] = $v['#item']['field_file_image_title_text']['und'][0]['safe_value'];
+        }
+      }
+      $items = array(
+        'style_name' => (isset($vars['items'][$k]['#image_style']) ? $vars['items'][$k]['#image_style'] : 'i640x360'),
+        'path' => (isset($vars['items'][$k]['#item']['uri']) ? $v['#item']['uri'] : $v['#file']->uri),
+        'width' => (isset($vars['items'][$k]['#item']['width']) ? $vars['items'][$k]['#item']['width'] : $v['#file']->metadata['width']),
+        'height' => (isset($v['#item']['height']) ? $v['#item']['height'] : $v['#file']->metadata['width']),
+        'alt' => (isset($v['#item']['alt']) ? $v['#item']['alt'] : $v['file']['#alt']),
+        'title' => (isset($v['#item']['title']) ? $v['#item']['title'] : $v['file']['#title']),
+      );
+      $out .= theme('image_style', $items);
+      $out .= '<div class="ios-caption">' . $v['#item']['title'] . '</div>';
+      $out .= '</div>';
+      $pager[] = $count;
+      $count++;
+      unset($items);
+    }
+    if (count($pager) < 2) {
+      unset($pager);
+    }
+    else {
+      $rendered_pager = theme('item_list', array('items' => $pager, 'attributes' => array('class' => array('pager'))));
+    }
+    $unique_class = end($vars['theme_hook_suggestions']);
+    return '<div class="iosSlider clearfix field-image-node ' . str_replace('_', '-', $unique_class) . '"><div class="slider">' . $out . '</div>' . $rendered_pager . '</div>';
+  }
+}
+*/
