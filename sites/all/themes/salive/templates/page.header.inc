@@ -8,7 +8,7 @@
         <br />
         <?php if ($site_slogan): ?>
           <span class="slogan">
-            <h1><?php print $site_name; ?><br /><?php print $site_slogan; ?></h1>
+            <h1><?php print $site_name; ?><br /><small><?php print $site_slogan; ?></small></h1>
             <noscript><h2>#WRSA</h2></noscript>
           </span>
         <?php endif; ?>
