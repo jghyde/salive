@@ -1,7 +1,7 @@
 
 <?php include 'page.header.inc'; ?>
 <div class="container">
-	
+	<div class="col-md-12">
   <?php if ($messages): ?>
   <div id="messages">
     <?php print $messages; ?>
@@ -31,13 +31,16 @@
 			</div>
 		</div><!-- /#spotlight -->
 	<?php endif; ?>
+	</div>
 </div>
 <?php if ($page['editorspick']): ?>
-<div id="editorspick clearfix">
-	<div class="container">
-		<?php print render($page['editorspick']); ?>
-	</div>
-</div> <!-- #editorspick -->
+<div class="container">
+	<div id="editorspick clearfix">
+		<div class="col-md-12">
+			<?php print render($page['editorspick']); ?>
+		</div>
+	</div> <!-- #editorspick -->
+</div>
 <?php endif; ?>
 <div class="container">
   <div id="content" class="<?php print $main_grid_class;?> clearfix">

@@ -32,9 +32,26 @@
           //autoplayTimeout:3000,
           //autoplayHoverPause:true
         });
+        $("#homeSlide").owlCarousel({
+          items:1,
+          loop:true,
+          nav:true,
+          //animateOut:'fadeOut',
+          //animateIn: 'fadeIn',
+          animateOut: 'slideOutDown',
+    	  animateIn: 'flipInX',
+	  margin:10,
+          autoplay:true,
+          autoplayTimeout:3000,
+          autoplayHoverPause:true
+        });
         $("#editorPick").owlCarousel({
           loop:true,
           margin:10,
+          nav:false,
+          autoplay:true,
+          autoplayTimeout:2000,
+          autoplayHoverPause:true,
           responsive:{
             0:{
               items:1
@@ -47,12 +64,6 @@
             }
           }
         });
-        jQuery(".next").click(function(){
-          owl.trigger('owl.next');
-        })
-        jQuery(".prev").click(function(){
-          owl.trigger('owl.prev');
-        })
       });
     }
   };

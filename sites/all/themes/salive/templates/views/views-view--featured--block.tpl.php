@@ -52,13 +52,8 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <div class="mdslideshow view-content" 
-    	data-cycle-timeout="<?php print theme_get_setting('featured_timeout')? theme_get_setting('featured_timeout') : '8000';?>"
-    	data-cycle-slides="> div"
-    >
-	    <span class="cycle-pager"></span>
+    <div id="homeSlide" class="owl-carousel">
       <?php print $rows; ?>
-      <span class="cycle-pager"></span>
     </div>
   <?php elseif ($empty): ?>
     <div class="view-empty">

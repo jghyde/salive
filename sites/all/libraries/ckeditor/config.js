@@ -7,4 +7,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+  CKEDITOR.config.coreStyles_strike = {
+    element: 'span',
+    attributes: { 'class': 'Strikethrough' },
+    overrides: 'strike'
+  };
 };

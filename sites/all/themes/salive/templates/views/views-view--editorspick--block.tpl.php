@@ -23,11 +23,7 @@
   <?php endif; ?>
 
   <?php if ($rows): ?>
-    <div class="editorbutton customNavigation">
-        <a id="editorprev"  class="prev cycle-prev">&lt;&lt;Prev </a>
-        <a id="editornext"  class="next cycle-next"> Next&gt;&gt;</a>
-    </div>
-    <div id="editorPick" class="owl-carousel">
+    <div id="editorPick" class="owl-carousel owl-theme view-content">
       <?php print $rows; ?>
     </div>
   <?php elseif ($empty): ?>

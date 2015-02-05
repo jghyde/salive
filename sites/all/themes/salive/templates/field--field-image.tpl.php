@@ -3,11 +3,20 @@
   <div class="field-label"<?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</div>
   <?php endif; ?>
   <div class="field-items"<?php print $content_attributes; ?>>
-		<div id="nodeSlide" class="owl-carousel">
+	<?php if ($element['#bundle'] == 'article'): ?>
+	  <div id="nodeSlide" class="owl-carousel">
 		<?php foreach ($items as $delta => $item): ?>
-      <?php print render($item); ?>
-    <?php endforeach; ?>
+			<div class="item">
+				<?php print render($item); ?>
+				<p class="caption"><?php print $item['#item']['alt']; ?></p>
+			</div>
+  <?php endforeach; ?>
 	  </div>
+	<?php else: ?>
+		<?php foreach ($items as $delta => $item): ?>
+				<?php print render($item); ?>
+    <?php endforeach; ?>
+	<?php endif; ?>
   </div>
 </div>
 

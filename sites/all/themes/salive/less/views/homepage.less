@@ -43,13 +43,13 @@
   .views-field-view-node a:hover {
     color:#111111;
   }
-  .cycle-pager {
+  .owl-controls {
 	  clear: both;
     position:absolute;
     right: 5px;
-		bottom: -30px;
+		bottom: 0px;
     z-index:111; 
-    span {
+    .owl-dot {
 		  width:15px !important;
 		  height:15px;
 		  display:inline-block;
@@ -58,12 +58,15 @@
 		  margin-right:4px;
 		  text-indent:-500em;
 		  float: right;
+		  span {
+			  display: none;
+		  }
 		}
 	}
-	.cycle-pager > * {
+	.owl-controls > * {
   	cursor:pointer;
 	}
-	.cycle-pager span.cycle-pager-active, .cycle-pager span:hover, #headlines .holder a:hover, #headlines .holder a.jp-current {
+	.owl-controls .owl-dot.active, .owl-controls .owl-dot:hover, #headlines .holder a:hover, #headlines .holder a.jp-current {
   	background:#cc3333;
 	}
 }
@@ -113,7 +116,7 @@
 			text-align: center;
 			ul {
 				li {
-					padding: 2px;
+					padding: 4px;
 					img {
 						width: 100% !important;
 						height: auto !important;
@@ -197,5 +200,15 @@
 #editorPick {
 	display: block;
 	overflow: hidden;
-	max-height: 230px;
+	max-height: 240px;
+	.owl-controls {
+		display: none;
+	}
+}
+#homeSlide {
+	display: block;
+	overflow: hidden;
+	.owl-nav {
+		display: none;
+	}
 }

@@ -31,6 +31,7 @@ function salive_preprocess_html(&$vars) {
 	
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.carousel.css');
 	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
+	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.theme.default.min.css');
   drupal_add_js(libraries_get_path('owlcarousel') . '/owl.carousel.min.js');
 	drupal_add_js(libraries_get_path('owlcarousel') . '/jquery.mousewheel.min.js');
   // Add equalheights.js
@@ -40,8 +41,6 @@ function salive_preprocess_html(&$vars) {
 
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
-	drupal_add_js('jQuery.fn.cycle.defaults.autoSelector = \'.mdslideshow\';', "inline");
-	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/script.js');
 
 	//if (in_array('administrator', $vars['user']->roles)) {
     //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/no-ads.js');
@@ -504,7 +503,7 @@ function salive_preprocess_search_result(&$vars) {
  * Override theme_breadrumb().
  *
  * Print breadcrumbs as a list, with separators.
- */
+ */ 
 function salive_breadcrumb($variables) {
   $output = '';
   if (drupal_is_front_page()) {
@@ -616,3 +615,4 @@ function salive_breadcrumb($variables) {
     return $breadcrumbs;
   }
 }
+

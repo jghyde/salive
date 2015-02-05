@@ -2,10 +2,10 @@
 /**
  * @file
  * Code for the livedeals feature.
- */
+ 
 
 include_once 'livedeals.features.inc';
-
+*/
 /**
  * Implements hook_permission
  */
