@@ -503,7 +503,7 @@ function salive_preprocess_search_result(&$vars) {
  * Override theme_breadrumb().
  *
  * Print breadcrumbs as a list, with separators.
- */ 
+ */
 function salive_breadcrumb($variables) {
   $output = '';
   if (drupal_is_front_page()) {
@@ -601,18 +601,5 @@ function salive_breadcrumb($variables) {
       break;
     }
   }
-  else {
-    // it's a views page
-  }
-  if (!empty($breadcrumb)) {
-    $breadcrumbs = '<ul class="breadcrumb">';
-    
-    foreach ($breadcrumb as $key => $value) {
-       $breadcrumbs .= '<li>' . $value . '</li>';
-    }
-    $breadcrumbs .= '<li>' . drupal_get_title() . '</li>';
-    $breadcrumbs .= '</ul>';  
-    return $breadcrumbs;
-  }
-}
 
+}

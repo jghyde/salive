@@ -1,3 +1,10 @@
+#breakingSlide {
+	display: block;
+	overflow: hidden;
+}
+#breakingSlide .owl-controls {
+	display: none;
+}
 .block-livebreaking {
   background-color: #000000;
 	margin-top: 35px;

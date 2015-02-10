@@ -19,7 +19,7 @@ function livedeals_permission() {
 }
 /**
  * Implements hook_menu
- */
+*/
 function livedeals_menu() {
   $items = array();
   $items['deal/%node/claim'] = array(
@@ -163,7 +163,7 @@ function livedeals_redeem($node) {
 
 function livedeals_button($nid, $uid) {
   if (user_is_anonymous()) {
-    $out = l('Claim', 'user/login', array('query' => drupal_get_destination(), 'attributes' => array('class' => array('ios-link', 'btn-large', 'btn', 'btn-primary', 'claim'))));
+    $out = l('Claim', 'user/login', array('query' => drupal_get_destination(), 'attributes' => array('class' => array('ios-link', 'btn-lg', 'btn', 'btn-primary', 'claim'))));
     $out .= '<p class="coupons-left">You can ' . l('log in', 'user/login', array('query' => drupal_get_destination())) . ' or ' . l('register', 'user/register',  array('query' => drupal_get_destination())) . ' to claim.</p>';
   }
   else {
@@ -175,10 +175,10 @@ function livedeals_button($nid, $uid) {
       $redeemed = 1;
     }
     if ($redeemed == 0) {
-      $out = l('Claim', 'deal/' . $nid . '/claim', array('attributes' => array('class' => array('ios-link', 'btn-large', 'btn', 'btn-primary', 'claim'))));
+      $out = l('Claim', 'deal/' . $nid . '/claim', array('attributes' => array('class' => array('ios-link', 'btn-lg', 'btn', 'btn-primary', 'claim'))));
     }
     else {
-      $out = '<div class="claim btn btn-primary disabled">Claimed</div>';
+      $out = '<div class="claim btn btn-lg btn-primary disabled">Claimed</div>';
     }
   }
   return $out;
@@ -200,7 +200,7 @@ function livedeals_preprocess_node(&$vars) {
 
 /**
  * Implements hook_theme()
- */
+
 function livedeals_theme($existing, $type, $theme, $path) {
   return array (
     'node__deal' => array (
@@ -211,7 +211,7 @@ function livedeals_theme($existing, $type, $theme, $path) {
       ),
   );
 }
-
+*/
 /**
  * implements hook_mail
  */

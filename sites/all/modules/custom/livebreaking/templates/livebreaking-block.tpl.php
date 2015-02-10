@@ -10,7 +10,7 @@
 if (isset($breaking_items) && count($breaking_items) > 0) {
   $i = 0;
   $first = '';
-  print '<div id="breakingFade" class="breaking cycle-slideshow" 
+  print '<div id="breakingSlide" class="breaking cycle-slideshow" 
     data-cycle-timeout="4500"
     data-cycle-slides="> div"
     >';

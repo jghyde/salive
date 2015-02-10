@@ -14,9 +14,6 @@
       $('img.imgbody').click(function() {
         $(this).colorbox({href: $(this).attr('src')});
       });
-      $('img.imgbody').each(function(){
-        $(this).attr('alt', this.title?this.title:'');
-      });
       $('img.imgbody').colorbox({maxWidth: '90%'});
       $('#nodeSlide img').colorbox({maxWidth: '90%'});
       $(document).ready(function(){
@@ -36,11 +33,11 @@
           items:1,
           loop:true,
           nav:true,
-          //animateOut:'fadeOut',
-          //animateIn: 'fadeIn',
-          animateOut: 'slideOutDown',
-    	  animateIn: 'flipInX',
-	  margin:10,
+          animateOut:'fadeOut',
+          animateIn: 'fadeIn',
+          //animateOut: 'zoomOutDown',
+          //animateIn: 'zoomInUp',
+          margin:10,
           autoplay:true,
           autoplayTimeout:3000,
           autoplayHoverPause:true

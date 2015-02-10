@@ -7,10 +7,10 @@
     <?php endif; ?>
     <?php if ($page): ?>
       <div id="coupon-header">
-        <div class="span6 header-image">
+        <div class="col-md-6 header-image">
           <?php print render($content['field_image']); ?>
         </div>
-        <div class="span6 header-title">
+        <div class="col-md-6 header-title">
           <h2><?php print $title; ?></h2>
           <?php if (!empty($content['field_subtitle'])): ?>
           <h4 class="deal-subtitle"><?php print render($content['field_subtitle']); ?></h4>
