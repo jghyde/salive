@@ -293,7 +293,7 @@ function salive_preprocess_node(&$vars) {
     }
     $date = date('M j, Y g:i a T', $vars['created']);
 		$changed = date('M j, Y g:i a T', $vars['changed']);
-		if ($vars['changed']) {
+		if ($vars['updated']) {
 				$updated = '<br /><span class="updated">Last Updated: ' . $changed . '</span>';
 		}
 		$vars['byline'] = '<span class="pub">' . $byline . ' | ' . $date .'</span>' . $updated;
