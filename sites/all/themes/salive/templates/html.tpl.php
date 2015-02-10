@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html dir="<?php print $language->dir; ?>">
-
-<head profile="<?php print $grddl_profile; ?>">
+<html>
+<head>
 <?php print $head; ?>
 <title><?php print $head_title; ?></title>
 <?php 
