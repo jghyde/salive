@@ -7,7 +7,7 @@
 }
 .block-livebreaking {
   background-color: #000000;
-	margin-top: 35px;
+	margin-bottom: 0px;
 	z-index: 600;
 }
 @media (max-width: 992px) {
