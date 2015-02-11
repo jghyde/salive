@@ -1,7 +1,7 @@
 <div class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
   <div class="motherhood">
-    <div class="picture pull-left thumbnail">
+    <div class="picture pull-left">
       <?php print $picture ?>
     </div>
     <div class="comment-title-block">

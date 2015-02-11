@@ -30,8 +30,11 @@ is important.
  3. Put your site into offline mode.
  4. Download and install the memcache module.
  5. If you have previously been running the memcache module, run update.php.
- 6. Edit settings.php to configure the servers, clusters and bins that memcache
-    is supposed to use.
+ 6. Optionally edit settings.php to configure the servers, clusters and bins
+    for memcache to use. If you skip this step the Drupal module will attempt to
+    talk to the memcache server on port 11211 on the local host, storing all
+    data in a single bin. This is sufficient for most smaller, single-server
+    installations.
  7. Edit settings.php to make memcache the default cache class, for example:
       $conf['cache_backends'][] = 'sites/all/modules/memcache/memcache.inc';
       $conf['cache_default_class'] = 'MemCacheDrupal';
@@ -118,9 +121,9 @@ items.  To enable stampede protection, define the following in settings.php:
 
   $conf['memcache_stampede_protection'] = TRUE;
 
-To avoid lock stampedes, it is important that you enable the memacache lock
+To avoid lock stampedes, it is important that you enable the memcache lock
 implementation when enabling stampede protection -- enabling stampede protection
-without enabling the Memache lock implementation can cause worse performance and
+without enabling the Memcache lock implementation can cause worse performance and
 can result in dropped locks due to key-length truncation.
 
 Memcache stampede protection is primarily designed to benefit the following
@@ -424,7 +427,7 @@ tag and execute as a script with 'drush scr' to perform further debugging.
         $cid = 'memcache_requirements_test';
         $value = 'OK';
         // Temporarily store a test value in memcache.
-        cache_set($cid, $value, 'cache', 60);
+        cache_set($cid, $value);
         // Retreive the test value from memcache.
         $data = cache_get($cid);
         if (!isset($data->data) || $data->data !== $value) {
