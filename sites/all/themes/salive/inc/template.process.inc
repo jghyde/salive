@@ -291,12 +291,12 @@ function salive_preprocess_node(&$vars) {
     else {
       $byline = 'By ' . $name;
     }
-    $date = date('M j, Y g:i a T', $vars['created']);
-		$changed = date('M j, Y g:i a T', $vars['changed']);
+    $date = date('M. j, Y g:i a', $vars['created']);
+		$changed = date('M. j, Y g:i a', $vars['changed']);
 		if ($vars['updated']) {
-				$updated = '<br /><span class="updated">Last Updated: ' . $changed . '</span>';
+				$updated = '<span class="updated">Last Updated: ' . $changed . '</span>';
 		}
-		$vars['byline'] = '<span class="pub">' . $byline . ' | ' . $date .'</span>' . $updated;
+		$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>' . $updated;
   }
 }
 /**
