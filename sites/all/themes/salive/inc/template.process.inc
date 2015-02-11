@@ -140,6 +140,9 @@ function salive_preprocess_page(&$vars) {
       if ($vars['node']->pressrelease == 1) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Press Release</span>';
       }
+			if ($vars['node']->sponsored == 1) {
+        $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Sponsored Story</span>';
+      }
     }
     if ($vars['node']->type == 'insert') {
       $vars['theme_hook_suggestions'][] = 'page__insert';
