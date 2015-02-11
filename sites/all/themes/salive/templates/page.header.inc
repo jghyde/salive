@@ -1,4 +1,9 @@
 <div id="header" class="clearfix">
+	<?php
+	if (!empty($page['breaking'])) {
+		print render($page['breaking']);
+	}
+	?>
   <div class="container clearfix">
     <?php if ($logo): ?>
       <div id="logo" class="col-md-4">
@@ -28,10 +33,4 @@
       </div><!-- /.wrap -->
       <?php if (!empty($page['superfish'])): ?><div class="subnav"></div><?php endif; ?>        
     </div><!-- /#nav -->
-
-  <?php
-		if (!empty($page['breaking'])) {
-			print render($page['breaking']);
-		}
-	?>
 </div><!-- /#header -->
