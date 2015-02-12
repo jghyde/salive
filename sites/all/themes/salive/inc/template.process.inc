@@ -69,6 +69,17 @@ function salive_preprocess_html(&$vars) {
 	drupal_add_css(path_to_theme() . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
 }
 
+function salive_query_alter(&$query) {
+
+  // This is a search result query and we want to change the
+  // number of search results per page to 16.
+  if ($query instanceof PagerDefault
+    && ($tables = $query->getTables())
+    && isset($tables['i']['table'])
+    && $tables['i']['table'] === 'search_index') {
+    $query->limit(25);
+  }
+}
 
 
 
