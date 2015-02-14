@@ -185,38 +185,3 @@ function livelogin_init() {
   // causing all jQuery and Javascript to break on the site.
   drupal_add_library('system', 'jquery.cookie');
 }
-
-/**
- * implements hook_comment_presave()
- *
-function livelogin_comment_presave($comment) {
-  // Remove leading & trailing spaces from the comment subject.
-  $comment->subject = trim($comment->subject);
-  /*
-function _radioactivity_update_energy(
-  $entity_type,
-  $bundle,
-  $field_name,
-  $language,
-  $entity_id,
-  $energy_delta,
-  $time,
-  $force = FALSE
-)
-
-  if (strpos($comment->node_type, 'node')) {
-    $list = explode('_', $comment->node_type);
-    $bundle = $list[2];
-    $nn = node_load($comment->nid);
-    $entity_type = 'node';
-    $field_name = 'field_radioactivity';
-    $language = LANGUAGE_NONE;
-    $entity_id = $comment->nid;
-    $energy_delta = 100;
-    _radioactivity_update_energy($entity_type, $bundle, $field_name, $language, $entity_id, $energy_delta, time(), FALSE);
-    // clear field caches just to be sure
-    field_cache_clear();
-  }
-  
-} */
-
