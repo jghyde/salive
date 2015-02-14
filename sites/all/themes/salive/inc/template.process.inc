@@ -48,7 +48,6 @@ function salive_preprocess_html(&$vars) {
     drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
   //}
 	
-	
 	// remove no-sidebars class
 	if ($index = array_search('no-sidebars', $vars['classes_array'])) {
     unset($vars['classes_array'][$index]);
@@ -70,6 +69,17 @@ function salive_preprocess_html(&$vars) {
 	drupal_add_css(path_to_theme() . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
 }
 
+function salive_query_alter(&$query) {
+
+  // This is a search result query and we want to change the
+  // number of search results per page to 16.
+  if ($query instanceof PagerDefault
+    && ($tables = $query->getTables())
+    && isset($tables['i']['table'])
+    && $tables['i']['table'] === 'search_index') {
+    $query->limit(25);
+  }
+}
 
 
 
@@ -81,7 +91,7 @@ function salive_process_html(&$vars) {
   if (module_exists('color')) {
     _color_html_alter($vars);
   }
-
+	
 	$classes = explode(' ', $vars['classes']);
   if ($node = menu_get_object()) {
     $node_type_class = drupal_html_class('node-type-' . $node->type);
@@ -98,10 +108,7 @@ function salive_process_html(&$vars) {
 /**
  * Override or insert vars into the page template.
  */
-function salive_process_page(&$vars) {
-  /**
-	 * insert variables into page template.
-	 */
+function salive_process_page(&$vars, $hook) {
 	if($vars['page']['sidebar']) {
 		$vars['sidebar_grid_class'] = 'col-md-3';
 		$vars['main_grid_class'] = 'col-md-9';		
@@ -466,40 +473,6 @@ function salive_preprocess_block(&$vars) {
     $vars['title_attributes_array']['class'][] = 'element-invisible';
   }
 	$vars['header'] = NULL;
-}
-
-
-
-// Modify search results based on theme settings.
-function salive_preprocess_search_result(&$vars) {
-  $result = $vars['result'];
-  $vars['url'] = check_url($result['link']);
-  $vars['title'] = check_plain($result['title']);
-  $vars['snippet'] = '';
-  if (!empty($result['snippet']) && theme_get_setting('search_snippet')) {
-    $vars['snippet'] = $result['snippet'];
-  }
-  $info = array();
-  if (!empty($result['type']) && theme_get_setting('search_info_type')) {
-    $info['type'] = check_plain($result['type']);
-  }
-  if (!empty($result['user']) && theme_get_setting('search_info_user')) {
-    $info['user'] = $result['user'];
-  }
-  if (!empty($result['date']) && theme_get_setting('search_info_date')) {
-    $info['date'] = format_date($result['date'], 'small');
-  }
-  if (isset($result['extra']) && is_array($result['extra'])) {
-    if (!empty($result['extra'][0]) && theme_get_setting('search_info_comment')) {
-      $info['comment'] = $result['extra'][0];
-    }
-    if (!empty($result['extra'][1]) && theme_get_setting('search_info_upload')) {
-      $info['upload'] = $result['extra'][1];
-    }
-  }
-  $vars['info_split'] = $info;
-  $vars['info'] = implode(' - ', $info);
-  $vars['info_separator'] = filter_xss(theme_get_setting('search_info_separator'));
 }
 
 /**

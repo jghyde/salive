@@ -45,7 +45,7 @@
         $("#editorPick").owlCarousel({
           loop:true,
           margin:10,
-          nav:false,
+          nav:true,
           //autoplay:true,
           //autoplayTimeout:2000,
           //autoplayHoverPause:true,
@@ -59,7 +59,11 @@
             1000:{
               items:5
             }
-          }
+          },
+          navText: [
+			      "<i class='owl-prev fa fa-arrow-left'></i>",
+			      "<i class='owl-next fa fa-arrow-right'></i>"
+		      ],
         });
       });
     }
