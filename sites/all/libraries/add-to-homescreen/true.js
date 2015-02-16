@@ -1,5 +1,5 @@
 addToHomescreen({
+    startDelay: 5,
     skipFirstVisit: true,
-    maxDisplayCount: 1,
-    detectHomescreen: true
+    maxDisplayCount: 1
 });
