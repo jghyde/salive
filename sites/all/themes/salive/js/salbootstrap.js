@@ -18,8 +18,21 @@
       $('#nodeSlide img').colorbox({maxWidth: '90%'});
       $(document).ready(function(){
         // Node Images
+        
+        $('#nodeSlide').each(function(){
+          if( $('#nodeSlide').find("div").length > 1 ) $('#nodeSlide').owlCarousel({
+            items:1,
+            nav:false,
+            loop:true,
+            center:true,
+            margin:10,
+            lazyLoad:true,
+            autoHeight:true,
+            })
+        });
         $("#nodeSlide").owlCarousel({
           items:1,
+          nav:false,
           //loop:true,
           center:true,
           margin:10,
@@ -28,6 +41,10 @@
           //autoplay:true,
           //autoplayTimeout:3000,
           //autoplayHoverPause:true
+          navText: [
+			      "<span class='owl-prev glyphicons circle_arrow_left'></span>",
+			      "<span class='owl-next glyphicons circle_arrow_right'></span>"
+		      ],
         });
         $("#homeSlide").owlCarousel({
           items:1,
@@ -39,7 +56,7 @@
           //animateIn: 'zoomInUp',
           margin:10,
           autoplay:true,
-          autoplayTimeout:3000,
+          autoplayTimeout:7000,
           autoplayHoverPause:true
         });
         $("#editorPick").owlCarousel({
