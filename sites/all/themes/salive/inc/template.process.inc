@@ -37,7 +37,9 @@ function salive_preprocess_html(&$vars) {
   // Add equalheights.js
   drupal_add_js(libraries_get_path('equalheights') . '/jquery.equalheights.min.js');
 
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js');
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
+	  array('weight' => -20)
+	);
 
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
@@ -576,6 +578,17 @@ function salive_breadcrumb($variables) {
         }
       break;
     }
+  }
+
+}
+
+function salive_captcha($element) {
+  if (isset($element['captcha_widgets'])) {
+    $fieldset = array(
+      '#type' => 'fieldset',
+      '#title' => t('Security Check'),
+    );
+    return theme('fieldset', $fieldset);
   }
 
 }

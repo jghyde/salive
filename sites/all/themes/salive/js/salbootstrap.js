@@ -6,19 +6,16 @@
       $('.view-id-events .thumbnail').equalHeights();
       $('.view-obituaries .obit').equalHeights();
       $('.view-births .births').equalHeights();
-      $('.view-newsthumbs li.col-md-2').equalHeights();
-      $('#block-views-news-thumbs-block li.views-row').equalHeights();
+      $('#block-views-newsthumbs-block_1 li.col-md-2').equalHeights();
+      //$('#block-views-news-thumbs-block li.views-row').equalHeights();
       $('.view-id-News .views-row').equalHeights();
-      $('#editorspick .view-content, #editorspick .views-row').equalHeights();
+      //$('#editorspick .view-content, #editorspick .views-row').equalHeights();
       // colorbox
       $('img.imgbody').click(function() {
         $(this).colorbox({href: $(this).attr('src')});
       });
       $('img.imgbody').colorbox({maxWidth: '90%'});
       $('#nodeSlide img').colorbox({maxWidth: '90%'});
-      $(document).ready(function(){
-        // Node Images
-        
         $('#nodeSlide').each(function(){
           if( $('#nodeSlide').find("div").length > 1 ) $('#nodeSlide').owlCarousel({
             items:1,
@@ -82,7 +79,29 @@
 			      "<i class='owl-next fa fa-arrow-right'></i>"
 		      ],
         });
-      });
+        $("#newsHot, #newsRant, #newsEdit, #newsPaid").owlCarousel({
+          loop:true,
+          margin:10,
+          nav:true,
+          //autoplay:true,
+          //autoplayTimeout:2000,
+          //autoplayHoverPause:true,
+          responsive:{
+            0:{
+              items:1
+            },
+            600:{
+              items:3
+            },
+            1000:{
+              items:5
+            }
+          },
+          navText: [
+			      "<i class='owl-prev fa fa-arrow-left'></i>",
+			      "<i class='owl-next fa fa-arrow-right'></i>"
+		      ],
+        });
     }
   };
 })(jQuery);
