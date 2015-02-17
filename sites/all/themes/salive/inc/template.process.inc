@@ -379,7 +379,7 @@ function salive_preprocess_comment(&$variables) {
     (!empty($account->field_last_name) ? $name .= ' ' . $account->field_last_name[LANGUAGE_NONE][0]['value'] : null);    
   }
   (empty($name) ? $name = $comment->name : '');
-  (empty($picture) ? $picture = '<img src ="/' . drupal_get_path('theme', 'salive') . '/images/anonymous_pic.png" height="50" width="50" alt="No Picture" />' : '');
+  (empty($picture) ? $picture = '<img src ="/' . drupal_get_path('theme', 'salive') . '/images/anonymous_pic.png" height="85" width="85" alt="No Picture" />' : '');
   $variables['author'] = l($name, 'user/' . $comment->uid . '/contact');
 
   $variables['created'] = date('M d, Y g:i a T', $comment->created);

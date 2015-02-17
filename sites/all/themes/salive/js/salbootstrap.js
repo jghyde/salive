@@ -7,7 +7,7 @@
       $('.view-obituaries .obit').equalHeights();
       $('.view-births .births').equalHeights();
       $('#block-views-newsthumbs-block_1 li.col-md-2').equalHeights();
-      //$('#block-views-news-thumbs-block li.views-row').equalHeights();
+      $('#block-views-news-thumbs-block li.views-row').equalHeights();
       $('.view-id-News .views-row').equalHeights();
       //$('#editorspick .view-content, #editorspick .views-row').equalHeights();
       // colorbox
