@@ -9,7 +9,7 @@
       $('#block-views-newsthumbs-block_1 li.col-md-2').equalHeights();
       $('#block-views-news-thumbs-block li.views-row').equalHeights();
       $('.view-id-News .views-row').equalHeights();
-      //$('#editorspick .view-content, #editorspick .views-row').equalHeights();
+      $('#block-views-community-block_2 .obit').equalHeights();
       // colorbox
       $('img.imgbody').click(function() {
         $(this).colorbox({href: $(this).attr('src')});
