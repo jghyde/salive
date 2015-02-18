@@ -4,6 +4,7 @@
     attach: function (context, settings) {
       $('.event-sale').equalHeights();
       $('.view-id-events .thumbnail').equalHeights();
+      $('#block-views-community-block_1 .thumbnail').equalHeights();
       $('.view-obituaries .obit').equalHeights();
       $('.view-births .births').equalHeights();
       $('#block-views-newsthumbs-block_1 li.col-md-2').equalHeights();
