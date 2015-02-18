@@ -7,4 +7,4 @@ elseif ((int)$field->original_value > 10000) {
   $field->original_value = $field->original_value . ' x 10<sup>4</sup>';
 }
 ?>
-<div class="text-center"><h4><small><i class="glyphicons fire"></i><?php print $field->original_value; ?></small></h4></div>
+<div class="text-center"><h4><small><i class="glyphicons fire iconFix"></i><?php print $field->original_value; ?></small></h4></div>

@@ -24,7 +24,9 @@ function salive_preprocess_html(&$vars) {
 	// Add add-to-homescreen bookmark web app thing
   drupal_add_js(libraries_get_path('add-to-homescreen') . '/src/addtohomescreen.min.js');
   drupal_add_css(libraries_get_path('add-to-homescreen') . '/style/addtohomescreen.css');
-  drupal_add_js(libraries_get_path('add-to-homescreen') . '/true.js');
+	if ($vars['is_front'] == 1) {
+    drupal_add_js(libraries_get_path('add-to-homescreen') . '/true.js');
+	}
 
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
