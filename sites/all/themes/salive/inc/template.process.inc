@@ -579,7 +579,19 @@ function salive_breadcrumb($variables) {
       break;
     }
   }
-
+  else {
+    // it's a views page
+  }
+  if (!empty($breadcrumb)) {
+    $breadcrumbs = '<ul class="breadcrumb">';
+    
+    foreach ($breadcrumb as $key => $value) {
+       $breadcrumbs .= '<li>' . $value . '</li>';
+    }
+    $breadcrumbs .= '<li>' . drupal_get_title() . '</li>';
+    $breadcrumbs .= '</ul>';  
+    return $breadcrumbs;
+  }
 }
 
 function salive_captcha($element) {
