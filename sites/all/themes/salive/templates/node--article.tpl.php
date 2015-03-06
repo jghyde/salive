@@ -1,5 +1,5 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-	<div id="shareme" data-url="<?php print token_replace('[current-page:url]'); ?>" data-title="share this page"></div>
+	<!-- <div id="shareme" data-url="<?php print token_replace('[current-page:url]'); ?>" data-title="share this page"></div> -->
 	
 	<?php print render($content['field_image']); ?>
 	
