@@ -29,7 +29,9 @@ function salive_preprocess_html(&$vars) {
 	}
 
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
-  drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js', array('scope' => 'footer'));
+  drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js');
+  
+  drupal_add_js(libraries_get_path('sharrre') . '/jquery.sharrre.js');
 	
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.carousel.css');
 	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
@@ -42,7 +44,7 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
-
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
 

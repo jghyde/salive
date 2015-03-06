@@ -2,15 +2,15 @@
 (function ($) {
   Drupal.behaviors.salivebootstrap = {
     attach: function (context, settings) {
-      $('.event-sale').equalHeights();
-      $('.view-id-events .thumbnail').equalHeights();
-      $('#block-views-community-block_1 .thumbnail').equalHeights();
-      $('.view-obituaries .obit').equalHeights();
-      $('.view-births .births').equalHeights();
-      $('#block-views-newsthumbs-block_1 li.col-md-2').equalHeights();
-      $('#block-views-news-thumbs-block li.views-row').equalHeights();
-      $('.view-id-News .views-row').equalHeights();
-      $('#block-views-community-block_2 .obit').equalHeights();
+	      $('.event-sale').equalHeights();
+	      $('.view-id-events .thumbnail').equalHeights();
+	      $('#block-views-community-block_1 .thumbnail').equalHeights();
+	      $('.view-obituaries .obit').equalHeights();
+	      $('.view-births .births').equalHeights();
+	      $('#block-views-newsthumbs-block_1 li.col-md-2').equalHeights();
+	      $('#block-views-news-thumbs-block li.views-row').equalHeights();
+	      $('.view-id-News .views-row').equalHeights();
+	      $('#block-views-community-block_2 .obit').equalHeights();
       // colorbox
       $('img.imgbody').click(function() {
         $(this).colorbox({href: $(this).attr('src')});
@@ -103,6 +103,20 @@
 			      "<i class='owl-next fa fa-arrow-right'></i>"
 		      ],
         });
+        $('#shareme').sharrre({
+				  share: {
+				    googlePlus: true,
+				    facebook: true,
+				    twitter: true,
+				  },
+				  enableTracking: true,
+				   hover: function(api, options){
+				    $(api.element).find('.buttons').show();
+				  },
+				  hide: function(api, options){
+				    $(api.element).find('.buttons').hide();
+				  }
+				});
     }
   };
 })(jQuery);
