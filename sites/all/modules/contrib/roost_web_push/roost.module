@@ -34,7 +34,7 @@ function roost_menu() {
 function roost_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form_state['node']) && (($form_state['node']->title === NULL) || ($form_state['node']->title !== NULL && $form_state['node']->status == 0))) {
     $roost_app_key = variable_get('roost_key', '');
-    if ($roost_app_key && isset($form['type']['#value']) && in_array($form['type']['#value'], array('article', 'blog'))) {
+    if (!empty($roost_app_key) && isset($form['type']['#value']) && in_array($form['type']['#value'], array('article', 'blog'))) {
       $form['roost'] = array(
         '#type' => 'fieldset',
         '#title' => t('Roost.me'),
