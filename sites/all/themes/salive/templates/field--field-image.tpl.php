@@ -12,16 +12,26 @@
 			</div>
     <?php endforeach; ?>
 	  </div>
-	<?php elseif ($element['#bundle'] == 'event_paid'): ?>
-	  <div id="nodeSlide" class="owl-carousel">
-		<?php foreach ($items as $delta => $item): ?>
-			<div class="item">
-				<?php print render($item); ?>
-				<p class="caption"><?php print $item['#item']['alt']; ?></p>
-			</div>
-    <?php endforeach; ?>
-	  </div>
-	<?php else: ?>
+		<?php elseif ($element['#bundle'] == 'event_paid'): ?>
+		  <div id="nodeSlide" class="owl-carousel">
+			<?php foreach ($items as $delta => $item): ?>
+				<div class="item">
+					<?php print render($item); ?>
+					<p class="caption"><?php print $item['#item']['alt']; ?></p>
+				</div>
+	    <?php endforeach; ?>
+		  </div>
+		<?php else: ?>
+		<?php elseif ($element['#bundle'] == 'event'): ?>
+		  <div id="nodeSlide" class="owl-carousel">
+			<?php foreach ($items as $delta => $item): ?>
+				<div class="item">
+					<?php print render($item); ?>
+					<p class="caption"><?php print $item['#item']['alt']; ?></p>
+				</div>
+	    <?php endforeach; ?>
+		  </div>
+		<?php else: ?>
 		<?php foreach ($items as $delta => $item): ?>
 				<?php print render($item); ?>
     <?php endforeach; ?>
