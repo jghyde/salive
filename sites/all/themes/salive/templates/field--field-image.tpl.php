@@ -21,7 +21,6 @@
 				</div>
 	    <?php endforeach; ?>
 		  </div>
-		<?php else: ?>
 		<?php elseif ($element['#bundle'] == 'event'): ?>
 		  <div id="nodeSlide" class="owl-carousel">
 			<?php foreach ($items as $delta => $item): ?>
