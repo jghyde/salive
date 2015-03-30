@@ -46,16 +46,6 @@
         });
         $("#homeSlide").owlCarousel({
           items:1,
-          loop:true,
-          nav:true,
-          animateOut:'fadeOut',
-          animateIn: 'fadeIn',
-          //animateOut: 'zoomOutDown',
-          //animateIn: 'zoomInUp',
-          margin:10,
-          autoplay:true,
-          autoplayTimeout:7000,
-          autoplayHoverPause:true
         });
         $("#editorPick").owlCarousel({
           loop:true,
@@ -81,7 +71,7 @@
 		      ],
         });
         $("#newsHot, #newsRant, #newsEdit, #newsPaid").owlCarousel({
-          loop:true,
+          loop:false,
           margin:10,
           nav:true,
           //autoplay:true,

@@ -1,7 +1,7 @@
 <?php
 if ($row->node_updated == 1) {
   $image = array(
-		'style_name' => 'i640x360_updated',
+		'style_name' => 'i350x197_updated',
 		'path' => $row->field_field_image[0]['raw']['uri'],
 		'width' => $row->field_field_image[0]['raw']['width'],
 		'height' => $row->field_field_image[0]['raw']['height'],
@@ -10,7 +10,7 @@ if ($row->node_updated == 1) {
 	);
 } else {
   $image = array(
-		'style_name' => 'i640x360',
+		'style_name' => 'i350x197',
 		'path' => $row->field_field_image[0]['raw']['uri'],
 		'width' => $row->field_field_image[0]['raw']['width'],
 		'height' => $row->field_field_image[0]['raw']['height'],
