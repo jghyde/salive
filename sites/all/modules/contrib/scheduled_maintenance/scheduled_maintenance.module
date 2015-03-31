@@ -62,7 +62,7 @@ function scheduled_maintenance_init() {
     // If message time is less than or equal to the current time, show the
     // message.
     if ($message_timestamp <= REQUEST_TIME) {
-      drupal_set_message(t('@maintenance_warning_message', array('@maintenance_warning_message' => $message)), 'danger', FALSE);
+      drupal_set_message(t('@maintenance_warning_message', array('@maintenance_warning_message' => $message)), 'warning', FALSE);
     }
   }
 }
