@@ -22,7 +22,7 @@ if (isset($breaking_items) && count($breaking_items) > 0) {
     print '"><div class="container"><div class="col-md-9">';
     print '<i class="glyphicons ' . $item['type'] . ' white"></i>';
     print $item['title'];
-    print '</div><div class="col-md-3"><a href="//ad.broadstreetads.com/zone_static/40362/click/0"><img src="//ad.broadstreetads.com/zone_static/40362/image/0"/></a></div></div></div>';
+    print '</div><div class="col-md-3"><div class="ads ads-breaking"><!-- SALive_Breaking_News --><div id="div-gpt-ad-1425500431462-1"><script type="text/javascript">googletag.display("div-gpt-ad-1425500431462-1");</script></div></div></div></div></div>';
     $i++;
     $first = '';
   }

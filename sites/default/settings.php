@@ -339,8 +339,8 @@ ini_set('session.cookie_lifetime', 2000000);
  * - anonymous: Defines the human-readable name of anonymous users.
  * Remove the leading hash signs to enable.
  */
-# $conf['site_name'] = 'My Drupal site';
-# $conf['theme_default'] = 'garland';
+# $conf['site_name'] = 'San Angelo LIVE!';
+# $conf['theme_default'] = 'salive';
 # $conf['anonymous'] = 'Visitor';
 
 /**
@@ -351,7 +351,7 @@ ini_set('session.cookie_lifetime', 2000000);
  * theme. It is located inside 'modules/system/maintenance-page.tpl.php'.
  * Note: This setting does not apply to installation and update pages.
  */
-# $conf['maintenance_theme'] = 'bartik';
+# $conf['maintenance_theme'] = 'portal_theme';
 
 /**
  * Reverse Proxy Configuration:
@@ -428,8 +428,8 @@ ini_set('session.cookie_lifetime', 2000000);
  * configured to cache and compress these files itself you may want to uncomment
  * one or both of the below lines, which will prevent gzip files being stored.
  */
-# $conf['css_gzip_compression'] = FALSE;
-# $conf['js_gzip_compression'] = FALSE;
+$conf['css_gzip_compression'] = TRUE;
+$conf['js_gzip_compression'] = TRUE;
 
 /**
  * String overrides:

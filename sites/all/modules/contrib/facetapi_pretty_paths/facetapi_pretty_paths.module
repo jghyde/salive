@@ -168,6 +168,8 @@ function facetapi_pretty_paths_permission() {
  * Administration form.
  */
 function facetapi_pretty_paths_admin_form($form, &$form_state) {
+  // Include necessary ctools inc files.
+  ctools_include('plugins');
   // Allow to enable / disable pretty paths per searcher.
   $searcher_info = facetapi_get_searcher_info();
   $form['searcher'] = array(

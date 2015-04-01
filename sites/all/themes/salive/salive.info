@@ -42,10 +42,7 @@ regions[footer] = Footer
 ;;;;;;;;;;;;;;;;;;;;;
 
 stylesheets[all][] = css/style.css
-;stylesheets[all][] = less/css/jquery.cbFlyout.css
 stylesheets[all][] = less/css/owl.carousel.css
-;stylesheets[all][] = less/css/style.css
-;stylesheets[all][] = less/css/colors.css
 stylesheets[print][] = less/css/print.css
 
 

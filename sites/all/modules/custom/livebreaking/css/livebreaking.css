@@ -74,4 +74,7 @@
     margin-left: 10px !important;
   }
 }
-
+.ads-breaking {
+	min-height: 65px;
+	margin-top: 4px !important;
+}

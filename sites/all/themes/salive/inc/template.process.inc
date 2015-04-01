@@ -31,7 +31,7 @@ function salive_preprocess_html(&$vars) {
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js');
   
-  drupal_add_js(libraries_get_path('sharrre') . '/jquery.sharrre.js');
+  //drupal_add_js(libraries_get_path('sharrre') . '/jquery.sharrre.js');
 	
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.carousel.css');
 	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
@@ -347,15 +347,15 @@ function salive_preprocess_comment(&$variables) {
   //add bootstrap button classes:
   $variables['content']['links']['comment']['#links']['comment-edit']['attributes']['class'][] = 'btn';
   //$variables['content']['links']['comment']['#links']['comment-edit']['attributes']['class'][] = 'btn-primary';
-  $variables['content']['links']['comment']['#links']['comment-edit']['attributes']['class'][] = 'btn-xs';
+  //$variables['content']['links']['comment']['#links']['comment-edit']['attributes']['class'][] = 'btn-xs';
 
   $variables['content']['links']['comment']['#links']['comment-delete']['attributes']['class'][] = 'btn';
-  $variables['content']['links']['comment']['#links']['comment-delete']['attributes']['class'][] = 'btn-primary';
-  $variables['content']['links']['comment']['#links']['comment-delete']['attributes']['class'][] = 'btn-xs';
+  //$variables['content']['links']['comment']['#links']['comment-delete']['attributes']['class'][] = 'btn-primary';
+  //$variables['content']['links']['comment']['#links']['comment-delete']['attributes']['class'][] = 'btn-xs';
 
   $variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn';
   //$variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn-primary';
-  $variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn-xs';
+  //$variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn-xs';
    
   $node = $variables['elements']['#node'];
   $variables['comment'] = $comment;

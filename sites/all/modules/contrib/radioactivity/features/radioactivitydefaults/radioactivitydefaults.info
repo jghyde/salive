@@ -1,14 +1,19 @@
 name = Radioactivity defaults
 core = 7.x
 package = Radioactivity
-version = 7.x-2.9+9-dev
-project = radioactivity
+version = 7.x-1.0
+project = radioactivitydefaults
 dependencies[] = ctools
 dependencies[] = radioactivity
-datestamp = 1400672928
 features[ctools][] = radioactivity:radioactivity_decay_profile:1
-features[features_api][] = api:2
+features[features_api][] = api:1
 features[radioactivity_decay_profile][] = default_daily
 features[radioactivity_decay_profile][] = default_now
 features[radioactivity_decay_profile][] = default_weekly
-mtime = 1416954007
+
+; Information added by Drupal.org packaging script on 2015-02-27
+version = "7.x-2.9+11-dev"
+core = "7.x"
+project = "radioactivity"
+datestamp = "1425040947"
+

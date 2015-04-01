@@ -5,9 +5,9 @@ core = "7.x"
 files[] = menu_breadcrumb.install
 configure = admin/config/user-interface/menu-breadcrumb
 
-; Information added by  packaging script on 2013-11-24
-version = "7.x-1.5+2-dev"
+; Information added by Drupal.org packaging script on 2015-03-10
+version = "7.x-1.6"
 core = "7.x"
 project = "menu_breadcrumb"
-datestamp = "1385288306"
+datestamp = "1425993992"
 

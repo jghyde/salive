@@ -1,5 +1,5 @@
 <?php
-if ($row->node_updated == 1) {
+if ($row->node_updated == 1 && $row-created) {
   $image = array(
 		'style_name' => 'i640x360_updated',
 		'path' => $row->field_field_image[0]['raw']['uri'],

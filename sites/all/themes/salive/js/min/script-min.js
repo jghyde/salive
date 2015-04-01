@@ -1,1 +1,0 @@
-!function($){$.fn.maxHeight=function(){return tallest=0,this.each(function(){$(this).height()>tallest&&(tallest=$(this).height())}),tallest}}(jQuery);
