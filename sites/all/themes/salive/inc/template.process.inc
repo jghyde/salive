@@ -47,12 +47,6 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
-
-	//if (in_array('administrator', $vars['user']->roles)) {
-    //drupal_add_js(drupal_get_path('theme', 'salive') . '/js/no-ads.js');
-  //} else {
-    drupal_add_js('//street-production.s3.amazonaws.com/init.js', 'external');
-  //}
 	
 	// remove no-sidebars class
 	if ($index = array_search('no-sidebars', $vars['classes_array'])) {
