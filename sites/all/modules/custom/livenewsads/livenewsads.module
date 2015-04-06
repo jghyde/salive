@@ -11,7 +11,7 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
 	$adspot5 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-105\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-105\');</script></div>';
 	$adspot6 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-106\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-106\');</script></div>';
 	$adspot7 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-107\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-107\');</script></div>';
-	$adspot8 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-108\' class=\'newsbodyplacement ads\><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-108\');</script></div>';
+	$adspot8 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-108\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-108\');</script></div>';
 	$adspot9 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-109\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-109\');</script></div>';
 	$adspot10 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-110\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-110\');</script></div>';
 	$t = '';

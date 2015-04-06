@@ -49,5 +49,5 @@ Thumbs.db
 # Development #
 ###############
 config.codekit
-sites/*/modules/contrib/stage_file_proxy
 *.komodoproject
+sites/*/modules/contrib/stage_file_proxy
