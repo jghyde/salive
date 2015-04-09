@@ -8,10 +8,6 @@ sites/default/local.settings.php
 # Patches
 PATCHES.txt
 
-# Rackspace Backup #
-####################
-cloudbackup-updater-latest.deb
-
 # Packages #
 ############
 *.7z
@@ -50,4 +46,4 @@ Thumbs.db
 ###############
 config.codekit
 *.komodoproject
-sites/*/modules/contrib/stage_file_proxy
+sites/**/stage_file_proxy
