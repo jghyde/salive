@@ -108,8 +108,8 @@ function salive_process_html(&$vars) {
  */
 function salive_process_page(&$vars, $hook) {
 	if($vars['page']['sidebar']) {
-		$vars['sidebar_grid_class'] = 'col-md-3';
-		$vars['main_grid_class'] = 'col-md-9';		
+		$vars['sidebar_grid_class'] = 'col-md-4';
+		$vars['main_grid_class'] = 'col-md-8';		
 	} else {
 		$vars['main_grid_class'] = 'col-md-12';			
 	}

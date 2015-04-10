@@ -16,7 +16,7 @@ googletag.cmd.push(function() {
   var box;
   	if (width >= 320 && width < 991) 
 		box = [300, 250]; 
-		else if (width > 991  && width <1585) 
+		else if (width > 991  && width <1199) 
 	  box = [180, 150];
 	else
 		box = [300, 250];
@@ -33,11 +33,20 @@ googletag.cmd.push(function() {
   	if (width >= 320 && width < 991) 
 		banwl = [300, 250]; 
 		else if (width > 992 && width < 1199) 
-	  banwl = [620, 120];
+	  banwl = [580, 112];
 		else if (width > 1200 && width < 1585)
-		banwl = [775, 150];
+		banwl = [710, 137];
 	else
 		banwl = [930, 180];
+	var banwlb;
+  	if (width >= 320 && width < 991) 
+		banwlb = [300, 250]; 
+		else if (width > 992 && width < 1199) 
+	  banwlb = [620, 120];
+		else if (width > 1200 && width < 1585)
+		banwlb = [775, 150];
+	else
+		banwlb = [930, 180];
 	var banst;
   	if (width >= 320 && width < 991) 
 		banst = [300, 100]; 
@@ -57,9 +66,9 @@ googletag.cmd.push(function() {
 	var slot9=googletag.defineSlot('/116956976/SALive_BLW_Crime', banwl, 'div-gpt-ad-1425500431462-8').addService(googletag.pubads());
 	var slot10=googletag.defineSlot('/116956976/SALive_BLW_Health', banwl, 'div-gpt-ad-1425500431462-9').addService(googletag.pubads());
 	var slot11=googletag.defineSlot('/116956976/SALive_BLW_Hot_Rants', banwl, 'div-gpt-ad-1425500431462-10').addService(googletag.pubads());
-	var slot12=googletag.defineSlot('/116956976/SALive_BLW_Most_Recent', banwl, 'div-gpt-ad-1425500431462-11').addService(googletag.pubads());
+	var slot12=googletag.defineSlot('/116956976/SALive_BLW_Most_Recent', banwlb, 'div-gpt-ad-1425500431462-11').addService(googletag.pubads());
 	var slot13=googletag.defineSlot('/116956976/SALive_BLW_Story', banwl, 'div-gpt-ad-1425500431462-12').addService(googletag.pubads());
-	var slot14=googletag.defineSlot('/116956976/SALive_BLW_Venue', banwl, 'div-gpt-ad-1425500431462-13').addService(googletag.pubads());
+	var slot14=googletag.defineSlot('/116956976/SALive_BLW_Venue', ban, 'div-gpt-ad-1425500431462-13').addService(googletag.pubads());
 	var slot15=googletag.defineSlot('/116956976/SALive_BLW_Weather', banwl, 'div-gpt-ad-1425500431462-14').addService(googletag.pubads());
 	var slot16=googletag.defineSlot('/116956976/SALive_BST_Obit', banst, 'div-gpt-ad-1425500431462-15').addService(googletag.pubads());
 	var slot17=googletag.defineSlot('/116956976/SALive_BST_Weather', banst, 'div-gpt-ad-1425500431462-16').addService(googletag.pubads());
