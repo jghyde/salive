@@ -2831,7 +2831,7 @@ body.page-admin-structure-views-view #views-ui-edit-display-form #edit-options #
   height: 100px;
   overflow: hidden;
 }
-.media-thumbnail a img {
+.media-thumbnail img {
   width: 100px;
   height: auto;
 }
