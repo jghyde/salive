@@ -210,6 +210,21 @@
  *   );
  * @endcode
  */
+$databases = array (
+  'default' => 
+  array (
+    'default' => 
+    array (
+      'database' => 'salive_prod',
+      'username' => 'salive',
+      'password' => 'havoc54',
+      'host' => 'c616502f19ded3d905fbcf4a1e5f788039b72601.rackspaceclouddb.com',
+      'port' => '',
+      'driver' => 'mysql',
+      'prefix' => '',
+    ),
+  ),
+);
 
 /**
  * Access control for update.php script.
