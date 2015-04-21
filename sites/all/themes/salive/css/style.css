@@ -7233,10 +7233,8 @@ mean-container .mean-bar {
   color: #8c0017;
 }
 .field.field-name-body ul {
-  list-style: disc inside none;
-}
-.field.field-name-body ul li {
-  margin-left: 1em;
+  list-style: disc outside none;
+  margin-left: 1.5em;
 }
 .obit-dates {
   color: darkgray;
