@@ -93,22 +93,36 @@ function livearticles_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'metatags' => array(
-          'weight' => '11',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'flag' => array(
           'weight' => '10',
         ),
         'xmlsitemap' => array(
-          'weight' => '13',
+          'weight' => '11',
+        ),
+        'locations' => array(
+          'weight' => '12',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'rrssb' => array(
+          'full' => array(
+            'weight' => '10',
+            'visible' => TRUE,
+          ),
+          'teaser' => array(
+            'weight' => '10',
+            'visible' => TRUE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__article'] = $strongarm;

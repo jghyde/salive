@@ -31,6 +31,7 @@ function liverecommended_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['row_class'] = 'col-md-2';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
@@ -38,9 +39,11 @@ function liverecommended_views_default_views() {
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_image']['element_wrapper_class'] = 'thumbnail';
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'news_thumbs__144x108_',
+    'image_style' => 'i640x360',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_image']['delta_limit'] = '1';

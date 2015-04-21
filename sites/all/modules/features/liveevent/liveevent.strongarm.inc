@@ -77,21 +77,21 @@ function liveevent_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_event';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_event_free';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_event_free'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_event_paid';
-  $strongarm->value = '2';
+  $strongarm->value = '1';
   $export['comment_event_paid'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -184,6 +184,9 @@ function liveevent_strongarm() {
       'diff_standard' => array(
         'custom_settings' => FALSE,
       ),
+      'classified' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -235,6 +238,9 @@ function liveevent_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'classified' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -270,6 +276,9 @@ function liveevent_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'classified' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -301,9 +310,7 @@ function liveevent_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_event';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
+  $strongarm->value = array();
   $export['menu_options_event'] = $strongarm;
 
   $strongarm = new stdClass();

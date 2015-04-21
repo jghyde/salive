@@ -17,6 +17,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -61,6 +67,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'entityreference',
@@ -116,6 +128,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'file',
@@ -217,6 +235,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -262,8 +286,8 @@ function liveevent_field_default_field_instances() {
       'module' => 'date',
       'settings' => array(
         'display_all_day' => 1,
-        'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
+        'increment' => 5,
+        'input_format' => 'm/d/Y - g:i:sa',
         'input_format_custom' => '',
         'label_position' => 'above',
         'repeat_collapsed' => 1,
@@ -282,6 +306,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'taxonomy',
@@ -318,14 +348,26 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
+        'module' => 'colorbox',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => 'iosslider_node',
+          'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
+          'colorbox_gallery' => 'post',
+          'colorbox_gallery_custom' => '',
+          'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
+          'colorbox_node_style' => 'i640x360',
+          'colorbox_node_style_first' => '',
         ),
-        'type' => 'image',
+        'type' => 'colorbox',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -345,6 +387,10 @@ function liveevent_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 1,
+      'alt_field_default' => '',
+      'alt_field_hide' => 0,
+      'alt_field_sync_title' => 0,
+      'alt_field_update_on_edit' => 0,
       'default_image' => 0,
       'file_directory' => 'events',
       'file_extensions' => 'png gif jpg jpeg',
@@ -355,6 +401,9 @@ function liveevent_field_default_field_instances() {
       'max_resolution' => '500x700',
       'min_resolution' => '',
       'title_field' => 1,
+      'title_field_default' => '',
+      'title_field_hide' => 0,
+      'title_field_update_on_edit' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -405,6 +454,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -462,6 +517,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'We provide free event listings as a service to the community. Free listings are displayed on all of our website lists of events and in the LIVE! Daily Email on a non-priority basis. Free events are also syndicated to media partners in the region via our RSS and XML feeds. Thank you for submitting an event into our event calendar. If you require assistance with submitting your event, please upgrade to a <a href="/node/add/event-paid">Paid Event Listing</a>. There your event will be syndicated further and given higher visibility opportunities. And we can offer technical assistance.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -506,6 +567,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Please enter the start date and time and the end date and time for the event. Event l;istings cannot span over more than one day. If they do, you may create additional free events, or <a href="/node/add/event-paid">upgrade to a paid event</a> and we can allow repeating dates.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -563,6 +630,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'taxonomy',
@@ -599,14 +672,26 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'This is the image that best represents your event. It is shown on all lists of event, such as the LIVE! Daily Email and the events listings pages and blocks throughout the site. Please use an image to which you have the rights to use. We recommend formatting your image to 72 dpi with a 4-to-3 ratio. We recommend images 800 pixels wide by 600 pixels tall. All events require a representative image. If you do not have a representative image, we suggest submitting a <a href="/node/add/event-paid">Paid Event listing</a>. With a Paid Event Listing, will find or craft an appropriate representative image for you.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
+        'module' => 'colorbox',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => 'iosslider_node',
+          'colorbox_caption' => 'auto',
+          'colorbox_caption_custom' => '',
+          'colorbox_gallery' => 'post',
+          'colorbox_gallery_custom' => '',
+          'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
+          'colorbox_node_style' => 'i640x360',
+          'colorbox_node_style_first' => '',
         ),
-        'type' => 'image',
+        'type' => 'colorbox',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -622,6 +707,10 @@ function liveevent_field_default_field_instances() {
     'required' => 1,
     'settings' => array(
       'alt_field' => 1,
+      'alt_field_default' => '',
+      'alt_field_hide' => 0,
+      'alt_field_sync_title' => 0,
+      'alt_field_update_on_edit' => 0,
       'default_image' => 0,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
@@ -648,6 +737,9 @@ function liveevent_field_default_field_instances() {
       'max_resolution' => '',
       'min_resolution' => '',
       'title_field' => 1,
+      'title_field_default' => '',
+      'title_field_hide' => 0,
+      'title_field_update_on_edit' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -764,6 +856,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Start typing the location name and if it exists in our database, it will appear in a drop-down menu below. If the location isn\'t discovered, then click on the \'+\' sign to "Create Venue."',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',
@@ -817,6 +915,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -860,6 +964,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Please enter the start date and time and the end date and time for the event. If your event spans over several days, you can explain in detail the time in the field below labeled "Additional times and dates." We can modify your paid event listing before publishing to show on additional dates.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -917,6 +1027,12 @@ function liveevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'taxonomy',
@@ -955,6 +1071,12 @@ function liveevent_field_default_field_instances() {
 <br />
 If you prefer for us to craft a representative image for you, please leave this field blank--do not upload an image-- and we will craft one for you.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'image',
@@ -978,6 +1100,10 @@ If you prefer for us to craft a representative image for you, please leave this 
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
+      'alt_field_default' => '',
+      'alt_field_hide' => 0,
+      'alt_field_sync_title' => 0,
+      'alt_field_update_on_edit' => 0,
       'default_image' => 0,
       'file_directory' => '',
       'file_extensions' => 'png gif jpg jpeg',
@@ -1007,6 +1133,9 @@ If you prefer for us to craft a representative image for you, please leave this 
       'max_resolution' => '',
       'min_resolution' => '',
       'title_field' => 0,
+      'title_field_default' => '',
+      'title_field_hide' => 0,
+      'title_field_update_on_edit' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -1064,6 +1193,12 @@ If you prefer for us to craft a representative image for you, please leave this 
     'deleted' => 0,
     'description' => 'Start typing the location name and if it exists in our database, it will appear in a drop-down menu below. If the location isn\'t discovered, then click on the \'+\' sign to "Create Venue."',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'entityreference',

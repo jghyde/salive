@@ -17,6 +17,12 @@ function livearticles_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -86,78 +92,7 @@ function livearticles_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance: 'node-article-field_article_bullets'
-  $field_instances['node-article-field_article_bullets'] = array(
-    'bundle' => 'article',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'cck_list',
-        'settings' => array(),
-        'type' => 'list_unordered',
-        'weight' => 1,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'module' => 'cck_list',
-        'settings' => array(),
-        'type' => 'list_unordered',
-        'weight' => 1,
-      ),
-      'rss' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_index' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'token' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_article_bullets',
-    'label' => 'In Brief',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'cck_list',
-      'settings' => array(
-        'css_class' => 'bullets',
-        'css_id' => 'article-bullets',
-        'rows' => 5,
-      ),
-      'type' => 'cck_list_textarea',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -167,6 +102,12 @@ function livearticles_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Attach *pdfs to the node',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'file',
@@ -216,7 +157,7 @@ function livearticles_field_default_field_instances() {
     'label' => 'Attached',
     'required' => 0,
     'settings' => array(
-      'description_field' => 1,
+      'description_field' => 0,
       'file_directory' => '',
       'file_extensions' => 'pdf txt doc docx xlsx xls ppt pptx',
       'filefield_paths' => array(
@@ -238,6 +179,9 @@ function livearticles_field_default_field_instances() {
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 1,
+      'insert' => array(
+        'manualcrop_filter_insert' => 0,
+      ),
       'max_filesize' => '',
       'user_register_form' => FALSE,
     ),
@@ -246,104 +190,45 @@ function livearticles_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          0 => 'public',
-          1 => 'private',
+          'private' => 0,
+          'public' => 'public',
+          'youtube' => 0,
         ),
         'allowed_types' => array(
-          0 => 'image',
-        ),
-        'browser_plugins' => array(),
-        'caption_from_title' => 1,
-        'insert' => 1,
-        'insert_absolute' => 0,
-        'insert_class' => '',
-        'insert_default' => 'auto',
-        'insert_styles' => array(
-          'auto' => 'auto',
-          'colorbox__artist_venue_image' => 0,
-          'colorbox__cinema_thumb' => 0,
-          'colorbox__comment_thumb' => 0,
-          'colorbox__dailydeal' => 0,
-          'colorbox__dailydeal_pic' => 0,
-          'colorbox__event_feed_image' => 0,
-          'colorbox__funeralhome' => 0,
-          'colorbox__iosslider_home' => 0,
-          'colorbox__iosslider_node' => 0,
-          'colorbox__large' => 0,
-          'colorbox__linkit_thumb' => 0,
-          'colorbox__media_thumb_video' => 0,
-          'colorbox__media_thumbnail' => 0,
-          'colorbox__medium' => 0,
-          'colorbox__news_thumbs__144x108_' => 0,
-          'colorbox__open_graph' => 0,
-          'colorbox__panopoly_image_featured' => 0,
-          'colorbox__panopoly_image_full' => 0,
-          'colorbox__panopoly_image_half' => 0,
-          'colorbox__panopoly_image_original' => 0,
-          'colorbox__panopoly_image_quarter' => 0,
-          'colorbox__panopoly_image_spotlight' => 0,
-          'colorbox__panopoly_image_square' => 0,
-          'colorbox__panopoly_image_thumbnail' => 0,
-          'colorbox__panopoly_image_video' => 0,
-          'colorbox__profile' => 0,
-          'colorbox__staff_profile' => 0,
-          'colorbox__thumbnail' => 0,
-          'colorbox__top_stories' => 0,
-          'colorbox__venue_thumb' => 0,
-          'colorbox__video_email' => 0,
-          'colorbox__video_newsthumb' => 0,
-          'icon_link' => 0,
+          'audio' => 0,
+          'document' => 'document',
           'image' => 0,
-          'image_artist_venue_image' => 0,
-          'image_cinema_thumb' => 0,
-          'image_comment_thumb' => 0,
-          'image_dailydeal' => 0,
-          'image_dailydeal_pic' => 0,
-          'image_event_feed_image' => 0,
-          'image_funeralhome' => 0,
-          'image_iosslider_home' => 0,
-          'image_iosslider_node' => 0,
-          'image_large' => 0,
-          'image_linkit_thumb' => 0,
-          'image_media_thumb_video' => 0,
-          'image_media_thumbnail' => 0,
-          'image_medium' => 0,
-          'image_news_thumbs__144x108_' => 0,
-          'image_open_graph' => 0,
-          'image_panopoly_image_featured' => 0,
-          'image_panopoly_image_full' => 0,
-          'image_panopoly_image_half' => 0,
-          'image_panopoly_image_original' => 0,
-          'image_panopoly_image_quarter' => 0,
-          'image_panopoly_image_spotlight' => 0,
-          'image_panopoly_image_square' => 0,
-          'image_panopoly_image_thumbnail' => 0,
-          'image_panopoly_image_video' => 0,
-          'image_profile' => 0,
-          'image_staff_profile' => 0,
-          'image_thumbnail' => 0,
-          'image_top_stories' => 0,
-          'image_venue_thumb' => 0,
-          'image_video_email' => 0,
-          'image_video_newsthumb' => 0,
-          'link' => 0,
+          'video' => 0,
         ),
-        'insert_width' => '',
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
+        'browser_plugins' => array(
+          'media_default--media_browser_1' => 'media_default--media_browser_1',
+          'media_default--media_browser_my_files' => 0,
+          'media_internet' => 0,
+          'upload' => 'upload',
+          'youtube' => 0,
+        ),
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
         'manualcrop_filter_insert' => TRUE,
         'manualcrop_inline_crop' => FALSE,
         'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_require_cropping' => array(),
-        'manualcrop_styles_list' => array(),
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_require_cropping' => array(
+          'panopoly_image_featured' => 0,
+          'panopoly_image_square' => 0,
+          'panopoly_image_thumbnail' => 0,
+        ),
+        'manualcrop_styles_list' => array(
+          'panopoly_image_featured' => 0,
+          'panopoly_image_square' => 0,
+          'panopoly_image_thumbnail' => 0,
+        ),
         'manualcrop_styles_mode' => 'exclude',
-        'manualcrop_thumblist' => FALSE,
-        'progress_indicator' => 'throbber',
+        'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -354,6 +239,12 @@ function livearticles_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'taxonomy',
@@ -410,80 +301,6 @@ function livearticles_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'node-article-field_featured'
-  $field_instances['node-article-field_featured'] = array(
-    'bundle' => 'article',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => 'Select this check box if this story is "Featured." 
-A "Featured" story will be the first article on the "News" portion of the site. ',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 3,
-      ),
-      'full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 6,
-      ),
-      'rss' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_index' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'token' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_featured',
-    'label' => 'Featured Article',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
       'weight' => 2,
     ),
   );
@@ -494,6 +311,12 @@ A "Featured" story will be the first article on the "News" portion of the site. 
     'deleted' => 0,
     'description' => 'Upload an image to go with this article.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -502,12 +325,18 @@ A "Featured" story will be the first article on the "News" portion of the site. 
       ),
       'full' => array(
         'label' => 'hidden',
-        'module' => 'image',
+        'module' => 'colorbox',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => 'iosslider_node',
+          'colorbox_caption' => 'none',
+          'colorbox_caption_custom' => '',
+          'colorbox_gallery' => 'page',
+          'colorbox_gallery_custom' => '',
+          'colorbox_image_style' => '',
+          'colorbox_multivalue_index' => NULL,
+          'colorbox_node_style' => 'i640x360',
+          'colorbox_node_style_first' => '',
         ),
-        'type' => 'image',
+        'type' => 'colorbox',
         'weight' => 0,
       ),
       'rss' => array(
@@ -585,9 +414,6 @@ A "Featured" story will be the first article on the "News" portion of the site. 
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 0,
-      'insert' => array(
-        'manualcrop_filter_insert' => 0,
-      ),
       'max_filesize' => '',
       'max_resolution' => '',
       'min_resolution' => '',
@@ -602,10 +428,8 @@ A "Featured" story will be the first article on the "News" portion of the site. 
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          'private' => 'private',
+          'private' => 0,
           'public' => 'public',
-          'vimeo' => 'vimeo',
-          'youtube' => 'youtube',
         ),
         'allowed_types' => array(
           'audio' => 0,
@@ -615,15 +439,12 @@ A "Featured" story will be the first article on the "News" portion of the site. 
         ),
         'browser_plugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
-          'media_default--media_browser_my_files' => 0,
-          'media_internet' => 'media_internet',
+          'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
           'upload' => 'upload',
-          'youtube' => 'youtube',
         ),
         'manualcrop_crop_info' => 1,
         'manualcrop_default_crop_area' => 1,
         'manualcrop_enable' => FALSE,
-        'manualcrop_filter_insert' => TRUE,
         'manualcrop_inline_crop' => FALSE,
         'manualcrop_instant_crop' => FALSE,
         'manualcrop_instant_preview' => 1,
@@ -631,10 +452,88 @@ A "Featured" story will be the first article on the "News" portion of the site. 
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'exclude',
         'manualcrop_thumblist' => 0,
-        'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
-      'weight' => 4,
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-article-field_insert_ads'
+  $field_instances['node-article-field_insert_ads'] = array(
+    'bundle' => 'article',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Check this box to strip all ads in the body of the article except for the first news body ad.',
+    'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 9,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'rss' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_index' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'token' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_insert_ads',
+    'label' => 'Don\'t Insert Ads',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 1,
     ),
   );
 
@@ -650,6 +549,12 @@ A "Featured" story will be the first article on the "News" portion of the site. 
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'radioactivity',
@@ -718,7 +623,7 @@ A "Featured" story will be the first article on the "News" portion of the site. 
       'module' => 'radioactivity',
       'settings' => array(),
       'type' => 'radioactivity_basic_widget',
-      'weight' => 12,
+      'weight' => 10,
     ),
   );
 
@@ -729,6 +634,12 @@ A "Featured" story will be the first article on the "News" portion of the site. 
     'deleted' => 0,
     'description' => 'Enter a comma-separated list of words to describe your content.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -786,7 +697,7 @@ A "Featured" story will be the first article on the "News" portion of the site. 
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -796,13 +707,11 @@ A "Featured" story will be the first article on the "News" portion of the site. 
   t('Attached');
   t('Body');
   t('Category');
+  t('Check this box to strip all ads in the body of the article except for the first news body ad.');
+  t('Don\'t Insert Ads');
   t('Enter a comma-separated list of words to describe your content.');
-  t('Featured Article');
   t('Image');
-  t('In Brief');
   t('Radioactivity');
-  t('Select this check box if this story is "Featured." 
-A "Featured" story will be the first article on the "News" portion of the site. ');
   t('Tags');
   t('Upload an image to go with this article.');
 

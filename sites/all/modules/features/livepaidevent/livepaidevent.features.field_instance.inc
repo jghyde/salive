@@ -17,6 +17,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => 'Be as descriptive as possible and describe your event. The first 420 characters will create the teaser for the event when the event is displayed in lists, such as in the LIVE! Daily Email.',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -69,6 +75,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',
@@ -126,6 +138,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'date',
@@ -197,6 +215,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'inline',
         'module' => 'taxonomy',
@@ -239,6 +263,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'hidden',
         'module' => 'image',
@@ -272,6 +302,10 @@ function livepaidevent_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
+      'alt_field_default' => '',
+      'alt_field_hide' => 0,
+      'alt_field_sync_title' => 0,
+      'alt_field_update_on_edit' => 0,
       'default_image' => 0,
       'file_directory' => 'images/events',
       'file_extensions' => 'png gif jpg jpeg',
@@ -282,6 +316,9 @@ function livepaidevent_field_default_field_instances() {
       'max_resolution' => '',
       'min_resolution' => '',
       'title_field' => 0,
+      'title_field_default' => '',
+      'title_field_hide' => 0,
+      'title_field_update_on_edit' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -355,6 +392,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'addressfield',
@@ -394,6 +437,7 @@ function livepaidevent_field_default_field_instances() {
         'available_countries' => array(
           'US' => 'US',
         ),
+        'default_country' => '',
         'format_handlers' => array(
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
@@ -414,6 +458,12 @@ function livepaidevent_field_default_field_instances() {
     'deleted' => 0,
     'description' => '',
     'display' => array(
+      'classified' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
       'default' => array(
         'label' => 'above',
         'module' => 'entityreference',

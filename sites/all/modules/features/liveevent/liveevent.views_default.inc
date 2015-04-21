@@ -181,7 +181,7 @@ function liveevent_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '24';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '25';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -271,7 +271,7 @@ function liveevent_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'event_feed_image',
+    'image_style' => 'i640x360',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_image']['delta_limit'] = '1';
@@ -335,11 +335,93 @@ function liveevent_views_default_views() {
   $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_date';
   $handler->display->display_options['filters']['delta']['field'] = 'delta';
   $handler->display->display_options['filters']['delta']['value']['value'] = '0';
+  /* Filter criterion: Content: Where (field_venue) */
+  $handler->display->display_options['filters']['field_venue_target_id']['id'] = 'field_venue_target_id';
+  $handler->display->display_options['filters']['field_venue_target_id']['table'] = 'field_data_field_venue';
+  $handler->display->display_options['filters']['field_venue_target_id']['field'] = 'field_venue_target_id';
+  $handler->display->display_options['filters']['field_venue_target_id']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_venue_target_id']['expose']['operator_id'] = 'field_venue_target_id_op';
+  $handler->display->display_options['filters']['field_venue_target_id']['expose']['label'] = 'Event Venue';
+  $handler->display->display_options['filters']['field_venue_target_id']['expose']['operator'] = 'field_venue_target_id_op';
+  $handler->display->display_options['filters']['field_venue_target_id']['expose']['identifier'] = 'field_venue_target_id';
+  $handler->display->display_options['filters']['field_venue_target_id']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    1000 => 0,
+    1001 => 0,
+    1002 => 0,
+    1003 => 0,
+    1004 => 0,
+  );
+  $handler->display->display_options['filters']['field_venue_target_id']['is_grouped'] = TRUE;
+  $handler->display->display_options['filters']['field_venue_target_id']['group_info']['label'] = 'Event Venue';
+  $handler->display->display_options['filters']['field_venue_target_id']['group_info']['identifier'] = 'field_venue_target_id';
+  $handler->display->display_options['filters']['field_venue_target_id']['group_info']['group_items'] = array(
+    1 => array(
+      'title' => 'Blaine\'s Pub',
+      'operator' => '=',
+      'value' => array(
+        'value' => '1202',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+    2 => array(
+      'title' => 'Concho\'s Downtown',
+      'operator' => '=',
+      'value' => array(
+        'value' => '6162',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+    3 => array(
+      'title' => '',
+      'operator' => '=',
+      'value' => array(
+        'value' => '',
+        'min' => '',
+        'max' => '',
+      ),
+    ),
+  );
 
   /* Display: Events by Category */
   $handler = $view->new_display('page', 'Events by Category', 'page_1');
   $handler->display->display_options['display_description'] = 'Uses taxonomy argument to filter events';
-  $handler->display->display_options['path'] = 'events/%';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'event' => 'event',
+    'event_free' => 'event_free',
+    'event_paid' => 'event_paid',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: When -  start date (field_date) */
+  $handler->display->display_options['filters']['field_date_value']['id'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['table'] = 'field_data_field_date';
+  $handler->display->display_options['filters']['field_date_value']['field'] = 'field_date_value';
+  $handler->display->display_options['filters']['field_date_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_value']['default_date'] = 'now - 3 hours';
+  /* Filter criterion: Content: When (field_date:delta) */
+  $handler->display->display_options['filters']['delta']['id'] = 'delta';
+  $handler->display->display_options['filters']['delta']['table'] = 'field_data_field_date';
+  $handler->display->display_options['filters']['delta']['field'] = 'delta';
+  $handler->display->display_options['filters']['delta']['value']['value'] = '0';
+  $handler->display->display_options['path'] = 'community/events/%';
 
   /* Display: Events by Cat and Date */
   $handler = $view->new_display('page', 'Events by Cat and Date', 'page_2');
@@ -381,13 +463,118 @@ function liveevent_views_default_views() {
   $handler->display->display_options['arguments']['field_date_value']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_date_value']['specify_validation'] = TRUE;
   $handler->display->display_options['arguments']['field_date_value']['granularity'] = 'day';
-  $handler->display->display_options['path'] = 'events/%/%';
+  $handler->display->display_options['path'] = 'community/events/%/%';
 
   /* Display: Main Events Page */
   $handler = $view->new_display('page', 'Main Events Page', 'page_3');
   $handler->display->display_options['display_description'] = 'San Angelo, Tx upcoming events, sorted by date.';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_date',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['row_class'] = 'col-md-3';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['element_type'] = '0';
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['path']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['path']['element_default_classes'] = FALSE;
+  /* Field: Content: When */
+  $handler->display->display_options['fields']['field_date']['id'] = 'field_date';
+  $handler->display->display_options['fields']['field_date']['table'] = 'field_data_field_date';
+  $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
+  $handler->display->display_options['fields']['field_date']['label'] = '';
+  $handler->display->display_options['fields']['field_date']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_date']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_date']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_date']['settings'] = array(
+    'format_type' => 'grammar',
+    'fromto' => 'value',
+    'multiple_number' => '1',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'hide',
+  );
+  $handler->display->display_options['fields']['field_date']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_date']['delta_offset'] = '0';
+  /* Field: Content: Where */
+  $handler->display->display_options['fields']['field_venue']['id'] = 'field_venue';
+  $handler->display->display_options['fields']['field_venue']['table'] = 'field_data_field_venue';
+  $handler->display->display_options['fields']['field_venue']['field'] = 'field_venue';
+  $handler->display->display_options['fields']['field_venue']['label'] = '';
+  $handler->display->display_options['fields']['field_venue']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_venue']['alter']['text'] = '<b>@ [field_venue]</b>';
+  $handler->display->display_options['fields']['field_venue']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_venue']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_venue']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_venue']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_venue']['settings'] = array(
+    'link' => 0,
+  );
+  /* Field: Content: When */
+  $handler->display->display_options['fields']['field_date_1']['id'] = 'field_date_1';
+  $handler->display->display_options['fields']['field_date_1']['table'] = 'field_data_field_date';
+  $handler->display->display_options['fields']['field_date_1']['field'] = 'field_date';
+  $handler->display->display_options['fields']['field_date_1']['label'] = '';
+  $handler->display->display_options['fields']['field_date_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_date_1']['settings'] = array(
+    'format_type' => 'time_only',
+    'fromto' => 'value',
+    'multiple_number' => '1',
+    'multiple_from' => '0',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'hide',
+  );
+  $handler->display->display_options['fields']['field_date_1']['delta_offset'] = '0';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_image']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'i640x360',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_image']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_image']['delta_offset'] = '0';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
-  $handler->display->display_options['path'] = 'events';
+  $handler->display->display_options['path'] = 'community/events';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Events';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Rodeo Events */
   $handler = $view->new_display('block', 'Rodeo Events', 'block_1');
