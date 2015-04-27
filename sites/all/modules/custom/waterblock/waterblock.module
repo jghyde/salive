@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Implements hook_block_info().
  */
@@ -24,7 +23,7 @@ function waterblock_block_view($delta = '') {
     case 'water':
       // build the html
       $date = variable_get('wb_date');
-      list($year, $month, $day, $hour, $minute) = explode('-', $date);
+      list($year, $month, $day) = explode('-', $date);
       $date_end = strtotime($date);
       $date_start = time();
       $diff = $date_end - $date_start;
