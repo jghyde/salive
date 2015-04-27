@@ -250,7 +250,7 @@ function salive_preprocess_node(&$vars) {
       }
     }
   }
-  $vars['sell'] = $sell;
+  //$vars['sell'] = $sell;
   if ($vars['display_submitted']) {
 		$author = user_load($vars['uid']);
 		if (in_array('administrator', $author->roles)) {
@@ -283,7 +283,7 @@ function salive_preprocess_node(&$vars) {
     if (!empty($link)) {
       $pic = l($pic, $link, array('attributes' => array('class' => array('img-thumbnail')), 'html' => TRUE));
     }
-    $bio = $account->field_short_bio[LANGUAGE_NONE][0]['safe_value'];
+    $bio = $account->field_short_bio[LANGUAGE_NONE][0]['value'];
     $items = array();
     // If the Author allows Contact Form:
     $account_drupal = user_load($vars['uid']);
