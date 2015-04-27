@@ -9,9 +9,9 @@ dependencies[] = token
 core = 7.x
 php = 5.2
 
-; Information added by Drupal.org packaging script on 2015-01-15
-version = "7.x-3.1+0-dev"
+; Information added by Drupal.org packaging script on 2015-04-17
+version = "7.x-3.1+1-dev"
 core = "7.x"
 project = "ed_classified"
-datestamp = "1421316438"
+datestamp = "1429283885"
 

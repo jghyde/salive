@@ -121,6 +121,16 @@ function _radioactivity_register_emitter($storage = NULL, $entity_type = NULL, $
     'language'    => $language,
     'entity_id'   => $entity_id,
   );
+
+  // Remove trash which may be injected by another module.
+
+  $keep = array('accuracy', 'bundle', 'energy', 'entity_id', 'entity_type', 'field_name', 'language', 'storage', 'type');
+  foreach ($incident as $key => $val) {
+    if (!in_array($key, $keep)) {
+      unset($incident[$key]);
+    }
+  }
+
   @$cache['emitDefault'][] = _radioactivity_prepare_incident($incident);
 }
 

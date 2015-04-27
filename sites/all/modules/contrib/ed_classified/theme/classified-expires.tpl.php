@@ -29,10 +29,8 @@
  *
  * Original code, not derived from the ed_classified module.
  */
-?>
-<div class="pull-left"><a href="<?php print $node->uid; ?>" class="btn btn-lg btn-success"><i class="fa fa-envelope-o fa-1x"></i> Email Seller</a></div>
-<div class="classified-expires <?php echo $remaining_class; ?>"><?php
-  echo t('Expires<br />@expires (@remaining)', array(
+?><div class="classified-expires <?php echo $remaining_class; ?>"><?php
+  echo t('Time remaining: @ratio%<hr />@expires (@remaining)', array(
     '@expires'   => $expires,
     '@remaining' => $remaining,
     '@ratio'     => $remaining_ratio,
