@@ -14,6 +14,16 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
 	$adspot8 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-108\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-108\');</script></div>';
 	$adspot9 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-109\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-109\');</script></div>';
 	$adspot10 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-110\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-110\');</script></div>';
+	$adspot11 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-111\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-111\');</script></div>';
+	$adspot12 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-112\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-112\');</script></div>';
+	$adspot13 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-113\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-113\');</script></div>';
+	$adspot14 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-114\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-114\');</script></div>';
+	$adspot15 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-115\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-115\');</script></div>';
+	$adspot16 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-116\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-116\');</script></div>';
+	$adspot17 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-117\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-117\');</script></div>';
+	$adspot18 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-118\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-118\');</script></div>';
+	$adspot19 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-119\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-119\');</script></div>';
+	$adspot20 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-120\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-120\');</script></div>';
 	$t = '';
   if ($view_mode == 'full' && $node->type == 'article') {
 	  drupal_add_css(drupal_get_path('module', 'livenewsads') .  '/css/livenewsads.css');
@@ -87,6 +97,15 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
       if (count($paras) > 82) {
         $seventeen = TRUE;
       }
+	  if (count($paras) > 87) {
+        $eightteen = TRUE;
+      }
+	  if (count($paras) > 92) {
+        $nineteen = TRUE;
+      }
+	  if (count($paras) > 97) {
+        $twenty = TRUE;
+      }
       $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>")+4);
       // add the banner ad code
       $banner_added = $string . $adspot1;
@@ -141,43 +160,58 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
 				}
 				if ($ten) {
 					$string10 = $paras[45];
-					$banner_added10 =  $adspot10 . $string10;
+					$banner_added10 =   $adspot10 . $string10;
 					$node->content['body'][0]['#markup'] = str_replace($string10, $banner_added10, $node->content['body'][0]['#markup']);
 				}
 				if ($eleven) {
 					$string11 = $paras[50];
-					$banner_added11 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string11;
+					$banner_added11 =  $adspot11 . $string11;
 					$node->content['body'][0]['#markup'] = str_replace($string11, $banner_added11, $node->content['body'][0]['#markup']);
 				}
 				if ($twelve) {
 					$string12 = $paras[55];
-					$banner_added12 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string12;
+					$banner_added12 =  $adspot12 . $string12;
 					$node->content['body'][0]['#markup'] = str_replace($string12, $banner_added12, $node->content['body'][0]['#markup']);
 				}
 				if ($therteen) {
 					$string13 = $paras[60];
-					$banner_added13 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string13;
+					$banner_added13 =  $adspot13 . $string13;
 					$node->content['body'][0]['#markup'] = str_replace($string13, $banner_added13, $node->content['body'][0]['#markup']);
 				}
 				if ($fourteen) {
 					$string14 = $paras[65];
-					$banner_added14 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string14;
+					$banner_added14 =  $adspot14 . $string14;
 					$node->content['body'][0]['#markup'] = str_replace($string14, $banner_added14, $node->content['body'][0]['#markup']);
 				}
 				if ($fifteen) {
 					$string15 = $paras[70];
-					$banner_added15 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string15;
+					$banner_added15 =  $adspot15 . $string15;
 					$node->content['body'][0]['#markup'] = str_replace($string15, $banner_added15, $node->content['body'][0]['#markup']);
 				}
 				if ($sixteen) {
 					$string16 = $paras[75];
-					$banner_added16 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string16;
+					$banner_added16 =  $adspot16 . $string16;
 					$node->content['body'][0]['#markup'] = str_replace($string16, $banner_added16, $node->content['body'][0]['#markup']);
 				}
 				if (isset($seventeen) && $seventeen == TRUE) {
 					$string17 = $paras[80];
-					$banner_added17 =  '<div class="newsbodyplacement ads"><script type="text/javascript">broadstreet.zone(40349);</script></div>' . $string17;
+					$banner_added17 =  $adspot17 . $string17;
 					$node->content['body'][0]['#markup'] = str_replace($string17, $banner_added17, $node->content['body'][0]['#markup']);
+				}
+				if (isset($eightteen) && $eightteen == TRUE) {
+					$string18 = $paras[85];
+					$banner_added18 =  $adspot18 . $string18;
+					$node->content['body'][0]['#markup'] = str_replace($string18, $banner_added18, $node->content['body'][0]['#markup']);
+				}
+				if (isset($ninceteen) && $nineteen == TRUE) {
+					$string19 = $paras[90];
+					$banner_added19 =  $adspot19 . $string19;
+					$node->content['body'][0]['#markup'] = str_replace($string19, $banner_added19, $node->content['body'][0]['#markup']);
+				}
+				if (isset($twenty) && $twenty == TRUE) {
+					$string20 = $paras[95];
+					$banner_added20 =  $adspot20 . $string20;
+					$node->content['body'][0]['#markup'] = str_replace($string20, $banner_added20, $node->content['body'][0]['#markup']);
 				}
 			}
     }
