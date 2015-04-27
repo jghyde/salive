@@ -15,19 +15,6 @@
 	      </div> <!-- /#messages -->
 	    <?php endif; ?>
 	
-	    <?php if ($contentop_blocks): $x=0; ?>
-	      <div id="contentop-blocks" class="clearfix">
-		        <?php foreach($contenttop_columns[$contentop_blocks] as $col):
-		          $x++;
-		          if($x == 1){ $class = " first"; } else {$class = "";}
-		        ?>
-		          <div class="<?php echo $col.$class; ?>">
-		             <?php print render($page['contentt_'.$x]); ?>
-		          </div>
-		        <?php endforeach; ?>
-		      </div><!-- /#contentop-blocks -->
-	    <?php endif; ?>
-	
 	    <div id="content" class="<?php print $main_grid_class;?>">
 		    <div class="content-inner">
 					<?php if ($breadcrumb): ?>
