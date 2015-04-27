@@ -250,7 +250,7 @@ function salive_preprocess_node(&$vars) {
       }
     }
   }
-	$vars['sell'] = $sell;
+  $vars['sell'] = $sell;
   if ($vars['display_submitted']) {
 		$author = user_load($vars['uid']);
 		if (in_array('administrator', $author->roles)) {
@@ -304,7 +304,7 @@ function salive_preprocess_node(&$vars) {
 		if ($vars['updated']) {
 				$updated = '<span class="updated">Last Updated: ' . $changed . '</span>';
 		}
-		$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>' . $updated;
+		$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>';
   }
 }
 /**
