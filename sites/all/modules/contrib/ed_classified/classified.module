@@ -855,6 +855,11 @@ function classified_context_registry_alter(&$registry) {
  * notifications, from the closest to deletion to the farthest one.
  */
 function classified_cron($time = NULL) {
+  // Skip invalid values of time like those submitted by Ultimate Cron.
+  // @link https://www.drupal.org/node/2468505
+  if (!is_integer($time)) {
+    $time = NULL;
+  }
   module_load_include('inc', 'classified', 'classified.scheduled');
   $time = _classified_get_time($time);
   _classified_scheduled_build_purge($time);
