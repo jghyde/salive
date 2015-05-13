@@ -57,7 +57,7 @@ function theme_radioactivity_gauge($vars) {
  * Theme callback
  */
 function theme_radioactivity_history($vars) {
-  
+
   drupal_add_js(drupal_get_path('module', 'radioactivity') . '/js/jquery.sparkline.min.js');
   drupal_add_js(drupal_get_path('module', 'radioactivity') . '/js/radioactivity-history.js');
   drupal_add_css(drupal_get_path('module', 'radioactivity') . '/css/radioactivity.css');
@@ -68,7 +68,7 @@ function theme_radioactivity_history($vars) {
     'cutoff' => $vars['cutoff'],
     'tooltipFormat' => '<span style="color:{{color}}">&#9679;</span> {{value}} | {{offset:tooltips}}'
   );
-  
+
   foreach ($vars['dataset'] as $time => $value) {
     $data['values'][] = round($value, 2);
     $data['tooltips'][] = format_date($time, 'short');
@@ -299,12 +299,28 @@ function _radioactivity_update_energy($entity_type, $entity_id, $field_name, $la
     }
   }
 
-  // Invoke the field presave and update hooks.
-  field_attach_presave($entity_type, $entity);
-  field_attach_update($entity_type, $entity);
+  // Check the field info:
+  $info = field_info_field($field_name);
 
-  // Clear the cache for this entity.
-  entity_get_controller($entity_type)->resetCache(array($entity_id));
+  // If we are using the sql storage, we can use the faster field_sql_storage_field_storage_write function:
+  if($info['storage']['type'] == 'field_sql_storage') {
+    $fields = array($info['id']);
+    field_sql_storage_field_storage_write($entity_type, $entity, 'update', $fields);
+
+    // Clear the field cache for the entity:
+    list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
+    $entity_info = entity_get_info($entity_type);
+    if ($entity_info['field cache']) {
+      cache_clear_all("field:$entity_type:$id", 'cache_field');
+    }
+  } else {
+    // In case the field uses another type of storage, invoke the field presave and update hooks.
+    field_attach_presave($entity_type, $entity);
+    field_attach_update($entity_type, $entity);
+    // Clear the cache for this entity.
+    entity_get_controller($entity_type)->resetCache(array($entity_id));
+  }
+
 }
 
 /**
@@ -645,13 +661,13 @@ function radioactivity_decay_profile_delete($machine_name) {
  * Callback for testing if certain machine name already exists
  */
 function radioactivity_decay_profile_exists($machine_name) {
-  
+
   $obj = db_select("radioactivity_decay_profile", "dcp")
     ->fields("dcp", array("machine_name"))
     ->condition("dcp.machine_name", $machine_name)
     ->execute()
     ->fetch();
-  
+
   return $obj != NULL;
 
 }
@@ -693,12 +709,12 @@ function radioactivity_page_alter($page) {
   radioactivity_update_emitters();
 }
 
-/** 
+/**
  * Implements hook_ajax_render_alter().
  * This is one of the two ways the emitters end up on the page, the other is hook_page_alter().
  */
 function radioactivity_ajax_render_alter(&$commands) {
-  radioactivity_update_emitters();  
+  radioactivity_update_emitters();
 
   // Add the JS we have generated (this is a blatant copy from the ajax_render() func. :)
   $scripts = drupal_add_js();

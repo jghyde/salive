@@ -238,8 +238,23 @@ function content_type_extras_node_form_new_submit(&$form, &$form_state) {
  * Form submission for $form_id *_node_form
  */
 function content_type_extras_node_form_edit_submit(&$form, &$form_state) {
+  $query_string = array();
+  // Allow compatibility with content lock module.
+  if (isset($_REQUEST['content_lock_token'])) {
+    $query_string['content_lock_token'] = $_REQUEST['content_lock_token'];
+  }
+  if (!empty($query_string)) {
+    $form_state['redirect'] = url('node/' . $form_state['values']['nid'] . '/edit',
+      array(
+        'query' => $query_string,
+        'absolute' => TRUE,
+      )
+    );
+  }
+  else {
+    $form_state['redirect'] = 'node/' . $form_state['values']['nid'] . '/edit';
+  }
   unset($_GET['destination']);
-  $form_state['redirect'] = 'node/' . $form_state['values']['nid'] . '/edit';
 }
 
 /**
@@ -319,23 +334,16 @@ function content_type_extras_get_setting($setting, $type) {
  */
 function content_type_extras_get_default($setting = NULL) {
   // This has to be unserialized as it will crash the default settings page.
-  $defaults = variable_get('content_type_extras_default_settings');
+  $defaults = variable_get('content_type_extras_default_settings', array()) + content_type_extras_get_initial();
 
+  // Return all default settings.
   if ($setting == NULL) {
-    if (!empty($defaults)) {
-      return $defaults;
-    }
-    else {
-      return content_type_extras_get_initial();
-    }
+    return $defaults;
   }
-  else {
-    if (isset($defaults[$setting])) {
-      return $defaults[$setting];
-    }
-    else {
-      return content_type_extras_get_initial($setting);
-    }
+
+  // Return specific default setting.
+  else if (isset($defaults[$setting])) {
+    return $defaults[$setting];
   }
 }
 
@@ -408,9 +416,11 @@ function content_type_extras_get_initial($setting = NULL) {
   $admin_role = variable_get('user_admin_role', '');
 
   $initial_values['user_permissions'] = array(
-    'create_roles' => array($admin_role => $admin_role),
-    'edit_roles'   => array($admin_role => $admin_role),
-    'delete_roles' => array($admin_role => $admin_role),
+    'create_roles'     => array($admin_role => $admin_role),
+    'edit_roles'       => array($admin_role => $admin_role),
+    'delete_roles'     => array($admin_role => $admin_role),
+    'edit_own_roles'   => array($admin_role => $admin_role),
+    'delete_own_roles' => array($admin_role => $admin_role),
   );
 
   if ($setting == NULL) {

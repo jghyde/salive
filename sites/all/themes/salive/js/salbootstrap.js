@@ -1,7 +1,7 @@
 // $Id: $ mods for bootstrap for salive 2014
 (function ($) {
   Drupal.behaviors.salivebootstrap = {
-    attach: function (context, settings) {
+    attach: function (context, settings) {      
       // colorbox
       $('img.imgbody').click(function() {
         $(this).colorbox({href: $(this).attr('src')});

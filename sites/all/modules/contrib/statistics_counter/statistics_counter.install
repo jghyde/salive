@@ -5,6 +5,30 @@
  * Statistics Counter
  */
 
+function statistics_counter_schema_alter(&$schema) {
+  $schema['node_counter']['fields']['weekcount'] = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'unsigned' => TRUE,
+    'default' => 0,
+    'description' => 'The total number of times the {node} has been viewed this week.',
+  );
+  $schema['node_counter']['fields']['monthcount'] = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'unsigned' => TRUE,
+    'default' => 0,
+    'description' => 'The total number of times the {node} has been viewed this month.',
+  );
+  $schema['node_counter']['fields']['yearcount'] = array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'unsigned' => TRUE,
+    'default' => 0,
+    'description' => 'The total number of times the {node} has been viewed this year.',
+  );
+}
+
 /**
  * Implements hook_install().
  */
@@ -13,14 +37,10 @@ function statistics_counter_install() {
   $transaction = db_transaction();
 
   try {
-    $query = "
-      ALTER TABLE {node_counter}
-      ADD COLUMN `weekcount`  MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'The total number of times the {node} has been viewed this week.'  AFTER `daycount`,
-      ADD COLUMN `monthcount` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'The total number of times the {node} has been viewed this month.' AFTER `weekcount`,
-      ADD COLUMN `yearcount`  BIGINT(20)   UNSIGNED NOT NULL DEFAULT '0' COMMENT 'The total number of times the {node} has been viewed this year.'  AFTER `monthcount`
-    ";
-
-    db_query($query);
+    $schema = drupal_get_schema('node_counter');
+    db_add_field('node_counter', 'weekcount', $schema['fields']['weekcount']);
+    db_add_field('node_counter', 'monthcount', $schema['fields']['monthcount']);
+    db_add_field('node_counter', 'yearcount', $schema['fields']['yearcount']);
 
     // Ignore slave server temporarily to give time for the
     // saved block to be propagated to the slave.
@@ -41,12 +61,9 @@ function statistics_counter_uninstall() {
   $transaction = db_transaction();
 
   try {
-    $query = "
-      ALTER TABLE {node_counter} DROP COLUMN `yearcount`, DROP COLUMN `monthcount`, DROP COLUMN `weekcount`
-    ";
-
-    db_query($query);
-
+    db_drop_field('node_counter', 'weekcount');
+    db_drop_field('node_counter', 'monthcount');
+    db_drop_field('node_counter', 'yearcount');
     // Ignore slave server temporarily to give time for the
     // saved block to be propagated to the slave.
     db_ignore_slave();

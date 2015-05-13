@@ -6,9 +6,9 @@ configure = admin/config/system/statistics
 
 dependencies[] = statistics
 
-; Information added by drupal.org packaging script on 2013-08-02
-version = "7.x-1.1"
+; Information added by Drupal.org packaging script on 2015-04-30
+version = "7.x-1.2"
 core = "7.x"
 project = "statistics_filter"
-datestamp = "1375463780"
+datestamp = "1430404984"
 

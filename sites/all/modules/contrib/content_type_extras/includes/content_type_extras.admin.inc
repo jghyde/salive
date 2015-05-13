@@ -5,11 +5,17 @@ function content_type_extras_settings() {
   // Get all available user roles
   $roles = user_roles();
   $admin_role = variable_get('user_admin_role', 0);
-  
+
   if ($admin_role != 0) {
     $roles[$admin_role] .= t(' <em>(administrator role)</em>');
   }
-  
+  if(!isset($defaults['user_permissions']['edit_own_roles'])) {
+    $defaults['user_permissions']['edit_own_roles'] = array();
+  }
+  if(!isset($defaults['user_permissions']['delete_own_roles'])) {
+    $defaults['user_permissions']['delete_own_roles'] = array();
+  }
+
   $form = array(
     'intro' => array(
       '#markup' => t('Set the default settings for all new content types below. These settings can be overridden on the content type page.'),
@@ -137,11 +143,23 @@ function content_type_extras_settings() {
           '#options'       => $roles,
           '#default_value' => $defaults['user_permissions']['edit_roles'],
         ),
+        'edit_own_roles' => array(
+          '#type'          => 'checkboxes',
+          '#title'         => t('Roles that can EDIT own content'),
+          '#options'       => $roles,
+          '#default_value' => $defaults['user_permissions']['edit_own_roles'],
+        ),
         'delete_roles' => array(
           '#type'          => 'checkboxes',
           '#title'         => t('Roles that can DELETE any content'),
           '#options'       => $roles,
           '#default_value' => $defaults['user_permissions']['delete_roles'],
+        ),
+        'delete_own_roles' => array(
+          '#type'          => 'checkboxes',
+          '#title'         => t('Roles that can DELETE own content'),
+          '#options'       => $roles,
+          '#default_value' => $defaults['user_permissions']['delete_own_roles'],
         ),
       ),
       'extras' => array(
@@ -217,7 +235,7 @@ function content_type_extras_settings() {
       ),
     ),
   );
-  
+
   if (module_exists('comment')) {
     $form['content_type_extras']['comment'] = array(
       '#type'   => 'fieldset',
@@ -279,7 +297,7 @@ function content_type_extras_settings() {
       ),
     );
   }
-  
+
   if (module_exists('xmlsitemap')) {
     $form['content_type_extras']['xmlsitemap_settings'] = array(
       '#type'   => 'fieldset',
@@ -376,14 +394,14 @@ function content_type_extras_settings() {
       '#default_value' => $defaults['content_type_extras_user_permissions_select'],
     );
   }
-  
+
   $form['actions'] = array(
     'submit'   => array(
       '#type'  => 'submit',
       '#value' => t('Save configuration'),
     ),
   );
-  
+
   return $form;
 }
 
@@ -391,7 +409,7 @@ function content_type_extras_settings_submit(&$form, &$form_state) {
   $values = $form_state['values'];
   // Place the values of content_type_extras_excluded_node_forms into an array
   $values['content_type_extras_excluded_node_forms'] = explode("\n", $values['content_type_extras_excluded_node_forms']);
-  
+
   unset($values['submit'], $values['form_build_id'], $values['form_token'], $values['form_id'], $values['op']);
   variable_set('content_type_extras_default_settings', $values);
 

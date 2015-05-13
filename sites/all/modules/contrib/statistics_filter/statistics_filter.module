@@ -84,7 +84,7 @@ function statistics_filter_exit() {
 
   // Log the filter.
   if (variable_get('statistics_filter_log', FALSE)) {
-    $browser = $_SERVER['HTTP_USER_AGENT'];
+    $browser = empty($_SERVER['HTTP_USER_AGENT']) ? 'Unknown' : $_SERVER['HTTP_USER_AGENT'];
     $crawler = statistics_filter_is_crawler() | 0;
 
     db_merge('statistics_filter_browsers')
@@ -145,7 +145,7 @@ function statistics_filter_form_statistics_settings_form_alter(&$form, &$form_st
     '#type'          => 'checkbox',
     '#title'         => t('Log filtered browser'),
     '#prefix'        => '<br/>',
-    '#default_value' => variable_get('statistics_filter_noadmin', FALSE),
+    '#default_value' => variable_get('statistics_filter_log', FALSE),
   );
 
   $form['#validate'][] = 'statistics_filter_form_statistics_settings_validate';
