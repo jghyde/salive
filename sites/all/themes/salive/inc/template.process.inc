@@ -3,6 +3,12 @@
  * Add body classes if certain regions have content.
  */
 function salive_preprocess_html(&$vars) {
+	if(preg_match('/(?i)msie [1-8]/',$_SERVER['HTTP_USER_AGENT'])) {
+		drupal_add_js(drupal_get_path('theme', 'salive') . '/js/respond.js',
+			array('weight' => -50)
+		);
+	}
+	
 	$css = "";
 	if (!empty($vars['page']['headlines'])) {
 		drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jPages.min.js');
