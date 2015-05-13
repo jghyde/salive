@@ -7,6 +7,7 @@
   <?php print $styles; ?>
   <!-- HTML5 element support for IE6-8 -->
   <!--[if lt IE 9]>
+		<meta http-equiv="refresh" content="0;URL=http://sanangelolive.com/ie.php">
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <?php print $scripts; ?>
