@@ -6,6 +6,11 @@
   <title>San Angelo LIVE!</title>
   <link rel="shortcut icon" href="http://sanangelolive.com/sites/all/themes/salive/favicon.ico" />
   <meta name="robots" content="nofollow, noindex, noarchive" />
+  <style>
+    a img {  
+      border: none;  
+    } 
+  </style>
 </head>
 <body>
   <div style="margin-right: auto;margin-left: auto;text-align: center;">
