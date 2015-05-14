@@ -317,7 +317,7 @@
 								content += '</object>';
 							}
 							else {
-								content += '<div class="videoWrapper"><iframe width="' + width + '" height="' + height + '" src="' + url + '" ' + responsiveStyle;
+								content += '<div class="embed-responsive embed-responsive-16by9"><iframe width="' + width + '" height="' + height + '" src="' + url + '" ' + responsiveStyle;
 								content += 'frameborder="0" allowfullscreen></iframe></div>';
 							}
 
