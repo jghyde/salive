@@ -15,7 +15,7 @@
 <body>
   <div style="margin-right: auto;margin-left: auto;text-align: center;">
     <h1>Your browser is no longer supported.</h1>
-    <h3>Please chose from one of the following browsers to download.<br />We recomend Google Chrome or Firefox.</h3>
+    <h3>Please choose from one of the following browsers to download.<br />We recommend Google Chrome or Firefox.</h3>
     <table style="margin-right: auto;margin-left: auto;text-align: center;">
       <tbody>
         <tr>
