@@ -264,6 +264,8 @@ function salive_preprocess_node(&$vars) {
 			$title = ($account->field_job_title[LANGUAGE_NONE][0]['safe_value'] ? $account->field_job_title[LANGUAGE_NONE][0]['safe_value'] : '');
 		} elseif (in_array('Past Employee', $author->roles)) {
       $title = t('Former Correspondent');
+		} elseif (in_array('Intern', $author->roles)) {
+      $title = t('Intern');
 		} else {
 			$title = t('Contributor');
 		}
