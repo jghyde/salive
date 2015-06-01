@@ -8,6 +8,8 @@
 	</div>
 	
 	<?php print render($content['body']); ?>
+  
+	<?php print render($content['links']); ?>
 	
   <footer>
     <?php print render($content['field_tags']); ?>

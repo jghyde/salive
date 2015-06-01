@@ -1,0 +1,11 @@
+p:last-child, .ads, #block-views-news-thumbs-block, .submitted, .comment-signup {
+  display: none;
+}
+h6, .print-title {
+  font-weight: 700 !important;
+}
+.media-element {
+  float: left;
+  margin: 8px;
+  clear:both;
+}

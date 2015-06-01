@@ -1,7 +1,6 @@
 <?php
 
 include_once './' . drupal_get_path('theme', 'salive') . '/inc/template.process.inc';
-//include_once './' . drupal_get_path('theme', 'salive') . '/inc/template.pager.inc';
 /**
  * Implementation of hook_theme().
  */

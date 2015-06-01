@@ -74,6 +74,7 @@ googletag.cmd.push(function() {
 	var slot17=googletag.defineSlot('/116956976/SALive_BST_Weather', banst, 'div-gpt-ad-1425500431462-16').addService(googletag.pubads());
 	var slot18=googletag.defineSlot('/116956976/SALive_BW_Bottom', ban, 'div-gpt-ad-1425500431462-17').addService(googletag.pubads());
 	var slot19=googletag.defineSlot('/116956976/SALive_BW_Top', ban, 'div-gpt-ad-1425500431462-18').addService(googletag.pubads());
+  var slot20=googletag.defineSlot('/116956976/SALive_BLW_Crash_2', banwl, 'div-gpt-ad-1425500431462-19').addService(googletag.pubads());
 	// News Body
 	var slot101=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-101').addService(googletag.pubads());
 	var slot102=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-102').addService(googletag.pubads());
@@ -108,7 +109,7 @@ googletag.cmd.push(function() {
 	googletag.pubads().enableSingleRequest();
   googletag.enableServices();
   $(window).resize(function(){
-		googletag.pubads().refresh([slot1, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot101, slot102, slot103, slot104, slot105, slot106, slot107, slot108, slot109, slot110, slot111, slot112, slot113, slot114, slot115, slot116, slot117, slot118, slot119, slot120, slot201, slot202, slot203, slot204, slot301, slot302, slot303, slot304]);
+		googletag.pubads().refresh([slot1, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot101, slot102, slot103, slot104, slot105, slot106, slot107, slot108, slot109, slot110, slot111, slot112, slot113, slot114, slot115, slot116, slot117, slot118, slot119, slot120, slot201, slot202, slot203, slot204, slot301, slot302, slot303, slot304]);
 	});
 });
 
