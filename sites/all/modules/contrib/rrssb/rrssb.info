@@ -7,9 +7,9 @@ dependencies[] = libraries
 dependencies[] = jquery_update
 files[] = includes/rrssb.drush.inc
 
-; Information added by Drupal.org packaging script on 2015-02-28
-version = "7.x-1.0-rc2+17-dev"
+; Information added by Drupal.org packaging script on 2015-05-29
+version = "7.x-1.0-rc2+33-dev"
 core = "7.x"
 project = "rrssb"
-datestamp = "1425140229"
+datestamp = "1432886098"
 

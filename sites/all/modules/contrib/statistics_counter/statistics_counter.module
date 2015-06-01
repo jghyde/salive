@@ -10,34 +10,30 @@
  */
 function statistics_counter_cron() {
   // Get timestamps.
-  $statistics_timestamp = variable_get('statistics_day_timestamp', '');
-
-  if (empty($statistics_timestamp)) {
-    return;
-  }
+  $statistics_timestamp = variable_get('statistics_counter_timestamp', '');
 
   // Get date.
   $week  = date('W') | 0;
   $month = date('n') | 0;
   $year  = date('Y') | 0;
 
-  $statistics_week  = date('W', $statistics_timestamp) | 0;
-  $statistics_month = date('n', $statistics_timestamp) | 0;
-  $statistics_year  = date('Y', $statistics_timestamp) | 0;
+  $last_week  = date('W', $statistics_timestamp) | 0;
+  $last_month = date('n', $statistics_timestamp) | 0;
+  $last_year  = date('Y', $statistics_timestamp) | 0;
 
   $fields = array();
 
-  if ($week != $statistics_week || $year != $statistics_year) {
+  if ($week != $last_week || $year != $last_year) {
     // Reset week counts.
     $fields['weekcount'] = 0;
   }
 
-  if ($month != $statistics_month || $year != $statistics_year) {
+  if ($month != $last_month || $year != $last_year) {
     // Reset month counts.
     $fields['monthcount'] = 0;
   }
 
-  if ($year != $statistics_year) {
+  if ($year != $last_year) {
     // Reset year counts.
     $fields['yearcount'] = 0;
   }
@@ -48,6 +44,8 @@ function statistics_counter_cron() {
       ->fields($fields)
       ->execute();
   }
+
+  variable_set('statistics_counter_timestamp', REQUEST_TIME);
 }
 
 /**
@@ -75,24 +73,6 @@ function statistics_counter_exit($destination = NULL) {
         ->expression('yearcount', 'yearcount + 1')
         ->execute();
     }
-  }
-}
-
-/**
- * Implements hook_module_implements_alter().
- */
-function statistics_counter_module_implements_alter(&$implementations, $hook) {
-  $module_name = 'statistics_counter';
-
-  switch ($hook) {
-    case 'cron':
-    case 'exit':
-      if (isset($implementations[$module_name])) {
-        unset($implementations[$module_name]);
-        $implementations[$module_name] = $hook;
-      }
-
-      break;
   }
 }
 

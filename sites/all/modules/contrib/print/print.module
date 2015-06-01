@@ -50,7 +50,7 @@ function print_print_link() {
     'text' => t('Printer-friendly version'),
     'description' => t('Display a printer-friendly version of this page.'),
     'path' => 'print',
-    'class' => 'print-page btn btn-primary',
+    'class' => 'print-page',
     'icon' => 'print_icon.png',
     'module' => 'print',
   );

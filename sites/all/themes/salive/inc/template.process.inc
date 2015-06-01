@@ -80,7 +80,6 @@ function salive_query_alter(&$query) {
 }
 
 
-
 /**
  * Override or insert vars into the page template for HTML output.
  */
@@ -265,7 +264,7 @@ function salive_preprocess_node(&$vars) {
 		} elseif (in_array('Past Employee', $author->roles)) {
       $title = t('Former Correspondent');
 		} elseif (in_array('Intern', $author->roles)) {
-      $title = t('Intern');
+      $title = t('Intern Reporter');
 		} else {
 			$title = t('Contributor');
 		}

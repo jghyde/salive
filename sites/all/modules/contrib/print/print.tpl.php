@@ -73,6 +73,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>">
   <head>
     <?php print $head; ?>
+    <base href='<?php print $url ?>' />
     <title><?php print $print_title; ?></title>
     <?php print $scripts; ?>
     <?php if (isset($sendtoprinter)) print $sendtoprinter; ?>
@@ -89,9 +90,13 @@
     <?php if ($print_logo): ?>
       <div class="print-logo"><?php print $print_logo; ?></div>
     <?php endif; ?>
-    
+    <div class="print-site_name"><?php print theme('print_published'); ?></div>
+    <p />
+    <div class="print-breadcrumb"><?php print theme('print_breadcrumb', array('node' => $node)); ?></div>
     <hr class="print-hr" />
-    <h1 class="print-title"><?php print $print_title; ?></h1>
+    <?php if (!isset($node->type)): ?>
+      <h2 class="print-title"><?php print $print_title; ?></h2>
+    <?php endif; ?>
     <div class="print-content"><?php print $content; ?></div>
     <div class="print-footer"><?php print theme('print_footer'); ?></div>
     <hr class="print-hr" />
