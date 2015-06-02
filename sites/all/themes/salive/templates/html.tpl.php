@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="<?php print $language->language; ?>">
+<!-- Theme developed by Dylan Underwood - http://www.DylanUnderwood.me/ -->
 <head>
   <meta charset="utf-8">
   <?php print $head; ?>
