@@ -29,82 +29,82 @@
     margin: 0;
     padding: 0 2.5px;
 }
-.rrssb-buttons li.email a {
+.rrssb-buttons li.rrssb-email a {
     background-color: #0a88ff;
 }
-.rrssb-buttons li.email a:hover {
+.rrssb-buttons li.rrssb-email a:hover {
     background-color: #006ed6;
 }
-.rrssb-buttons li.facebook a {
+.rrssb-buttons li.rrssb-facebook a {
     background-color: #306199;
 }
-.rrssb-buttons li.facebook a:hover {
+.rrssb-buttons li.rrssb-facebook a:hover {
     background-color: #244872;
 }
-.rrssb-buttons li.tumblr a {
+.rrssb-buttons li.rrssb-tumblr a {
     background-color: #32506d;
 }
-.rrssb-buttons li.tumblr a:hover {
+.rrssb-buttons li.rrssb-tumblr a:hover {
     background-color: #22364a;
 }
-.rrssb-buttons li.linkedin a {
+.rrssb-buttons li.rrssb-linkedin a {
     background-color: #007bb6;
 }
-.rrssb-buttons li.linkedin a:hover {
+.rrssb-buttons li.rrssb-linkedin a:hover {
     background-color: #005983;
 }
-.rrssb-buttons li.twitter a {
+.rrssb-buttons li.rrssb-twitter a {
     background-color: #26c4f1;
 }
-.rrssb-buttons li.twitter a:hover {
+.rrssb-buttons li.rrssb-twitter a:hover {
     background-color: #0eaad6;
 }
-.rrssb-buttons li.googleplus a {
+.rrssb-buttons li.rrssb-googleplus a {
     background-color: #e93f2e;
 }
-.rrssb-buttons li.googleplus a:hover {
+.rrssb-buttons li.rrssb-googleplus a:hover {
     background-color: #ce2616;
 }
-.rrssb-buttons li.youtube a {
+.rrssb-buttons li.rrssb-youtube a {
     background-color: #df1c31;
 }
-.rrssb-buttons li.youtube a:hover {
+.rrssb-buttons li.rrssb-youtube a:hover {
     background-color: #b21627;
 }
-.rrssb-buttons li.reddit a {
+.rrssb-buttons li.rrssb-reddit a {
     background-color: #8bbbe3;
 }
-.rrssb-buttons li.reddit a:hover {
+.rrssb-buttons li.rrssb-reddit a:hover {
     background-color: #62a3d9;
 }
-.rrssb-buttons li.pinterest a {
+.rrssb-buttons li.rrssb-pinterest a {
     background-color: #b81621;
 }
-.rrssb-buttons li.pinterest a:hover {
+.rrssb-buttons li.rrssb-pinterest a:hover {
     background-color: #8a1119;
 }
-.rrssb-buttons li.pocket a {
+.rrssb-buttons li.rrssb-pocket a {
     background-color: #ed4054;
 }
-.rrssb-buttons li.pocket a:hover {
+.rrssb-buttons li.rrssb-pocket a:hover {
     background-color: #e4162d;
 }
-.rrssb-buttons li.github a {
+.rrssb-buttons li.rrssb-github a {
     background-color: #444;
 }
-.rrssb-buttons li.github a:hover {
+.rrssb-buttons li.rrssb-github a:hover {
     background-color: #2b2b2b;
 }
-.rrssb-buttons li.instagram a {
+.rrssb-buttons li.rrssb-instagram a {
     background-color: #517fa4;
 }
-.rrssb-buttons li.instagram a:hover {
+.rrssb-buttons li.rrssb-instagram a:hover {
     background-color: #406582;
 }
-.rrssb-buttons li.rss a {
+.rrssb-buttons li.rrssb-rss a {
     background-color: #ff6600;
 }
-.rrssb-buttons li.rss a:hover {
+.rrssb-buttons li.rrssb-rss a:hover {
     background-color: #EB5E00;
 }
 .rrssb-buttons li a {
@@ -298,4 +298,29 @@
 }
 .rrssb-buttons.tiny-format li.rrssb-instagram a .rrssb-icon:hover .rrssb-icon svg path, .rrssb-buttons.tiny-format li.rrssb-instagram a .rrssb-icon:hover .rrssb-icon svg polygon {
     fill: #2f4a60;
+}
+@media (max-width: 565px) {
+  .rrssb-facebook {
+    height: 41px;
+    .rrssb-icon {
+        height: 100% !important;
+        left: auto !important;
+        margin: 0 auto !important;
+        overflow: hidden !important;
+        position: relative !important;
+        top: auto !important;
+        width: 100% !important;
+        padding-top: 0px !important;
+    }
+    .rrssb-text {
+        visibility: hidden;
+    }
+  }
+  li.small a {
+    height: 41px !important;
+    overflow: hidden;
+  }
+}
+.rrssb-text {
+    font-size: 15px !important;
 }
