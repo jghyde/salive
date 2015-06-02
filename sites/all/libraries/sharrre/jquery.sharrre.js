@@ -508,7 +508,8 @@
     }
     else{ //template by defaults
       $(this.element).html(
-                            '<div class="box"><span class="count">' + total + '</span>' +
+                            '<div class="box"><a class="count" href="#">' + total + '</a>' + 
+                            (this.options.title !== '' ? '<a class="share" href="#">' + this.options.title + '</a>' : '') +
                             '</div>'
                           );
     }
@@ -526,7 +527,7 @@
   };
   
   /* Methode for open popup
-  ==================================================
+  ================================================== */
   Plugin.prototype.openPopup = function (site) {
     popup[site](this.options);  //open
     if(this.options.enableTracking === true){ //tracking!
@@ -542,7 +543,7 @@
       };
       _gaq.push(['_trackSocial', tracking[site].site, tracking[site].action]);
     }
-  }; */
+  };
   
   /* Methode for add +1 to a counter
   ================================================== */

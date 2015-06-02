@@ -1,14 +1,27 @@
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
-	<!-- <div id="shareme" data-url="<?php print token_replace('[current-page:url]'); ?>" data-title="share this page"></div> -->
+<?php print render($title_prefix); ?>
+  <?php if (!$page): ?>
+    <h2<?php print $title_attributes; ?>>
+      <a href="<?php print $node_url; ?>"><?php print $title; ?></a>
+    </h2>
+  <?php endif; ?>
+  <?php print render($title_suffix); ?>
+
+	<div class="node-content clearfix"<?php print $content_attributes; ?>>
+	  <?php
+      // We hide the comments and links now so that we can render them later.
+      hide($content['comments']);
+      hide($content['links']);
+			print render($content['ssc']);
+			'<br />'
+      . print render($content['field_image']);
+			'<div class="node-author">'
+			. print $byline; 
+			'</div>'
+			. print render($content['body']);
+    ?>
+  </div>
 	
-	<?php print render($content['field_image']); ?>
-	
-	<div class="node-author">
-		<?php print $byline; ?>
-	</div>
-	
-	<?php print render($content['body']); ?>
-  
 	<?php print render($content['links']); ?>
 	
   <footer>
@@ -18,16 +31,13 @@
       <?php print $submitted; ?>
     </div>
     <?php endif; ?>
+		<?php if (!empty($sell)) {
+			print $sell;
+		} ?>
   </footer>
-  
-  <?php
-  if (!empty($sell)) {
-    print $sell;
-  }
-	?>
-  
+	
   <div id="comments">
-  <?php print render($content['comments']); ?>
+		<?php print render($content['comments']); ?>
   </div>
 	
 </div>
