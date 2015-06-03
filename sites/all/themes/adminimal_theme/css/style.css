@@ -2717,3 +2717,22 @@ body.adminimal-theme.page-admin-reports-updates .update.checked  {
 html body.adminimal-theme.page-admin-reports-updates .overflow-fix {
   overflow: initial !important;
 }
+
+.media-item {
+	width:100px;
+	height:100px;
+	overflow:hidden;
+}
+.media-item img {
+ border: 2px solid transparent;
+ display: inline-block;
+ margin-left: -2px;
+ height: auto; /* override this in you theme */
+ width: 100px; /* and this */
+}
+.media-list-thumbnails .form-type-checkbox {
+	bottom: 27px !important;
+}
+.media-item .form-item label {
+line-height: 20px;
+}
