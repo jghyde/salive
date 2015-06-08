@@ -1,5 +1,10 @@
 <?php
-
+/*
+ * Implements hook_init()
+ */
+function livebraking_init() {
+  require_once(drupal_get_path('theme', 'bootstrap') . '/theme/process.inc');
+}
 /**
  * Implements hook_block_info().
  */
