@@ -13,7 +13,4 @@ function liveevent_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'event_free_node_form') {
     $form['actions']['submit']['#value'] = "Submit Free Event for Review";
   }
-  if ($form_id == 'event_paid_node_form' || $form_id == 'event_free_node_form') {
-    $form['#validate'][] = 'live_event_form_validate';
-  }
 }
