@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * Implements hook_init().
+ */
+function livebreaking_init() {
+  // Fixes problem with bootstrap theme, not related to 'breaking news'
+  global $theme_key;
+  if (strpos($theme_key, 'bootstrap')===FALSE) {
+    include_once(drupal_get_path('theme', 'bootstrap') . '/theme/process.inc');
+  }
+}
+
+/**
  * Implements hook_block_info().
  */
 function livebreaking_block_info() {
