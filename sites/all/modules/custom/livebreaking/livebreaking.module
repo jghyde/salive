@@ -3,7 +3,7 @@
  * Implements hook_init()
  */
 function livebraking_init() {
-  require_once(drupal_get_path('theme', 'bootstrap') . '/theme/process.inc');
+  require_once(drupal_get_path('theme', 'bootstrap') . '/includes/process.inc');
 }
 /**
  * Implements hook_init().
