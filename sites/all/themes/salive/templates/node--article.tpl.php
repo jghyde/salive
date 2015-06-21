@@ -13,12 +13,9 @@
       hide($content['comments']);
       hide($content['links']);
 			print render($content['ssc']);
-			'<br />'
-      . print render($content['field_image']);
-			'<div class="node-author">'
-			. print $byline; 
-			'</div>'
-			. print render($content['body']);
+			print render($content['field_image']);
+			print '<div class="node-author">' . $byline .'</div>';
+			print render($content['body']);
     ?>
   </div>
 	
