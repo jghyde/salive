@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the LIVE Polls feature.
+ */
+
+include_once 'live_polls.features.inc';
