@@ -23,5 +23,3 @@ INSTALLATION
 2. Enable the Social Share Counter module at admin/build/modules.
 3. Set the access Social Share Counter permissions for authenticated users at
    admin/user/permissions.
-4. Download Ssarrre library to sites/all/libraries.
-5. Rename the folder to sharrre.

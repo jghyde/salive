@@ -5,7 +5,7 @@
  * Default theme implementation to present share button.
  */
 ?>
-<div class="ssc-follow-box-wrapper">
+<div class="ssc-follow-box-wrapper ssc-container">
 <?php if (!empty($data['profile_links']['facebook'])):?>
 <a class="facebook-button" href="<?php print $data['profile_links']['facebook'];?>" target="_blank">
 	<span class="fa-facebook-square"></span>

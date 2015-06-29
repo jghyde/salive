@@ -6,9 +6,9 @@ package = "Spam control"
 
 files[] = honeypot.test
 
-; Information added by Drupal.org packaging script on 2015-04-29
-version = "7.x-1.17+4-dev"
+; Information added by Drupal.org packaging script on 2015-06-16
+version = "7.x-1.18"
 core = "7.x"
 project = "honeypot"
-datestamp = "1430318016"
+datestamp = "1434471491"
 

@@ -4,9 +4,9 @@ core = 7.x
 dependencies[] = jquery_update
 dependencies[] = libraries (2.x)
 
-; Information added by Drupal.org packaging script on 2015-02-26
-version = "7.x-1.0-alpha4"
+; Information added by Drupal.org packaging script on 2015-06-26
+version = "7.x-1.0-alpha5"
 core = "7.x"
 project = "social_share_counter"
-datestamp = "1424951584"
+datestamp = "1435319885"
 

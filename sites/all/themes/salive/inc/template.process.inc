@@ -243,11 +243,13 @@ function salive_preprocess_node(&$vars) {
 	if (isset($vars['display_submitted']) && $vars['display_submitted'] == 1) {
     // Place the "Sell the comments and login" below the author, where the comments WOULD be
     $sell = '';
-    if (user_is_anonymous()) {
+    /*
+		if (user_is_anonymous()) {
       if ($vars['type'] == 'article' || $vars['type'] == 'event') {
         $sell = salive_sellthelogin();
       }
     }
+    */
   }
   if ($vars['display_submitted']) {
 		$author = user_load($vars['uid']);
@@ -303,8 +305,10 @@ function salive_preprocess_node(&$vars) {
 		$changed = date('M. j, Y g:i a', $vars['changed']);
 		if ($vars['updated']) {
 				$updated = '<span class="updated">Last Updated: ' . $changed . '</span>';
+				$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>' . $updated;
+		} else {
+			$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>';
 		}
-		$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>';
 		$vars['sell'] = $sell;
   }
 }

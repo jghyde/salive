@@ -23,19 +23,25 @@ function social_share_counter_menu() {
   $items['admin/config/social_share_counter'] = array(
     'title' => 'Social Share Counter',
     'description' => 'Admin Social Share Counter',
-    'position' => 'left',
-    'weight' => -10,
-    'page callback' => 'system_admin_menu_block_page',
-    'access arguments' => array('access administration pages'),
-    'file' => 'system.admin.inc',
-    'file path' => drupal_get_path('module', 'system'),
-  );
-  $items['admin/config/social_share_counter/configuration'] = array(
-    'title' => 'Configure',
-    'description' => 'Configure Social Share Counter Module',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('social_share_counter_settings_form'),
     'access arguments' => array('administer social_share_counter'),
+    'file' => 'social_share_counter.admin.inc',
+  );
+  $items['admin/config/social_share_counter/share'] = array(
+    'title' => 'Share',
+    'description' => 'Configure Social Share Counter Follow Box',
+    'access arguments' => array('administer social_share_counter'),
+    'file' => 'social_share_counter.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/config/social_share_counter/follow'] = array(
+    'title' => 'Follow',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('social_share_counter_follow_settings_form'),
+    'access arguments' => array('administer social_share_counter'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 20,
     'file' => 'social_share_counter.admin.inc',
   );
   $items['social_share_counter/share'] = array(
@@ -61,28 +67,15 @@ function social_share_counter_page_build(&$page) {
   if (variable_get('ssc_status', 1) == 1) {
     drupal_add_css(drupal_get_path('module', 'social_share_counter') . '/css/font-awesome.min.css');
     drupal_add_css(drupal_get_path('module', 'social_share_counter') . '/css/ssc.css');
-    include_once 'social_share_counter.admin.inc';
-    // Get admin settings.
-    $settings = social_share_counter_settings();
-    $option = array(
-      'type' => 'file',
-      'scope' => 'footer',
-      'group' => JS_LIBRARY,
-      'cache' => FALSE,
-    );
-    drupal_add_js($settings['sharrre'], $option);
-    $data['button_text'] = array(
-      'facebook' => variable_get('ssc_facebook_button_text', 'Share on Facebook'),
-      'twitter'	=> variable_get('ssc_facebook_twitter_text', 'Share on Twitter'),
-    );
-    $data['count_text'] = variable_get('ssc_text_below_count', 'Share');
-    $template = theme('social_share_counter', array('data' => $data));
+
     $my_settings = array(
       'share' => url('social_share_counter/share', array('absolute' => TRUE)),
-      'template' => $template,
-      'ssc_ga_tracking' => variable_get('ssc_ga_tracking', 1),
-      'ssc_min_to_show' => variable_get('ssc_min_to_show', 0),
+      'page' =>  (!empty($_SERVER['HTTPS'])) ? "https://" . $_SERVER['SERVER_NAME'] . request_uri() : "http://" . $_SERVER['SERVER_NAME'] . request_uri(),
     );
+    $my_settings['isClean'] = 0;
+    if (variable_get('clean_url') == 1) {
+      $my_settings['isClean'] = 1;
+    }
     drupal_add_js(array('SSC' => $my_settings), "setting");
   }
 }
@@ -140,16 +133,26 @@ function _ssc_create_button($node=NULL) {
   $_ssc_num++;
 
   if (is_object($node)) {
-    $link_name 	= (module_exists('page_title')) ? page_title_page_get_title() : $node->title;
-    $link_url 	= url('node/' . $node->nid, array('absolute' => 1));
+    $link_name = (module_exists('page_title')) ? page_title_page_get_title() : $node->title;
+    $link_url = url('node/' . $node->nid, array('absolute' => 1));
   }
   else {
     // Front page.
-    $link_name	= (module_exists('page_title')) ? page_title_page_get_title() : variable_get('site_name', 'Drupal');
+    $link_name = (module_exists('page_title')) ? page_title_page_get_title() : variable_get('site_name', 'Drupal');
     $link_url = url('<front>', array('absolute' => 1));
   }
+  $data['button_text'] = array(
+    'facebook' => variable_get('ssc_facebook_button_text', 'Share on Facebook'),
+    'twitter' => variable_get('ssc_facebook_twitter_text', 'Share on Twitter'),
+  );
+  $data['ssc_min_to_show'] = variable_get('ssc_min_to_show', 0);
+  $data['count_text'] = variable_get('ssc_text_below_count', 'Share');
+  $data['title'] = $link_name;
+  $data['via'] = variable_get('site_name');
+
+  $template = theme('social_share_counter', array('data' => $data));
   // ID is later removed by JS (for AJAX).
-  $str = '<aside class="ssc-container"><div class="sharebox" data-url="' . $link_url . '" data-text="' . $link_name . '"></div></aside>';
+  $str = '<aside class="ssc-container"><div class="sharebox" data-url="' . $link_url . '" data-text="' . $link_name . '">' . $template . '</div></aside>';
   return (sprintf($str));
 }
 
@@ -209,49 +212,24 @@ function _social_share_counter_block_contents() {
 
   return theme('social_share_counter_follow_box', array('data' => $data));
 }
+
 /**
  * Function to get real time counter.
  */
 function social_share_counter_share() {
   header('content-type: application/json');
-  $json = array('url' => '','count' => 0);
-  $json['url'] = $_GET['url'];
-  $url = urlencode($_GET['url']);
-  $type = urlencode($_GET['type']);
+  $json = array('url' => '', 'count' => 0);
 
-  if (filter_var($_GET['url'], FILTER_VALIDATE_URL)) {
-    if ($type == 'googlePlus') {
-      $content = _social_share_counter_parse("https://plusone.google.com/u/0/_/+1/fastbutton?url=" . $url . "&count=true");
-
-      $dom = new DOMDocument();
-      $dom->preserveWhiteSpace = FALSE;
-      @$dom->loadHTML($content);
-      $domxpath = new DOMXPath($dom);
-
-      $filtered = $domxpath->query("//div[@id='aggregateCount']");
-      if (isset($filtered->item(0)->nodeValue)) {
-        $json['count'] = str_replace('>', '', $filtered->item(0)->nodeValue);
-      }
-    }
-    elseif ($type == 'stumbleupon') {
-      $content = _social_share_counter_parse("http://www.stumbleupon.com/services/1.01/badge.getinfo?url=$url");
-
-      $result = json_decode($content);
-      if (isset($result->result->views)) {
-        $json['count'] = $result->result->views;
-      }
-    }
-    elseif ($type == 'pinterest') {
-      $content = _social_share_counter_parse("http://api.pinterest.com/v1/urls/count.json?callback=&url=$url");
-
-      $result = json_decode(str_replace(array('(', ')'), array('', ''), $content));
-      if (is_int($result->count)) {
-        $json['count'] = $result->count;
-      }
-    }
+  if (isset($_GET['url']) && filter_var($_GET['url'], FILTER_VALIDATE_URL)) {
+    $json['url'] = $_GET['url'];
+    $url = urlencode($_GET['url']);
+    $service = urlencode($_GET['service']);
+    include_once 'social_share_counter.inc';
+    $json['count'] = call_user_func("get_count_{$service}", $url);
   }
   echo str_replace('\\/', '/', json_encode($json));
 }
+
 /**
  * Function to parse real time counter request.
  */
