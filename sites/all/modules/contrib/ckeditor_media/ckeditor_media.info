@@ -1,0 +1,6 @@
+name        = CKEditor Media
+description = "Allow the media module to be the file upload/browser for ckeditor."
+core        = 7.x
+package     = User interface
+dependencies[] = media
+dependencies[] = ckeditor
