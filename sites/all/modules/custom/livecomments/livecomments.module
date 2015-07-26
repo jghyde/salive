@@ -1,0 +1,237 @@
+<?php
+
+/**
+ * @file Live Comments Mods.module
+ * TODO: Enter file description here.
+ */
+
+/**
+ * Implements hook_init()
+ */
+function livecomments_init() {
+  if (!user_is_anonymous()) {
+    if (isset($_COOKIE['Drupal_visitor_nid'])) {
+      if (is_numeric($_COOKIE['Drupal_visitor_nid'])) {
+        $dest = l('node/'. $_COOKIE['Drupal_visitor_nid'], 'click here', array('fragment' => 'comments'));
+        drupal_set_message(t('You have a rant that you have saved but not posted. %clickhere to post your rant.', array('%clickhere' => $dest)));
+      }
+    }
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function livecomments_menu() {
+  $items['livecomment/js/%'] = array(
+    'title' => 'Ajax Comment Form',
+    'page callback' => 'livecomments_ajax_form',
+    'access callback' => TRUE,
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ * livecomment_ajax_form()
+ */
+function livecomments_ajax_form($nid) {
+    $node = node_load($nid);
+    $submission = (object) array();
+    $enabled = TRUE;
+    $preview = FALSE;
+    $form= render(drupal_get_form('livecomments_comment_form', $node, $submission, $enabled, $preview));
+    // Generate the settings:
+    $settings = FALSE;
+    $javascript = drupal_add_js(NULL, NULL);
+    if(isset($javascript['settings'], $javascript['settings']['data'])) {
+      $settings = '<script type="text/javascript">jQuery.extend(Drupal.settings, ';
+      $settings .= drupal_json_encode(call_user_func_array('array_merge_recursive', $javascript['settings']['data']));
+      $settings .=  ');</script>';
+    }
+    // Return the rendered form and the settings
+    die($form . $settings);
+}
+
+/*
+ * Implements hook_view()
+ */
+  function livecomments_node_view_alter(&$build) {
+    $nid = $build['comments']['comment_form']['nid']['#value'];
+    if (user_is_anonymous()) {
+      $nid = $build['#node']->nid;
+      // Create a render array of a link:
+      // Example: https://api.drupal.org/comment/14324#comment-14324
+      $link = array(
+        '#type' => 'link',
+        '#title' => t('Register to Post Rant'),
+        '#href' => 'user/register',
+        '#options' => array(
+          'attributes' => array(
+            'class' => array(
+              'btn',
+              'btn-primary',
+            ),
+          ),
+        ),
+      );
+      // Create the Login Button (a link styled to appear like a button)
+      $link2 = array(
+        '#prefix' => '',
+        '#suffix' => '',
+        '#type' => 'link',
+        '#title' => t('Log In to Post Rant'),
+        '#href' => 'user/login',
+        
+        '#options' => array(
+          'query' => drupal_get_destination(),
+          'fragment' => 'comments',
+          'attributes' => array(
+            'class' => array(
+              'btn',
+              'btn-default',
+            ),
+          ),
+        ),
+      );
+      // End render arrays
+      drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
+      $build['comments']['#suffix'] = '<div id="livecomments">' . '<ul><li>' . drupal_render($link2) . '</li><li>' . drupal_render($link) . '</li></ul></div>';
+      $setting = array('livecomments' => array('currentNid' => $nid));
+      drupal_add_js($setting, 'setting');
+      /*
+      $output = "<div id='ajax-response-goes-here'></div>Some HTML and stuff" . drupal_render($link);
+      drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
+      $build['comments']['#theme'] = 'livecomments';
+      $build['comments']['#suffix'] = '<h3>Add Your Rant</h3>';
+      $build['comments']['#suffix'] .= '<div id="livecomments"></div>';
+      $build['comments']['#suffix'] .= drupal_render(drupal_get_form('livecomments_comment_form'));
+      //$build['comments']['#markup'] = drupal_render(drupal_get_form('livecomments_comment_form'));
+      */
+    }
+  }
+  
+/**
+ * Creates a simple form for non-authenticated comments
+ */
+function livecomments_comment_form($form, &$form_state) {
+  $nid = $form_state['build_info']['args'][0]->nid;
+  $form['#prefix'] = '<p>Already a member of San Angelo LIVE?';
+  $form['#prefix'] .= l('Log In', 'user/login',
+    array(
+      'query' => array('destination' => 'node/' . $nid),
+      'fragment' => 'comments',
+      'attributes'=>
+        array(
+          'class' => array(
+            'btn',
+            'btn-default',
+            'form-submit',
+          ),
+        ),
+      )
+    );
+  $form['#prefix'] .= '</p>';
+  $form['username'] = array( 
+    '#type' => 'textfield', 
+    '#title' => t('Username'), 
+    //'#default_value' => 'Create a Username', 
+    '#size' => 60, 
+    '#maxlength' => 128, 
+    '#required' => TRUE,
+    '#weight' => 0,
+    '#attributes' => array(
+      'placeholder' => 'Create a Username',
+    ),
+  );
+  $form['comment'] = array(
+    '#type' => 'text_format',
+    '#title' => t('Enter Your rant Here'),
+    //'#default_value' => 'Start typing a rant here.',
+    '#format' => $term->format,
+    '#weight' => 1,
+    '#attributes' => array(
+      'placeholder' => 'Start typing a rant here.',
+    ),
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => t('Post Your Rant'),
+      '#weight' => 2,
+    );
+    $form['nid'] = array(
+       '#type' => 'hidden',
+       '#value' => $dest,
+       '#weight' => 3,
+    );
+    return $form;
+  }
+
+/**
+ * form submit handler
+ */
+function livecomments_comment_form_submit($form, &$form_state) {
+  if (isset($form_state['values']['comment']['value']) && !empty($form_state['values']['comment']['value'])) {
+    $comment = $form_state['values']['comment']['value'];
+  }
+  if (isset($form_state['values']['username']) && !empty($form_state['values']['username'])) {
+    $username = $form_state['values']['username'];
+  }
+  user_cookie_save (
+    array(
+      'username' => $username,
+      'comment' => $comment,
+      'nid' => $form_state['build_info']['args'][0]->nid,
+    )
+  );
+  drupal_goto('user/register');
+}
+
+/**
+ * Implements hook_form_alter()
+ */
+function livecomments_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'user_register_form') {
+    if (isset($_COOKIE['Drupal_visitor_username']) && !empty($_COOKIE['Drupal_visitor_username'])) {
+      $form['account']['name']['#default_value'] = $_COOKIE['Drupal_visitor_username'];
+    }
+  }
+  if ($form_id == 'comment_node_article_form') {
+    if (isset($_COOKIE['Drupal_visitor_comment']) && !empty($_COOKIE['Drupal_visitor_comment'])) {
+      $form['comment_body'][LANGUAGE_NONE][0]['#default_value'] = $_COOKIE['Drupal_visitor_comment'];
+      user_cookie_delete($_COOKIE['Drupal_visitor_comment']);
+      user_cookie_delete($_COOKIE['Drupal_visitor_username']);
+      user_cookie_delete($_COOKIE['Drupal_visitor_nid']);
+    }
+  }
+}
+
+/**
+ * implements hook_user_login()
+ *
+function livecomments_user_login(&$edit, $account) {
+  // Your logic will set $redirection to the desired location
+  if (isset($_COOKIE['Drupal_visitor_username']) && !empty($_COOKIE['Drupal_visitor_username'])) {
+    $redirection = $_COOKIE['Drupal_visitor_nid'];
+    $_GET['destination'] = array($redirection, array('fragment' => '#comments')); // Should we use
+    $edit['redirect'] = array($redirection, array('fragment' => '#comments'));
+    // Delete the cookies for username:
+    user_cookie_delete($_COOKIE['Drupal_visitor_nid']);
+    user_cookie_delete($_COOKIE['Drupal_visitor_username']);
+  }
+}
+// */
+/*
+ * Implements hook_user_update()
+ */
+ function livecomments_user_update(&$edit, $account, $category) {
+  if (isset($_COOKIE['Drupal_visitor_username']) && !empty($_COOKIE['Drupal_visitor_username'])) {
+    $redirection = $_COOKIE['Drupal_visitor_nid'];
+    $_GET['destination'] = 'node/' . $redirection . '#comments'; // Should we use
+    $edit['redirect'] = 'node/' . $redirection;
+    // Delete the cookies for username:
+    user_cookie_delete($_COOKIE['Drupal_visitor_nid']);
+    user_cookie_delete($_COOKIE['Drupal_visitor_username']);
+  }
+ }
+

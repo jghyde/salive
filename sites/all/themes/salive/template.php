@@ -136,25 +136,25 @@ function salive_page_alter($page) {
 		'#type' => 'html_tag',
 		'#tag' => 'meta',
 		'#attributes' => array(
-		'name' =>  'MobileOptimized',
-		'content' =>  'width'
-		)
+		  'name' =>  'MobileOptimized',
+		  'content' =>  'width'
+		),
 	);
 	$handheldfriendly = array(
 		'#type' => 'html_tag',
 		'#tag' => 'meta',
 		'#attributes' => array(
-		'name' =>  'HandheldFriendly',
-		'content' =>  'true'
-		)
+		  'name' =>  'HandheldFriendly',
+		  'content' =>  'true'
+		),
 	);
 	$viewport = array(
 		'#type' => 'html_tag',
 		'#tag' => 'meta',
 		'#attributes' => array(
-		'name' =>  'viewport',
-		'content' =>  'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
-		)
+		  'name' =>  'viewport',
+		  'content' =>  'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+		),
 	);
 	drupal_add_html_head($mobileoptimized, 'MobileOptimized');
 	drupal_add_html_head($handheldfriendly, 'HandheldFriendly');

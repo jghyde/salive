@@ -1,0 +1,4 @@
+name = livecomments
+description = Modifies comments for the LIVE! Platform
+package = LIVE! Platform
+core = 7.x

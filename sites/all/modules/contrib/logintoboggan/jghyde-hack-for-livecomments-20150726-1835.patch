@@ -1,0 +1,18 @@
+diff --git a/sites/all/modules/contrib/logintoboggan/logintoboggan.module b/sites/all/modules/contrib/logintoboggan/logintoboggan.module
+index 55b93fe..258e245 100755
+--- a/sites/all/modules/contrib/logintoboggan/logintoboggan.module
++++ b/sites/all/modules/contrib/logintoboggan/logintoboggan.module
+@@ -1129,6 +1129,13 @@ function _logintoboggan_process_redirect($redirect, $account) {
+   // Explicitly create query and fragment elements if not present already.
+   $query = isset($redirect['query']) ? $redirect['query'] : array();
+   $fragment = isset($redirect['fragment']) ? $redirect['fragment'] : '';
++  // @hack for comments stored in cookies in livecomments.module jghyde
++  // Check is there's a cookie for nid
++  if (isset($_COOKIE['Drupal_visitor_nid']) && !empty($_COOKIE['Drupal_visitor_nid'])) {
++    $redirect['path'] = 'node/' . $_COOKIE['Drupal_visitor_nid'];
++    $fragment = 'comments';
++    $redirect['query'] = array();
++  }
+ 
+   return array(
+     $redirect['path'],
