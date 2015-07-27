@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * This file contains the main theme functions hooks and overrides.
@@ -48,6 +49,11 @@ function adminimal_preprocess_html(&$vars) {
   // Add icons to the admin configuration page.
   if (theme_get_setting('display_icons_config')) {
     drupal_add_css($adminimal_path . '/css/icons-config.css', array('group' => CSS_THEME, 'weight' => 10, 'preprocess' => TRUE));
+  }
+
+  // Add icons to the admin configuration page.
+  if (theme_get_setting('avoid_custom_font')) {
+    drupal_add_css($adminimal_path . '/css/avoid_custom_font.css', array('group' => CSS_THEME, 'weight' => 9000, 'preprocess' => TRUE));
   }
 
   // Define Default media queries.

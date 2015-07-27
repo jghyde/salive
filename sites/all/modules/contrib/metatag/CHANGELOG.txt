@@ -1,5 +1,20 @@
-Metatag 7.x-1.x-dev, xxxx-xx-xx
--------------------------------
+Metatag 7.x-1.7, 2015-07-24
+---------------------------
+#2537738 by deepak_zyxware: Incorrect path to fb_social settings page.
+#2535178 by DamienMcKenna: 'multiple' option on Viewport causes problems with
+  the meta tag's intended values.
+#2524460 by DamienMcKenna, adriancotter, gbirch, jrb: Remove custom wrangling
+  for Views-based custom entity displays, added new hook to allow other modules
+  to customize as needed (hook_metatag_views_post_render_get_entity).
+#2199533 by Adrian Richardson, DamienMcKenna, mairi: Don't reload entities when
+  processing tokens, it causes problems with content workflows.
+#2513892 by DamienMcKenna: Tests for user objects.
+#1658970 by DamienMcKenna, stefan.r, subhojit777, HyperGlide, jenlampton: Drush
+  script to convert data from the Page Title module.
+
+
+Metatag 7.x-1.6, 2015-06-30
+---------------------------
 #2503089 by DamienMcKenna: Added support for the "any" favicon, used for SVG
   files in Safari 9.
 #2499865 by DamienMcKenna: Improvements to entity selection, all sites will now
@@ -28,6 +43,15 @@ Metatag 7.x-1.x-dev, xxxx-xx-xx
 #2265453 by zd123, DamienMcKenna: CTools keyword substitution for Panels
   integration.
 #2512284 by DamienMcKenna: Missing token browser link on main Metatag fieldset.
+#2513890 by DamienMcKenna: Added tests for taxonomy term integration.
+#1404270 by JStanton, DamienMcKenna: Added the Refresh meta tag.
+#2384673 by etroid, DamienMcKenna: Added the shortcut icon meta tag.
+#2514852 by rrfegade: Spelling mistakes in README.txt files.
+#2514878 by DamienMcKenna: Ignore admin pages on Views/CTools-driven entity
+  pages.
+#2514812 by david_garcia: Fix Views integration for ECK entities.
+#2514572 by DamienMcKenna: Don't check if records exist when deleting them,
+  just run the deletion query.
 
 
 Metatag 7.x-1.5, 2015-05-29
@@ -427,7 +451,7 @@ By DamienMcKenna: Moved hook_requirements to the top of metatag.install.
   primary keys.
 #1864306 by DamienMcKenna: Follow-on to only export the $config->disabled
   setting if it exists.
-#2173271 by deetergp: Spelling and grammer fixes for README.txt.
+#2173271 by deetergp: Spelling and grammar fixes for README.txt.
 #2172433 by fabsor, DamienMcKenna: Ensure that update 7015 runs early enough to
   avoid data corruption or errors during other updates.
 #2156261 by plopesc, DamienMcKenna: Allow meta tags for 403/404 error pages to
