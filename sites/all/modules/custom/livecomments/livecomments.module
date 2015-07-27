@@ -57,6 +57,9 @@ function livecomments_ajax_form($nid) {
  * Implements hook_view()
  */
   function livecomments_node_view_alter(&$build) {
+    if ($build['#node']->comment == 1) {
+      return;
+    }
     $nid = $build['comments']['comment_form']['nid']['#value'];
     if (user_is_anonymous()) {
       $nid = $build['#node']->nid;
