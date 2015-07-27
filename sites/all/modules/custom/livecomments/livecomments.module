@@ -127,9 +127,9 @@ function livecomments_ajax_form($nid) {
 function livecomments_comment_form($form, &$form_state) {
   $nid = $form_state['build_info']['args'][0]->nid;
   $form['#prefix'] = '<p>Already a member of San Angelo LIVE?';
+  $form['#action'] = url('https://secure.sanangelolive.com/user/register', array('external' => TRUE, 'https' => TRUE));
   $form['#prefix'] .= l('Log In', 'user/login',
-  $form['#action'] = url('https://secure.sanangelolive.com/user/register', array('external' => TRUE, 'https' => TRUE)),
-    array(
+      array(
       'query' => array('destination' => 'node/' . $nid),
       'fragment' => 'comments',
       'attributes'=>
