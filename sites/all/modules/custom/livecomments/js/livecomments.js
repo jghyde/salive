@@ -6,6 +6,7 @@
       var loadURL = '/livecomment/js/' + currentNid;
       $('#livecomments').load(loadURL);
       $('#livecomments').addClass('ajax-tmz');
+      $('#comments div.url-textfield').hide();
     }
   }
 })(jQuery);
