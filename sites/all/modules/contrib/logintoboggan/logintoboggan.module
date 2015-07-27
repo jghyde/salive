@@ -1131,7 +1131,7 @@ function _logintoboggan_process_redirect($redirect, $account) {
   $fragment = isset($redirect['fragment']) ? $redirect['fragment'] : '';
   // @hack for comments stored in cookies in livecomments.module jghyde
   // Check is there's a cookie for nid
-  if (isset($_COOKIE['Drupal_visitor_nid']) && !empty($_COOKIE['Drupal_visitor_nid'])) {
+  if (isset($_COOKIE['Drupal_visitor_nid']) && !empty($_COOKIE['Drupal_visitor_nid']) && !user_is_anonymous()) {
     $redirect['path'] = 'node/' . $_COOKIE['Drupal_visitor_nid'];
     $fragment = 'comments';
     $redirect['query'] = array();
