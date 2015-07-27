@@ -208,7 +208,7 @@ function livecomments_form_alter(&$form, &$form_state, $form_id) {
     }
   }
   if ($form_id == 'comment_node_article_form') {
-    if (isset($_COOKIE['Drupal_visitor_comment']) && !empty($_COOKIE['Drupal_visitor_comment'])) {
+    if (!user_is_anonymous() && isset($_COOKIE['Drupal_visitor_comment']) && !empty($_COOKIE['Drupal_visitor_comment'])) {
       $form['comment_body'][LANGUAGE_NONE][0]['#default_value'] = $_COOKIE['Drupal_visitor_comment'];
       user_cookie_delete($_COOKIE['Drupal_visitor_comment']);
       user_cookie_delete($_COOKIE['Drupal_visitor_username']);

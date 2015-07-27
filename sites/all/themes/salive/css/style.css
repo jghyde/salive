@@ -17269,6 +17269,9 @@ ul li.leaf {
   clear: both;
   width: 82%;
 }
+#comments label.control-label {
+  margin-right: 1em;
+}
 #comments .url-textfield {
   display: none;
 }
