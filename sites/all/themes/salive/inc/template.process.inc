@@ -221,6 +221,23 @@ function salive_process_maintenance_page(&$vars) {
  * Override or insert vars into the node template.
  */
 function salive_preprocess_node(&$vars) {
+  // add an open graph tag for the image
+	if ($vars['type'] == 'article' ||
+	    $vars['type'] == 'event' ) {
+	  if (count($vars['field_image']) > 0) {
+		  // make the OG image the first one:
+			$og_image = $vars['field_image'][0];
+			$url = image_style_url('facebook', $og_image['uri']);
+      $element = array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'property' => "og:image",
+          'content' => $url,
+        ),
+      );
+      drupal_add_html_head($element,'facebook_share_image');	
+		}
+	}
 	if (theme_get_setting('extra_article_classes')) {
     if (module_exists('translation')) {
       if ($vars['node']->language) {

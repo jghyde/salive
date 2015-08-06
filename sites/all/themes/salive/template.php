@@ -160,3 +160,5 @@ function salive_page_alter($page) {
 	drupal_add_html_head($handheldfriendly, 'HandheldFriendly');
 	drupal_add_html_head($viewport, 'viewport');
 }
+
+
