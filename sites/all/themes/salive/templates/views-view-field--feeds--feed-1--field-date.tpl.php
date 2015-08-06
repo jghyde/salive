@@ -24,7 +24,7 @@
 
  $zone = date_default_timezone_set('America/Chicago');
  $time = new DateObject($row->field_data_field_date_field_date_value);
- $sttime =  strtotime($time->originalTime) - 3600*5;
- $date = date('F j, Y - g:i a',$sttime);
+ $sttime =  strtotime($time->originalTime) - 3600;
+ $date = date('Y-m-d\TH:i:s',$sttime);
 ?>
 <?php print $date; ?>
