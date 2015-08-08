@@ -235,7 +235,9 @@ function salive_preprocess_node(&$vars) {
           'content' => $url,
         ),
       );
-      drupal_add_html_head($element,'facebook_share_image');	
+      drupal_add_html_head($element,'facebook_share_image');
+			$element['#attributes']['property'] = 'twitter:image';
+			drupal_add_html_head($element,'twitter_card_image');
 		}
 	}
 	if (theme_get_setting('extra_article_classes')) {
