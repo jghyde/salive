@@ -6463,7 +6463,7 @@ input,
 textarea,
 select,
 .uneditable-input {
-  max-width: 100%;
+  width: 100%;
   width: auto;
 }
 input.error {
@@ -15495,7 +15495,7 @@ textarea {
   margin-right: 0;
 }
 #content img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 #content #block-system-main {
@@ -17329,7 +17329,6 @@ ul li.leaf {
 .page-type-obituary .field-type-image,
 .page-type-obit-paid .field-type-image {
   margin: 0 10px 10px 0;
-  max-width: 350px;
 }
 .page-type-obituary .field-type-image img,
 .page-type-obit-paid .field-type-image img {
