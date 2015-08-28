@@ -58,7 +58,7 @@ else {
 <td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q2'][0]['#markup'] != '' && $content['field_home_q2'][0]['#markup'] !== 0)?$content['field_home_q2'][0]['#markup']: '-'); ?></td>
 <td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q3'][0]['#markup'] != '' && $content['field_home_q3'][0]['#markup'] !== 0)?$content['field_home_q3'][0]['#markup']: '-'); ?></td>
 <td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q4'][0]['#markup'] != '' && $content['field_home_q4'][0]['#markup'] !== 0)?$content['field_home_q4'][0]['#markup']: '-'); ?></td>
-<td class="success"><?php print $hscore; ?></td>
+<td class="success" width="10%"><?php print $hscore; ?></td>
 </tr>
 </table>
 <?php if ($is_admin): ?>
