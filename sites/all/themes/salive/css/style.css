@@ -7072,6 +7072,10 @@ img {
   font-size: 0.5em;
   font-size: 0.5rem;
 }
+.node-game .table-condensed tr td {
+  font-size: 0.9em;
+  font-size: 0.9rem;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
