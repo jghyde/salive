@@ -37,7 +37,7 @@ else {
 </div>
 <?php } ?>
 <?php endif; ?>
-<table class="table table-condensed table-striped">
+<table class="table table-striped">
 <tr>
 <th class="game-team">Team</th>
 <th>Q 1</th>
