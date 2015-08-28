@@ -1,8 +1,6 @@
 <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   <header>
-  <?php if ($page): ?>
-  <h2><?php print $title; ?></h2>
-  <?php else: ?>
+  <?php if (!$page): ?>
   <h3><?php print l($title, 'node/' . $node->nid); ?></h3>
   <?php endif; ?>
   </header>
