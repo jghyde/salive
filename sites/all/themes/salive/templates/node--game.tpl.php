@@ -38,27 +38,15 @@ else {
 <table class="table table-striped">
 <tr>
 <th class="game-team">Team</th>
-<th>Q 1</th>
-<th>Q 2</th>
-<th>Q 3</th>
-<th>Q 4</th>
 <th class="success"><?php print $total; ?></th>
 </tr>
 <tr>
 <td class="game-visitor"><?php print $content['field_visiting_team'][0]['#markup']; ?></td>
-<td class="text-right<?php print $visitor_override; ?>"><?php print render(($content['field_visit_q1'][0]['#markup'] != '' && $content['field_visit_q1'][0]['#markup'] !== 0) ? $content['field_visit_q1'][0]['#markup']: '-'); ?></td>
-<td class="text-right<?php print $visitor_override; ?>"><?php print render(($content['field_visit_q2'][0]['#markup'] != '' && $content['field_visit_q2'][0]['#markup'] !== 0) ? $content['field_visit_q2'][0]['#markup']: '-'); ?></td>
-<td class="text-right<?php print $visitor_override; ?>"><?php print render(($content['field_visit_q3'][0]['#markup'] != '' && $content['field_visit_q3'][0]['#markup'] !== 0) ? $content['field_visit_q3'][0]['#markup']: '-'); ?></td>
-<td class="text-right<?php print $visitor_override; ?>"><?php print render(($content['field_visit_q4'][0]['#markup'] != '' && $content['field_visit_q4'][0]['#markup'] !== 0) ? $content['field_visit_q4'][0]['#markup']: '-'); ?></td>
-<td class="success"><?php print $vscore; ?></td
+<td class="success" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td
 </tr>
 <tr>
 <td class="game-home"><?php print $content['field_home_team'][0]['#markup']; ?></td>
-<td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q1'][0]['#markup'] != '' && $content['field_home_q1'][0]['#markup'] !== 0)?$content['field_home_q1'][0]['#markup']: '-'); ?></td>
-<td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q2'][0]['#markup'] != '' && $content['field_home_q2'][0]['#markup'] !== 0)?$content['field_home_q2'][0]['#markup']: '-'); ?></td>
-<td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q3'][0]['#markup'] != '' && $content['field_home_q3'][0]['#markup'] !== 0)?$content['field_home_q3'][0]['#markup']: '-'); ?></td>
-<td class="text-right<?php print $home_override; ?>"><?php print (($content['field_home_q4'][0]['#markup'] != '' && $content['field_home_q4'][0]['#markup'] !== 0)?$content['field_home_q4'][0]['#markup']: '-'); ?></td>
-<td class="success" width="10%"><?php print (($hscore == '' && $hscore === 0) ? $hscore: '0'); ?></td>
+<td class="success" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td>
 </tr>
 </table>
 <?php if ($is_admin): ?>
