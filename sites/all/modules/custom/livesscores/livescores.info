@@ -1,0 +1,4 @@
+name = LIVE Scores
+description = For the football scores
+package = LIVE
+core = 7.x
