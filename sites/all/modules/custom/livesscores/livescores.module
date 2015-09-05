@@ -4,13 +4,13 @@
  */
 function livescores_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'game_node_form') {
+    $form['title']['#required'] = 0;
     $form['#submit'][] = 'livescores_form_submit';
     $form['title']['#type'] = 'value';
   }
 }
 
 function livescores_form_submit($form, &$form_state) {
-  $i = 0;
   // get visitor team node title
   $vis = node_load($form_state['values']['field_visiting_team'][LANGUAGE_NONE][0]['target_id']);
   $vis_title = $vis->title;
