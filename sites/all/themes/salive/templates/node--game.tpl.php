@@ -42,7 +42,7 @@ else {
 </tr>
 <tr>
 <td class="game-visitor"><?php print $content['field_visiting_team'][0]['#markup']; ?></td>
-<td class="success" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td
+<td class="success" width="30%"><?php print (($vscore == '' || $vscore === 0) ? '0' :$vscore); ?></td
 </tr>
 <tr>
 <td class="game-home"><?php print $content['field_home_team'][0]['#markup']; ?></td>
