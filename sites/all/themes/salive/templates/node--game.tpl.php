@@ -37,7 +37,7 @@ else {
 <?php endif; ?>
 <table class="table table-striped">
 <tr>
-<th class="game-team">Team in the <?php print $content['field_game_quarter'][0]['#markup']; ?></th>
+<th class="game-team">Team in <?php print $content['field_game_quarter'][0]['#markup']; ?></th>
 <th class="success"><?php print $total; ?></th>
 </tr>
 <tr>
