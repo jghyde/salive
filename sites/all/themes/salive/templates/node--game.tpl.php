@@ -50,11 +50,12 @@ else {
 </tr>
 </table>
 <div class="status">
-Last revised at <?php print date('M j, Y \a\t h:i', $node->revision_timestamp); ?> by <?php print $revision_author->name; ?>
+Last revised on <?php print date('M j, Y \a\t h:i', $node->revision_timestamp); ?>
 </div>
 <?php if ($is_admin): ?>
 <?php
 $revision_author = user_load($revision_uid);
+print  ' by ' . $revision_author->name;
 ?>
 
 <?php
