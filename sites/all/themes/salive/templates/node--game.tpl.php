@@ -49,13 +49,14 @@ else {
 <td class="success" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td>
 </tr>
 </table>
+<div class="status">
+Last revised at <?php print date('M j, Y \a\t h:i', $node->revision_timestamp); ?> by <?php print $revision_author->name; ?>
+</div>
 <?php if ($is_admin): ?>
 <?php
 $revision_author = user_load($revision_uid);
 ?>
-<div class="status">
-Last revised at <?php print date('M j, Y \a\t h:i', $node->revision_timestamp); ?> by <?php print $revision_author->name; ?>
-</div>
+
 <?php
 if (!$page) {
   print l('Edit', 'node/' . $node->nid . '/edit', array('query' => array('destination' => 'scores-new' )));
