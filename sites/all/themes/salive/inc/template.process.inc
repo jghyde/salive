@@ -42,7 +42,12 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
-  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
+	if ($vars['is_front'] == 1) {
+	  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
+	}
+	else {
+    drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
+	}
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
 	
