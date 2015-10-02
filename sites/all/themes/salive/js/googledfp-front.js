@@ -111,7 +111,7 @@ googletag.cmd.push(function() {
   googletag.pubads().enableSingleRequest();
   googletag.enableServices();
 });
-  $(window).resize(function(){
+  /* $(window).resize(function(){
 		googletag.pubads().refresh([slot1, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot101, slot102, slot103, slot104, slot105, slot106, slot107, slot108, slot109, slot110, slot111, slot112, slot113, slot114, slot115, slot116, slot117, slot118, slot119, slot120, slot201, slot202, slot203, slot204, slot301, slot302, slot303, slot304]);
-	})(jQuery);
+	})(jQuery); */
 
