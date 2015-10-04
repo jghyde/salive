@@ -46,7 +46,15 @@ function salive_preprocess_html(&$vars) {
 	  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
 	}
 	else {
-    drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
+	  $path = menu_get_item();
+		switch ($path['path']) {
+		  case 'news':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news.js');
+			break;
+			default:
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
+			break;
+		}  
 	}
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
 	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
