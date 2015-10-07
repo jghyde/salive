@@ -20,14 +20,6 @@ function salive_preprocess_html(&$vars) {
 		drupal_add_js($headlines_js, "inline");
 		$css .= '#hlitemContainer li:nth-child(' . $headline_pager . 'n+' . $headline_pager . ') {border: none;}';
 	}
-	
-	// Add add-to-homescreen bookmark web app thing
- // drupal_add_js(libraries_get_path('add-to-homescreen') . '/src/addtohomescreen.min.js');
- // drupal_add_css(libraries_get_path('add-to-homescreen') . '/style/addtohomescreen.css');
-//	if ($vars['is_front'] == 1) {
-//    drupal_add_js(libraries_get_path('add-to-homescreen') . '/true.js');
-//	}
-
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js');
   
@@ -42,8 +34,105 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
+	// Google DFP hacks
+	// find out if it's an article
+	$node_type = NULL;
+	if (arg(0) == 'node' && is_numeric(arg(1))) {
+	  $node_ck = node_load(arg(1));
+	  $node_type = $node_ck->type;
+	}
 	if ($vars['is_front'] == 1) {
 	  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
+	}
+	elseif ($node_type == 'article') {
+	  // Find the $defined_slots. Must have livenewsads module enabled.
+		$slots = livenewsads_slots();
+		if (count($slots > 0) ) {
+		  //create js for the <head> to display ads
+			$js = <<<EOT
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+ 
+googletag.cmd.push(function() {
+  var width = document.documentElement.clientWidth;
+  var box;
+  	if (width >= 320 && width < 991) 
+		box = [300, 250]; 
+		else if (width > 991  && width <1199) 
+	  box = [180, 150];
+	else
+		box = [300, 250];
+	var ban;
+  	if (width >= 320 && width < 991) 
+		ban = [300, 250]; 
+		else if (width > 992 && width < 1199) 
+	  ban = [485, 60];
+		else if (width > 1200 && width < 1585)
+		ban = [647, 80];
+	else
+		ban = [728, 90];
+	var banwl;
+  	if (width >= 320 && width < 991) 
+		banwl = [300, 250]; 
+		else if (width > 992 && width < 1199) 
+	  banwl = [580, 112];
+		else if (width > 1200 && width < 1585)
+		banwl = [710, 137];
+	else
+		banwl = [930, 180];
+	var banwlb;
+  	if (width >= 320 && width < 991) 
+		banwlb = [300, 250]; 
+		else if (width > 992 && width < 1199) 
+	  banwlb = [620, 120];
+		else if (width > 1200 && width < 1585)
+		banwlb = [775, 150];
+	else
+		banwlb = [930, 180];
+	var banst;
+  	if (width >= 320 && width < 991) 
+		banst = [300, 100]; 
+		else if (width > 992 && width < 1199) 
+	  banst = [190, 63];
+		else if (width > 1200 && width < 1585)
+		banst = [240, 80];
+	else
+		banst = [300, 100];
+	var slot1=googletag.defineSlot('/116956976/SALive_Breaking_News', [320, 50], 'div-gpt-ad-1425500431462-1').addService(googletag.pubads());
+	var slot3=googletag.defineSlot('/116956976/SALive_B_Rail_1', box, 'div-gpt-ad-1425500431462-2').addService(googletag.pubads());
+	var slot4=googletag.defineSlot('/116956976/SALive_B_Rail_2', box, 'div-gpt-ad-1425500431462-3').addService(googletag.pubads());
+	var slot5=googletag.defineSlot('/116956976/SALive_B_Rail_3', box, 'div-gpt-ad-1425500431462-4').addService(googletag.pubads());
+	var slot6=googletag.defineSlot('/116956976/SALive_B_Rail_4', box, 'div-gpt-ad-1425500431462-5').addService(googletag.pubads());
+	var slot12=googletag.defineSlot('/116956976/SALive_BLW_Story', banwl, 'div-gpt-ad-1425500431462-12').addService(googletag.pubads());
+	var slot18=googletag.defineSlot('/116956976/SALive_BW_Bottom', ban, 'div-gpt-ad-1425500431462-17').addService(googletag.pubads());
+	var slot19=googletag.defineSlot('/116956976/SALive_BW_Top', ban, 'div-gpt-ad-1425500431462-18').addService(googletag.pubads());
+	
+EOT;
+    $i = 101;
+		$n = 1;
+    foreach($slots as $slot) {
+		  $js .= 'var slot' . $i . '=googletag.defineSlot(\'/116956976/newsbody_' . $n . '\', box, ' . "'" . $slot . '\').addService(googletag.pubads());' . "\n";
+			$i++;
+			$n++;
+		}
+    $js .= <<<EOT
+  googletag.pubads().enableSingleRequest();
+  googletag.enableServices();
+});
+EOT;
+    // add the js
+		drupal_add_js($js, array('type' => 'inline', 'scope' => 'header', 'weight' => 1));
+		}
 	}
 	else {
 	  $path = menu_get_item();
@@ -270,18 +359,6 @@ function salive_preprocess_node(&$vars) {
 
 	if ($vars['view_mode'] == 'teaser') {
     $vars['classes_array'][] = "node-".$vars['node']->type."-teaser";
-  }
-
-	if (isset($vars['display_submitted']) && $vars['display_submitted'] == 1) {
-    // Place the "Sell the comments and login" below the author, where the comments WOULD be
-    $sell = '';
-    /*
-		if (user_is_anonymous()) {
-      if ($vars['type'] == 'article' || $vars['type'] == 'event') {
-        $sell = salive_sellthelogin();
-      }
-    }
-    */
   }
   if ($vars['display_submitted']) {
 		$author = user_load($vars['uid']);
