@@ -75,27 +75,6 @@ googletag.cmd.push(function() {
 	var slot18=googletag.defineSlot('/116956976/SALive_BW_Bottom', ban, 'div-gpt-ad-1425500431462-17').addService(googletag.pubads());
 	var slot19=googletag.defineSlot('/116956976/SALive_BW_Top', ban, 'div-gpt-ad-1425500431462-18').addService(googletag.pubads());
   var slot20=googletag.defineSlot('/116956976/SALive_BLW_Crash_2', banwl, 'div-gpt-ad-1425500431462-19').addService(googletag.pubads());
-	// News Body
-	var slot101=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-101').addService(googletag.pubads());
-	var slot102=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-102').addService(googletag.pubads());
-	var slot103=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-103').addService(googletag.pubads());
-	var slot104=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-104').addService(googletag.pubads());
-	var slot105=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-105').addService(googletag.pubads());
-	var slot106=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-106').addService(googletag.pubads());
-	var slot107=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-107').addService(googletag.pubads());
-	var slot108=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-108').addService(googletag.pubads());
-	var slot109=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-109').addService(googletag.pubads());
-	var slot110=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-110').addService(googletag.pubads());
-	var slot101=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-111').addService(googletag.pubads());
-	var slot102=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-112').addService(googletag.pubads());
-	var slot103=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-113').addService(googletag.pubads());
-	var slot104=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-114').addService(googletag.pubads());
-	var slot105=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-115').addService(googletag.pubads());
-	var slot106=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-116').addService(googletag.pubads());
-	var slot107=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-117').addService(googletag.pubads());
-	var slot108=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-118').addService(googletag.pubads());
-	var slot109=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-119').addService(googletag.pubads());
-	var slot110=googletag.defineSlot('/116956976/SALive_B_News', [300, 250], 'div-gpt-ad-1425500431462-120').addService(googletag.pubads());
 	// News Views
 	var slot201=googletag.defineSlot('/116956976/SALive_BW_News', ban, 'div-gpt-ad-1425500431462-202').addService(googletag.pubads());
 	var slot202=googletag.defineSlot('/116956976/SALive_BW_News', ban, 'div-gpt-ad-1425500431462-203').addService(googletag.pubads());
