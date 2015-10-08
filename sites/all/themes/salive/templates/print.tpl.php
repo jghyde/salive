@@ -23,7 +23,7 @@
     <div class="print-site_name"><?php print theme('print_published'); ?></div>
     <p />
       <h1 class="print-title"><?php print $print_title; ?></h1>
-    <div class="print-content"><?php print $content; ?></div>
+    <div class="print-content p402_premium"><?php print $content; ?></div>
     <div class="print-footer"><?php print theme('print_footer'); ?></div>
     <hr class="print-hr" />
     <?php if ($sourceurl_enabled): ?>

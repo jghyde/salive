@@ -34,6 +34,25 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
+	// Google Surveys
+	$js = <<<EOT
+(function() {
+  var ARTICLE_URL = window.location.href;
+  var CONTENT_ID = 'everything';
+  document.write(
+    '<scr'+'ipt '+
+    'src="//survey.g.doubleclick.net/survey?site=_svfs4ntpfivgotmieqafjocpeu'+
+    '&amp;url='+encodeURIComponent(ARTICLE_URL)+
+    (CONTENT_ID ? '&amp;cid='+encodeURIComponent(CONTENT_ID) : '')+
+    '&amp;random='+(new Date).getTime()+
+    '" type="text/javascript">'+'\x3C/scr'+'ipt>');
+})();
+EOT;
+  drupal_add_js($js, array('type' => 'inline', 'scope' => 'header', 'weight' => 5));
+	$js = <<<EOT
+  try { _402_Show(); } catch(e) {}
+EOT;
+  drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 1));
 	// Google DFP hacks
 	// find out if it's an article
 	$node_type = NULL;
@@ -139,6 +158,48 @@ EOT;
 		switch ($path['path']) {
 		  case 'news':
 			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news.js');
+			break;
+			case 'news/business':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+						case 'news/crime':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/business':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/county':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/san-angelo':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/crashes':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/business':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/health':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/international':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/national':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/entertainment':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/politics':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/sports':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
+			break;
+			case 'news/texas':
+			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
 			break;
 			default:
 			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');

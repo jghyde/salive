@@ -15,7 +15,7 @@
 	      </div> <!-- /#messages -->
 	    <?php endif; ?>
 	
-	    <div id="content" class="<?php print $main_grid_class;?>">
+	    <div id="content" class="<?php print $main_grid_class;?> p402_premium">
 		    <div class="content-inner">
 					<?php if ($breadcrumb): ?>
 		        <div id="breadcrumb"><?php print $breadcrumb; ?></div>
