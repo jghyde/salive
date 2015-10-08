@@ -34,7 +34,12 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
-  if (!$vars['is_front']) {
+	$node_type = NULL;
+	if (arg(0) == 'node' && is_numeric(arg(1))) {
+	  $node_ck = node_load(arg(1));
+	  $node_type = $node_ck->type;
+	}
+  if ($node_type == 'article') {
 	  // Google Surveys
 	  $js = <<<EOT
 (function() {
