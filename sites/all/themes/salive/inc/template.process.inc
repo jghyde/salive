@@ -34,8 +34,9 @@ function salive_preprocess_html(&$vars) {
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
-	// Google Surveys
-	$js = <<<EOT
+  if (!$vars['is_front']) {
+	  // Google Surveys
+	  $js = <<<EOT
 (function() {
   var ARTICLE_URL = window.location.href;
   var CONTENT_ID = 'everything';
@@ -52,7 +53,8 @@ EOT;
 	$js = <<<EOT
   try { _402_Show(); } catch(e) {}
 EOT;
-  drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 1));
+    drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 1));
+  }
 	// Google DFP hacks
 	// find out if it's an article
 	$node_type = NULL;

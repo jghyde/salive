@@ -1,7 +1,7 @@
 
 <?php include 'page.header.inc'; ?>
 <div class="container">
-	<div class="col-md-12 p402_premium">
+	<div class="col-md-12">
   <?php if ($messages): ?>
   <div id="messages">
     <?php print $messages; ?>
