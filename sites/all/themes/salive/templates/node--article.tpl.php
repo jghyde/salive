@@ -16,11 +16,9 @@
 			print render($content['field_image']);
 			print '<div class="node-author">' . $byline .'</div>';
 		?>	
-			<div class="p402_premium">
 				<?php
 					print render($content['body']);
 				?>
-      </div>
 	  </div>
 	<?php print render($content['links']); ?>
 	
