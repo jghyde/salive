@@ -37,33 +37,46 @@ else {
 <?php endif; ?>
 <table class="table table-striped">
 <tr>
-<th class="game-team">Team in <?php print $content['field_game_quarter'][0]['#markup']; ?></th>
-<th class="success"><?php print $total; ?></th>
+<th class="game-team">Team (<?php print $content['field_game_quarter'][0]['#markup']; ?>)</th>
+<?php if ($content['field_final_score'][0]['#markup'] == 1) {
+  $tclass= 'success';
+}
+else {
+  $tclass = 'info';
+}
+?>
+<th class="<?php print $tclass; ?>"><?php print $total; ?></th>
 </tr>
 <tr>
 <td class="game-visitor"><?php print $content['field_visiting_team'][0]['#markup']; ?></td>
-<td class="success" width="30%"><?php print (($vscore == '' || $vscore === 0) ? '0' :$vscore); ?></td
+<td class="<?php print $tclass; ?>" width="30%"><?php print (($vscore == '' || $vscore === 0) ? '0' :$vscore); ?></td
 </tr>
 <tr>
 <td class="game-home"><?php print $content['field_home_team'][0]['#markup']; ?></td>
-<td class="success" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td>
+<td class="<?php print $tclass; ?>" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td>
 </tr>
 </table>
 <div class="status">
-Last revised on <?php print date('M j, Y \a\t h:i', $node->revision_timestamp); ?>
-</div>
+Last revised on <?php print date('M j, Y \a\t h:i', $node->revision_timestamp) . ' '; ?>
 <?php if ($is_admin): ?>
 <?php
 $revision_author = user_load($revision_uid);
 print  ' by ' . $revision_author->name;
-?>
 
+?>
+</div>
 <?php
 if (!$page) {
   print l('Edit', 'node/' . $node->nid . '/edit', array('query' => array('destination' => 'scores-new' )));
 }
 ?>
 <?php endif; ?>
+<?php
+if (isset($content['field_evrybit'][0]['#markup']) && !empty($content['field_evrybit'][0]['#markup'])) {
+  print '<h3>LIVE! Stream of Game</h3';
+  print $content['field_evrybit'][0]['#markup'];
+}
+?>
 </article> <!-- /.node -->
 
 
