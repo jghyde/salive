@@ -63,20 +63,19 @@ Last revised on <?php print date('M j, Y \a\t h:i', $node->revision_timestamp) .
 $revision_author = user_load($revision_uid);
 print  ' by ' . $revision_author->name;
 
+if (!$page) {
+  print ' ' . l('Edit', 'node/' . $node->nid . '/edit', array('query' => array('destination' => 'scores-new' )));
+}
+endif;
 ?>
 </div>
 <?php
-if (!$page) {
-  print l('Edit', 'node/' . $node->nid . '/edit', array('query' => array('destination' => 'scores-new' )));
-}
-?>
-<?php endif; ?>
-<?php
-if (isset($content['field_evrybit'][0]['#markup']) && !empty($content['field_evrybit'][0]['#markup'])) {
+if (isset($field_evrybit[0]['value']) && !empty($field_evrybit[0]['value'])) {
   print '<h3>LIVE! Stream of Game</h3';
-  print $content['field_evrybit'][0]['#markup'];
+  print $field_evrybit[0]['value'];
 }
 ?>
+
 </article> <!-- /.node -->
 
 
