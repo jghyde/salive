@@ -71,7 +71,7 @@ endif;
 </div>
 <?php
 if (isset($field_evrybit[0]['value']) && !empty($field_evrybit[0]['value'])) {
-  print '<h3>LIVE! Stream of Game</h3';
+  print '<h3>LIVE! Stream of Game</h3>';
   print $field_evrybit[0]['value'];
 }
 ?>
