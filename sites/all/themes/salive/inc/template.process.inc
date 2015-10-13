@@ -39,27 +39,6 @@ function salive_preprocess_html(&$vars) {
 	  $node_ck = node_load(arg(1));
 	  $node_type = $node_ck->type;
 	}
-  if ($node_type == 'article') {
-	  // Google Surveys
-	  $js = <<<EOT
-(function() {
-  var ARTICLE_URL = window.location.href;
-  var CONTENT_ID = 'everything';
-  document.write(
-    '<scr'+'ipt '+
-    'src="//survey.g.doubleclick.net/survey?site=_svfs4ntpfivgotmieqafjocpeu'+
-    '&amp;url='+encodeURIComponent(ARTICLE_URL)+
-    (CONTENT_ID ? '&amp;cid='+encodeURIComponent(CONTENT_ID) : '')+
-    '&amp;random='+(new Date).getTime()+
-    '" type="text/javascript">'+'\x3C/scr'+'ipt>');
-})();
-EOT;
-  drupal_add_js($js, array('type' => 'inline', 'scope' => 'header', 'weight' => 5));
-	$js = <<<EOT
-  try { _402_Show(); } catch(e) {}
-EOT;
-    drupal_add_js($js, array('type' => 'inline', 'scope' => 'footer', 'weight' => 1));
-  }
 	// Google DFP hacks
 	// find out if it's an article
 	$node_type = NULL;
@@ -70,7 +49,7 @@ EOT;
 	if ($vars['is_front'] == 1) {
 	  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
 	}
-	elseif ($node_type == 'article') {
+	elseif (isset($node_type) && $node_type == 'article') {
 	  // Find the $defined_slots. Must have livenewsads module enabled.
 		$slots = livenewsads_slots();
 		if (count($slots > 0) ) {

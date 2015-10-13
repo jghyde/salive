@@ -73,8 +73,26 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
 				$static = livenewsads_slots($defined_slots);
 				$node->defined_slots = $defined_slots;
 		    // For Google Surveys
+	      // Google Surveys
+	      $js = <<<EOT
+(function() {
+  var ARTICLE_URL = window.location.href;
+  var CONTENT_ID = 'everything';
+  document.write(
+    '<scr'+'ipt '+
+    'src="//survey.g.doubleclick.net/survey?site=_svfs4ntpfivgotmieqafjocpeu'+
+    '&amp;url='+encodeURIComponent(ARTICLE_URL)+
+    (CONTENT_ID ? '&amp;cid='+encodeURIComponent(CONTENT_ID) : '')+
+    '&amp;random='+(new Date).getTime()+
+    '" type="text/javascript">'+'\x3C/scr'+'ipt>');
+})();
+EOT;
+        drupal_add_js($js, array('type' => 'inline', 'scope' => 'header', 'weight' => -1));
+	      $js = <<<EOT
+try { _402_Show(); } catch(e) {}
+EOT;
 				$prefix = '<div class="p402_premium">';
-				$suffix = '</div>';
+				$suffix = '</div>' . $js;
 				$node->content['body'][0]['#markup'] = $prefix . $node->content['body'][0]['#markup'] . $suffix;
 				$thumbs = views_embed_view('news_thumbs', 'block');
 				$node->content['body'][0]['#markup'] .=  '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';  
@@ -85,6 +103,7 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
   // For Crime:
 
   if ($node->type == 'article') {
+
 		$copyright = '<div class="copyright"> &copy; ' . date('Y') . ' Copyright Hyde Interactive, Inc. All rights reserved. This material may not be published, broadcast, rewritten, or redistributed.</div>';
     switch ($t) {
       case 'crime':
