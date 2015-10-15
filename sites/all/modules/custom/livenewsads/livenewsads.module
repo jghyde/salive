@@ -90,7 +90,7 @@ EOT;
 try { _402_Show(); } catch(e) {}
 EOT;
 				$prefix = '<div class="p402_premium">';
-				$suffix = '</div><script type=\"text/javascript\">//<![CDATA[ ' . "\n" . $js . "\n" . ' //]]></script>';
+				$suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>";
 				$node->content['body'][0]['#markup'] = $prefix . $node->content['body'][0]['#markup'] . $suffix;
 				$thumbs = views_embed_view('news_thumbs', 'block');
 				$node->content['body'][0]['#markup'] .=  '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';  
