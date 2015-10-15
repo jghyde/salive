@@ -123,6 +123,13 @@ googletag.cmd.push(function() {
 	var slot19=googletag.defineSlot('/116956976/SALive_BW_Top', ban, 'div-gpt-ad-1425500431462-18').addService(googletag.pubads());
 	
 EOT;
+    // Find the crash slot, story bottom, SALive_BLW_Story
+		if (in_array('div-gpt-ad-1444925118780-0', $slots)) {
+		  $js .= <<<EOT
+    googletag.defineSlot('/116956976/SALive_BLW_Crash', banwl , 'div-gpt-ad-1444925118780-0').addService(googletag.pubads());
+EOT;
+      $slots = array_diff($slots, array('div-gpt-ad-1444925118780-0'));
+		}
     $i = 101;
 		$n = 1;
     foreach($slots as $slot) {
