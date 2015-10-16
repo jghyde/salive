@@ -25,7 +25,9 @@ if ($content['field_visit_override'][0]['#markup'] > 0) {
 else {
   $vscore = $content['field_visitors_total'][0]['#markup'];
 }
-
+if (isset($field_evrybit[0]['value'])) {
+  $evrybit = l(' <em><strong>LIVE!</strong> Stream</em> <span class="glyphicons facetime_video"></span>', 'node/' . $node->nid, array('html' => TRUE));
+}
 ?>
 <?php if ($page): ?>
 <?php foreach ((array)$field_image as $item) { ?>
@@ -37,7 +39,7 @@ else {
 <?php endif; ?>
 <table class="table table-striped">
 <tr>
-<th class="game-team">Team (<?php print $content['field_game_quarter'][0]['#markup']; ?>)</th>
+<th class="game-team">Team (<?php print $content['field_game_quarter'][0]['#markup']; ?>)<?php print  ' ' . $evrybit; ?></th>
 <?php if ($content['field_final_score'][0]['#markup'] == 1) {
   $tclass= 'success';
 }
