@@ -28,6 +28,10 @@ else {
 if (isset($field_evrybit[0]['value'])) {
   $evrybit = l(' <em><strong>LIVE!</strong> Stream</em> <span class="glyphicons facetime_video"></span>', 'node/' . $node->nid, array('html' => TRUE));
 }
+else {
+  $evrybit = '';
+}
+}
 ?>
 <?php if ($page): ?>
 <?php foreach ((array)$field_image as $item) { ?>
