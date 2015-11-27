@@ -194,6 +194,8 @@ EOT;
 			case 'news/texas':
 			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
 			break;
+			case 'scores':
+			  drupal_add_js(drupal_get_path('theme', 'salive') .  '/js/googledfp-scores.js');
 			default:
 			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
 			break;
