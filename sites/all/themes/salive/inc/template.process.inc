@@ -196,6 +196,7 @@ EOT;
 			break;
 			case 'scores':
 			  drupal_add_js(drupal_get_path('theme', 'salive') .  '/js/googledfp-scores.js');
+			break;
 			default:
 			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
 			break;
