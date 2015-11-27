@@ -159,7 +159,7 @@ function livecomments_comment_form($form, &$form_state) {
     '#type' => 'text_format',
     '#title' => t('Enter Your rant Here'),
     //'#default_value' => 'Start typing a rant here.',
-    '#format' => $term->format,
+    //'#format' => $term->format,
     '#weight' => 1,
     '#attributes' => array(
       'placeholder' => 'Start typing a rant here.',
