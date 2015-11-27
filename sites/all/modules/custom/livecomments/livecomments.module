@@ -60,64 +60,66 @@ function livecomments_ajax_form($nid) {
     if ($build['#node']->comment == 1) {
       return;
     }
-    $nid = $build['comments']['comment_form']['nid']['#value'];
-    if (empty($nid) || !isset($nid)) {
-      $path = explode('/', $_GET['q']);
-      if (is_numeric($path[1])) {
-        $nid = $path[1];
+    if (isset($build['comments']['comment_form']['nid']['#value'])) {
+      $nid = $build['comments']['comment_form']['nid']['#value'];
+      if (empty($nid) || !isset($nid)) {
+        $path = explode('/', $_GET['q']);
+        if (is_numeric($path[1])) {
+          $nid = $path[1];
+        }
       }
-    }
-    if (user_is_anonymous()) {
-      $nid = $build['#node']->nid;
-      // Create a render array of a link:
-      // Example: https://api.drupal.org/comment/14324#comment-14324
-      $link = array(
-        '#type' => 'link',
-        '#title' => t('Register to Post Rant'),
-        '#href' => 'user/register',
-        '#options' => array(
-          'attributes' => array(
-            'class' => array(
-              'btn',
-              'btn-primary',
+      if (user_is_anonymous()) {
+        $nid = $build['#node']->nid;
+        // Create a render array of a link:
+        // Example: https://api.drupal.org/comment/14324#comment-14324
+        $link = array(
+          '#type' => 'link',
+          '#title' => t('Register to Post Rant'),
+          '#href' => 'user/register',
+          '#options' => array(
+            'attributes' => array(
+              'class' => array(
+                'btn',
+                'btn-primary',
+              ),
             ),
           ),
-        ),
-      );
-      // Create the Login Button (a link styled to appear like a button)
-      $link2 = array(
-        '#prefix' => '',
-        '#suffix' => '',
-        '#type' => 'link',
-        '#title' => t('Log In to Post Rant'),
-        '#href' => 'user/login',
-        
-        '#options' => array(
-          'query' => drupal_get_destination(),
-          'fragment' => 'comments',
-          'attributes' => array(
-            'class' => array(
-              'btn',
-              'btn-default',
+        );
+        // Create the Login Button (a link styled to appear like a button)
+        $link2 = array(
+          '#prefix' => '',
+          '#suffix' => '',
+          '#type' => 'link',
+          '#title' => t('Log In to Post Rant'),
+          '#href' => 'user/login',
+          
+          '#options' => array(
+            'query' => drupal_get_destination(),
+            'fragment' => 'comments',
+            'attributes' => array(
+              'class' => array(
+                'btn',
+                'btn-default',
+              ),
             ),
           ),
-        ),
-      );
-      // End render arrays
-      $setting = array('livecomments' => array('currentNid' => $nid));
-      drupal_add_js($setting, 'setting');
-      drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
-      $build['comments']['#suffix'] = '<div id="livecomments">' . '<ul><li>' . drupal_render($link2) . '</li><li>' . drupal_render($link) . '</li></ul></div>';
-
-      /*
-      $output = "<div id='ajax-response-goes-here'></div>Some HTML and stuff" . drupal_render($link);
-      drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
-      $build['comments']['#theme'] = 'livecomments';
-      $build['comments']['#suffix'] = '<h3>Add Your Rant</h3>';
-      $build['comments']['#suffix'] .= '<div id="livecomments"></div>';
-      $build['comments']['#suffix'] .= drupal_render(drupal_get_form('livecomments_comment_form'));
-      //$build['comments']['#markup'] = drupal_render(drupal_get_form('livecomments_comment_form'));
-      */
+        );
+        // End render arrays
+        $setting = array('livecomments' => array('currentNid' => $nid));
+        drupal_add_js($setting, 'setting');
+        drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
+        $build['comments']['#suffix'] = '<div id="livecomments">' . '<ul><li>' . drupal_render($link2) . '</li><li>' . drupal_render($link) . '</li></ul></div>';
+      
+        /*
+        $output = "<div id='ajax-response-goes-here'></div>Some HTML and stuff" . drupal_render($link);
+        drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
+        $build['comments']['#theme'] = 'livecomments';
+        $build['comments']['#suffix'] = '<h3>Add Your Rant</h3>';
+        $build['comments']['#suffix'] .= '<div id="livecomments"></div>';
+        $build['comments']['#suffix'] .= drupal_render(drupal_get_form('livecomments_comment_form'));
+        //$build['comments']['#markup'] = drupal_render(drupal_get_form('livecomments_comment_form'));
+        */
+      }
     }
   }
   
