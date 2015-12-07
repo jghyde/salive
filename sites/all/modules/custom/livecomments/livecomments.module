@@ -69,8 +69,7 @@ function livecomments_ajax_form($nid) {
         $nid = $path[1];
       }
     }
-    if (user_is_anonymous() && is_numeric($nid)) {
-      $nid = $build['#node']->nid;
+    if (user_is_anonymous() && isset($nid) && !empty($nid)) {
       // Create a render array of a link:
       // Example: https://api.drupal.org/comment/14324#comment-14324
       $link = array(
@@ -109,7 +108,7 @@ function livecomments_ajax_form($nid) {
       $setting = array('livecomments' => array('currentNid' => $nid));
       drupal_add_js($setting, 'setting');
       drupal_add_js(drupal_get_path('module', 'livecomments') . '/js/livecomments.js');
-      $build['comments']['#suffix'] = '<div id="livecomments">' . '<ul><li>' . drupal_render($link2) . '</li><li>' . drupal_render($link) . '</li></ul></div>';
+      $build['comments']['#suffix'] = '<h3>Post a Rant</h3><div id="livecomments">' . '<ul><li>' . drupal_render($link2) . '</li><li>' . drupal_render($link) . '</li></ul></div>';
       
       /*
       $output = "<div id='ajax-response-goes-here'></div>Some HTML and stuff" . drupal_render($link);
