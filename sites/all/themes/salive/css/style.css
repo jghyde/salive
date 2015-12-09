@@ -7355,6 +7355,11 @@ ul.social-icons li a.social:hover:before {
 .paid-event .lower {
   padding: 10px;
 }
+.media-element.file-preview,
+.imgbody {
+  width: 100%;
+  height: auto;
+}
 #footer {
   background: #222222;
   border-top: 1px solid #333333;
