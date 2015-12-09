@@ -6,3 +6,4 @@
   <li class="col-md-3"><?php print $row; ?></li>
 <?php endforeach; ?>
 </ul>
+<?php
