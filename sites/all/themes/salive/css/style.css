@@ -17373,7 +17373,6 @@ ul li.leaf {
 .view-obituaries .obit .media-body h3,
 #block-views-community-block_2 .obit .media-body h3 {
   text-align: center;
-  min-height: 2.5em;
 }
 .view-obituaries .obit .obit-dates,
 #block-views-community-block_2 .obit .obit-dates {
@@ -17442,7 +17441,6 @@ ul li.leaf {
 }
 #block-views-community-block_2 .obit h3 {
   text-align: center;
-  min-height: 2.5em;
 }
 .page-type-event .field-name-body .lower,
 .page-type-event-free .field-name-body .lower,
