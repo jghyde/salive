@@ -25,7 +25,6 @@
  */
 ?>
 <div class="media-body">
-  <p class="obit-dates"><?php print $fields['field_date_of_birth']->content . ' - ' . $fields['field_date_of_death']->content; ?></p>
   <?php
     if (!empty($fields['field_portrait_image']->content)) {
       print l($fields['field_portrait_image']->content, 'node/' . $fields['nid']->content, array('html' => TRUE, 'attributes' => array('class' => array('obit-image', 'thumbnail'))));
