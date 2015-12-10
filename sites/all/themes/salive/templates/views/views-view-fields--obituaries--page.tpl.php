@@ -25,11 +25,12 @@
  */
 ?>
 <div class="media-body">
-  <h3><?php print $fields['title']->content; ?></h3>
   <p class="obit-dates"><?php print $fields['field_date_of_birth']->content . ' - ' . $fields['field_date_of_death']->content; ?></p>
   <?php
     if (!empty($fields['field_portrait_image']->content)) {
       print l($fields['field_portrait_image']->content, 'node/' . $fields['nid']->content, array('html' => TRUE, 'attributes' => array('class' => array('obit-image', 'thumbnail'))));
     }
   ?>
+  <h3><?php print $fields['title']->content; ?></h3>
+  <p class="obit-dates"><?php print $fields['field_date_of_birth']->content . ' - ' . $fields['field_date_of_death']->content; ?></p>
 </div>
