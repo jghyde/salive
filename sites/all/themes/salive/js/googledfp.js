@@ -69,7 +69,7 @@ googletag.cmd.push(function() {
 	var slot12=googletag.defineSlot('/116956976/SALive_BLW_Most_Recent', banwlb, 'div-gpt-ad-1425500431462-11').addService(googletag.pubads());
 	var slot13=googletag.defineSlot('/116956976/SALive_BLW_Story', banwl, 'div-gpt-ad-1425500431462-12').addService(googletag.pubads());
 	var slot14=googletag.defineSlot('/116956976/SALive_BLW_Venue', ban, 'div-gpt-ad-1425500431462-13').addService(googletag.pubads());
-	var slot15=googletag.defineSlot('/116956976/SALive_BLW_Weather', banwl, 'div-gpt-ad-1425500431462-14').addService(googletag.pubads());
+	//var slot15=googletag.defineSlot('/116956976/SALive_BLW_Weather', banwl, 'div-gpt-ad-1425500431462-14').addService(googletag.pubads());
 	var slot16=googletag.defineSlot('/116956976/SALive_BST_Obit', banst, 'div-gpt-ad-1425500431462-15').addService(googletag.pubads());
 	var slot17=googletag.defineSlot('/116956976/SALive_BST_Weather', banst, 'div-gpt-ad-1425500431462-16').addService(googletag.pubads());
 	var slot18=googletag.defineSlot('/116956976/SALive_BW_Bottom', ban, 'div-gpt-ad-1425500431462-17').addService(googletag.pubads());
@@ -85,7 +85,8 @@ googletag.cmd.push(function() {
 	var slot302=googletag.defineSlot('/116956976/SALive_BW_Obit', ban, 'div-gpt-ad-1425500431462-303').addService(googletag.pubads());
 	var slot303=googletag.defineSlot('/116956976/SALive_BW_Obit', ban, 'div-gpt-ad-1425500431462-304').addService(googletag.pubads());
 	var slot304=googletag.defineSlot('/116956976/SALive_BW_Obit', ban, 'div-gpt-ad-1425500431462-305').addService(googletag.pubads());
-	googletag.pubads().enableSingleRequest();
+	var slot15 = googletag.defineSlot('/116956976/SALive_BLW_Weather', banwl, 'div-gpt-ad-1450294686382-0').addService(googletag.pubads());
+  googletag.pubads().enableSingleRequest();
   googletag.enableServices();
   $(window).resize(function(){
 		googletag.pubads().refresh([slot1, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10, slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20, slot101, slot102, slot103, slot104, slot105, slot106, slot107, slot108, slot109, slot110, slot111, slot112, slot113, slot114, slot115, slot116, slot117, slot118, slot119, slot120, slot201, slot202, slot203, slot204, slot301, slot302, slot303, slot304]);
