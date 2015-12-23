@@ -17309,6 +17309,10 @@ ul li.leaf {
 #comments #livecomments.ajax-tmz a {
   margin: 0 0 0 1em;
 }
+.picture img {
+  width: 100%;
+  height: auto;
+}
 .page-type-obituary .field-name-field-write-your-tribute,
 .page-type-obit-paid .field-name-field-write-your-tribute,
 .page-type-obituary .field-name-field-tribute-link a,
@@ -18090,6 +18094,10 @@ img.imgbody {
   -moz-transition: all all 0.2s ease-in-out ease-out;
   -o-transition: all all 0.2s ease-in-out ease-out;
   transition: all all 0.2s ease-in-out ease-out;
+}
+.imglunch img {
+  width: 100%;
+  height: auto;
 }
 @media (min-width: 0px) and (max-width: 979px) {
   .imglunch {

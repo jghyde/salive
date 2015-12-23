@@ -382,7 +382,8 @@ function salive_process_maintenance_page(&$vars) {
 function salive_preprocess_node(&$vars) {
   // add an open graph tag for the image
 	if ($vars['type'] == 'article' ||
-	    $vars['type'] == 'event' ) {
+	    $vars['type'] == 'event' ||
+	    $vars['type'] == 'smoky') {
 	  if (count($vars['field_image']) > 0) {
 		  // make the OG image the first one:
 			$og_image = $vars['field_image'][0];
