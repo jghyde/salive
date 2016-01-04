@@ -17951,7 +17951,8 @@ img.imgbody {
   color: #777777;
   margin-left: 25px;
 }
-#nodeSlide {
+#nodeSlide,
+#openhouseSlide {
   display: block;
   overflow: hidden;
 }
@@ -18279,6 +18280,100 @@ ol.search-results {
 }
 fieldset.search-advanced {
   display: none;
+}
+.page-type-openhouse .node-content .field-label-inline .field-label {
+  width: 33%;
+  margin-right: 1%;
+  text-align: right;
+}
+.page-type-openhouse .node-content .field-label-inline .field-items {
+  width: 65%;
+}
+.page-type-openhouse .node-content .field-name-field-openhouse-date {
+  border-radius: 5px;
+  background-color: #efefef;
+  padding: 5px;
+  font-size: 1.8em;
+  font-size: 1.8rem;
+}
+.page-type-openhouse .node-content .field-name-field-openhouse-date .field-label {
+  width: 20%;
+  margin-right: 1%;
+}
+.page-type-openhouse .node-content .field-name-field-openhouse-date .field-items {
+  width: 78%;
+}
+.page-type-openhouse .node-content .group-motherhood .field-group-div {
+  width: 50%;
+  float: left;
+}
+.page-type-openhouse .node-content .group-motherhood .field-group-div h3 span {
+  font-size: 1.2em;
+  font-size: 1.2rem;
+}
+.page-type-openhouse .node-content .field-name-body {
+  margin-bottom: 1.5em;
+}
+.page-type-openhouse .node-content .field-name-field-property-images {
+  margin-bottom: 1em;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items {
+  position: relative;
+  /* slider */
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items #prev {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  z-index: 100;
+  color: #FFF;
+  font-size: 72px;
+  opacity: .5;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items #prev:hover {
+  opacity: 1;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items #next {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  z-index: 100;
+  color: #FFF;
+  font-size: 72px;
+  opacity: .5;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items #next:hover {
+  opacity: 1;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items .iosslider {
+  /* required */
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items .iosslider .slider {
+  /* required */
+  width: 100%;
+  height: 100%;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items .iosslider .slider .slide {
+  /* required */
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+.page-type-openhouse .node-content .field-name-field-property-images .field-items .iosslider .slider .slide img {
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 580px) {
+  .field-name-field-openhouse-date {
+    font-size: 1.2em;
+    font-size: 1.2rem;
+  }
 }
 .view-events h3 {
   font-size: 1.8em;

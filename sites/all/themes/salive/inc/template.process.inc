@@ -317,6 +317,10 @@ function salive_preprocess_page(&$vars) {
       $vars['title'] = drupal_get_title();
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="birth-dates">' . $birth . '</span>';
     }
+		if ($vars['node']->type == 'openhouse') {
+		  drupal_add_js(libraries_get_path('iosslider') . '/_src/jquery.iosslider.min.js');
+            drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salive-iosslider.js');
+		}
   }
 }
 
@@ -478,6 +482,30 @@ function salive_preprocess_node(&$vars) {
 		}
 		$vars['sell'] = $sell;
   }
+    if ($vars['type'] == 'openhouse') {
+        //rearrange some of the field outputs
+        // web address
+        if (!empty($vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'])) {
+            $vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'] = l($vars['content']['group_motherhood']['group_agenct']['field_venue'][0]['#markup'], $vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'], array('html' => TRUE));
+        }
+        // Phone number
+        if (!empty($vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup'])) {
+            $numformated = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup']);
+            $numdial = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '+1$1$2$3', $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup']);
+            $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup'] = '<a href="tel:' . $numdial . '">' . $numformated . '</a>';
+        }
+        // Format agent name
+        $agent_uid = $vars['content']['group_motherhood']['group_agenct']['field_real_estate_agent']['#items'][0]['target_id'];
+        $agentname = profile2_load_by_user((int)$agent_uid, 'main');
+        $fname = $agentname->field_first_name['und'][0]['safe_value'];
+        $lname = $agentname->field_last_name['und'][0]['safe_value'];
+        $agent_user = user_load((int)$agent_uid);
+        $email = $agent_user->mail;
+        $vars['content']['group_motherhood']['group_agenct']['field_real_estate_agent'][0]['#markup'] = '<a href="mailto:' . $email . '">' . $fname . ' ' . $lname .'</a>';
+        $vars['content']['group_motherhood']['group_agenct']['field_venue'][0]['#markup'] = '';
+
+
+    }
 }
 /**
  * Helper func to create anonymous login for comments
