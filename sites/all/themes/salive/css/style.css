@@ -18281,6 +18281,9 @@ ol.search-results {
 fieldset.search-advanced {
   display: none;
 }
+.page-type-openhouse .node-content .group-motherhood {
+  margin-bottom: 1.5em;
+}
 .page-type-openhouse .node-content .field-label-inline .field-label {
   width: 33%;
   margin-right: 1%;
@@ -18288,6 +18291,10 @@ fieldset.search-advanced {
 }
 .page-type-openhouse .node-content .field-label-inline .field-items {
   width: 65%;
+}
+.page-type-openhouse .node-content .field-name-field-asking .field-label {
+  width: 33%;
+  text-align: left;
 }
 .page-type-openhouse .node-content .field-name-field-openhouse-date {
   border-radius: 5px;
