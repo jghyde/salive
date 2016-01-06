@@ -3,9 +3,14 @@
   <div class="field-label"<?php print $title_attributes; ?>><?php print $label ?>:&nbsp;</div>
   <?php endif; ?>
   <div class="field-items"<?php print $content_attributes; ?>>
+	  <?php $class=''; ?>
 	<?php if ($element['#bundle'] == 'openhouse'): ?>
-		<a id="next"><span class="glyphicon glyphicon-chevron-right"  aria-hidden="true"></span></a>
-		<a id="prev"><span class="glyphicon glyphicon-chevron-left"  aria-hidden="true"></span></a>
+		<?php if (count($items > 0)) {
+			$class = ' multiple';
+		}
+		?>
+		<a id="next"><span class="glyphicon glyphicon-chevron-right<?php print $class; ?>"  aria-hidden="true"></span></a>
+		<a id="prev"><span class="glyphicon glyphicon-chevron-left<?php print $class; ?>"  aria-hidden="true"></span></a>
 	  <div id="openhouseSlide" class="iosslider">
 <div class="slider">
 		<?php foreach ($items as $delta => $item): ?>
