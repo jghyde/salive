@@ -24,6 +24,8 @@ function openhouse_field_group_info() {
     'weight' => '11',
     'children' => array(
       0 => 'field_address',
+      1 => 'field_listing',
+      2 => 'field_asking',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -57,6 +59,7 @@ function openhouse_field_group_info() {
     'children' => array(
       0 => 'field_address',
       1 => 'field_listing',
+      2 => 'field_asking',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -196,6 +199,7 @@ function openhouse_field_group_info() {
       2 => 'field_agent_phone',
       3 => 'field_agent_web_address',
       4 => 'field_listing',
+      5 => 'field_asking',
     ),
     'format_type' => 'div',
     'format_settings' => array(

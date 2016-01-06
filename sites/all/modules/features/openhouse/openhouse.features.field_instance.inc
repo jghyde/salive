@@ -88,7 +88,7 @@ function openhouse_field_default_field_instances() {
           'use_widget_handlers' => 1,
         ),
         'type' => 'addressfield_default',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -158,14 +158,14 @@ function openhouse_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 15,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 14,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -187,7 +187,7 @@ function openhouse_field_default_field_instances() {
       'module' => 'html5_tools',
       'settings' => array(),
       'type' => 'telwidget',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -209,14 +209,14 @@ function openhouse_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 7,
+        'weight' => 16,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 15,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -238,7 +238,65 @@ function openhouse_field_default_field_instances() {
       'module' => 'html5_tools',
       'settings' => array(),
       'type' => 'urlwidget',
-      'weight' => 11,
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-openhouse-field_asking'
+  $field_instances['node-openhouse-field_asking'] = array(
+    'bundle' => 'openhouse',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'The asking price',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => 1,
+          'scale' => 0,
+          'thousand_separator' => ',',
+        ),
+        'type' => 'number_integer',
+        'weight' => 14,
+      ),
+      'full' => array(
+        'label' => 'inline',
+        'module' => 'number',
+        'settings' => array(
+          'decimal_separator' => '.',
+          'prefix_suffix' => TRUE,
+          'scale' => 0,
+          'thousand_separator' => ' ',
+        ),
+        'type' => 'number_integer',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_asking',
+    'label' => 'Asking',
+    'required' => 0,
+    'settings' => array(
+      'max' => '',
+      'min' => '',
+      'prefix' => '$',
+      'suffix' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'html5_tools',
+      'settings' => array(),
+      'type' => 'numberfield',
+      'weight' => 8,
     ),
   );
 
@@ -256,20 +314,18 @@ function openhouse_field_default_field_instances() {
         'weight' => 0,
       ),
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
-        'weight' => 13,
+        'weight' => 15,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'link',
-        'settings' => array(
-          'strip_www' => 1,
-        ),
-        'type' => 'link_domain',
-        'weight' => 3,
+        'settings' => array(),
+        'type' => 'link_label',
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -310,7 +366,7 @@ function openhouse_field_default_field_instances() {
       'module' => 'html5_tools',
       'settings' => array(),
       'type' => 'urlwidget',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -360,18 +416,18 @@ function openhouse_field_default_field_instances() {
           'geofield_map_baselayers_physical' => 0,
           'geofield_map_baselayers_satellite' => 1,
           'geofield_map_controltype' => 'default',
-          'geofield_map_draggable' => 0,
+          'geofield_map_draggable' => 1,
           'geofield_map_height' => '300px',
           'geofield_map_maptype' => 'map',
           'geofield_map_mtc' => 'standard',
           'geofield_map_overview' => 0,
           'geofield_map_overview_opened' => 0,
           'geofield_map_pancontrol' => 1,
-          'geofield_map_scale' => 0,
-          'geofield_map_scrollwheel' => 0,
+          'geofield_map_scale' => 1,
+          'geofield_map_scrollwheel' => 1,
           'geofield_map_streetview_show' => 0,
           'geofield_map_width' => '100%',
-          'geofield_map_zoom' => 8,
+          'geofield_map_zoom' => 14,
         ),
         'type' => 'geofield_map_map',
         'weight' => 8,
@@ -620,16 +676,16 @@ function openhouse_field_default_field_instances() {
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 5,
+        'weight' => 14,
       ),
       'full' => array(
-        'label' => 'inline',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 13,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'inline',
@@ -666,7 +722,7 @@ function openhouse_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -690,7 +746,7 @@ function openhouse_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 8,
+        'weight' => 17,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -699,7 +755,7 @@ function openhouse_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 16,
+        'weight' => 4,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -741,6 +797,7 @@ function openhouse_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Agent Phone');
   t('Agent Web Address');
+  t('Asking');
   t('Description of the property');
   t('Enter the San Angelo LIVE! username of the real estate agent for this property. There is an autocomplete widget to help you find the agent. If the agent does not have an account on San Angelo LIVE!, we will use your profile as the owner of this open house listing.');
   t('Map');
@@ -751,6 +808,7 @@ function openhouse_field_default_field_instances() {
   t('Real Estate Office');
   t('Select the date and end time of the open house. Please do not select an end time that continues into the next day, days or week. We assume for formatting that an open house duration is less than 12 hours within a single day.');
   t('Start typing part of the name of the real estate office to whom this open house is associated. If the office does not appear, make a note below in the notes section and we will add it before we publish the open house.');
+  t('The asking price');
   t('The phone number that is the best way to get into contact with the agent holding this open house.');
   t('The web page address, starting with \'http://\' of the agent holding this open house. This can be linked to the agent\'s broker\'s website, the agent page within the broker\'s website, or a standalone agent website or Facebook page.');
   t('This can be a cut and paste from the MLS listing or your own description.');
