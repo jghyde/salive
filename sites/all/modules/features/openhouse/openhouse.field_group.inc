@@ -169,7 +169,7 @@ function openhouse_field_group_info() {
       'label' => 'motherhood',
       'instance_settings' => array(
         'id' => '',
-        'classes' => 'group-motherhood field-group-div',
+        'classes' => 'group-motherhood field-group-div clearfix',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -240,7 +240,7 @@ function openhouse_field_group_info() {
       'label' => 'motherhood',
       'instance_settings' => array(
         'id' => '',
-        'classes' => 'group-motherhood field-group-div',
+        'classes' => 'group-motherhood field-group-div clearfix',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -251,6 +251,38 @@ function openhouse_field_group_info() {
     ),
   );
   $export['group_motherhood|node|openhouse|full'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_openhousewords|node|openhouse|teaser';
+  $field_group->group_name = 'group_openhousewords';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'openhouse';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'openhousewords',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_openhouse_date',
+      1 => 'field_asking',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'show_label' => 1,
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+        'classes' => 'group-openhousewords field-group-div',
+        'id' => '',
+      ),
+    ),
+  );
+  $export['group_openhousewords|node|openhouse|teaser'] = $field_group;
 
   return $export;
 }

@@ -790,3 +790,16 @@ function salive_breadcrumb($variables) {
   }
 }
 
+/**
+ *
+ */
+function salive_preprocess_image_style(&$vars) {
+  $i = 0;
+	if ($vars['style_name'] == 'news_thumbs__144x108_') {
+	  // used in pull left lists, like bootstrap media
+		// http://getbootstrap.com/components/#media
+		$vars['attributes']['class'][] = 'media-object';
+	}
+}
+
+
