@@ -30,10 +30,21 @@ function openhouse_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['row_class'] = 'clearfix';
-  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['style_plugin'] = 'geofield_map_map';
+  $handler->display->display_options['style_options']['data_source'] = 'field_map';
+  $handler->display->display_options['style_options']['popup_source'] = 'title';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
   /* Field: Content: Property Images */
   $handler->display->display_options['fields']['field_property_images']['id'] = 'field_property_images';
   $handler->display->display_options['fields']['field_property_images']['table'] = 'field_data_field_property_images';
@@ -45,24 +56,31 @@ function openhouse_views_default_views() {
   $handler->display->display_options['fields']['field_property_images']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_property_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_property_images']['settings'] = array(
-    'image_style' => 'i350x197_updated',
+    'image_style' => 'news_thumbs__144x108_',
     'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_property_images']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_property_images']['delta_offset'] = '0';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Asking */
+  $handler->display->display_options['fields']['field_asking']['id'] = 'field_asking';
+  $handler->display->display_options['fields']['field_asking']['table'] = 'field_data_field_asking';
+  $handler->display->display_options['fields']['field_asking']['field'] = 'field_asking';
+  $handler->display->display_options['fields']['field_asking']['label'] = '';
+  $handler->display->display_options['fields']['field_asking']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_asking']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_asking']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_asking']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_asking']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
   /* Field: Content: When */
   $handler->display->display_options['fields']['field_openhouse_date']['id'] = 'field_openhouse_date';
   $handler->display->display_options['fields']['field_openhouse_date']['table'] = 'field_data_field_openhouse_date';
   $handler->display->display_options['fields']['field_openhouse_date']['field'] = 'field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['label'] = '';
   $handler->display->display_options['fields']['field_openhouse_date']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_openhouse_date']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['field_openhouse_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_openhouse_date']['settings'] = array(
@@ -73,6 +91,20 @@ function openhouse_views_default_views() {
     'multiple_to' => '',
     'show_repeat_rule' => 'show',
   );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_type'] = '0';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'See listing';
+  /* Field: Content: Map */
+  $handler->display->display_options['fields']['field_map']['id'] = 'field_map';
+  $handler->display->display_options['fields']['field_map']['table'] = 'field_data_field_map';
+  $handler->display->display_options['fields']['field_map']['field'] = 'field_map';
   /* Sort criterion: Content: When -  start date (field_openhouse_date) */
   $handler->display->display_options['sorts']['field_openhouse_date_value']['id'] = 'field_openhouse_date_value';
   $handler->display->display_options['sorts']['field_openhouse_date_value']['table'] = 'field_data_field_openhouse_date';
@@ -108,6 +140,87 @@ function openhouse_views_default_views() {
   /* Display: Up and Coming San Angelo Real Estate Open Houses */
   $handler = $view->new_display('page', 'Up and Coming San Angelo Real Estate Open Houses', 'page');
   $handler->display->display_options['display_description'] = 'Main stream page of Open Houses';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'clearfix';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+  /* Field: Content: Property Images */
+  $handler->display->display_options['fields']['field_property_images']['id'] = 'field_property_images';
+  $handler->display->display_options['fields']['field_property_images']['table'] = 'field_data_field_property_images';
+  $handler->display->display_options['fields']['field_property_images']['field'] = 'field_property_images';
+  $handler->display->display_options['fields']['field_property_images']['label'] = '';
+  $handler->display->display_options['fields']['field_property_images']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_property_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_property_images']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_property_images']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_property_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_property_images']['settings'] = array(
+    'image_style' => 'news_thumbs__144x108_',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_property_images']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_property_images']['delta_offset'] = '0';
+  /* Field: Content: Asking */
+  $handler->display->display_options['fields']['field_asking']['id'] = 'field_asking';
+  $handler->display->display_options['fields']['field_asking']['table'] = 'field_data_field_asking';
+  $handler->display->display_options['fields']['field_asking']['field'] = 'field_asking';
+  $handler->display->display_options['fields']['field_asking']['label'] = '';
+  $handler->display->display_options['fields']['field_asking']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_asking']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_asking']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_asking']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_asking']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: When */
+  $handler->display->display_options['fields']['field_openhouse_date']['id'] = 'field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['table'] = 'field_data_field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['field'] = 'field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['label'] = '';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_openhouse_date']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_openhouse_date']['settings'] = array(
+    'format_type' => 'small_date_time',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'show',
+  );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_type'] = '0';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'See listing';
+  /* Field: Content: Map */
+  $handler->display->display_options['fields']['field_map']['id'] = 'field_map';
+  $handler->display->display_options['fields']['field_map']['table'] = 'field_data_field_map';
+  $handler->display->display_options['fields']['field_map']['field'] = 'field_map';
   $handler->display->display_options['path'] = 'openhouse';
 
   /* Display: Feed */
@@ -119,6 +232,7 @@ function openhouse_views_default_views() {
   $handler->display->display_options['displays'] = array(
     'default' => 'default',
     'page' => 'page',
+    'block' => 'block',
   );
 
   /* Display: Open Houses */
@@ -129,6 +243,127 @@ function openhouse_views_default_views() {
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'clearfix';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['block_description'] = 'Open Houses';
+
+  /* Display: Map in a Block */
+  $handler = $view->new_display('block', 'Map in a Block', 'block_1');
+  $handler->display->display_options['display_description'] = 'Map of Open Houses';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'geofield_map_map';
+  $handler->display->display_options['style_options']['data_source'] = 'field_map';
+  $handler->display->display_options['style_options']['popup_source'] = 'title';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['title']['element_default_classes'] = FALSE;
+  /* Field: Content: Property Images */
+  $handler->display->display_options['fields']['field_property_images']['id'] = 'field_property_images';
+  $handler->display->display_options['fields']['field_property_images']['table'] = 'field_data_field_property_images';
+  $handler->display->display_options['fields']['field_property_images']['field'] = 'field_property_images';
+  $handler->display->display_options['fields']['field_property_images']['label'] = '';
+  $handler->display->display_options['fields']['field_property_images']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_property_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_property_images']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_property_images']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_property_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_property_images']['settings'] = array(
+    'image_style' => 'news_thumbs__144x108_',
+    'image_link' => 'content',
+  );
+  $handler->display->display_options['fields']['field_property_images']['delta_limit'] = '1';
+  $handler->display->display_options['fields']['field_property_images']['delta_offset'] = '0';
+  /* Field: Content: Asking */
+  $handler->display->display_options['fields']['field_asking']['id'] = 'field_asking';
+  $handler->display->display_options['fields']['field_asking']['table'] = 'field_data_field_asking';
+  $handler->display->display_options['fields']['field_asking']['field'] = 'field_asking';
+  $handler->display->display_options['fields']['field_asking']['label'] = '';
+  $handler->display->display_options['fields']['field_asking']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_asking']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_asking']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_asking']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_asking']['settings'] = array(
+    'thousand_separator' => ',',
+    'prefix_suffix' => 1,
+  );
+  /* Field: Content: When */
+  $handler->display->display_options['fields']['field_openhouse_date']['id'] = 'field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['table'] = 'field_data_field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['field'] = 'field_openhouse_date';
+  $handler->display->display_options['fields']['field_openhouse_date']['label'] = '';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_openhouse_date']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_openhouse_date']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_openhouse_date']['settings'] = array(
+    'format_type' => 'small_date_time',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'show_repeat_rule' => 'show',
+  );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_type'] = '0';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['view_node']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'See listing';
+  /* Field: Content: Map */
+  $handler->display->display_options['fields']['field_map']['id'] = 'field_map';
+  $handler->display->display_options['fields']['field_map']['table'] = 'field_data_field_map';
+  $handler->display->display_options['fields']['field_map']['field'] = 'field_map';
+  $handler->display->display_options['fields']['field_map']['label'] = '';
+  $handler->display->display_options['fields']['field_map']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_map']['element_label_type'] = '0';
+  $handler->display->display_options['fields']['field_map']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_map']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_map']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_map']['click_sort_column'] = 'wkt';
+  $handler->display->display_options['fields']['field_map']['type'] = 'geofield_map_map';
+  $handler->display->display_options['fields']['field_map']['settings'] = array(
+    'geofield_map_width' => '100%',
+    'geofield_map_height' => '300px',
+    'geofield_map_zoom' => '8',
+    'geofield_map_controltype' => 'default',
+    'geofield_map_mtc' => 'standard',
+    'geofield_map_pancontrol' => 1,
+    'geofield_map_maptype' => 'map',
+    'geofield_map_baselayers_map' => 1,
+    'geofield_map_baselayers_satellite' => 1,
+    'geofield_map_baselayers_hybrid' => 1,
+    'geofield_map_baselayers_physical' => 1,
+    'geofield_map_scale' => 1,
+    'geofield_map_overview' => 0,
+    'geofield_map_overview_opened' => 0,
+    'geofield_map_scrollwheel' => 0,
+    'geofield_map_draggable' => 1,
+    'geofield_map_streetview_show' => 0,
+  );
+  $handler->display->display_options['block_description'] = 'Map of Open Houses';
   $export['openhouse'] = $view;
 
   return $export;

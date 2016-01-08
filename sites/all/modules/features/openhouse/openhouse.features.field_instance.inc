@@ -329,10 +329,8 @@ function openhouse_field_default_field_instances() {
       'full' => array(
         'label' => 'hidden',
         'module' => 'link',
-        'settings' => array(
-          'strip_www' => 1,
-        ),
-        'type' => 'link_domain',
+        'settings' => array(),
+        'type' => 'link_short',
         'weight' => 3,
       ),
       'teaser' => array(
