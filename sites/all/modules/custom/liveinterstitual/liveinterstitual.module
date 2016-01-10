@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file liveinterstitual.module
+ * TODO: Enter file description here.
+ */
+
+
+/**
+ * Implements hook_menu().
+ */
+function liveinterstitual_menu() {
+  $items = array();
+  
+  $items['welcome'] = array(
+    'title' => 'Welcome to San Angelo LIVE!',
+    'page callback' => 'liveinterstitual_welcome_page',
+    'page arguments' => array(),
+    'access arguments' => array('access content'),
+  );
+  return $items;
+}
+
+function liveinterstitual_welcome_page() {
+  $content =  'Howdy! from code<br />';
+  // If you want the sidebars and everything in the theme layer, uncomment the next line
+  //return theme('liveinterstitual', array('content' => $content));
+  //else, to spit out a static html page, save the page to this module's dir and do this:
+  echo file_get_contents( drupal_get_path('module','liveinterstitual') . '/liveinterstitiual.html');
+  //Shut down Drupal cleanly
+  drupal_page_footer();
+}
+/**
+ * Implements hook_boot()
+ */
+ function liveinterstitual_boot() {
+
+  if(isset($_COOKIE['welcome_page']) || isset($_COOKIE['welcome_page_admin'])) {
+    return;
+  } else {
+    $cookie = filter_var($_COOKIE['welcome_page'], FILTER_SANITIZE_STRING);
+    // If user saw welcome page and has cookie- skip redirect
+    if($cookie != 1) {
+      $destination = '/';
+      if($_GET['q']) {
+        // Microtime for IE9 to properly redirect
+        $destination = $_GET['q'] . '?a=' . microtime(true);
+      }
+      // Redirect and set cookie
+      setcookie('welcome_page', 1, time()+86400);
+      header("HTTP/1.1 301 Moved Permanently");
+      header("Location: /welcome?destination=" . $destination);
+      exit();
+    }
+  }
+
+}
+
+function liveinterstitual_login(&$edit, $account) {
+
+  // Expires in one year for authenticated
+  setcookie('welcome_page_admin', 1, time()+31556926);
+
+}
+
+function liveinterstitual_theme($existing, $type, $theme, $path) {
+  return array(
+    'liveinterstitual' => array(
+      'arguments' => array('content' => null),
+      'variables' => array('content' => null),
+      'template' => 'liveinterstitual',
+      'path' => drupal_get_path('module', 'liveinterstitual'),
+    )
+  );
+}
+
+

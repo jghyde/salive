@@ -1,0 +1,4 @@
+name = LIVE Interstitual
+description = Makes an interstitual welcome page for video play, offers a video ad spot for stream ads and elsewhere.
+package = LIVE
+core = 7.x
