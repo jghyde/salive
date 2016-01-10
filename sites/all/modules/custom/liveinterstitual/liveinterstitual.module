@@ -36,22 +36,23 @@ function liveinterstitual_welcome_page() {
  function liveinterstitual_boot() {
 
   if(isset($_COOKIE['welcome_page']) || isset($_COOKIE['welcome_page_admin']) || $_GET['q'] == 'welcome') {
-    if ($_GET['q'] == 'welcome' && $_COOKIE['welcome_page']) {
+
+  }
+  else {
+    // Figure out the destination
+    if (empty($_GET['q']) || $_GET['q'] == 'welcome') {
       $destination = '/';
     }
-    return;
-  } else {
+    else {
+      $destination = $_GET['q'];
+    }
     $cookie = filter_var($_COOKIE['welcome_page'], FILTER_SANITIZE_STRING);
     // If user saw welcome page and has cookie- skip redirect
     if($cookie != 1) {
-      $destination = '/';
-      if($_GET['q']) {
-        // Microtime for IE9 to properly redirect
-        $destination = $_GET['q'] . '?a=' . microtime(true);
-      }
-      if ($_GET['q'] == 'welcome') {
-        $destination = '/' . '?a=' . microtime(true);
-      }
+      // Microtime for IE9 to properly redirect
+      $destination = $destination . '?a=' . microtime(true);
+      
+
       // Redirect and set cookie
       setcookie('welcome_page', 1, time()+86400);
       header("HTTP/1.1 301 Moved Permanently");
