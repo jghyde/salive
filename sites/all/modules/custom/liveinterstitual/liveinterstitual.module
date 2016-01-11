@@ -34,7 +34,6 @@ function liveinterstitual_welcome_page() {
  * Implements hook_boot()
  */
  function liveinterstitual_boot() {
-
   if(isset($_COOKIE['welcome_page']) || isset($_COOKIE['welcome_page_admin']) || $_GET['q'] == 'welcome') {
     return;
   }

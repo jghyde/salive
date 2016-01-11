@@ -23,9 +23,29 @@ function isset(strVariableName) {
     return false;
   }
   return true;
- } 
+}
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + "; " + expires + ';domain=.sanangelolive.com;path=/';
+}
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0; i<ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1);
+    if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+  }
+  return "";
+}
 window.onload = function(){
-
+var random = Math.random().toString(36).substr(2, 5);
+alert(getCookie('welcome_page'));
+if( getCookie('welcome_page') == null ) {
+  setCookie('welcome_page', 1, 1);
+}
 (function(){
   var counter = 5;
 
@@ -43,19 +63,30 @@ window.onload = function(){
         if (isset(dest)) {
           url = dest;
         }
+        else if (dest == 'welcome') {
+          url = '/';
+        }
         else {
           url = '/';
         }
-        span.innerHTML = '<a href="' + url + '">Skip this ad.</a>';
+        span.innerHTML = '<a href="' + url + '?b=' + random + '">Skip this ad.</a>';
         clearInterval(counter);
     }
 
   }, 1000);
 
 })();
-
 }
+window._wq = window._wq || [];
+_wq.push({ "_all": function(video) {
+  video.bind("end", function() {
+    window.setTimeout(function(){
+      window.location.href = 'http://sanangelolive.com' + getParameterByName('destination') + '?b=' + random;
+    },3000);
+  });
+}});
     </script>
+      
     <title>Welcome to San Angelo LIVE!</title>
   </head>
 <body>
