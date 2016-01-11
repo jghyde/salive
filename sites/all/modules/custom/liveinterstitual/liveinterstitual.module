@@ -39,6 +39,9 @@ function liveinterstitual_welcome_page() {
     return;
   }
   else {
+    if (!$_REQUEST['has_js'] || empty($_REQUEST['has_js'])) {
+      return;
+    }
     // Figure out the destination
     if (empty($_GET['q']) || $_GET['q'] == 'welcome') {
       $destination = '/';
