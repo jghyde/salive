@@ -32,7 +32,7 @@ if( $.cookie('welcome_page') == null ) {
   $.cookie('welcome_page', 1, {
     expires: 1,
     path: '/',
-    domain: 'dev.sanangelolive.com',
+    domain: 'sanangelolive.com',
   });
 }
 (function(){
@@ -71,7 +71,7 @@ _wq.push({ "_all": function(video) {
   video.bind("end", function() {
     window.setTimeout(function(){
       window.location.href = 'http://sanangelolive.com' + getParameterByName('destination') + '?b=' + random;
-    },3000);
+    },500);
   });
 }});
     </script>
