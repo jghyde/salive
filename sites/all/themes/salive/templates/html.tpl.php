@@ -28,26 +28,38 @@
   ?>
   <script>
 (function($){
+    // by jghyde
     function hasCookies() {
       return (navigator.cookieEnabled);
     }
     if ($.cookie('welcome_page') == null) {
       if (hasCookies() == true) {
-        //code
-        window.setTimeout(function(){
-          window.location.href = '/welcome?destination=<?php print $dest; ?>?b=<?php print $randomString; ?>';
-        },0);
-      }
-      else {
-        if (document.referrer.indexOf('sanangelolive.com') >= 0) {
+      
+        // if the referrer is not SEO
+        var google = 0;
+        if(/www\.(google|bing|yahoo)/.test(document.referrer)){
+          google = 1;
         }
-        else {
+        // if the referrer is not us
+        var live = 0;
+        if (/(sanangelolive)\.com/.test(document.referrer)) {
+          live = 1;
+        }
+
+        // set the cookie
+        $.cookie('welcome_page', 1, {
+          expires: 1,
+          path: '/',
+          domain: 'sanangelolive.com',
+        });
+        // if not seo, then show the page
+        if (google == 0 && live == 0) {
           window.setTimeout(function(){
             window.location.href = '/welcome?destination=<?php print $dest; ?>?b=<?php print $randomString; ?>';
-          },0);          
+            },0);
+          }
         }
       }
-    }
 })(jQuery);
   </script>
 </head>
