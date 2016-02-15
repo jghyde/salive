@@ -39,23 +39,22 @@
         var google = 0;
         if(/www\.(google|bing|yahoo)/.test(document.referrer)){
           google = 1;
+          // set the cookie
+          $.cookie('welcome_page', 1, {
+            expires: 1,
+            path: '/',
+            domain: 'sanangelolive.com',
+          });
         }
         // if the referrer is not us
         var live = 0;
         if (/(sanangelolive)\.com/.test(document.referrer)) {
           live = 1;
         }
-
-        // set the cookie
-        $.cookie('welcome_page', 1, {
-          expires: 1,
-          path: '/',
-          domain: 'sanangelolive.com',
-        });
         // if not seo, then show the page
         if (google == 0 && live == 0) {
           window.setTimeout(function(){
-            window.location.href = '/welcome?destination=<?php print $dest; ?>?b=<?php print $randomString; ?>';
+            window.location.href = '/welcome?destination=<?php print $dest; ?>&b=<?php print $randomString; ?>';
             },0);
           }
         }
