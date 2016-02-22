@@ -20,6 +20,7 @@
 			  </div>
 		  <?php endforeach; ?>
 		</div>
+		
 	  <?php else: ?>
 	  <?php foreach ($items as $delta => $item): ?>
 		<?php print render($item); ?>
