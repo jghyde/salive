@@ -8,7 +8,15 @@
 		<?php foreach ($items as $delta => $item): ?>
 			<div class="item">
 				<?php print render($item); ?>
-				<p class="caption"><?php print $item['#item']['alt']; ?></p>
+				<?php
+				if (!empty($item['#item']['field_file_image_alt_text'][LANGUAGE_NONE][0]['safe_value'])) {
+				  $alt = $item['#item']['field_file_image_alt_text'][LANGUAGE_NONE][0]['safe_value'];
+				}
+				else {
+				  $alt = $item['#item']['alt'];
+				}
+				?>
+				<p class="caption"><?php print $alt; ?></p>
 			</div>
 		<?php endforeach; ?>
 	  </div>
