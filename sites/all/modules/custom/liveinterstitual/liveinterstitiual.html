@@ -49,16 +49,15 @@ if( $.cookie('welcome_page') == null ) {
     if (counter === 0) {
       var url;
       var dest = getParameterByName('destination');
-        if (isset(dest)) {
+      
+        if (dest.length > 0) {
           url = dest;
         }
-        else if (dest == 'welcome') {
-          url = '/';
-        }
+        
         else {
-          url = '/';
+          url = '';
         }
-        span.innerHTML = '<a href="' + url + '?b=' + random + '">Skip this ad.</a>';
+        span.innerHTML = '<a href="/' + url + '?b=' + random + '">Skip this ad.</a>';
         clearInterval(counter);
     }
 
@@ -98,12 +97,12 @@ _wq.push({ "_all": function(video) {
 </div>
   <div id="container">
     <div id="left-video">
-      <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_1merqex0ud videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
+      <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_gai1u9zdgz videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
     </div>
     <div id="right-words">
-    <h1>Meet Dr. Hume</h1>
-<p>On the lake, he's a wake surfer, but at work he's a trusted heart surgeon at Shannon in San Angelo. Click the play button to learn more about him. Or watch...</p>
-<p class="center"><a class="button" href="http://4ui.co/ShannonHumeVideo" target="_blank">More Shannon Stories</a></p>    
+    <h1>Cars Under $10,000</h1>
+<p>Everyone needs reliable transportation, but not all of us want a large car payment. Here's a good place to start searching for a car priced under $10,000.</p>
+<p class="center"><a class="button" href="http://9nl.cc/Under10kFeb29VIdeo" target="_blank">Shop Cars Under $10k</a></p>    
     </div>
   </div>
 <script>
