@@ -27,16 +27,15 @@ function isset(strVariableName) {
 }
 
 window.onload = function(){
-var random = Math.random().toString(36).substr(2, 5);
-if( $.cookie('welcome_page') == null ) {
-  $.cookie('welcome_page', 1, {
-    expires: 1,
-    path: '/',
-    domain: 'sanangelolive.com',
-  });
-}
-(function(){
-  var counter = 5;
+  var random = Math.random().toString(36).substr(2, 5);
+  if( $.cookie('welcome_page') == null ) {
+    $.cookie('welcome_page', 1, {
+      expires: 1,
+      path: '/',
+      domain: document.domain,
+    });
+  }
+  var counter = 4;
 
   setInterval(function() {
     span = document.getElementById("continue");
@@ -55,29 +54,20 @@ if( $.cookie('welcome_page') == null ) {
         }
         
         else {
-          url = '';
+          url = '/';
         }
         span.innerHTML = '<a href="' + url + '?b=' + random + '">Skip this ad.</a>';
         clearInterval(counter);
+        window._wq = window._wq || [];
+        _wq.push({ "_all": function(video) {
+          video.bind("end", function() {
+            window.location.href = url + '?b=' + random;
+          });
+        }});
     }
 
   }, 1000);
-
-})();
 }
-window._wq = window._wq || [];
-_wq.push({ "_all": function(video) {
-  video.bind("end", function() {
-    window.setTimeout(function(){
-      window.location.href = 'http://sanangelolive.com' + getParameterByName('destination') + '?b=' + random;
-    },500);
-  });
-}});
-    </script>
-      
-    <title>Welcome to San Angelo LIVE!</title>
-<!-- Quantcast Tag, part 1 --> 
-<script type="text/javascript">
   var _qevents = _qevents || [];
   (function() {
    var elem = document.createElement('script');
@@ -88,7 +78,9 @@ _wq.push({ "_all": function(video) {
    var scpt = document.getElementsByTagName('script')[0];
    scpt.parentNode.insertBefore(elem, scpt);  
   })();
-</script>
+    </script>
+      
+    <title>Welcome to San Angelo LIVE!</title>
   </head>
 <body>
 <div id="lightbar" class="clearfix">
@@ -127,7 +119,6 @@ It's March Mania at MegaCars.com and we have a whole new crop of late model, low
     <img src="http://pixel.quantserve.com/pixel/p-9dvRNlrJXZUsM" height="1" width="1" alt="Quantcast"/>
 </div>
 </noscript>
-
 </body>
 
 </htmL>

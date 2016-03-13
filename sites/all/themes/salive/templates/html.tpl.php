@@ -43,7 +43,7 @@
           $.cookie('welcome_page', 1, {
             expires: 1,
             path: '/',
-            domain: 'sanangelolive.com',
+            domain: document.domain,
           });
         }
         // if the referrer is not us
