@@ -121,7 +121,7 @@ googletag.cmd.push(function() {
 	var slot12=googletag.defineSlot('/116956976/SALive_BLW_Story', banwl, 'div-gpt-ad-1425500431462-12').addService(googletag.pubads());
 	var slot18=googletag.defineSlot('/116956976/SALive_BW_Bottom', ban, 'div-gpt-ad-1425500431462-17').addService(googletag.pubads());
 	var slot19=googletag.defineSlot('/116956976/SALive_BW_Top', ban, 'div-gpt-ad-1425500431462-18').addService(googletag.pubads());
-	var slotSponsor=googletag.defineSlot('/116956976/SALive_B_Rail_S', box, '/div-gpt-ad-1425500431462-6').addService(googletag.pubads());
+	var slotSponsor=googletag.defineSlot('/116956976/SALive_B_Rail_S', box, 'div-gpt-ad-1457839518867-0').addService(googletag.pubads());
 EOT;
     // Find the crash slot, story bottom, SALive_BLW_Story
 		if (in_array('div-gpt-ad-1444925118780-0', $slots)) {
