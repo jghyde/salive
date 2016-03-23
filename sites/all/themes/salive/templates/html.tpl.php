@@ -54,7 +54,13 @@
         // if not seo, then show the page
         if (google == 0 && live == 0) {
           window.setTimeout(function(){
-            window.location.href = '/welcome?destination=<?php print $dest; ?>&b=<?php print $randomString; ?>';
+            window._wq = window._wq || [];
+            _wq.push({ "_all": function(video) {
+              video.popover.show();
+              $('.wistia_placebo_close_button').hide();
+            }});
+            
+            //window.location.href = '/welcome?destination=<?php print $dest; ?>&b=<?php print $randomString; ?>';
             },0);
           }
         }
