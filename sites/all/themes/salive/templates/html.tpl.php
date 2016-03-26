@@ -13,7 +13,7 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <?php print $scripts; ?>
-  <?php
+ <?php
   if ($_GET['q'] == 'node') {
     $dest = '/';
   }
@@ -34,7 +34,7 @@
     }
     if ($.cookie('welcome_page') == null) {
       if (hasCookies() == true) {
-      
+       
         // if the referrer is not SEO
         var google = 0;
         if(/www\.(google|bing|yahoo)/.test(document.referrer)){
@@ -54,19 +54,14 @@
         // if not seo, then show the page
         if (google == 0 && live == 0) {
           window.setTimeout(function(){
-            window._wq = window._wq || [];
-            _wq.push({ "_all": function(video) {
-              video.popover.show();
-              $('.wistia_placebo_close_button').hide();
-            }});
-            
-            //window.location.href = '/welcome?destination=<?php print $dest; ?>&b=<?php print $randomString; ?>';
+            window.location.href = '/welcome?destination=<?php print $dest; ?>&b=<?php print $randomString; ?>';
             },0);
           }
         }
       }
 })(jQuery);
   </script>
+
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <?php print $page_top; ?>
