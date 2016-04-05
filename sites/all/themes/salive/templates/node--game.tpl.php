@@ -31,7 +31,7 @@ if (isset($field_evrybit[0]['value'])) {
 else {
   $evrybit = '';
 }
-}
+
 ?>
 <?php if ($page): ?>
 <?php foreach ((array)$field_image as $item) { ?>
