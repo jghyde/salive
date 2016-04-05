@@ -7082,6 +7082,9 @@ img {
 .node-game .table-condensed tr td:first-child {
   width: 30%;
 }
+.well a.btn-primary {
+  color: #ffffff!important;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
