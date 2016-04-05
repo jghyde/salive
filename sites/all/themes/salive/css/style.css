@@ -7085,6 +7085,9 @@ img {
 .well a.btn-primary {
   color: #ffffff!important;
 }
+.page-type-article .field-name-body .well a.btn-primary {
+  color: #ffffff!important;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
