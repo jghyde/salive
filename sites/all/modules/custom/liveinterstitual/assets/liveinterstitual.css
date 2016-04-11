@@ -3,7 +3,6 @@
 	box-shadow: 0 0 20px #000000;
 	padding: 0 0 1em 0;
 	display: none;
-	z-index: 10000;
 }
 .wistia-block-header {
 	padding: 3px;
@@ -12,4 +11,10 @@
 	line-height: 1.8em;
 	font-size: 1.6em;
 	cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+	.wistia-block-header {
+		font-size: 1em;
+		line-height: 1em;
+	}
 }
