@@ -90,7 +90,7 @@
                       $('#block-liveinterstitual-interstitualtag').popup('hide');
                       $('#block-liveinterstitual-interstitualtag').remove();
                       $('#block-liveinterstitual-interstitualtag_wrapper').remove();
-                    }, 4000);
+                    }, 10000);
                   });
                 } 
               }, 1000);
