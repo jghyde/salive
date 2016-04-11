@@ -5,6 +5,16 @@
  * TODO: Enter file description here.
  */
 
+ /**
+  * Implements hook_init()
+  */
+function liveinterstitual_init() {
+  // adds video popup
+	drupal_add_js('//fast.wistia.com/assets/external/E-v1.js', 'external;');
+	drupal_add_js(libraries_get_path('jquery-popup-overlay') . '/jquery.popupoverlay.js');
+  drupal_add_js(drupal_get_path('module', 'liveinterstitual') . '/js/liveinterstitual.js');
+  drupal_add_css(drupal_get_path('module', 'liveinterstitual') . '/assets/liveinterstitual.css');
+}
 
 /**
  * Implements hook_menu().
@@ -18,7 +28,26 @@ function liveinterstitual_menu() {
     'page arguments' => array(),
     'access arguments' => array('access content'),
   );
+  $items['get/ajax/wistia'] = array(
+    'page callback' => 'liveinterstitual_ajax_video', // Render HTML
+    'delivery callback' => 'liveinterstitual_ajax_callback', 
+    'type' => MENU_CALLBACK,
+    'access arguments' => array('access content'),
+  );
   return $items;
+}
+
+/**
+ * Page callback to deliver the html for the video
+ */
+function liveinterstitual_ajax_video() {
+  //First, get the block
+  $block = module_invoke('liveinterstitual', 'block_view', 'interstitual');
+  return render($block);
+}
+function liveinterstitual_ajax_callback($page_callback) {
+  print $page_callback;
+  drupal_page_footer();
 }
 
 function liveinterstitual_welcome_page() {
@@ -29,50 +58,94 @@ function liveinterstitual_welcome_page() {
   //Shut down Drupal cleanly
   drupal_page_footer();
 }
+
 /**
- * Implements hook_boot()
- *
- function liveinterstitual_boot() {
-  if(isset($_COOKIE['welcome_page']) || isset($_COOKIE['welcome_page_admin']) || $_GET['q'] == 'welcome') {
-    return;
-  }
-  else {
-    if (!$_REQUEST['has_js'] || empty($_REQUEST['has_js'])) {
-      return;
-    }
-    // Figure out the destination
-    if (empty($_GET['q']) || $_GET['q'] == 'welcome') {
-      $destination = '/';
-    }
-    else {
-      $destination = $_GET['q'];
-    }
-    $cookie = filter_var($_COOKIE['welcome_page'], FILTER_SANITIZE_STRING);
-    // If user saw welcome page and has cookie- skip redirect
-    if($cookie != 1) {
-      // Microtime for IE9 to properly redirect
-      $destination = $destination . '?a=' . microtime(true);
-      
-
-      // Redirect and set cookie
-      setcookie('welcome_page', 1, time()+86400);
-      header("HTTP/1.1 301 Moved Permanently");
-      header("Location: /welcome?destination=" . $destination);
-      exit();
-    }
-  }
-
+* Implements hook_block_info().
+*/
+function liveinterstitual_block_info() {
+  $blocks = array();
+  $blocks['interstitual'] = array(
+    'info' => t('LIVE! Interstitual Block'),
+  );
+  $blocks['interstitualtag'] = array(
+    'info' => t('Interstitual Tag Activation'),
+  );
+  return $blocks;
 }
 
-function liveinterstitual_login(&$edit, $account) {
-
-  // Expires in one year for authenticated
-  setcookie('welcome_page_admin', 1, time()+31556926);
-
+/**
+* Implements hook_block_view().
+*/
+function liveinterstitual_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'interstitual':
+      $block['subject'] = '';
+      $block['content'] = array(
+        '#markup' => _liveinterstitual_block_content(),
+        '#attached' => array(
+          'js' => array(
+            drupal_get_path('module', 'liveinterstitual') . '/js/liveinterstitual.js',
+          ),
+        ),
+      );
+      break;
+    case 'interstitualtag':
+      $block['content'] = array(
+        '#markup' => variable_get('liveinterstitual_video_id', 'khgd0i4fba'),
+      );
+    break;
+  }
+  return $block;
 }
 
+/**
+ * custom function to generate block content
+ */
+function  _liveinterstitual_block_content($video_id) {
+  if (!isset($video_id)) {
+    $video_id = variable_get('liveinterstitual_video_id', 'khgd0i4fba');
+  }
+  $output = '';
+  $output = <<<EOT
+<div class="wistia-block-header">
+  <span id="counter">You can skip this video in 8 seconds.</span>
+</div>
+<div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+  <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+    <div class="wistia_embed wistia_async_$video_id videoFoam=true" style="height:100%;width:100%">&nbsp;
+    </div>
+  </div>
+</div>
+EOT;
+   return $output;
+}
+
+/**
+ * Implements hook_block_configure
+ */
+function liveinterstitual_block_configure($delta = '') {
+  $form = array();
+  if ($delta == 'interstitual' || $delta == 'interstitualtag') {
+    $form['video_id'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Enter the Video ID from Wistia'),
+      '#default_value' => variable_get('liveinterstitual_video_id', 'khgd0i4fba'),
+    );
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save()
+ */
+function liveinterstitual_block_save($delta, $edit) {
+  if ($delta == 'interstitual') {
+    variable_set('liveinterstitual_video_id', $edit['video_id']);
+  }
+}
 /*
- * Implements hook_there()
+ * Implements hook_theme()
  *
  */
 
