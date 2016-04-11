@@ -30,7 +30,6 @@ function salive_preprocess_html(&$vars) {
 	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.theme.default.min.css');
   drupal_add_js(libraries_get_path('owlcarousel') . '/owl.carousel.min.js');
 	drupal_add_js(libraries_get_path('owlcarousel') . '/jquery.mousewheel.min.js');
-
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
 	  array('weight' => -20)
 	);
