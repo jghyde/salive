@@ -51,7 +51,7 @@
             window._wq = window._wq || [];
             _wq.push({ "_all": function(video) {
 
-            var counter = 8;
+            var counter = 5;
             $('#counter').show(500);
             span = document.getElementById("counter");
             video.ready(function() {
@@ -96,6 +96,13 @@
               }, 1000);
             });
           }});
+        });
+        $(document).ready(function(){
+          setTimeout(function() {
+            $('#block-liveinterstitual-interstitualtag').popup('hide');
+            $('#block-liveinterstitual-interstitualtag').remove();
+            $('#block-liveinterstitual-interstitualtag_wrapper').remove();            
+          },45000);
         });
       }
     }

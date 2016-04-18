@@ -109,7 +109,7 @@ function  _liveinterstitual_block_content($video_id) {
   $output = '';
   $output = <<<EOT
 <div class="wistia-block-header">
-  <span id="counter">You can skip this video in 8 seconds.</span>
+  <span id="counter">Loading...</span>
 </div>
 <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
   <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
