@@ -3,12 +3,12 @@
  * Add body classes if certain regions have content.
  */
 function salive_preprocess_html(&$vars) {
-	$css = "";
-	if (!empty($vars['page']['headlines'])) {
-		drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jPages.min.js');
-		$headline_pager = theme_get_setting('headlines_pager')? theme_get_setting('headlines_pager') : 5;
-		$headlines_js = '(function ($) {	$(function(){
-		$("#headlines .holder").jPages({
+  $css = "";
+  if (!empty($vars['page']['headlines'])) {
+    drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jPages.min.js');
+    $headline_pager = theme_get_setting('headlines_pager') ? theme_get_setting('headlines_pager') : 5;
+    $headlines_js = '(function ($) {	$(function(){
+	  $("#headlines .holder").jPages({
       containerID : "hlitemContainer",
       perPage     : ' . $headline_pager . ',
       first       : false,
@@ -17,42 +17,42 @@ function salive_preprocess_html(&$vars) {
       last        : false
     });;
 	}); })(jQuery);';
-		drupal_add_js($headlines_js, "inline");
-		$css .= '#hlitemContainer li:nth-child(' . $headline_pager . 'n+' . $headline_pager . ') {border: none;}';
-	}
+    drupal_add_js($headlines_js, "inline");
+    $css .= '#hlitemContainer li:nth-child(' . $headline_pager . 'n+' . $headline_pager . ') {border: none;}';
+  }
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js');
-  
+
   //drupal_add_js(libraries_get_path('sharrre') . '/jquery.sharrre.js');
-	
+
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.carousel.css');
-	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
-	drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.theme.default.min.css');
+  drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
+  drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.theme.default.min.css');
   drupal_add_js(libraries_get_path('owlcarousel') . '/owl.carousel.min.js');
-	drupal_add_js(libraries_get_path('owlcarousel') . '/jquery.mousewheel.min.js');
+  drupal_add_js(libraries_get_path('owlcarousel') . '/jquery.mousewheel.min.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
-	  array('weight' => -20)
-	);
-	$node_type = NULL;
-	if (arg(0) == 'node' && is_numeric(arg(1))) {
-	  $node_ck = node_load(arg(1));
-	  $node_type = $node_ck->type;
-	}
-	// Google DFP hacks
-	// find out if it's an article
-	$node_type = NULL;
-	if (arg(0) == 'node' && is_numeric(arg(1))) {
-	  $node_ck = node_load(arg(1));
-	  $node_type = $node_ck->type;
-	}
-	if ($vars['is_front'] == 1) {
-	  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
-	}
-	elseif (isset($node_type) && $node_type == 'article') {
-	  // Find the $defined_slots. Must have livenewsads module enabled.
-		$slots = livenewsads_slots();
-		if (count($slots > 0) ) {
-		  //create js for the <head> to display ads
+    array('weight' => -20)
+  );
+  $node_type = NULL;
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $node_ck = node_load(arg(1));
+    $node_type = $node_ck->type;
+  }
+  // Google DFP hacks
+  // find out if it's an article
+  $node_type = NULL;
+  if (arg(0) == 'node' && is_numeric(arg(1))) {
+    $node_ck = node_load(arg(1));
+    $node_type = $node_ck->type;
+  }
+  if ($vars['is_front'] == 1) {
+    drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
+  }
+  elseif (isset($node_type) && $node_type == 'article') {
+    // Find the $defined_slots. Must have livenewsads module enabled.
+    $slots = livenewsads_slots();
+    if (count($slots > 0)) {
+      //create js for the <head> to display ads
 			$js = <<<EOT
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
@@ -398,9 +398,25 @@ function salive_preprocess_node(&$vars) {
           'content' => $url,
         ),
       );
-      drupal_add_html_head($element,'facebook_share_image');
-			$element['#attributes']['property'] = 'twitter:image';
-			drupal_add_html_head($element,'twitter_card_image');
+        drupal_add_html_head($element,'og_image');
+        $element['#attributes']['property'] = 'twitter:image';
+        drupal_add_html_head($element,'twitter_card_image');
+        $element = array(
+          '#tag' => 'meta',
+          '#attributes' => array(
+            'property' => "og:image:width",
+            'content' => '1200',
+          ),
+        );
+        drupal_add_html_head($element,'og_image_width');
+        $element = array(
+          '#tag' => 'meta',
+          '#attributes' => array(
+            'property' => "og:image:height",
+            'content' => '675',
+          ),
+        );
+        drupal_add_html_head($element,'og_image_height');
 		}
 	}
 	if (theme_get_setting('extra_article_classes')) {
