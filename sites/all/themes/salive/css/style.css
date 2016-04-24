@@ -17462,6 +17462,10 @@ ul li.leaf {
 #block-views-community-block_2 .obit h3 {
   text-align: center;
 }
+.obit .img-thumbnail img {
+  width: 100%;
+  height: auto;
+}
 .page-type-event .field-name-body .lower,
 .page-type-event-free .field-name-body .lower,
 .page-type-event-paid .field-name-body .lower {
