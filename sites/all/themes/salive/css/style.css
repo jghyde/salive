@@ -7424,27 +7424,27 @@ ul.social-icons li a.social:hover:before {
 .block-title a {
   color: white !important;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs {
   background-color: #cccccc;
   margin: 0;
   padding: 0;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs .ajax-progress {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs .ajax-progress {
   display: none;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs .quicktabs-loading .quicktabs_main {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs .quicktabs-loading .quicktabs_main {
   height: 30px;
   margin-top: 20px;
   background: #cc0000;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs li {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs li {
   border: none;
   margin: 0;
   padding: 0;
   text-align: center;
   display: inline-block;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs li a {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs li a {
   display: inline-block;
   width: 100%;
   font-weight: normal;
@@ -7457,14 +7457,14 @@ ul.social-icons li a.social:hover:before {
   border-right: 1px solid #5a5a5a;
   text-shadow: none;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs li a:hover {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs li a:hover {
   color: #333333!important;
   background-color: #4a4a4a;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs li:last-child a {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs li:last-child a {
   border: none;
 }
-#quicktabs-articles.quicktabs-wrapper .quicktabs-tabs li.active a {
+#quicktabs-news.quicktabs-wrapper .quicktabs-tabs li.active a {
   color: #333333!important;
   text-shadow: 1px 1px 0 #efefef;
 }
