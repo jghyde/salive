@@ -1,7 +1,15 @@
 // $Id: $ mods for bootstrap for salive 2014
 (function ($) {
   Drupal.behaviors.salivebootstrap = {
-    attach: function (context, settings) {      
+    attach: function (context, settings) {
+      $('.quicktabs-tabs a:not(.quicktabs-loaded)', context).click(function() {
+        if ($(this).hasClass('progress-disabled')) {
+          $(this).closest('.quicktabs-wrapper').addClass('quicktabs-loading');
+        }
+      });
+      if ($(context).hasClass('quicktabs-tabpage')) {
+        $(context).closest('.quicktabs-wrapper').removeClass('quicktabs-loading');
+      }
       // colorbox
       $('img.imgbody').click(function() {
         $(this).colorbox({href: $(this).attr('src')});

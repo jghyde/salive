@@ -20,7 +20,7 @@ INSTALLING
 1. Copy the 'jammer' folder to your sites/all/modules directory.
 2. Go to Administer > Site building > Modules. Enable the module.
 
-
+/Applications/MAMP/bin/php/php5.6.10/bin/phpcs
 CONFIGURING AND USING
 ---------------------
 1. Go to Administer > User management > Permissions. Under line 'jammer module'
