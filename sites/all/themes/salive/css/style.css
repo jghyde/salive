@@ -7097,6 +7097,15 @@ img {
 .table > thead > tr > th a {
   color: #ffffff;
 }
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #000000;
+  color: #ffffff;
+}
+.table-striped > tbody > tr:nth-child(odd) > td a,
+.table-striped > tbody > tr:nth-child(odd) > th a {
+  color: #ffffff;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
