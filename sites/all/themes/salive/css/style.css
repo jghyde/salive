@@ -7088,6 +7088,15 @@ img {
 .page-type-article .field-name-body .well a.btn-primary {
   color: #ffffff!important;
 }
+.table > tbody > tr > th,
+.table > thead > tr > th {
+  background-color: #000000;
+  color: #ffffff;
+}
+.table > tbody > tr > th a,
+.table > thead > tr > th a {
+  color: #ffffff;
+}
 #logo {
   margin: 5px 0 0 0;
   text-align: center;
