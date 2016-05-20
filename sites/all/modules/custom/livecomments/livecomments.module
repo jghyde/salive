@@ -40,7 +40,8 @@ function livecomments_ajax_form($nid) {
     $submission = (object) array();
     $enabled = TRUE;
     $preview = FALSE;
-    $form= render(drupal_get_form('livecomments_comment_form', $node, $submission, $enabled, $preview));
+    $form_array = drupal_get_form('livecomments_comment_form', $node, $submission, $enabled, $preview);
+    $form= render($form_array);
     // Generate the settings:
     $settings = FALSE;
     $javascript = drupal_add_js(NULL, NULL);
