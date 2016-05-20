@@ -21,6 +21,9 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
           if ($v['tid'] == '51') {
             $t = 'health';
           }
+          else {
+            $t = 'all';
+          }
         }
       }
     }
@@ -125,6 +128,12 @@ googletag.cmd.push(function() { googletag.display('div-gpt-ad-1444925118780-0');
 				break;
       case 'health':
         $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Health --><div id=\'div-gpt-ad-1425500431462-9\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-9\');</script></div>';
+        break;
+      case 'all':
+        if ($node->nid != '6') {
+          $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Story --><div id=\'div-gpt-ad-1425500431462-12\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-12\');</script></div>';
+          // $node->content['body'][0]['#markup'] .= $copyright . '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5325374767216744" data-ad-slot="9585629119" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+        }
         break;
       default:
         if ($node->nid != '6') {
