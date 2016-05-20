@@ -495,7 +495,12 @@ function salive_preprocess_node(&$vars) {
 		} else {
 			$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>';
 		}
-		$vars['sell'] = $sell;
+    if (user_is_anonymous()) {
+      $vars['sell'] = salive_sellthelogin();
+    }
+    else {
+      $vars['sell'] = '';
+    }
   }
     if ($vars['type'] == 'openhouse') {
         //rearrange some of the field outputs
