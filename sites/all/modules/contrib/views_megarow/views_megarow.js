@@ -19,7 +19,7 @@
     }, 'fast');
     return this;
 
-  }
+  };
   Drupal.ViewsMegarow = Drupal.ViewsMegarow || {};
 
   /**
@@ -149,9 +149,13 @@
    * Handler to prepare the megarow for the response
    */
   Drupal.ViewsMegarow.clickAjaxLink = function () {
-    var target = $(this);
-    var entityId = target.parents('tr').attr('data-entity-id');
-    Drupal.ViewsMegarow.open(entityId, target);
+    var classes  = $(this).parents('tr').attr('class');
+
+    // Extract the entity idem from a custom class storing it
+    // to ease the manipulation of the rows.
+    var entityId = /item\-([0-9]+)/.exec(classes)[1];
+
+    Drupal.ViewsMegarow.open(entityId, $(this));
 
     return false;
   };
@@ -168,6 +172,12 @@
         .addClass('views-megarow-open-processed')
         .click(Drupal.ViewsMegarow.clickAjaxLink)
         .each(function () {
+          // Create a DOM attribute to ease the manipulation of the row
+          // by any other module.
+          var classes = $(this).parents('tr').attr('class');
+          var entityId = /item\-([0-9]+)/.exec(classes)[1];
+          $(this).parents('tr').attr('data-entity-id', entityId);
+
           // Create a drupal ajax object
           var elementSettings = {};
           if ($(this).attr('href')) {
@@ -250,6 +260,9 @@
     if (Drupal.settings.ViewsMegarow.args !== undefined) {
       url += '/' + Drupal.settings.ViewsMegarow.args;
     }
+
+    // Preserve initial destination URL query parameter.
+    url += '?destination=' + Drupal.ViewsMegarow.currentSettings.destination;
 
     $.get(url, function(data) {
       $('tr.item-' + response.entity_id + ' td', data).each(function(index) {

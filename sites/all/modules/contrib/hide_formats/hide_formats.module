@@ -38,7 +38,6 @@ function hide_formats_element_info_alter(&$type) {
 
 /*
  * Started as a direct copy of filter_process_format from core filter.module
- *
  */
 function hide_formats_filter_process_format($element) {
   global $user;
@@ -87,7 +86,7 @@ function hide_formats_filter_process_format($element) {
   );
 
   /*
-   * Custom addition start
+   * Add custom display.
    */
   if (user_access('show text format dropdown')) {
     $element['format']['#title'] = "Text formats options";  // Title is needed in our theme or you can't expand the fieldset
@@ -101,10 +100,6 @@ function hide_formats_filter_process_format($element) {
       drupal_add_css($custom_css, 'inline');
     }
   }
-  /*
-  * Custom addition end
-  */
-
 
   // Prepare text format guidelines.
   $element['format']['guidelines'] = array(

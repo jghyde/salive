@@ -67,16 +67,29 @@ function social_share_counter_page_build(&$page) {
   if (variable_get('ssc_status', 1) == 1) {
     drupal_add_css(drupal_get_path('module', 'social_share_counter') . '/css/font-awesome.min.css');
     drupal_add_css(drupal_get_path('module', 'social_share_counter') . '/css/ssc.css');
-
+    $protocol = 'http';
+    if((!empty($_SERVER['HTTPS']))) {
+      $protocol = 'https';
+    }
+    $url = $protocol . "://" . $_SERVER['SERVER_NAME'] . request_uri();
     $my_settings = array(
       'share' => url('social_share_counter/share', array('absolute' => TRUE)),
-      'page' =>  (!empty($_SERVER['HTTPS'])) ? "https://" . $_SERVER['SERVER_NAME'] . request_uri() : "http://" . $_SERVER['SERVER_NAME'] . request_uri(),
+      'page' =>  $url,
     );
     $my_settings['isClean'] = 0;
     if (variable_get('clean_url') == 1) {
       $my_settings['isClean'] = 1;
     }
     drupal_add_js(array('SSC' => $my_settings), "setting");
+    $option = array(
+      'type' => 'file',
+      'scope' => 'footer',
+      'group' => JS_LIBRARY,
+      'cache' => FALSE,
+      'weight' => 10
+    );
+    drupal_add_js(drupal_get_path('module', 'social_share_counter') . '/js/ssc_main.js', $option);
+    drupal_add_js(drupal_get_path('module', 'social_share_counter') . '/js/ssc_floating_navigation.js', $option);
   }
 }
 
@@ -101,20 +114,11 @@ function social_share_counter_node_view($node, $view_mode) {
       '#markup' => _ssc_create_button($node),
       '#weight' => intval(variable_get('ssc_display_weight', -10)),
     );
-    $option = array(
-      'type' => 'file',
-      'scope' => 'footer',
-      'group' => JS_LIBRARY,
-      'cache' => FALSE,
-      'weight' => 10
-    );
-    drupal_add_js(drupal_get_path('module', 'social_share_counter') . '/js/ssc_main.js', $option);
     if ($view_mode == 'full') {
       $node->page_bottom['devel'] = array(
         '#weight' => 25,
         '#markup' => '<div style="clear:both;">gergter</div>',
       );
-      drupal_add_js(drupal_get_path('module', 'social_share_counter') . '/js/ssc_floating_navigation.js', $option);
     }
   }
 }
@@ -134,26 +138,21 @@ function _ssc_create_button($node=NULL) {
 
   if (is_object($node)) {
     $link_name = (module_exists('page_title')) ? page_title_page_get_title() : $node->title;
-    $link_url = url('node/' . $node->nid, array('absolute' => 1));
+    $link_url = url('node/' . $node->nid, array('absolute' => TRUE));
   }
   else {
-    // Front page.
-    $link_name = (module_exists('page_title')) ? page_title_page_get_title() : variable_get('site_name', 'Drupal');
-    $link_url = url('<front>', array('absolute' => 1));
+    $path = isset($_GET['q']) ? $_GET['q'] : '<front>';
+    if ($path == variable_get('site_frontpage')) {
+      $path = "<front>";
+    }
+    $link_name = (module_exists('page_title')) ? page_title_page_get_title() : decode_entities(drupal_get_title());
+    $link_url = url($path, array('absolute' => TRUE));
   }
-  $data['button_text'] = array(
-    'facebook' => variable_get('ssc_facebook_button_text', 'Share on Facebook'),
-    'twitter' => variable_get('ssc_facebook_twitter_text', 'Share on Twitter'),
-  );
-  $data['ssc_min_to_show'] = variable_get('ssc_min_to_show', 0);
-  $data['count_text'] = variable_get('ssc_text_below_count', 'Share');
-  $data['title'] = $link_name;
-  $data['via'] = variable_get('site_name');
 
-  $template = theme('social_share_counter', array('data' => $data));
-  // ID is later removed by JS (for AJAX).
-  $str = '<aside class="ssc-container"><div class="sharebox" data-url="' . $link_url . '" data-text="' . $link_name . '">' . $template . '</div></aside>';
-  return (sprintf($str));
+  $data = social_share_counter_get_options_array();
+  $data['title'] = $link_name;
+  $data['link_url'] = $link_url;
+  return theme('social_share_counter', array('data' => $data));
 }
 
 /**
@@ -181,6 +180,10 @@ function social_share_counter_block_info() {
     'info' => t('Social Share Counter Follow Box'),
     'cache' => DRUPAL_CACHE_PER_PAGE,
   );
+  $blocks['ssc_block'] = array(
+    'info' => t('Social Share Counter Box'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
+  );
   return $blocks;
 }
 
@@ -191,7 +194,10 @@ function social_share_counter_block_view($delta='') {
   $block = array();
   switch ($delta) {
     case 'ssc_follow_box':
-      $block['content'] = _social_share_counter_block_contents();
+      $block['content'] = _social_share_counter_follow_block_contents();
+      break;
+    case 'ssc_block':
+      $block['content'] = _ssc_create_button();
       break;
   }
   return $block;
@@ -200,7 +206,7 @@ function social_share_counter_block_view($delta='') {
  * custom html block
  * @return string
  */
-function _social_share_counter_block_contents() {
+function _social_share_counter_follow_block_contents() {
   $data = array();
   $data['profile_links']['facebook'] = variable_get('ssc_social_media_profile_facebook');
   $data['profile_links']['twitter'] = variable_get('ssc_social_media_profile_twitter');
@@ -263,4 +269,21 @@ function _social_share_counter_parse($enc_url) {
     print_r($errmsg);*/
   }
   return $content;
+}
+
+/**
+ * A helper function for DB access.
+ *
+ * Returns options that have been stored in the database.
+ *
+ */
+function social_share_counter_get_options_array() {
+  $data['button_text'] = array(
+    'facebook' => variable_get('ssc_facebook_button_text', 'Share on Facebook'),
+    'twitter' => variable_get('ssc_facebook_twitter_text', 'Share on Twitter'),
+  );
+  $data['ssc_min_to_show'] = variable_get('ssc_min_to_show', 0);
+  $data['count_text'] = variable_get('ssc_text_below_count', 'Share');
+  $data['via'] = variable_get('site_name');
+  return $data;
 }

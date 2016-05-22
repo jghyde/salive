@@ -23,3 +23,13 @@ INSTALLATION
 2. Enable the Social Share Counter module at admin/build/modules.
 3. Set the access Social Share Counter permissions for authenticated users at
    admin/user/permissions.
+
+
+FEATURES
+========
+1. No images used- All social media icons are fontawesome fonts.
+2. Social Share Counter.
+3. Responsive design.
+4. Social Share Sticky Top Bar
+5. Options to enable/disable with node types with different view modes you wish to display.
+6. Available as a block.

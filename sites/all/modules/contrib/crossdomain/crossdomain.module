@@ -33,6 +33,8 @@ function crossdomain_permission() {
 }
 
 function crossdomain_render() {
+  drupal_add_http_header('Content-Type', 'text/xml');
+
   $domains = variable_get('crossdomain', array());
 
   $output = "<?xml version=\"1.0\"?>\n

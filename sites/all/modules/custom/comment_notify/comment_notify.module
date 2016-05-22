@@ -120,7 +120,7 @@ function comment_notify_form_comment_form_alter(&$form, &$form_state, $form_id) 
   // If you want to hide this on your site see http://drupal.org/node/322482
   $form['notify_settings']['notify'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Email me if a new comments is posted.'),
+    '#title' => t('Notify me when new comments are posted'),
     '#default_value' => (bool) $preference,
   );
 

@@ -109,19 +109,19 @@ function social_share_counter_follow_settings_form() {
   $form['ssc_social_media_profile']['ssc_social_media_profile_facebook'] = array(
     '#type' => 'textfield',
     '#title' => t('Your Facebook Profile URL:'),
-    '#default_value' => variable_get('ssc_follow_widget_profile_facebook', 'Facebook'),
+    '#default_value' => variable_get('ssc_social_media_profile_facebook', 'Facebook'),
     '#size' => 26,
   );
   $form['ssc_social_media_profile']['ssc_social_media_profile_twitter'] = array(
     '#type' => 'textfield',
     '#title' => t('Your Twitter Profile URL:'),
-    '#default_value' => variable_get('ssc_follow_widget_profile_twitter', 'Twitter'),
+    '#default_value' => variable_get('ssc_social_media_profile_twitter', 'Twitter'),
     '#size' => 26,
   );
   $form['ssc_social_media_profile']['ssc_social_media_profile_google_plus'] = array(
     '#type' => 'textfield',
     '#title' => t('Your Google+ Profile URL:'),
-    '#default_value' => variable_get('ssc_follow_widget_profile_google_plus', 'Google+'),
+    '#default_value' => variable_get('ssc_social_media_profile_google_plus', 'Google+'),
     '#size' => 26,
   );
   $form['ssc_social_media_profile']['ssc_social_media_profile_linkedin'] = array(

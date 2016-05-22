@@ -4,6 +4,7 @@
  * @file
  * File contains functions for individual share count from all Social service.
  */
+
 /**
  * Function to get share count from facebook.
  * @param string $url
@@ -13,6 +14,7 @@ function get_count_facebook($url) {
   $response = _social_share_counter_parse("http://graph.facebook.com/?id=" . $url);
   $result = json_decode($response);
   if (isset($result->shares)) {
+    $result->shares = formatNumberAbbreviation($result->shares);
     $count = $result->shares;
   }
 
@@ -25,9 +27,10 @@ function get_count_facebook($url) {
  */
 function get_count_twitter($url) {
   $count = 0;
-  $response = _social_share_counter_parse("http://urls.api.twitter.com/1/urls/count.json?url=" . $url );
+  $response = _social_share_counter_parse("http://urls.api.twitter.com/1/urls/count.json?url=" . $url);
   $result = json_decode($response);
   if (isset($result->count)) {
+    $result->count = formatNumberAbbreviation($result->count);
     $count = $result->count;
   }
   return $count;
@@ -39,10 +42,11 @@ function get_count_twitter($url) {
  */
 function get_count_linkedin($url) {
   $count = 0;
-  $response = _social_share_counter_parse("http://www.linkedin.com/countserv/count/share?url=" . $url );
-  $response_body_clean = preg_replace( "/(^IN\.Tags\.Share\.handleCount\(|\);$)/", "", $response);
+  $response = _social_share_counter_parse("http://www.linkedin.com/countserv/count/share?url=" . $url);
+  $response_body_clean = preg_replace("/(^IN\.Tags\.Share\.handleCount\(|\);$)/", "", $response);
   $result = json_decode($response_body_clean);
   if (isset($result->count)) {
+    $result->count = formatNumberAbbreviation($result->count);
     $count = $result->count;
   }
   return $count;
@@ -65,6 +69,7 @@ function get_count_googleplus($url) {
   if (isset($filtered->item(0)->nodeValue)) {
     $count = str_replace('>', '', $filtered->item(0)->nodeValue);
   }
+  $count = formatNumberAbbreviation($count);
   return $count;
 }
 
@@ -78,7 +83,7 @@ function get_count_stumbleupon($url) {
 
   $result = json_decode($response);
   if (isset($result->result->views)) {
-    $count = $result->result->views;
+    $count = formatNumberAbbreviation($result->result->views);
   }
   return $count;
 }
@@ -92,10 +97,32 @@ function get_count_pinterest($url) {
   $response = _social_share_counter_parse("http://api.pinterest.com/v1/urls/count.json?callback=count&url=" . $url);
   $response = preg_replace('/^.*count\(/', '', $response);
   $response = preg_replace('/\)$/', '', $response);
-  $result = json_decode( $response );
+  $result = json_decode($response);
 
   if (isset($result->count)) {
+    $result->count = formatNumberAbbreviation($result->count);
     $count = (int) $result->count;
   }
   return $count;
+}
+/**
+ * Function to format abbreviated number to numeric form.
+ * @param int|string $number
+ * @return int
+ */
+function formatNumberAbbreviation($number) {
+  if ($number != 0 && preg_match('/B|M|K/i', $number)) {
+    switch (strtolower(substr($number, -1))) {
+      case 'k':
+        $number*=1000;
+        break;
+      case 'm':
+        $number*=1000000;
+        break;
+      case 'b':
+        $number*=1000000000;
+        break;
+    }
+  }
+  return $number;
 }
