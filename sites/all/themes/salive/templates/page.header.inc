@@ -6,7 +6,7 @@
 	?>
   <div class="container clearfix">
     <?php if ($logo): ?>
-      <div id="logo" class="col-md-2">
+      <div id="logo" class="col-md-2 col-sm-12">
         <h1 id="site-title"><?php print $site_name; ?></h1>
         <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>" rel="home">
           <img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>" />
@@ -20,7 +20,7 @@
     <?php endif; ?>
 
     <?php if (!empty($page['header_ads'])): ?>
-        <div class="col-md-10 header-ads">
+        <div class="col-md-10 col-sm-12 header-ads">
           <?php print render($page['header_ads']);?>
         </div>
     <?php endif; ?>

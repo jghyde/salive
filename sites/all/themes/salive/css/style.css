@@ -7174,11 +7174,13 @@ img {
 #nav ul.sf-menu li.sf-item-2 ul {
   width: 125%;
 }
-.header-ads {
-  margin: 0;
-}
-.header-ads .block {
-  margin: 0px;
+@media screen and (max-width: 991px) {
+  .header-ads {
+    margin: 0;
+  }
+  .header-ads .block {
+    margin: 0px;
+  }
 }
 .nav-superfish #nav {
   border-bottom: 3px solid #e6e6e6;
@@ -17263,6 +17265,10 @@ ul li.leaf {
 .block-livebreaking .livebreaking-item .col-md-3 a {
   height: auto !important;
   width: 100% !important;
+}
+.header-ads {
+  margin: 1em 0;
+  padding: 0;
 }
 #block-block-36 .blcontent {
   padding: 15px 0;
