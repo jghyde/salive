@@ -7097,29 +7097,33 @@ img {
 .table > thead > tr > th a {
   color: #ffffff;
 }
+.table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #000000;
   color: #ffffff;
 }
+.table-striped > tbody > tr:nth-child(odd) > td a,
 .table-striped > tbody > tr:nth-child(odd) > th a {
   color: #ffffff;
 }
 #logo {
-  margin: 5px 0 0 0;
+  margin: 0;
   text-align: center;
 }
+#logo h1#site-title {
+  display: none;
+}
 #logo a {
-  font-size: 2.5em;
-  font-weight: bold;
+  display: block;
 }
 #logo a img {
   max-width: 305px;
-  width: 100% !important;
-  height: auto !important;
+  width: 100%;
+  height: auto;
 }
 #logo .slogan {
   text-align: center;
-  font-size: small;
+  font-size: x-small;
 }
 #nav {
   font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;

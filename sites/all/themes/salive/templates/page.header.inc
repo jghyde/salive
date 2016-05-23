@@ -6,22 +6,21 @@
 	?>
   <div class="container clearfix">
     <?php if ($logo): ?>
-      <div id="logo" class="col-md-4">
+      <div id="logo" class="col-md-2">
+        <h1 id="site-title"><?php print $site_name; ?></h1>
         <a href="<?php print $front_page; ?>" title="<?php print $site_name; ?>" rel="home">
           <img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>" />
         </a>
-        <br />
         <?php if ($site_slogan): ?>
-          <span class="slogan">
-            <h1><?php print $site_name; ?><br /><small><?php print $site_slogan; ?></small></h1>
-            <noscript><h2>#WRSA</h2></noscript>
-          </span>
+          <p class="slogan">
+            <?php print $site_slogan; ?>
+          </p>
         <?php endif; ?>
       </div>
     <?php endif; ?>
 
     <?php if (!empty($page['header_ads'])): ?>
-        <div class="col-md-8 header-ads">
+        <div class="col-md-10 header-ads">
           <?php print render($page['header_ads']);?>
         </div>
     <?php endif; ?>
