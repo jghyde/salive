@@ -22,207 +22,36 @@ function salive_preprocess_html(&$vars) {
   }
   drupal_add_css(libraries_get_path('rrssb') . '/css/rrssb.css');
   drupal_add_js(libraries_get_path('rrssb') . '/js/rrssb.min.js');
-
-  //drupal_add_js(libraries_get_path('sharrre') . '/jquery.sharrre.js');
-
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.carousel.css');
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/animate.css');
   drupal_add_css(libraries_get_path('owlcarousel') . '/assets/owl.theme.default.min.css');
   drupal_add_js(libraries_get_path('owlcarousel') . '/owl.carousel.min.js');
   drupal_add_js(libraries_get_path('owlcarousel') . '/jquery.mousewheel.min.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salbootstrap.js',
-    array('weight' => -20)
+    ['weight' => -20]
   );
-  $node_type = NULL;
-  if (arg(0) == 'node' && is_numeric(arg(1))) {
-    $node_ck = node_load(arg(1));
-    $node_type = $node_ck->type;
-  }
-  // Google DFP hacks
-  // find out if it's an article
-  $node_type = NULL;
-  if (arg(0) == 'node' && is_numeric(arg(1))) {
-    $node_ck = node_load(arg(1));
-    $node_type = $node_ck->type;
-  }
-  if ($vars['is_front'] == 1) {
-    drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-front.js');
-  }
-  elseif (isset($node_type) && $node_type == 'article') {
-    // Find the $defined_slots. Must have livenewsads module enabled.
-    $slots = livenewsads_slots();
-    if (count($slots > 0)) {
-      //create js for the <head> to display ads
-			$js = <<<EOT
-var googletag = googletag || {};
-googletag.cmd = googletag.cmd || [];
-(function() {
-var gads = document.createElement('script');
-gads.async = true;
-gads.type = 'text/javascript';
-var useSSL = 'https:' == document.location.protocol;
-gads.src = (useSSL ? 'https:' : 'http:') + 
-'//www.googletagservices.com/tag/js/gpt.js';
-var node = document.getElementsByTagName('script')[0];
-node.parentNode.insertBefore(gads, node);
-})();
- 
-googletag.cmd.push(function() {
-  var width = document.documentElement.clientWidth;
-  var box;
-  	if (width >= 320 && width < 991) 
-		box = [300, 250]; 
-		else if (width > 991  && width <1199) 
-	  box = [180, 150];
-	else
-		box = [300, 250];
-	var ban;
-  	if (width >= 320 && width < 991) 
-		ban = [300, 250]; 
-		else if (width > 992 && width < 1199) 
-	  ban = [485, 60];
-		else if (width > 1200 && width < 1585)
-		ban = [647, 80];
-	else
-		ban = [728, 90];
-	var banwl;
-  	if (width >= 320 && width < 991) 
-		banwl = [300, 250]; 
-		else if (width > 992 && width < 1199) 
-	  banwl = [580, 112];
-		else if (width > 1200 && width < 1585)
-		banwl = [710, 137];
-	else
-		banwl = [930, 180];
-	var banwlb;
-  	if (width >= 320 && width < 991) 
-		banwlb = [300, 250]; 
-		else if (width > 992 && width < 1199) 
-	  banwlb = [620, 120];
-		else if (width > 1200 && width < 1585)
-		banwlb = [775, 150];
-	else
-		banwlb = [930, 180];
-	var banst;
-  	if (width >= 320 && width < 991) 
-		banst = [300, 100]; 
-		else if (width > 992 && width < 1199) 
-	  banst = [190, 63];
-		else if (width > 1200 && width < 1585)
-		banst = [240, 80];
-	else
-		banst = [300, 100];
-	var slot1=googletag.defineSlot('/116956976/SALive_Breaking_News', [320, 50], 'div-gpt-ad-1425500431462-1').addService(googletag.pubads());
-	var slot3=googletag.defineSlot('/116956976/SALive_B_Rail_1', box, 'div-gpt-ad-1425500431462-2').addService(googletag.pubads());
-	var slot4=googletag.defineSlot('/116956976/SALive_B_Rail_2', box, 'div-gpt-ad-1425500431462-3').addService(googletag.pubads());
-	var slot5=googletag.defineSlot('/116956976/SALive_B_Rail_3', box, 'div-gpt-ad-1425500431462-4').addService(googletag.pubads());
-	var slot6=googletag.defineSlot('/116956976/SALive_B_Rail_4', box, 'div-gpt-ad-1425500431462-5').addService(googletag.pubads());
-	var slot12=googletag.defineSlot('/116956976/SALive_BLW_Story', banwl, 'div-gpt-ad-1425500431462-12').addService(googletag.pubads());
-	var slot18=googletag.defineSlot('/116956976/SALive_BW_Bottom', ban, 'div-gpt-ad-1425500431462-17').addService(googletag.pubads());
-	var slot19=googletag.defineSlot('/116956976/SALive_BW_Top', ban, 'div-gpt-ad-1425500431462-18').addService(googletag.pubads());
-	var slotSponsor=googletag.defineSlot('/116956976/SALive_B_Rail_S', box, 'div-gpt-ad-1457839518867-0').addService(googletag.pubads());
-EOT;
-    // Find the crash slot, story bottom, SALive_BLW_Story
-		if (in_array('div-gpt-ad-1444925118780-0', $slots)) {
-		  $js .= <<<EOT
-    googletag.defineSlot('/116956976/SALive_BLW_Crash', banwl , 'div-gpt-ad-1444925118780-0').addService(googletag.pubads());
-EOT;
-      $slots = array_diff($slots, array('div-gpt-ad-1444925118780-0'));
-		}
-    $i = 101;
-		$n = 1;
-    foreach($slots as $slot) {
-		  $js .= 'var slot' . $i . '=googletag.defineSlot(\'/116956976/newsbody_' . $n . '\', box, ' . "'" . $slot . '\').addService(googletag.pubads());' . "\n";
-			$i++;
-			$n++;
-		}
-    $js .= <<<EOT
-  googletag.pubads().enableSingleRequest();
-  googletag.enableServices();
-});
-EOT;
-    // add the js
-		drupal_add_js($js, array('type' => 'inline', 'scope' => 'header', 'weight' => 1));
-		}
-	}
-	else {
-	  $path = menu_get_item();
-		switch ($path['path']) {
-		  case 'news':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news.js');
-			break;
-			case 'news/business':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-						case 'news/crime':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/business':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/county':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/san-angelo':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/crashes':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/business':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/health':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/international':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/national':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/entertainment':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/politics':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/sports':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'news/texas':
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp-news-inside.js');
-			break;
-			case 'scores':
-			  drupal_add_js(drupal_get_path('theme', 'salive') .  '/js/googledfp-scores.js');
-			break;
-			default:
-			  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/googledfp.js');
-			break;
-		}  
-	}
-	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
-	drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
-	
-	// remove no-sidebars class
-	if ($index = array_search('no-sidebars', $vars['classes_array'])) {
+
+
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
+  drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
+
+  // Remove no-sidebars class.
+  if ($index = array_search('no-sidebars', $vars['classes_array'])) {
     unset($vars['classes_array'][$index]);
   }
 
-	if (theme_get_setting('extra_page_classes')) {
+  if (theme_get_setting('extra_page_classes')) {
     if (function_exists('locale')) {
-      $vars['classes_array'][] = 'lang-'. $vars['language']->language;
+      $vars['classes_array'][] = 'lang-' . $vars['language']->language;
     }
   }
   if (theme_get_setting('extra_page_classes') == 0) {
-    foreach($vars['classes_array'] as $i =>$class) {
-      if(preg_match('/page*/', $class)) {
+    foreach ($vars['classes_array'] as $i => $class) {
+      if (preg_match('/page*/', $class)) {
         unset($vars['classes_array'][$i]);
       }
     }
   }
-
-	//drupal_add_css(path_to_theme() . '/css/ie7.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
 }
 
 function salive_query_alter(&$query) {
@@ -246,8 +75,8 @@ function salive_process_html(&$vars) {
   if (module_exists('color')) {
     _color_html_alter($vars);
   }
-	
-	$classes = explode(' ', $vars['classes']);
+
+  $classes = explode(' ', $vars['classes']);
   if ($node = menu_get_object()) {
     $node_type_class = drupal_html_class('node-type-' . $node->type);
     if (in_array($node_type_class, $classes)) {
@@ -259,34 +88,34 @@ function salive_process_html(&$vars) {
 }
 
 
-
 /**
  * Override or insert vars into the page template.
  */
 function salive_process_page(&$vars, $hook) {
-	if($vars['page']['sidebar']) {
-		$vars['sidebar_grid_class'] = 'col-md-4';
-		$vars['main_grid_class'] = 'col-md-8';		
-	} else {
-		$vars['main_grid_class'] = 'col-md-12';			
-	}
+  if ($vars['page']['sidebar']) {
+    $vars['sidebar_grid_class'] = 'col-md-4';
+    $vars['main_grid_class'] = 'col-md-8';
+  }
+  else {
+    $vars['main_grid_class'] = 'col-md-12';
+  }
 }
 
 /**
  * Implements hook_preprocess_page().
  */
 function salive_preprocess_page(&$vars) {
-  // fix the title on obit nodes
+  // Fix the title on obit nodes.
   if (isset($vars['node'])) {
     if ($vars['node']->type == 'obituary') {
-      // date_format_date($date, $type = 'medium', $format = '', $langcode = NULL)
+      // The date_format_date($date, $type = 'medium', $format = '', $langcode = NULL).
       //date_format(date_create($time), $format);
       $death = date_format(date_create($vars['node']->field_date_of_death[LANGUAGE_NONE][0]['value']), 'M j, Y');
       $birth = date_format(date_create($vars['node']->field_date_of_birth[LANGUAGE_NONE][0]['value']), 'M j, Y');
       $vars['title'] = drupal_get_title();
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
     }
-		if ($vars['node']->type == 'obit_paid') {
+    if ($vars['node']->type == 'obit_paid') {
       // date_format_date($date, $type = 'medium', $format = '', $langcode = NULL)
       //date_format(date_create($time), $format);
       $death = date_format(date_create($vars['node']->field_date_of_death[LANGUAGE_NONE][0]['value']), 'M j, Y');
@@ -302,7 +131,7 @@ function salive_preprocess_page(&$vars) {
       if ($vars['node']->pressrelease == 1) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Press Release</span>';
       }
-			if ($vars['node']->sponsored == 1) {
+      if ($vars['node']->sponsored == 1) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Sponsored Story</span>';
       }
     }
@@ -316,10 +145,10 @@ function salive_preprocess_page(&$vars) {
       $vars['title'] = drupal_get_title();
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="birth-dates">' . $birth . '</span>';
     }
-		if ($vars['node']->type == 'openhouse') {
-		  drupal_add_js(libraries_get_path('iosslider') . '/_src/jquery.iosslider.min.js');
-            drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salive-iosslider.js');
-		}
+    if ($vars['node']->type == 'openhouse') {
+      drupal_add_js(libraries_get_path('iosslider') . '/_src/jquery.iosslider.min.js');
+      drupal_add_js(drupal_get_path('theme', 'salive') . '/js/salive-iosslider.js');
+    }
   }
 }
 
@@ -384,46 +213,47 @@ function salive_process_maintenance_page(&$vars) {
  */
 function salive_preprocess_node(&$vars) {
   // add an open graph tag for the image
-	if ($vars['type'] == 'article' ||
-	    $vars['type'] == 'event' ||
-	    $vars['type'] == 'smoky') {
-	  if (count($vars['field_image']) > 0) {
-		  // make the OG image the first one:
-			$og_image = $vars['field_image'][0];
-			$url = image_style_url('facebook', $og_image['uri']);
-      $element = array(
+  if ($vars['type'] == 'article' ||
+    $vars['type'] == 'event' ||
+    $vars['type'] == 'smoky'
+  ) {
+    if (count($vars['field_image']) > 0) {
+      // make the OG image the first one:
+      $og_image = $vars['field_image'][0];
+      $url = image_style_url('facebook', $og_image['uri']);
+      $element = [
         '#tag' => 'meta',
-        '#attributes' => array(
+        '#attributes' => [
           'property' => "og:image",
           'content' => $url,
-        ),
-      );
-        drupal_add_html_head($element,'og_image');
-        $element['#attributes']['property'] = 'twitter:image';
-        drupal_add_html_head($element,'twitter_card_image');
-        $element = array(
-          '#tag' => 'meta',
-          '#attributes' => array(
-            'property' => "og:image:width",
-            'content' => '1200',
-          ),
-        );
-        drupal_add_html_head($element,'og_image_width');
-        $element = array(
-          '#tag' => 'meta',
-          '#attributes' => array(
-            'property' => "og:image:height",
-            'content' => '675',
-          ),
-        );
-        drupal_add_html_head($element,'og_image_height');
-		}
-	}
-	if (theme_get_setting('extra_article_classes')) {
+        ],
+      ];
+      drupal_add_html_head($element, 'og_image');
+      $element['#attributes']['property'] = 'twitter:image';
+      drupal_add_html_head($element, 'twitter_card_image');
+      $element = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => "og:image:width",
+          'content' => '1200',
+        ],
+      ];
+      drupal_add_html_head($element, 'og_image_width');
+      $element = [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => "og:image:height",
+          'content' => '675',
+        ],
+      ];
+      drupal_add_html_head($element, 'og_image_height');
+    }
+  }
+  if (theme_get_setting('extra_article_classes')) {
     if (module_exists('translation')) {
       if ($vars['node']->language) {
         global $language;
-        $vars['classes_array'][] = 'article-lang-'. $vars['node']->language;
+        $vars['classes_array'][] = 'article-lang-' . $vars['node']->language;
       }
     }
   }
@@ -434,53 +264,65 @@ function salive_preprocess_node(&$vars) {
     $vars['classes_array'][] = 'node-full';
   }
 
-	if ($vars['view_mode'] == 'teaser') {
-    $vars['classes_array'][] = "node-".$vars['node']->type."-teaser";
+  if ($vars['view_mode'] == 'teaser') {
+    $vars['classes_array'][] = "node-" . $vars['node']->type . "-teaser";
   }
   if ($vars['display_submitted']) {
-		$author = user_load($vars['uid']);
-		if (in_array('administrator', $author->roles)) {
-			$account = profile2_load_by_user($vars['uid'], 'main_profile_admin');
-		} else {
-			$account = profile2_load_by_user($vars['uid'], 'main');
-		}
+    $author = user_load($vars['uid']);
+    if (in_array('administrator', $author->roles)) {
+      $account = profile2_load_by_user($vars['uid'], 'main_profile_admin');
+    }
+    else {
+      $account = profile2_load_by_user($vars['uid'], 'main');
+    }
     $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];
-    $name = ($account->field_first_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_first_name[LANGUAGE_NONE][0]['safe_value'] . ' ': '');
+    $name = ($account->field_first_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_first_name[LANGUAGE_NONE][0]['safe_value'] . ' ' : '');
     $name .= ($account->field_last_name[LANGUAGE_NONE][0]['safe_value'] ? $account->field_last_name[LANGUAGE_NONE][0]['safe_value'] : '');
-		if (in_array('administrator', $author->roles)) {
-			$title = ($account->field_job_title[LANGUAGE_NONE][0]['safe_value'] ? $account->field_job_title[LANGUAGE_NONE][0]['safe_value'] : '');
-		} elseif (in_array('Past Employee', $author->roles)) {
+    if (in_array('administrator', $author->roles)) {
+      $title = ($account->field_job_title[LANGUAGE_NONE][0]['safe_value'] ? $account->field_job_title[LANGUAGE_NONE][0]['safe_value'] : '');
+    }
+    elseif (in_array('Past Employee', $author->roles)) {
       $title = t('Former Correspondent');
-		} elseif (in_array('Intern', $author->roles)) {
+    }
+    elseif (in_array('Intern', $author->roles)) {
       $title = t('Intern Reporter');
-		} else {
-			$title = t('Contributor');
-		}
+    }
+    else {
+      $title = t('Contributor');
+    }
     (empty($imgvars['title']) ? $imgvars['title'] = $name : '');
     (empty($imgvars['alt']) ? $imgvars['alt'] = $name : '');
-    $picarray = array(
+    $picarray = [
       'style_name' => 'profile',
       'path' => $imgvars['uri'],
       'width' => $imgvars['width'],
       'height' => $imgvars['height'],
       'alt' => $imgvars['alt'],
       'title' => $imgvars['title'],
-    );
-    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $link = $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']: $link = '');
+    ];
+    (!empty($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']) ? $link = $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value'] : $link = '');
     $pic = theme('image_style', $picarray);
     if (!empty($link)) {
-      $pic = l($pic, $link, array('attributes' => array('class' => array('img-thumbnail')), 'html' => TRUE));
+      $pic = l($pic, $link, [
+        'attributes' => ['class' => ['img-thumbnail']],
+        'html' => TRUE,
+      ]);
     }
     $bio = $account->field_short_bio[LANGUAGE_NONE][0]['value'];
-    $items = array();
+    $items = [];
     // If the Author allows Contact Form:
     $account_drupal = user_load($vars['uid']);
     if (isset($account_drupal->data['contact']) && $account_drupal->data['contact'] == 1) {
-      $items[] = l('Email', 'user/' . $account_drupal->uid . '/contact', array('attributes' => array('title' => 'e-mail', 'class' => array('social', 'e-mail'))));
-    } 
+      $items[] = l('Email', 'user/' . $account_drupal->uid . '/contact', [
+        'attributes' => [
+          'title' => 'e-mail',
+          'class' => ['social', 'e-mail'],
+        ],
+      ]);
+    }
     $out = '<h4>About the Author</h4><div class="profile2-image thumbnail">' . $pic . '</div>';
     $out .= '<div class="profile2-words clearfix"><h3>' . $name . '<small> - ' . $title . '</small></h3><p>' . $bio . '</p></div>';
-    $vars['submitted'] =  $out;
+    $vars['submitted'] = $out;
     if (isset($account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value'])) {
       $byline = 'by ' . l($name, $account->field_google_plus_url[LANGUAGE_NONE][0]['safe_value']);
     }
@@ -488,39 +330,41 @@ function salive_preprocess_node(&$vars) {
       $byline = 'By ' . $name;
     }
     $date = date('M. j, Y g:i a', $vars['created']);
-		$changed = date('M. j, Y g:i a', $vars['changed']);
-		if ($vars['updated']) {
-				$updated = '<span class="updated">Last Updated: ' . $changed . '</span>';
-				$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>' . $updated;
-		} else {
-			$vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>';
-		}
-  }
-    if ($vars['type'] == 'openhouse') {
-        //rearrange some of the field outputs
-        // web address
-        if (!empty($vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'])) {
-            $vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'] = l($vars['content']['group_motherhood']['group_agenct']['field_venue'][0]['#markup'], $vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'], array('html' => TRUE));
-        }
-        // Phone number
-        if (!empty($vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup'])) {
-            $numformated = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup']);
-            $numdial = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '+1$1$2$3', $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup']);
-            $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup'] = '<a href="tel:' . $numdial . '">' . $numformated . '</a>';
-        }
-        // Format agent name
-        $agent_uid = $vars['content']['group_motherhood']['group_agenct']['field_real_estate_agent']['#items'][0]['target_id'];
-        $agentname = profile2_load_by_user((int)$agent_uid, 'main');
-        $fname = $agentname->field_first_name['und'][0]['safe_value'];
-        $lname = $agentname->field_last_name['und'][0]['safe_value'];
-        $agent_user = user_load((int)$agent_uid);
-        $email = $agent_user->mail;
-        $vars['content']['group_motherhood']['group_agenct']['field_real_estate_agent'][0]['#markup'] = '<a href="mailto:' . $email . '">' . $fname . ' ' . $lname .'</a>';
-        $vars['content']['group_motherhood']['group_agenct']['field_venue'][0]['#markup'] = '';
-
-
+    $changed = date('M. j, Y g:i a', $vars['changed']);
+    if ($vars['updated']) {
+      $updated = '<span class="updated">Last Updated: ' . $changed . '</span>';
+      $vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>' . $updated;
     }
+    else {
+      $vars['byline'] = '<h6>' . $byline . ' <small>| ' . $date . '</small></h6>';
+    }
+  }
+  if ($vars['type'] == 'openhouse') {
+    //rearrange some of the field outputs
+    // web address
+    if (!empty($vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'])) {
+      $vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'] = l($vars['content']['group_motherhood']['group_agenct']['field_venue'][0]['#markup'], $vars['content']['group_motherhood']['group_agenct']['field_agent_web_address'][0]['#markup'], ['html' => TRUE]);
+    }
+    // Phone number
+    if (!empty($vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup'])) {
+      $numformated = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '($1) $2-$3', $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup']);
+      $numdial = preg_replace('~.*(\d{3})[^\d]{0,7}(\d{3})[^\d]{0,7}(\d{4}).*~', '+1$1$2$3', $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup']);
+      $vars['content']['group_motherhood']['group_agenct']['field_agent_phone'][0]['#markup'] = '<a href="tel:' . $numdial . '">' . $numformated . '</a>';
+    }
+    // Format agent name
+    $agent_uid = $vars['content']['group_motherhood']['group_agenct']['field_real_estate_agent']['#items'][0]['target_id'];
+    $agentname = profile2_load_by_user((int) $agent_uid, 'main');
+    $fname = $agentname->field_first_name['und'][0]['safe_value'];
+    $lname = $agentname->field_last_name['und'][0]['safe_value'];
+    $agent_user = user_load((int) $agent_uid);
+    $email = $agent_user->mail;
+    $vars['content']['group_motherhood']['group_agenct']['field_real_estate_agent'][0]['#markup'] = '<a href="mailto:' . $email . '">' . $fname . ' ' . $lname . '</a>';
+    $vars['content']['group_motherhood']['group_agenct']['field_venue'][0]['#markup'] = '';
+
+
+  }
 }
+
 /**
  * Helper func to create anonymous login for comments
  */
@@ -530,7 +374,16 @@ function salive_sellthelogin() {
     $out .= '<div class="title-wrapper">';
     $out .= '<div class="clearfix"><h3>Sign-Up and Comment</h3></div>';
     $out .= '</div><div class="clearfix">';
-    $out .= l('Login', 'user/login', array('query' => drupal_get_destination(), 'attributes' => array('class' => array('btn', 'btn-success', 'pull-right', 'btn-lg',))));
+    $out .= l('Login', 'user/login', ['query' => drupal_get_destination(),
+      'attributes' => [
+        'class' => [
+          'btn',
+          'btn-success',
+          'pull-right',
+          'btn-lg',
+        ],
+      ],
+    ]);
     $out .= '</div>';
     $out .= '<div class="comment-anonymous-image pull-left">';
     $out .= '<img class="thumbnail" src="/sites/all/themes/salive/images/glyphicon-add-user.png" alt="Sign up for San Angelo TX news and rant with us!" height="79" width="100" />';
@@ -562,31 +415,32 @@ function salive_preprocess_comment(&$variables) {
   $variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn';
   //$variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn-primary';
   //$variables['content']['links']['comment']['#links']['comment-reply']['attributes']['class'][] = 'btn-xs';
-   
+
   $node = $variables['elements']['#node'];
   $variables['comment'] = $comment;
   $variables['node'] = $node;
   $author = user_load($comment->uid);
   if (in_array('administrator', $author->roles)) {
     $account = profile2_load_by_user($comment->uid, 'main_profile_admin');
-  } else {
+  }
+  else {
     $account = profile2_load_by_user($comment->uid, 'main');
   };
   if (!empty($account)) {
     if (!empty($account->field_profile_picture[LANGUAGE_NONE][0]['fid'])) {
       $imgvars = $account->field_profile_picture[LANGUAGE_NONE][0];
-      $picarray = array(
+      $picarray = [
         'style_name' => 'comment_thumb',
         'path' => $imgvars['uri'],
         'width' => $imgvars['width'],
         'height' => $imgvars['height'],
         'alt' => $imgvars['alt'],
         'title' => $imgvars['title'],
-      );
+      ];
       $picture = theme('image_style', $picarray);
     }
-    (!empty($account->field_first_name) ? $name = $account->field_first_name[LANGUAGE_NONE][0]['value'] : null);
-    (!empty($account->field_last_name) ? $name .= ' ' . $account->field_last_name[LANGUAGE_NONE][0]['value'] : null);    
+    (!empty($account->field_first_name) ? $name = $account->field_first_name[LANGUAGE_NONE][0]['value'] : NULL);
+    (!empty($account->field_last_name) ? $name .= ' ' . $account->field_last_name[LANGUAGE_NONE][0]['value'] : NULL);
   }
   (empty($name) ? $name = $comment->name : '');
   (empty($picture) ? $picture = '<img src ="/' . drupal_get_path('theme', 'salive') . '/images/anonymous_pic.png" height="85" width="85" alt="No Picture" />' : '');
@@ -607,11 +461,14 @@ function salive_preprocess_comment(&$variables) {
   $variables['signature'] = $comment->signature;
 
 
-  $variables['title'] = l($comment->subject,  drupal_get_path_alias('node/' . $node->nid), array('fragment' => 'comment-' . $variables['comment']->cid));
-  $variables['permalink'] = l(t('Permalink'), drupal_get_path_alias('node/' . $node->nid), array('fragment' => 'comment-' . $variables['comment']->cid, 'attributes' => array(
-    'class' => array('permalink'),
-    'rel' => 'bookmark',
-  )));
+  $variables['title'] = l($comment->subject, drupal_get_path_alias('node/' . $node->nid), ['fragment' => 'comment-' . $variables['comment']->cid]);
+  $variables['permalink'] = l(t('Permalink'), drupal_get_path_alias('node/' . $node->nid), [
+    'fragment' => 'comment-' . $variables['comment']->cid,
+    'attributes' => [
+      'class' => ['permalink'],
+      'rel' => 'bookmark',
+    ],
+  ]);
   $variables['submitted'] = 'by ' . $name . '<br />' . $variables['created'];
 
   // Fix the links on comment views
@@ -623,7 +480,7 @@ function salive_preprocess_comment(&$variables) {
       unset($variables['content']['links']['comment']['#links']['comment-edit']);
     }
     // Add the node's title as a subheading
-    $variables['title_suffix'] = '<p class="subhead"><em>in ' .  l($variables['node']->title, 'node/' . $variables['content']['comment_body']['#object']->nid) . '</em></p>';
+    $variables['title_suffix'] = '<p class="subhead"><em>in ' . l($variables['node']->title, 'node/' . $variables['content']['comment_body']['#object']->nid) . '</em></p>';
     $variables['content']['links']['comment']['#links']['comment-reply']['title'] = 'Rant Back';
     $variables['content']['links']['comment']['#links']['comment-reply']['fragment'] = 'comment-' . $variables['content']['comment_body']['#object']->cid;
     $variables['content']['links']['comment']['#links']['comment-reply']['href'] = drupal_get_path_alias('node/' . $variables['content']['comment_body']['#object']->nid);
@@ -655,27 +512,31 @@ function salive_form_user_register_form_alter(&$form, &$form_state, $form_id) {
   $form['#prefix'] .= '</div>';
   drupal_set_title('Subscribe to San Angelo LIVE!');
 }
+
+/**
+ * implements hook_form_alter()
+ */
 function salive_form_alter(&$form, $form_state, $form_id) {
   if ($form_id == 'user_login_block' || $form_id == 'user_login') {
-		drupal_set_title('San Angelo LIVE! Login'); 
-	}
-	if ($form_id == 'user_pass') {
-		$form['#prefix'] = '<div class="subscribe-now-words">';
-	  $form['#prefix'] .= '<p>If you are having trouble resetting your password please email <a href="mailto:dylan@hydeinteractive.com?subject=San Angelo LIVE! Password Rest">Dylan Underwood</a> our web developer and he can help you.</p>';
-	  $form['#prefix'] .= '</div>';
-		drupal_set_title('Password Reset');
-	}
+    drupal_set_title('San Angelo LIVE! Login');
+  }
+  if ($form_id == 'user_pass') {
+    $form['#prefix'] = '<div class="subscribe-now-words">';
+    $form['#prefix'] .= '<p>If you are having trouble resetting your password please email <a href="mailto:dylan@hydeinteractive.com?subject=San Angelo LIVE! Password Rest">Dylan Underwood</a> our web developer and he can help you.</p>';
+    $form['#prefix'] .= '</div>';
+    drupal_set_title('Password Reset');
+  }
 }
 
 /**
  * Override or insert vars into the block template.
  */
 function salive_preprocess_block(&$vars) {
-	if (theme_get_setting('extra_block_classes')) {
+  if (theme_get_setting('extra_block_classes')) {
     $vars['classes_array'][] = 'block-' . $vars['block_zebra'];
   }
   if (theme_get_setting('extra_block_classes')) {
-    $vars['classes_array'][] = 'block-count-'. $vars['id'];
+    $vars['classes_array'][] = 'block-count-' . $vars['id'];
   }
   if (theme_get_setting('extra_block_classes')) {
     $vars['classes_array'][] = drupal_html_class('block-region-' . $vars['block']->region);
@@ -684,7 +545,7 @@ function salive_preprocess_block(&$vars) {
   if ($vars['block']->region == 'header') {
     $vars['title_attributes_array']['class'][] = 'element-invisible';
   }
-	$vars['header'] = NULL;
+  $vars['header'] = NULL;
 }
 
 /**
@@ -805,15 +666,14 @@ function salive_breadcrumb($variables) {
 }
 
 /**
- *
+ * Implements hook_preprocess_image_style()
  */
 function salive_preprocess_image_style(&$vars) {
-  $i = 0;
-	if ($vars['style_name'] == 'news_thumbs__144x108_') {
-	  // used in pull left lists, like bootstrap media
-		// http://getbootstrap.com/components/#media
-		$vars['attributes']['class'][] = 'media-object';
-	}
+  if ($vars['style_name'] == 'news_thumbs__144x108_') {
+    // used in pull left lists, like bootstrap media
+    // http://getbootstrap.com/components/#media
+    $vars['attributes']['class'][] = 'media-object';
+  }
 }
 
 
