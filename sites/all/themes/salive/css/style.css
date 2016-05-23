@@ -7175,10 +7175,14 @@ img {
   width: 125%;
 }
 @media screen and (max-width: 991px) {
-  .header-ads {
+  #header .container {
+    margin: 0;
+    padding: 0;
+  }
+  #header .container .header-ads {
     margin: 0;
   }
-  .header-ads .block {
+  #header .container .header-ads .block {
     margin: 0px;
   }
 }
