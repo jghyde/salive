@@ -7175,8 +7175,7 @@ img {
   width: 125%;
 }
 .header-ads {
-  float: right;
-  margin: 30px 0 0;
+  margin: 0;
 }
 .header-ads .block {
   margin: 0px;
@@ -15016,9 +15015,6 @@ ul.social-icons li a.social:hover:before {
   .page-type-event-free .field .field-label,
   .page-type-event-paid .field .field-label {
     width: 25% !important;
-  }
-  .header-ads {
-    float: none;
   }
   #block-views-news-thumbs-block .view-content ul li {
     width: 49.666667%;
