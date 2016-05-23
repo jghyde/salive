@@ -6388,7 +6388,6 @@ body #admin-menu .dropdown li {
 .region-footer {
   padding-top: 35px;
   padding-bottom: 36px;
-  border-top: 1px solid #E5E5E5;
 }
 .element-invisible {
   margin: 0;
@@ -7345,12 +7344,6 @@ ul#main-menu-links li a {
 }
 .obit-dates {
   color: darkgray;
-}
-.content-inner {
-  padding: 15px 0px 15px 0px;
-}
-.blcontent {
-  border-bottom: 3px solid #e6e6e6;
 }
 ul.social-icons li {
   margin: 3px;
@@ -15711,9 +15704,6 @@ textarea {
 .ui-accordion .ui-icon {
   display: none;
 }
-.tabs {
-  margin-bottom: 20px;
-}
 .tabs ul.primary {
   font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   padding: 0;
@@ -17329,7 +17319,7 @@ ul li.leaf {
   width: 100% !important;
 }
 .header-ads {
-  margin: 1em 0;
+  margin: 0;
   padding: 0;
 }
 #block-block-36 .blcontent {
@@ -18664,7 +18654,6 @@ fieldset.search-advanced {
 }
 #slider .blcontent {
   padding: 0;
-  border-bottom: 3px solid #e6e6e6;
 }
 #slider .view {
   padding: 0 0 15px;
@@ -18753,7 +18742,6 @@ fieldset.search-advanced {
   text-indent: -500em;
 }
 #headlines .blcontent {
-  padding: 15px 15px;
   height: auto !important;
 }
 #headlines .jp-current {
