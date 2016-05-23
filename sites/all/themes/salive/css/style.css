@@ -17325,6 +17325,9 @@ ul li.leaf {
 #block-block-36 .blcontent {
   padding: 15px 0;
 }
+#editorspick .blcontent {
+  padding: 0;
+}
 #comments .ajax-comment-wrapper,
 .view-rants .ajax-comment-wrapper,
 #comments .comment,
