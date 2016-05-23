@@ -7176,7 +7176,7 @@ img {
 }
 @media screen and (max-width: 991px) {
   #header .container {
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
   }
   #header .container .header-ads {
@@ -7184,6 +7184,26 @@ img {
   }
   #header .container .header-ads .block {
     margin: 0px;
+  }
+  #header .container .header-ads .block .blcontent {
+    *zoom: 1;
+    padding: 0;
+  }
+  #header .container .header-ads .block .blcontent:before,
+  #header .container .header-ads .block .blcontent:after {
+    content: " ";
+    display: table;
+  }
+  #header .container .header-ads .block .blcontent:after {
+    clear: both;
+  }
+  #header .container .header-ads .block .blcontent:before,
+  #header .container .header-ads .block .blcontent:after {
+    content: " ";
+    display: table;
+  }
+  #header .container .header-ads .block .blcontent:after {
+    clear: both;
   }
 }
 .nav-superfish #nav {
