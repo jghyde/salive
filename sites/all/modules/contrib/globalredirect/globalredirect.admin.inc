@@ -112,6 +112,13 @@ function globalredirect_settings() {
   );
 
 
+  $form['settings']['ignore_paths'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Ignore pages'),
+    '#description' => t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>')),
+    '#default_value' => $settings['ignore_paths'],
+  );
+
   $form['buttons']['submit'] = array(
     '#type' => 'submit',
     '#submit' => array('globalredirect_settings_submit_save'),
@@ -143,6 +150,9 @@ function globalredirect_settings_submit_save($form_id, &$form_state) {
   foreach ($settings as $key => $value) {
     if ($value == $defaults[$key]) {
       unset($settings[$key]);
+    }
+    elseif ($key == 'ignore_paths') {
+      $settings[$key] = trim($value);
     }
     else {
       $settings[$key] = (int)$value;

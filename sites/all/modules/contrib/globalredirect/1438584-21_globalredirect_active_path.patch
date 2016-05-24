@@ -1,0 +1,117 @@
+diff --git a/globalredirect.admin.inc b/globalredirect.admin.inc
+index bcd3638..6e53d0d 100644
+--- a/globalredirect.admin.inc
++++ b/globalredirect.admin.inc
+@@ -112,6 +112,13 @@ function globalredirect_settings() {
+   );
+ 
+ 
++  $form['settings']['ignore_paths'] = array(
++    '#type' => 'textarea',
++    '#title' => t('Ignore pages'),
++    '#description' => t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. Example paths are %blog for the blog page and %blog-wildcard for every personal blog. %front is the front page.", array('%blog' => 'blog', '%blog-wildcard' => 'blog/*', '%front' => '<front>')),
++    '#default_value' => $settings['ignore_paths'],
++  );
++
+   $form['buttons']['submit'] = array(
+     '#type' => 'submit',
+     '#submit' => array('globalredirect_settings_submit_save'),
+@@ -144,6 +151,9 @@ function globalredirect_settings_submit_save($form_id, &$form_state) {
+     if ($value == $defaults[$key]) {
+       unset($settings[$key]);
+     }
++    elseif ($key == 'ignore_paths') {
++      $settings[$key] = trim($value);
++    }
+     else {
+       $settings[$key] = (int)$value;
+     }
+diff --git a/globalredirect.module b/globalredirect.module
+index 8f24754..5ca7654 100644
+--- a/globalredirect.module
++++ b/globalredirect.module
+@@ -315,6 +315,17 @@ function globalredirect_menu() {
+  * the site must be online and we cannot be running in CLI mode (eg Drush).
+  */
+ function _globalredirect_is_active($settings) {
++
++  /**
++   * Process Ignore pages and give other modules a chance to skip global redirect
++   * on certain paths.
++   */
++  $request_path = request_path();
++  $result = _globalredirect_is_active_path($request_path);
++  if (!$result) {
++    return FALSE;
++  }
++
+   /**
+    * We need to do a test to make sure we only clean up URL's for the main
+    * request. This stops modules such as the Ad Module which had its own script
+@@ -381,6 +392,58 @@ function _globalredirect_is_active($settings) {
+ }
+ 
+ /**
++ * An internal function to determine if Global Redirect is active.
++ *
++ * Process ignore paths option from the module settings and invokes hook
++ * hook_globalredirect_active_path(). If any of the hook implementations
++ * returns true, it immediately exits the loop and returns FALSE,
++ * otherwise return TRUE (if no implementation returns FALSE).
++ *
++ * @param string $path
++ * @return bool
++ */
++function _globalredirect_is_active_path($path) {
++  $settings = _globalredirect_get_settings();
++
++  // Prep the alias.
++  $alias = drupal_get_path_alias($path);
++  if (!$settings['case_sensitive_urls']) {
++    // Convert all paths to lowercase.
++    $path = drupal_strtolower($path);
++    $alias = drupal_strtolower($alias);
++  }
++
++  // Process ignore paths from module settings.
++  $ignore_paths = trim($settings['ignore_paths']);
++  if (!empty($ignore_paths)) {
++    if (!$settings['case_sensitive_urls']) {
++      // Convert all paths to lowercase.
++      $ignore_paths = drupal_strtolower($ignore_paths);
++    }
++    $page_match = drupal_match_path($path, $ignore_paths);
++    if (!$page_match && ($path != $alias)) {
++      $page_match = drupal_match_path($alias, $ignore_paths);
++    }
++    if ($page_match) {
++      return FALSE;
++    }
++  }
++
++  // API call: Process hook_globalredirect_active_path().
++  foreach (module_implements('globalredirect_active_path') as $module) {
++    $result = module_invoke($module, 'globalredirect_active_path', drupal_strtolower($path), drupal_strtolower($alias));
++    // The hook implementation must return FALSE explicitely to skip Global
++    // Redirect on certain paths. We consider empty reponse - NULL - equal to
++    // TRUE in this case.
++    if ($result === FALSE) {
++      return FALSE;
++    }
++  }
++
++  return TRUE;
++}
++
++/**
+  * Return the settings with any defaults mapped over the top
+  */
+ function _globalredirect_get_settings($default_only = FALSE) {
+@@ -396,6 +459,7 @@ function _globalredirect_get_settings($default_only = FALSE) {
+     'term_path_handler' => 1,
+     'frontpage_redirect' => 1,
+     'ignore_admin_path' => 1,
++    'ignore_paths' => '',
+     'comment_to_node' => 0,
+   );
+ 
