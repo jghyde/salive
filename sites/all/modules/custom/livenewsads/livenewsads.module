@@ -4,13 +4,10 @@
  * Implements hook_node_view().
  */
 function livenewsads_node_view($node, $view_mode, $langcode) {
-
-  // $adspot2 = '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-102\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-102\');</script></div>';
-
   if ($view_mode == 'full' && $node->type == 'article') {
-	  drupal_add_css(drupal_get_path('module', 'livenewsads') .  '/css/livenewsads.css');
+    drupal_add_css(drupal_get_path('module', 'livenewsads') . '/css/livenewsads.css');
     if (isset($node->field_category[LANGUAGE_NONE]) && !empty($node->field_category[LANGUAGE_NONE])) {
-      foreach($node->field_category[LANGUAGE_NONE] as $k => $v) {
+      foreach ($node->field_category[LANGUAGE_NONE] as $k => $v) {
         if (empty($t)) {
           if ($v['tid'] == '31') {
             $t = 'crime';
@@ -32,50 +29,45 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
       $two = FALSE;
       $dom = new simple_html_dom();
       $dom->load($node->content['body'][0]['#markup']);
-			// determine the number of ads
-			$paras = array();
-			foreach ($dom->find("p") as $element) {
-			  $paras[] = $element->outertext;
-			}
-			$ad_count = ceil((int)count($paras)/5);
-      $defined_slots = array();
-      $adspot = array();
-	    for ($x = 1; $x <= $ad_count; $x++) {
-			  $num = (string)$x + 100;
-	      $adspot[$x] = array(
-	        'html' => '<!-- SALive_B_News --><div id=\'div-gpt-ad-1425500431462-' . $num . '\' class=\'newsbodyplacement ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-' . $num . '\');</script></div>',
-		      'slot' => 'div-gpt-ad-1425500431462-'. $num,
-		    );
+      // determine the number of ads
+      $paras = [];
+      foreach ($dom->find("p") as $element) {
+        $paras[] = $element->outertext;
+      }
+      $ad_count = ceil((int) count($paras) / 5);
+      $defined_slots = [];
+      $adspot = [];
+      for ($x = 1; $x <= $ad_count; $x++) {
+        $num = (string) $x + 100;
+        $adspot[$x] = block_load('dfp', 'newsbody_' . $x);
       }
 
-      $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>")+4);
+      $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 4);
       // add the banner ad code
-      $banner_added = $string . $adspot[1]['html'];
+      $banner_added = $string . $adspot[1];
       // add the first banner the old fashioned way
       $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
-			$defined_slots[] = $adspot[1]['slot'];
-			$show_ads = 1;
-			if (isset($node->field_insert_ads[LANGUAGE_NONE][0]['value'])) {
-			  if ($node->field_insert_ads[LANGUAGE_NONE][0]['value'] == 1) {
-				  $show_ads = 0;
-				}
-			}
-			if ($show_ads == 1) {
-			  // Above, we placed the first ad, so start with ad #2. The array() starts at 1.
-			  $i = 2;
-			  for ($x = 5; $x <= count($paras); $x++) {
-				  if($x % 5 == 0) {
-					  $string = $paras[$x];
-					  $banner_added = $adspot[$i]['html'] . $string;
-						$happy = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
-						$node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
-						$defined_slots[] = $adspot[$i]['slot'];
-						$i++;
-					}
-				}
-		    // For Google Surveys
-	      // Google Surveys
-	      $js = <<<EOT
+      $show_ads = 1;
+      if (isset($node->field_insert_ads[LANGUAGE_NONE][0]['value'])) {
+        if ($node->field_insert_ads[LANGUAGE_NONE][0]['value'] == 1) {
+          $show_ads = 0;
+        }
+      }
+      if ($show_ads == 1) {
+        // Above, we placed the first ad, so start with ad #2. The array() starts at 1.
+        $i = 2;
+        for ($x = 5; $x <= count($paras); $x++) {
+          if ($x % 5 == 0) {
+            $string = $paras[$x];
+            $banner_added = $adspot[$i] . $string;
+            $happy = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
+            $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
+            $i++;
+          }
+        }
+        // For Google Surveys
+        // Google Surveys
+        $js = <<<EOT
 (function() {
   var ARTICLE_URL = window.location.href;
   var CONTENT_ID = 'everything';
@@ -88,79 +80,57 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
     '" type="text/javascript">'+'\x3C/scr'+'ipt>');
 })();
 EOT;
-        drupal_add_js($js, array('type' => 'inline', 'scope' => 'header', 'weight' => -1));
-	      $js = <<<EOT
+        drupal_add_js($js, [
+          'type' => 'inline',
+          'scope' => 'header',
+          'weight' => -1,
+        ]);
+        $js = <<<EOT
 try { _402_Show(); } catch(e) {}
 EOT;
-				$prefix = '<div class="p402_premium">';
-				$suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>";
-				$node->content['body'][0]['#markup'] = $prefix . $node->content['body'][0]['#markup'] . $suffix;
-				$thumbs = views_embed_view('news_thumbs', 'block');
-				$node->content['body'][0]['#markup'] .=  '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';  
-			}
+        $prefix = '<div class="p402_premium">';
+        $suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>";
+        $node->content['body'][0]['#markup'] = $prefix . $node->content['body'][0]['#markup'] . $suffix;
+        $thumbs = views_embed_view('news_thumbs', 'block');
+        $node->content['body'][0]['#markup'] .= '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';
+      }
     }
   }
-  // Add the ad placement at the end of the article
-  // For Crime:
-
   if ($node->type == 'article') {
 
-		$copyright = '<div class="copyright"> &copy; ' . date('Y') . ' Copyright Hyde Interactive, Inc. All rights reserved. This material may not be published, broadcast, rewritten, or redistributed.</div>';
+    $copyright = '<div class="copyright"> &copy; ' . date('Y') . ' Copyright Hyde Interactive, Inc. All rights reserved. This material may not be published, broadcast, rewritten, or redistributed.</div>';
     switch ($t) {
       case 'crime':
-        $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Crime --><div id=\'div-gpt-ad-1425500431462-8\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-8\');</script></div>';
-				$defined_slots[] = 'div-gpt-ad-1425500431462-8';
-        //$node->content['body'][0]['#markup'] .= $copyright . '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5325374767216744" data-ad-slot="9585629119" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+        $ad = block_load('dfp', 'SALive_BLW_Crime');
+        $node->content['body'][0]['#markup'] .= $copyright . $ad;
         break;
       case 'crashes':
-        $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Crash --><div id=\'div-gpt-ad-1444925118780-0\' class=\'ads\'>' .
-				'<script type=\'text/javascript\'>googletag.cmd.push(function() { googletag.display("div-gpt-ad-1444925118780-0"); });</script></div>';
-				$defined_slots[] = 'div-gpt-ad-1444925118780-0';
-				// add the slot to the JS array
-        /*
-<!-- /116956976/SALive_BLW_Crash -->
-<div id='div-gpt-ad-1444925118780-0'>
-<script type='text/javascript'>
-googletag.cmd.push(function() { googletag.display('div-gpt-ad-1444925118780-0'); });
-</script>
-</div>
-				*/
-				break;
+        $ad = block_load('dfp', 'SALive_BLW_Crash');
+        $node->content['body'][0]['#markup'] .= $copyright . $ad;
+        break;
       case 'health':
-        $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Health --><div id=\'div-gpt-ad-1425500431462-9\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-9\');</script></div>';
+        $ad = block_load('dfp', 'SALive_BLW_Health');
+        $node->content['body'][0]['#markup'] .= $copyright . $ad;
         break;
       case 'all':
         if ($node->nid != '6') {
-          $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Story --><div id=\'div-gpt-ad-1425500431462-12\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-12\');</script></div>';
-          // $node->content['body'][0]['#markup'] .= $copyright . '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5325374767216744" data-ad-slot="9585629119" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+          // @TODO add more categories
+          $ad = block_load('dfp', 'SALive_BLW_Editors_Pick');
+          $node->content['body'][0]['#markup'] .= $copyright . $ad;
         }
         break;
       default:
         if ($node->nid != '6') {
-          $node->content['body'][0]['#markup'] .= $copyright . '<!-- SALive_BLW_Story --><div id=\'div-gpt-ad-1425500431462-12\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-12\');</script></div>';
-	        // $node->content['body'][0]['#markup'] .= $copyright . '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5325374767216744" data-ad-slot="9585629119" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+          // @TODO add more categories
+          $ad = block_load('dfp', 'SALive_BLW_Editors_Pick');
+          $node->content['body'][0]['#markup'] .= $copyright . $ad;
         }
         break;
     }
-		$static = livenewsads_slots($defined_slots);
-		$node->defined_slots = $defined_slots;
   }
-	if ($node->type == 'venue') {
-	  $node->content['field_map'][0]['#markup'] .= '<!-- SALive_BLW_Venue --><div id=\'div-gpt-ad-1425500431462-13\' class=\'ads\'><script type=\'text/javascript\'>googletag.display(\'div-gpt-ad-1425500431462-13\');</script></div>';
-	  // $node->content['field_map'][0]['#markup'] .= '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5325374767216744" data-ad-slot="9585629119" data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
-	}
-	
-}
+  if ($node->type == 'venue') {
+    $ad = block_load('dfp', 'SALive_BLW_Venue');
+    $node->content['field_map'][0]['#markup'] .= $ad;
+  }
 
-function livenewsads_slots($slots) {
-  $ad_slots = &drupal_static(__FUNCTION__);
-      if (!isset($ad_slots)) {
-        if (!empty($slots)) {
-				  $ad_slots = $slots;
-				}
-				else {
-          $ad_slots = array();
-				}
-      }
-    return $ad_slots;
 }
