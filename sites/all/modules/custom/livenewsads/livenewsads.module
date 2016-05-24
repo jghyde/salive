@@ -44,7 +44,7 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
 
       $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 4);
       // add the banner ad code
-      $banner_added = $string . $adspot[1];
+      $banner_added = $string . render($adspot[1]);
       // add the first banner the old fashioned way
       $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
       $show_ads = 1;
@@ -59,7 +59,7 @@ function livenewsads_node_view($node, $view_mode, $langcode) {
         for ($x = 5; $x <= count($paras); $x++) {
           if ($x % 5 == 0) {
             $string = $paras[$x];
-            $banner_added = $adspot[$i] . $string;
+            $banner_added = render($adspot[$i]) . $string;
             $happy = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
             $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
             $i++;
@@ -102,35 +102,35 @@ EOT;
     switch ($t) {
       case 'crime':
         $ad = block_load('dfp', 'SALive_BLW_Crime');
-        $node->content['body'][0]['#markup'] .= $copyright . $ad;
+        $node->content['body'][0]['#markup'] .= $copyright . render($ad);
         break;
       case 'crashes':
         $ad = block_load('dfp', 'SALive_BLW_Crash');
-        $node->content['body'][0]['#markup'] .= $copyright . $ad;
+        $node->content['body'][0]['#markup'] .= $copyright . render($ad);
         break;
       case 'health':
         $ad = block_load('dfp', 'SALive_BLW_Health');
-        $node->content['body'][0]['#markup'] .= $copyright . $ad;
+        $node->content['body'][0]['#markup'] .= $copyright . render($ad);
         break;
       case 'all':
         if ($node->nid != '6') {
           // @TODO add more categories
           $ad = block_load('dfp', 'SALive_BLW_Editors_Pick');
-          $node->content['body'][0]['#markup'] .= $copyright . $ad;
+          $node->content['body'][0]['#markup'] .= $copyright . render($ad);
         }
         break;
       default:
         if ($node->nid != '6') {
           // @TODO add more categories
           $ad = block_load('dfp', 'SALive_BLW_Editors_Pick');
-          $node->content['body'][0]['#markup'] .= $copyright . $ad;
+          $node->content['body'][0]['#markup'] .= $copyright . render($ad);
         }
         break;
     }
   }
   if ($node->type == 'venue') {
     $ad = block_load('dfp', 'SALive_BLW_Venue');
-    $node->content['field_map'][0]['#markup'] .= $ad;
+    $node->content['field_map'][0]['#markup'] .= render($ad);
   }
 
 }
