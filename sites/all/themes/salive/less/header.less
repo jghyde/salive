@@ -71,12 +71,24 @@
 @media screen and (max-width: 991px) {
   #header {
     .container {
-      margin: 0;
+      margin: 0 auto;
       padding: 0;
       .header-ads {
-        margin: 0;
+        margin: 1em 0;
         .block {
           margin: 0px;
+          .blcontent {
+            .clearfix();
+            padding: 10px 0px;
+            min-height: 90px;
+            .dfp-tag-wrapper {
+              padding: 0;
+              .clearfix();
+              iframe {
+                .clearfix();
+              }
+            }
+          }
         }
       }
     }

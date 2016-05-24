@@ -7105,6 +7105,15 @@ img {
 .table-striped > tbody > tr:nth-child(odd) > th a {
   color: #ffffff;
 }
+#breadcrumb {
+  margin: 0 0 1em;
+  padding: 0;
+}
+#breadcrumb .breadcrumb {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
 #logo {
   margin: 0;
   text-align: center;
@@ -16144,7 +16153,7 @@ tr.even {
   background: rgba(0, 0, 0, 0.063);
 }
 #header {
-  margin-bottom: 45px;
+  margin-bottom: 50px;
 }
 .withheadlines #slider {
   float: left;
@@ -16213,7 +16222,7 @@ tr.even {
   background: none;
   border: none;
   margin-bottom: 15px;
-  padding-left: 0;
+  padding: 0;
 }
 #bottom .block h3.block-title {
   background: none;
@@ -16293,7 +16302,6 @@ tr.even {
 }
 .blcontent {
   background: #ffffff;
-  padding: 15px;
 }
 #bottom .block,
 #footer .block {
@@ -16447,10 +16455,7 @@ a.cycle-next:hover {
 .rows-first {
   border-right: 1px solid #e6e6e6;
   float: left;
-  width: 49%;
-}
-.rows-first .row {
-  padding-right: 15px;
+  width: 45%;
 }
 .rows-first .views-field {
   padding-left: 132px;
@@ -17285,6 +17290,15 @@ ul li.leaf {
   width: 100%;
   height: auto;
 }
+#block-block-12 .blcontent,
+#block-views-lunch_specials-block .blcontent,
+#block-views-rants-block_1 .blcontent,
+#block-search-form .blcontent {
+  padding: 15px;
+}
+#block-dfp-salive_bw_top .blcontent {
+  padding: 5px 15px;
+}
 .dfp-tag-wrapper,
 .ads {
   text-align: center;
@@ -17325,8 +17339,17 @@ ul li.leaf {
 #block-block-36 .blcontent {
   padding: 15px 0;
 }
-#editorspick .blcontent {
+#editorspick .region-editorspick .block-dfp .blcontent {
   padding: 0;
+}
+#editorspick .region-editorspick .block-dfp .blcontent iframe {
+  border: none;
+}
+#sidebar .block-dfp .blcontent {
+  padding: 15px;
+}
+#sidebar #block-block-5 .blcontent {
+  padding: 15px 0;
 }
 #comments .ajax-comment-wrapper,
 .view-rants .ajax-comment-wrapper,
@@ -18791,9 +18814,12 @@ fieldset.search-advanced {
   font-weight: bold;
   font-size: larger;
 }
+.region-headlines .blcontent {
+  padding: 15px;
+}
 .view-id-category_news .rows-first {
   border-right: none;
-  margin-right: 5px;
+  margin: 5px 10px 5px 15px;
 }
 .view-id-category_news .rows-others {
   padding-left: 10px;
