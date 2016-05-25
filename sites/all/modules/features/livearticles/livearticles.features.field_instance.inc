@@ -10,7 +10,7 @@
 function livearticles_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-article-body'
+  // Exported field_instance: 'node-article-body'.
   $field_instances['node-article-body'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -29,6 +29,12 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 2,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -92,11 +98,11 @@ function livearticles_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
-  // Exported field_instance: 'node-article-field_attached'
+  // Exported field_instance: 'node-article-field_attached'.
   $field_instances['node-article-field_attached'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -114,6 +120,12 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'file_default',
         'weight' => 8,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -228,11 +240,11 @@ function livearticles_field_default_field_instances() {
         'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-article-field_category'
+  // Exported field_instance: 'node-article-field_category'.
   $field_instances['node-article-field_category'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -251,6 +263,12 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
         'weight' => 6,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -301,11 +319,11 @@ function livearticles_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
-  // Exported field_instance: 'node-article-field_image'
+  // Exported field_instance: 'node-article-field_image'.
   $field_instances['node-article-field_image'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -322,6 +340,12 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 4,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -454,11 +478,11 @@ function livearticles_field_default_field_instances() {
         'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
-  // Exported field_instance: 'node-article-field_insert_ads'
+  // Exported field_instance: 'node-article-field_insert_ads'.
   $field_instances['node-article-field_insert_ads'] = array(
     'bundle' => 'article',
     'default_value' => array(
@@ -481,6 +505,12 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_default',
         'weight' => 9,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -533,11 +563,11 @@ function livearticles_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 1,
+      'weight' => 12,
     ),
   );
 
-  // Exported field_instance: 'node-article-field_radioactivity'
+  // Exported field_instance: 'node-article-field_radioactivity'.
   $field_instances['node-article-field_radioactivity'] = array(
     'bundle' => 'article',
     'default_value' => array(
@@ -565,6 +595,12 @@ function livearticles_field_default_field_instances() {
         ),
         'type' => 'radioactivity_combo_formatter',
         'weight' => 7,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -623,11 +659,11 @@ function livearticles_field_default_field_instances() {
       'module' => 'radioactivity',
       'settings' => array(),
       'type' => 'radioactivity_basic_widget',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
-  // Exported field_instance: 'node-article-field_tags'
+  // Exported field_instance: 'node-article-field_tags'.
   $field_instances['node-article-field_tags'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -645,6 +681,12 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 5,
+      ),
+      'drupalgap' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -697,7 +739,38 @@ function livearticles_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-site_section-field_dfp_ad_categories'.
+  $field_instances['taxonomy_term-site_section-field_dfp_ad_categories'] = array(
+    'bundle' => 'site_section',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_dfp_ad_categories',
+    'label' => 'DFP Ad Category',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 41,
     ),
   );
 
@@ -708,6 +781,7 @@ function livearticles_field_default_field_instances() {
   t('Body');
   t('Category');
   t('Check this box to strip all ads in the body of the article except for the first news body ad.');
+  t('DFP Ad Category');
   t('Don\'t Insert Ads');
   t('Enter a comma-separated list of words to describe your content.');
   t('Image');

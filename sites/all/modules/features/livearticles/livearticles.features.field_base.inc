@@ -10,7 +10,7 @@
 function livearticles_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -36,7 +36,7 @@ function livearticles_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_attached'
+  // Exported field_base: 'field_attached'.
   $field_bases['field_attached'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -60,7 +60,7 @@ function livearticles_field_default_field_bases() {
     'type' => 'file',
   );
 
-  // Exported field_base: 'field_category'
+  // Exported field_base: 'field_category'.
   $field_bases['field_category'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -87,7 +87,33 @@ function livearticles_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_image'
+  // Exported field_base: 'field_dfp_ad_categories'.
+  $field_bases['field_dfp_ad_categories'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_dfp_ad_categories',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'dfp_ad_categories',
+          'parent' => 0,
+        ),
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_image'.
   $field_bases['field_image'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -110,7 +136,7 @@ function livearticles_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_insert_ads'
+  // Exported field_base: 'field_insert_ads'.
   $field_bases['field_insert_ads'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -136,7 +162,7 @@ function livearticles_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_radioactivity'
+  // Exported field_base: 'field_radioactivity'.
   $field_bases['field_radioactivity'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -157,7 +183,7 @@ function livearticles_field_default_field_bases() {
     'type' => 'radioactivity',
   );
 
-  // Exported field_base: 'field_tags'
+  // Exported field_base: 'field_tags'.
   $field_bases['field_tags'] = array(
     'active' => 1,
     'cardinality' => -1,
