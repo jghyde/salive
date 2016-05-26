@@ -142,6 +142,34 @@ ul.social-icons {
   width: 100%;
 	height: auto;
 }
+.imgbody.left {
+	float: left;
+	max-width: 33%;
+	height: auto;
+  margin: 0 20px 20px 0;
+}
+.imgbody.right {
+	float: right;
+	max-width: 33%;
+	height: auto;
+  margin: 0 0 20px 20px;
+}
+@media (max-width: @screen-sm-max) {
+	.imgbody.left {
+		float: none;
+		width: 100%;
+		height: auto;
+		.clearfix();
+    margin: 0 0 20px 0;
+	}
+	.imgbody.right {
+		float: none;
+		witdth: 100%;
+		height: auto;
+		.clearfix();
+    margin: 0 0 20px 0;
+	}
+}
 .view-openhouse {
   p {
 	  margin: 0;

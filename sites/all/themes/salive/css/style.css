@@ -7454,6 +7454,66 @@ ul.social-icons li a.social:hover:before {
   width: 100%;
   height: auto;
 }
+.imgbody.left {
+  float: left;
+  max-width: 33%;
+  height: auto;
+  margin: 0 20px 20px 0;
+}
+.imgbody.right {
+  float: right;
+  max-width: 33%;
+  height: auto;
+  margin: 0 0 20px 20px;
+}
+@media (max-width: 991px) {
+  .imgbody.left {
+    float: none;
+    width: 100%;
+    height: auto;
+    *zoom: 1;
+    margin: 0 0 20px 0;
+  }
+  .imgbody.left:before,
+  .imgbody.left:after {
+    content: " ";
+    display: table;
+  }
+  .imgbody.left:after {
+    clear: both;
+  }
+  .imgbody.left:before,
+  .imgbody.left:after {
+    content: " ";
+    display: table;
+  }
+  .imgbody.left:after {
+    clear: both;
+  }
+  .imgbody.right {
+    float: none;
+    witdth: 100%;
+    height: auto;
+    *zoom: 1;
+    margin: 0 0 20px 0;
+  }
+  .imgbody.right:before,
+  .imgbody.right:after {
+    content: " ";
+    display: table;
+  }
+  .imgbody.right:after {
+    clear: both;
+  }
+  .imgbody.right:before,
+  .imgbody.right:after {
+    content: " ";
+    display: table;
+  }
+  .imgbody.right:after {
+    clear: both;
+  }
+}
 .view-openhouse p {
   margin: 0;
 }
@@ -18110,12 +18170,6 @@ img.imgbody {
   -moz-transition: all all 0.2s ease-in-out ease-out;
   -o-transition: all all 0.2s ease-in-out ease-out;
   transition: all all 0.2s ease-in-out ease-out;
-}
-@media (min-width: 0px) and (max-width: 979px) {
-  img.imgbody {
-    width: 90% !important;
-    height: auto !important;
-  }
 }
 .copyright {
   font-size: 0.75rem;
