@@ -7666,6 +7666,19 @@ a.imgbody.right.active {
   margin-top: 20px;
   background: url(../images/ajax_loader.gif) 50% 0 no-repeat;
 }
+#block-dfp-salive_bst_weather .blcontent {
+  padding: 10px 0;
+}
+#block-dfp-salive_blw_hot_rants .blcontent {
+  padding-top: 15px;
+}
+#block-block-11 .blcontent,
+#block-block-10 .blcontent {
+  padding: 15px 15px 0 15px;
+}
+#sidebar #block-block-5 .blcontent {
+  padding: 15px;
+}
 .rrssb-buttons.large-format li a,
 .rrssb-buttons.large-format li a .rrssb-text {
   -webkit-backface-visibility: hidden;
@@ -17452,7 +17465,10 @@ ul li.leaf {
   padding: 15px;
 }
 #sidebar #block-block-5 .blcontent {
-  padding: 15px 0;
+  padding: 15px;
+}
+#block-views-editorspick-block .blcontent {
+  padding: 0 15px;
 }
 #comments .ajax-comment-wrapper,
 .view-rants .ajax-comment-wrapper,
