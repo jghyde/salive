@@ -12,7 +12,12 @@
       }
       // colorbox
       $('img.imgbody').click(function() {
-        $(this).colorbox({href: $(this).attr('src')});
+        $(this).colorbox({
+          href: $(this).attr('src'),
+          title: function(){
+            return $(this).attr('alt');
+          }
+        });
       });
       $('img.imgbody').colorbox({maxWidth: '90%'});
       $('#nodeSlide img').colorbox({maxWidth: '90%'});
