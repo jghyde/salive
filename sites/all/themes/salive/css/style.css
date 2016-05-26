@@ -7456,13 +7456,13 @@ ul.social-icons li a.social:hover:before {
 }
 .imgbody.left {
   float: left;
-  max-width: 33%;
+  width: 33%;
   height: auto;
   margin: 0 20px 20px 0;
 }
 .imgbody.right {
   float: right;
-  max-width: 33%;
+  width: 33%;
   height: auto;
   margin: 0 0 20px 20px;
 }
