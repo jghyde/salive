@@ -15519,6 +15519,10 @@ body > strong {
   font-family: 'gotham-black';
   font-weight: bold;
 }
+.page-type-article .field-name-body .field-item p strong {
+  font-family: 'gotham-black';
+  font-weight: bold;
+}
 samp,
 var {
   margin: 0;
