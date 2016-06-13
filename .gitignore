@@ -4,8 +4,8 @@
 /sites/*/private
 .idea/
 # Settings
-sites/default/local.settings.php
-sites/*/settings.local.php
+/sites/default/local.settings.php
+/sites/*/settings.local.php
 # Patches
 PATCHES.txt
 
