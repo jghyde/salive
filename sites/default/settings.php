@@ -209,7 +209,7 @@
  *     'database' => '/path/to/databasefilename',
  *   );
  * @endcode
- */
+ *
 $databases = array (
   'default' => 
   array (
