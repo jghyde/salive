@@ -34,6 +34,7 @@ function salive_preprocess_html(&$vars) {
 
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
+  drupal_add_js(libraries_get_path('xbreadcrumbs') . '/js/jquery-xbreadcrumbs-2.1.0.min.js');
 
   // Remove no-sidebars class.
   if ($index = array_search('no-sidebars', $vars['classes_array'])) {

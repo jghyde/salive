@@ -23,7 +23,6 @@ function salive_theme() {
  */
 function salive_menu_link(array $variables) {
   $element = $variables['element'];
-  //dpm($variables);
   if($element['#original_link']['menu_name'] == 'main-menu') {
     //return theme_menu_link($variables);
   
