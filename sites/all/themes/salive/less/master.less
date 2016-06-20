@@ -19,41 +19,38 @@ body {
   word-wrap: break-word;
   color: #333333;
   line-height: 1.5;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: @font-family-serif;
 }
 
 h1 {
-  margin: 0.5em 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 1.357em;
-  vertical-align: baseline;
-  background: transparent;
-  font-weight: inherit;
-  color: #000000;
+  font-family: @font-family-sans-serif;
+  font-size: 1.6em;
 }
 
 h2 {
-  margin: 0.5em 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
+  font-family: @font-family-sans-serif;
   font-size: 1.143em;
-  vertical-align: baseline;
-  background: transparent;
-  font-weight: inherit;
+
 }
 
 h3, h4, h5, h6 {
-  margin: 0.5em 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-  font-weight: inherit;
+  font-family: @font-family-sans-serif;
+}
+// Views on home page:
+.views-field-title {
+  font-family: @font-family-sans-serif;
+}
+.views-field-title {
+  a {
+    font-family: @font-family-sans-serif;
+    font-size: 1em;
+  }
+}
+.views-field-field-category {
+  font-family: @font-family-sans-serif;
+}
+#nav {
+  font-family: @font-family-sans-serif;
 }
 
 p {
@@ -84,7 +81,7 @@ pre {
   outline: 0;
   font-size: 0.77em;
   vertical-align: baseline;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: @font-family-monospace;
   background-color: #f2f2f2;
   background-color: rgba(40, 40, 0, 0.06);
   overflow: hidden;
@@ -103,7 +100,7 @@ code {
   outline: 0;
   font-size: 0.77em;
   vertical-align: baseline;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: @font-family-monospace;
   background-color: #f2f2f2;
   background-color: rgba(40, 40, 0, 0.06);
 }
@@ -147,7 +144,7 @@ kbd {
   outline: 0;
   font-size: 0.77em;
   vertical-align: baseline;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: @font-family-monospace;
   background-color: #f2f2f2;
   color: #666666;
   display: inline-block;
@@ -157,11 +154,11 @@ kbd {
   border-radius: 5px;
 }
 body > strong {
-  font-family: 'gotham-black', sans-serif;
+  font-family: @font-family-serif;
   font-weight: bold;
 }
 .page-type-article .field-name-body .field-item p strong {
-  font-family: 'gotham-black', sans-serif;
+  font-family: @font-family-serif;
   font-weight: bold;
 }
 samp, var {
@@ -172,7 +169,7 @@ samp, var {
   font-size: 0.77em;
   vertical-align: baseline;
   background: transparent;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: @font-family-monospace;
 }
 
 ol, ul {
@@ -206,7 +203,7 @@ fieldset {
     display: block;
     height: 2em;
     left: -1px;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+    font-family: @font-family-sans-serif;
     line-height: 2;
     padding: 0;
     position: absolute;
@@ -371,13 +368,13 @@ pre kbd, kbd kbd, kbd samp, code var {
 }
 
 input {
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-family: @font-family-sans-serif;
   margin: 2px 0;
   padding: 4px;
 }
 
 textarea {
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-family: @font-family-serif;
   line-height: 1.5;
   font-size: 1.083em;
 }
@@ -397,16 +394,16 @@ textarea {
     font-size: 2em;
   }
   h3 {
-    font-size: 1.714em;
+    font-size: 1.3em;
   }
   h4 {
-    font-size: 1.571em;
+    font-size: 1.2em;
   }
   h5 {
-    font-size: 1.286em;
+    font-size: 1.1em;
   }
   h6 {
-    font-size: 1.071em;
+    font-size: 1em;
   }
   .block-content {
     font-size: 1em;
@@ -479,7 +476,6 @@ textarea {
 
 .tabs {
   ul.primary {
-    font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
     padding: 0;
     margin: 0;
     overflow: hidden;
@@ -550,8 +546,6 @@ textarea {
 }
 
 ul.quicktabs-tabs {
-  font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
-  //font-family: Arial, Helvetica, sans-serif;
   background: #ffffff;
   font-size: 0.917em;
   font-weight: bold;
@@ -562,7 +556,6 @@ ul.quicktabs-tabs {
 }
 
 .view-hot-videos .views-row-first .views-field-title {
-  font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   background: url("../images/hot-videos.png") repeat left top;
   position: absolute;
   left: 0;
@@ -609,7 +602,7 @@ ul.quicktabs-tabs {
 }
 
 #forum {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: @font-family-sans-serif;
   font-size: 1em;
   table tr td, .forum-table th {
     font-size: 1em;
@@ -663,7 +656,7 @@ ul.quicktabs-tabs {
 }
 
 .ui-widget {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: @font-family-sans-serif;
   font-size: 1em;
 }
 
@@ -2208,9 +2201,15 @@ ul li.leaf {
     padding: 15px;
   }
 }
-#block-dfp-salive_blw_most_recent_,
+#block-dfp-salive_blw_most_recent_ {
+  .blcontent {
+    padding: 10px 0px;
+  }
+}
 #block-dfp-salive_bw_top {
   .blcontent {
     padding: 10px 0px;
   }
 }
+
+

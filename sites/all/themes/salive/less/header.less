@@ -26,7 +26,6 @@
 }
 
 #nav {
-  font-family:GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   background: #000000;
   border: none;
   font-size: 1.500em;
@@ -54,7 +53,7 @@
         background:none;
       }
       li {
-        font-family:Arial, Helvetica, sans-serif;
+        font-family: @font-family-sans-serif;
         a {
           background:url(../images/suvnav.png) no-repeat right center;
           border:none;
@@ -69,7 +68,7 @@
         display: block;
         padding: 0 10px;
         text-transform:uppercase;
-        font-family: 'gotham-black-headers', sans-serif;
+        font-family: @font-family-sans-serif;
 				font-weight: bold !important;
       }
       li.last a {
@@ -186,8 +185,6 @@ ul#main-menu-links {
     top:47px;
     background-color:#ffffff;
     float: none;
-    font-family: 'MotionControl' !important;
-		font-weight: bold !important;
   }
 }
 .region-breaking {

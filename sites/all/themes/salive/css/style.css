@@ -273,7 +273,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
@@ -7051,20 +7051,6 @@ img {
 .iconFix {
   padding-left: 30px !important;
 }
-.page-type-article .field-name-body .field-item p {
-  font-size: 1em !important;
-  line-height: 1.5749 !important;
-  font-family: 'gotham-black-normal' !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-}
-.page-type-article .field-name-body .field-item p span {
-  font-size: 1em !important;
-  line-height: 1.5749 !important;
-  font-family: 'gotham-black-normal' !important;
-  font-style: normal !important;
-  font-weight: normal !important;
-}
 .links {
   margin-bottom: 10px;
 }
@@ -7108,6 +7094,7 @@ img {
   color: #ffffff;
 }
 #breadcrumb {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   margin: 0 0 1em;
   padding: 0;
 }
@@ -7115,6 +7102,15 @@ img {
   margin: 0;
   padding: 0;
   border-radius: 0;
+}
+.share-text {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+ul.quicktabs-tabs {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+.btn {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 #header {
   margin-top: 100px;
@@ -7141,7 +7137,6 @@ img {
   display: none;
 }
 #nav {
-  font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   background: #000000;
   border: none;
   font-size: 1.500em;
@@ -7174,7 +7169,7 @@ img {
   background: none;
 }
 #nav ul.sf-menu li li {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 #nav ul.sf-menu li li a {
   background: url(../images/suvnav.png) no-repeat right center;
@@ -7189,7 +7184,7 @@ img {
   display: block;
   padding: 0 10px;
   text-transform: uppercase;
-  font-family: 'gotham-black-headers', sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-weight: bold !important;
 }
 #nav ul.sf-menu li li.last a {
@@ -7355,8 +7350,6 @@ ul#main-menu-links li a {
   top: 47px;
   background-color: #ffffff;
   float: none;
-  font-family: 'MotionControl' !important;
-  font-weight: bold !important;
 }
 .region-breaking .blcontent {
   padding: 0px;
@@ -7486,7 +7479,7 @@ ul.social-icons li a.social:hover:before {
   height: 100%;
 }
 .field-label {
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 .filter-wrapper {
   display: none;
@@ -15441,41 +15434,34 @@ body {
   word-wrap: break-word;
   color: #333333;
   line-height: 1.5;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "ff-tisa-web-pro", "Times New Roman", Times, serif;
 }
 h1 {
-  margin: 0.5em 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 1.357em;
-  vertical-align: baseline;
-  background: transparent;
-  font-weight: inherit;
-  color: #000000;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+  font-size: 1.6em;
 }
 h2 {
-  margin: 0.5em 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-size: 1.143em;
-  vertical-align: baseline;
-  background: transparent;
-  font-weight: inherit;
 }
 h3,
 h4,
 h5,
 h6 {
-  margin: 0.5em 0;
-  padding: 0;
-  border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent;
-  font-weight: inherit;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+.views-field-title {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+.views-field-title a {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+}
+.views-field-field-category {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+#nav {
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 p {
   margin: 0 0 1.2em;
@@ -15504,7 +15490,7 @@ pre {
   outline: 0;
   font-size: 0.77em;
   vertical-align: baseline;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   background-color: #f2f2f2;
   background-color: rgba(40, 40, 0, 0.06);
   overflow: hidden;
@@ -15524,7 +15510,7 @@ code {
   outline: 0;
   font-size: 0.77em;
   vertical-align: baseline;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   background-color: #f2f2f2;
   background-color: rgba(40, 40, 0, 0.06);
 }
@@ -15564,7 +15550,7 @@ kbd {
   outline: 0;
   font-size: 0.77em;
   vertical-align: baseline;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   background-color: #f2f2f2;
   color: #666666;
   display: inline-block;
@@ -15574,11 +15560,11 @@ kbd {
   border-radius: 5px;
 }
 body > strong {
-  font-family: 'gotham-black', sans-serif;
+  font-family: "ff-tisa-web-pro", "Times New Roman", Times, serif;
   font-weight: bold;
 }
 .page-type-article .field-name-body .field-item p strong {
-  font-family: 'gotham-black', sans-serif;
+  font-family: "ff-tisa-web-pro", "Times New Roman", Times, serif;
   font-weight: bold;
 }
 samp,
@@ -15590,7 +15576,7 @@ var {
   font-size: 0.77em;
   vertical-align: baseline;
   background: transparent;
-  font-family: "Menlo", "Consolas", "Andale Mono", "Lucida Console", "Nimbus Mono L", "DejaVu Sans Mono", monospace, "Courier New";
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 ol,
 ul {
@@ -15624,7 +15610,7 @@ fieldset legend {
   display: block;
   height: 2em;
   left: -1px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   line-height: 2;
   padding: 0;
   position: absolute;
@@ -15784,12 +15770,12 @@ code var {
   width: 100%;
 }
 input {
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   margin: 2px 0;
   padding: 4px;
 }
 textarea {
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
+  font-family: "ff-tisa-web-pro", "Times New Roman", Times, serif;
   line-height: 1.5;
   font-size: 1.083em;
 }
@@ -15810,16 +15796,16 @@ textarea {
   font-size: 2em;
 }
 #content h3 {
-  font-size: 1.714em;
+  font-size: 1.3em;
 }
 #content h4 {
-  font-size: 1.571em;
+  font-size: 1.2em;
 }
 #content h5 {
-  font-size: 1.286em;
+  font-size: 1.1em;
 }
 #content h6 {
-  font-size: 1.071em;
+  font-size: 1em;
 }
 #content .block-content {
   font-size: 1em;
@@ -15885,7 +15871,6 @@ textarea {
   display: none;
 }
 .tabs ul.primary {
-  font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -15954,7 +15939,6 @@ textarea {
   padding-left: 0;
 }
 ul.quicktabs-tabs {
-  font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   background: #ffffff;
   font-size: 0.917em;
   font-weight: bold;
@@ -15964,7 +15948,6 @@ ul.quicktabs-tabs {
   text-transform: uppercase;
 }
 .view-hot-videos .views-row-first .views-field-title {
-  font-family: GnuolaneFreeRegular, Georgia, "Times New Roman", Times, serif;
   background: url("../images/hot-videos.png") repeat left top;
   position: absolute;
   left: 0;
@@ -16006,7 +15989,7 @@ ul.quicktabs-tabs {
   color: #cc3333;
 }
 #forum {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-size: 1em;
 }
 #forum table tr td,
@@ -16058,7 +16041,7 @@ ul.quicktabs-tabs {
   position: relative;
 }
 .ui-widget {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-size: 1em;
 }
 .highlight {
@@ -17438,7 +17421,10 @@ ul li.leaf {
 #block-search-form .blcontent {
   padding: 15px;
 }
-#block-dfp-salive_blw_most_recent_ #block-dfp-salive_bw_top .blcontent {
+#block-dfp-salive_blw_most_recent_ .blcontent {
+  padding: 10px 0px;
+}
+#block-dfp-salive_bw_top .blcontent {
   padding: 10px 0px;
 }
 .dfp-tag-wrapper,
@@ -18191,7 +18177,7 @@ ul.sharebar li:last-child {
   vertical-align: top;
 }
 #block-views-news-thumbs-block .view-content ul li .views-field-title a {
-  font-family: 'gotham-black-headers', sans-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 72%;
 }
@@ -18244,7 +18230,7 @@ img.imgbody {
 }
 .copyright {
   font-size: 0.75rem;
-  font-family: "Georgia", "Times New Roman", Serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   text-align: center;
   margin-bottom: 10px;
 }
@@ -18538,7 +18524,7 @@ img.imgbody {
   font-weight: bold;
   line-height: 1;
   text-align: center;
-  font-family: helvetica, arial, san-serif;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 .field-name-field-offers .field-items .field-item .field-collection-view .field-name-field-offer-description .field-item {
   width: 100%;
@@ -18559,7 +18545,7 @@ img.imgbody {
 }
 .page-type-deal .node-deal .field-name-field-deal-end-date .field-label {
   font-weight: bold;
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 .page-type-deal .node-deal .header-title h4.deal-subtitle {
   color: #999999;
@@ -18724,7 +18710,7 @@ fieldset.search-advanced {
   margin: 0;
   bottom: 0;
   font-size: 1.8em;
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #f8f8f8;
 }
@@ -18776,7 +18762,7 @@ fieldset.search-advanced {
   margin: 0;
   bottom: 0;
   font-size: 1.5em;
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-weight: bold;
   color: #f8f8f8;
   padding-left: 12px;
@@ -18810,7 +18796,7 @@ fieldset.search-advanced {
   padding: 15px !important;
 }
 #slider .views-field-title {
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-size: 1.5em;
   margin: 0 0 6px;
 }
@@ -18952,10 +18938,7 @@ fieldset.search-advanced {
   margin-right: auto;
 }
 #block-views-editorspick-block .views-row .views-field a {
-  font-family: 'gotham-black-headers';
-  font-style: normal;
-  font-weight: bold;
-  font-size: larger;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 .region-headlines .blcontent {
   padding: 15px;
@@ -19103,14 +19086,6 @@ fieldset.search-advanced {
 #homeSlide .owl-nav {
   display: none;
 }
-h3.ui-accordion-header > a:before {
-  font-family: FontAwesome;
-  content: "\f0da  ";
-}
-h3.ui-accordion-header-active > a:before {
-  font-family: FontAwesome;
-  content: "\f0d7  ";
-}
 #block-views-lunch_specials-block .view-content ul li {
   float: left;
   width: 44.22222227%;
@@ -19194,7 +19169,7 @@ h3.ui-accordion-header-active > a:before {
   font-size: xx-large;
 }
 #block-views-administration_profiles-block .views-row-odd .views-field-field-last-name .field-content {
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 #block-views-administration_profiles-block .views-row-even {
@@ -19218,7 +19193,7 @@ h3.ui-accordion-header-active > a:before {
   font-size: xx-large;
 }
 #block-views-administration_profiles-block .views-row-even .views-field-field-last-name .field-content {
-  font-family: 'gotham-black-headers';
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
   font-weight: bold;
 }
 .view-daily-email table tr {

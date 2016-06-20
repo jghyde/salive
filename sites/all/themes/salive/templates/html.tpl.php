@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="<?php print $language->language; ?>">
-<!-- Theme developed by Dylan Underwood - http://www.DylanUnderwood.me/ -->
 <head>
+  <script src="https://use.typekit.net/bgs6mvy.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <meta charset="utf-8">
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
