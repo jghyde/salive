@@ -6947,6 +6947,12 @@ fieldset.features-export-component .component-select .form-type-checkbox input[t
 div.features-export-list .form-type-checkbox input[type=checkbox] {
   margin-top: 0;
 }
+.container.smashtop,
+.container.messages,
+.container.editor,
+.container.page {
+  padding: 0;
+}
 @media (min-width: 1585px) {
   .container {
     width: 1500px !important;
@@ -7201,9 +7207,9 @@ ul.quicktabs-tabs {
   background: none !important;
 }
 #nav ul.sf-menu li.sf-item-2 ul {
-  width: 1470px;
+  width: 1500px;
   position: absolute;
-  left: -125px;
+  left: -140px;
   background: transparent;
 }
 #nav ul.sf-menu li.sf-item-3 ul {
@@ -7215,8 +7221,8 @@ ul.quicktabs-tabs {
 }
 @media (max-width: 1584px) {
   #nav ul.sf-menu li.sf-item-2 ul {
-    width: 1142px;
-    left: -100px;
+    width: 1172px;
+    left: -115px;
   }
 }
 @media (max-width: 1199px) {
@@ -7372,9 +7378,11 @@ ul#main-menu-links li a {
 }
 .smashtop {
   margin-bottom: 0px;
+  padding: 0;
 }
-.front .smashtop {
-  margin-bottom: 0px;
+.smashtop #block-dfp-salive_bw_top .blcontent {
+  background-color: transparent;
+  background: transparent;
 }
 .smashtop .block {
   margin-bottom: 0;
