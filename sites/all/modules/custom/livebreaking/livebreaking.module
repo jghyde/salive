@@ -110,6 +110,14 @@ function livebreaking_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_preprocess_html()
+ */
+function livebreaking_preprocess_html(&$vars) {
+  if (count($vars['page']['breaking']['livebreaking_breaking']['#breaking_items']) > 0) {
+    $vars['classes_array'][] = 'breaking';
+  }
+}
+/**
  * Implements hook_block_configure().
  */
 function livebreaking_block_configure($delta = '') {

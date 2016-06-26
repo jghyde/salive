@@ -116,7 +116,53 @@
     }
   }
 }
-#block-livebreaking-breaking {
-  margin: 0;
+// Top section
+@media (max-width: 1199px) {
+  #spotlight {
+    #headlines_ads {
+      .block {
+        margin-bottom: 8px;
+        #forecast_embed {
+          height: 165px;
+        }
+      }
+      #block-block-12 {
+        .blcontent {
+          padding: 0;
+        }
+      }
+    }
+  }
 }
+@media (max-width: 991px) {
+  #spotlight {
+    #headlines_ads {
+      .block {
+        margin-bottom: 1em;
+        #forecast_embed {
+          height: 220px;
+        }
+      }
+    }
+  }
+}
+// Take out block padding for desktop
+.header-ads {
+  padding: 0
+}
+.container .col-md-12 {
+  padding: 0;
+}
+
+@media (max-width: 500px) {
+  //Add Padding back for mobile
+  .header-ads {
+    padding: 0 15px;
+  }
+  .container .col-md-12 {
+    padding: 0 15px;
+  }
+}
+
+
 

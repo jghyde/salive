@@ -6,7 +6,7 @@
 	
 	<?php include 'page.header.inc'; ?>
 	
-	<div id="main-content" class="container">
+	<div id="main-content" class="container messages">
 		<div class="row clearfix">
 		
 	  	<?php if ($messages): ?>

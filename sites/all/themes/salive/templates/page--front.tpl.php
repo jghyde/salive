@@ -1,6 +1,6 @@
 
 <?php include 'page.header.inc'; ?>
-<div class="container">
+<div class="container messages">
 	<div class="col-md-12">
   <?php if ($messages): ?>
   <div id="messages">
@@ -12,20 +12,14 @@
 		<div id="spotlight">
 			<div class="row clearfix">
 			<?php if ($page['slider']): ?>
-				<div id="slider" class="col-md-6 match">
+				<div id="slider" class="col-md-9 col-sm-12 match">
 					<?php print render($page['slider']); ?>
 				</div> <!-- /#slider -->
 			<?php endif; ?>
 
 			<?php if ($page['headlines_ad']): ?>
-				<div id="headlines_ads" class="col-md-3 match">
+				<div id="headlines_ads" class="col-md-3 col-sm-12 match">
 					<?php print render($page['headlines_ad']); ?>
-				</div> <!-- /#headlines -->
-			<?php endif; ?>
-			
-			<?php if ($page['headlines']): ?>
-				<div id="headlines" class="col-md-3 match">
-					<?php print render($page['headlines']); ?>
 				</div> <!-- /#headlines -->
 			<?php endif; ?>
 			</div>
@@ -34,7 +28,7 @@
 	</div>
 </div>
 <?php if ($page['editorspick']): ?>
-<div class="container">
+<div class="container editor">
 	<div id="editorspick clearfix">
 		<div class="col-md-12">
 			<?php print render($page['editorspick']); ?>
@@ -42,7 +36,7 @@
 	</div> <!-- #editorspick -->
 </div>
 <?php endif; ?>
-<div class="container">
+<div class="container page">
   <div id="content" class="<?php print $main_grid_class;?> clearfix">
     <div class="content-inner">
 			<?php if ($breadcrumb): ?>
@@ -76,7 +70,7 @@
   	</div>
   </div><!-- /#content -->  
   <?php if ($page['sidebar'] || $page['sidebar_bottom']): ?>
-  <div id="sidebar" class="<?php print $sidebar_grid_class; ?> clarfix">
+  <div id="sidebar" class="<?php print $sidebar_grid_class; ?> clearfix">
     <?php if ($page['sidebar']): print render($page['sidebar']); endif; ?>
     <div class="clearfix">
       <?php if ($page['sidebar_col1']): ?>

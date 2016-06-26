@@ -7136,6 +7136,16 @@ ul.quicktabs-tabs {
   font-size: x-small;
   display: none;
 }
+.breaking.not-logged-in #block-livebreaking-breaking {
+  position: fixed;
+  margin: 0 0 0 0;
+  z-index: 1;
+}
+.breaking.admin-menu #block-livebreaking-breaking {
+  position: fixed;
+  margin: 25px 0 0 0;
+  z-index: 1;
+}
 #nav {
   background: #000000;
   border: none;
@@ -7747,8 +7757,38 @@ a.imgbody.right.active {
 #sidebar #block-block-5 .blcontent {
   padding: 15px;
 }
-#block-livebreaking-breaking {
-  margin: 0;
+@media (max-width: 1199px) {
+  #spotlight #headlines_ads .block {
+    margin-bottom: 8px;
+  }
+  #spotlight #headlines_ads .block #forecast_embed {
+    height: 165px;
+  }
+  #spotlight #headlines_ads #block-block-12 .blcontent {
+    padding: 0;
+  }
+}
+@media (max-width: 991px) {
+  #spotlight #headlines_ads .block {
+    margin-bottom: 1em;
+  }
+  #spotlight #headlines_ads .block #forecast_embed {
+    height: 220px;
+  }
+}
+.header-ads {
+  padding: 0;
+}
+.container .col-md-12 {
+  padding: 0;
+}
+@media (max-width: 500px) {
+  .header-ads {
+    padding: 0 15px;
+  }
+  .container .col-md-12 {
+    padding: 0 15px;
+  }
 }
 .rrssb-buttons.large-format li a,
 .rrssb-buttons.large-format li a .rrssb-text {
@@ -15289,9 +15329,6 @@ a.imgbody.right.active {
   #block-views-news-thumbs-block .view-content ul li {
     width: 19.666667% !important;
   }
-  .front .col-md-12 {
-    padding-left: 0px !important;
-  }
 }
 @media (min-width: 550px) {
   .field-name-field-business-phone {
@@ -15300,9 +15337,6 @@ a.imgbody.right.active {
   }
   #lunch-block {
     display: none;
-  }
-  #slider .blcontent {
-    min-height: 535px;
   }
 }
 @media (max-width: 550px) {
@@ -15372,6 +15406,20 @@ a.imgbody.right.active {
   .front .block-quicktabs .ui-accordion-content-active {
     height: 220px;
   }
+  #header #sidebar {
+    padding-right: 0;
+  }
+}
+@media (max-width: 1200px) and (min-width: 991px) {
+  #header .container.smashtop {
+    padding: 0;
+  }
+  #header .container.page #sidebar .block-dfp .blcontent {
+    padding: 0;
+  }
+  #header #main-content .row #sidebar .block-dfp .blcontent {
+    padding: 0;
+  }
 }
 @media (min-width: 500px) and (max-width: 992px) {
   .front .block-quicktabs .ui-accordion-content-active {
@@ -15382,6 +15430,36 @@ a.imgbody.right.active {
   .front .block-quicktabs .ui-accordion-content-active {
     height: 285px;
   }
+  .row #breadcrumb {
+    display: none;
+  }
+  .row #content {
+    margin: 0 15px 15px;
+  }
+  .row #content .content-inner h1.title {
+    margin-top: 0;
+  }
+  .row #content .region-content #block-views-category_news-block_1 .view .view-content .rows-first,
+  .row #content .region-content #block-views-category_news-block_2 .view .view-content .rows-first,
+  .row #content .region-content #block-views-category_news-block_3 .view .view-content .rows-first,
+  .row #content .region-content #block-views-category_news-block_4 .view .view-content .rows-first,
+  .row #content .region-content #block-views-category_news-block .view .view-content .rows-first {
+    margin: 0;
+    padding: 10px 15px 0;
+  }
+  .row #sidebar {
+    background-color: #ffffff;
+  }
+  #header .smashtop .header-ads.col-sm-12 {
+    margin: 0;
+    padding: 0;
+  }
+}
+#block-livebreaking-breaking {
+  display: none;
+}
+.breaking #block-livebreaking-breaking {
+  display: block;
 }
 html,
 div,
@@ -16440,13 +16518,6 @@ tr.even {
 #footer .block {
   margin: 0;
 }
-#slider .views-field-created,
-.view-latest-articles .views-field-created {
-  color: #b4b4b4;
-  font-size: 0.917em;
-  text-transform: uppercase;
-  margin: 6px 0 0;
-}
 .view-category-news .views-field-created {
   color: #b4b4b4;
   font-size: 0.917em;
@@ -17459,10 +17530,6 @@ ul li.leaf {
 .block-livebreaking .livebreaking-item .col-md-3 a {
   height: auto !important;
   width: 100% !important;
-}
-.header-ads {
-  margin: 0;
-  padding: 0;
 }
 #block-block-36 .blcontent {
   padding: 15px 0;
@@ -18795,55 +18862,51 @@ fieldset.search-advanced {
 #block-quicktabs-accordion_block .ui-accordion-content {
   padding: 15px !important;
 }
-#slider .views-field-title {
-  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
-  font-size: 1.5em;
-  margin: 0 0 6px;
+#slider .blcontent {
+  background-color: transparent;
 }
-#slider img {
+#slider #homeSlide {
+  display: block;
+  overflow: hidden;
+}
+#slider #homeSlide .owl-nav {
+  display: none;
+}
+#slider #homeSlide .owl-item {
+  position: relative;
+}
+#slider #homeSlide .owl-item .slide a {
+  display: block;
+}
+#slider #homeSlide .owl-item .slide a img {
   height: auto !important;
   width: 100% !important;
 }
-#slider h3.block-title {
-  display: none;
-}
-#slider .blcontent {
-  padding: 0;
-}
-#slider .view {
-  padding: 0 0 15px;
-}
-#slider .view .view-content {
-  position: relative;
-}
-#slider .views-row {
-  background: #ffffff;
+#slider #homeSlide .owl-item .slide .motherhood {
+  padding: 10px;
   position: absolute;
+  bottom: 5px;
   left: 0;
-  top: 0;
-  z-index: 1;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
-#slider .views-row-1 {
-  z-index: 2;
+#slider #homeSlide .owl-item .slide .motherhood p {
+  margin: 0;
 }
-#slider .views-field {
-  padding: 0 15px;
+#slider #homeSlide .owl-item .slide .motherhood h2 {
+  margin: 5px 0;
+  font-size: 1.6em;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px #000000;
 }
-#slider .views-field-field-image {
-  padding: 0;
-}
-#slider .views-field-view-node a {
-  color: #cc3333;
-}
-#slider .views-field-view-node a:hover {
-  color: #111111;
+#slider #homeSlide .owl-item .slide .motherhood h2 a {
+  color: #ffffff;
 }
 #slider .owl-controls {
-  clear: both;
   position: absolute;
-  right: 5px;
-  bottom: 0px;
-  z-index: 111;
+  right: 10px;
+  top: 10px;
 }
 #slider .owl-controls .owl-dot {
   width: 15px !important;
@@ -19078,13 +19141,6 @@ fieldset.search-advanced {
 #newsEdit h5,
 #newsPaid h5 {
   text-align: center;
-}
-#homeSlide {
-  display: block;
-  overflow: hidden;
-}
-#homeSlide .owl-nav {
-  display: none;
 }
 #block-views-lunch_specials-block .view-content ul li {
   float: left;
