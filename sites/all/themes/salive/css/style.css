@@ -7113,7 +7113,7 @@ ul.quicktabs-tabs {
   font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
 #header {
-  margin-top: 100px;
+  margin-top: 71px;
 }
 #logo {
   margin: 0;
@@ -7201,7 +7201,7 @@ ul.quicktabs-tabs {
   background: none !important;
 }
 #nav ul.sf-menu li.sf-item-2 ul {
-  width: 1475px;
+  width: 1470px;
   position: absolute;
   left: -125px;
   background: transparent;
@@ -7210,19 +7210,19 @@ ul.quicktabs-tabs {
   background: transparent;
 }
 #nav ul.sf-menu li.sf-depth-1 ul {
-  background: transparent;
-  bottom: 7px;
+  background: #ffffff;
+  margin-top: -14px;
 }
 @media (max-width: 1584px) {
   #nav ul.sf-menu li.sf-item-2 ul {
-    width: 1145px;
+    width: 1142px;
     left: -100px;
   }
 }
 @media (max-width: 1199px) {
   #nav ul.sf-menu li.sf-item-2 ul {
-    width: 1053px;
-    left: -140px;
+    width: 971px;
+    left: -96px;
   }
 }
 @media (max-width: 1062px) {
@@ -7371,10 +7371,10 @@ ul#main-menu-links li a {
   min-height: 52px !important;
 }
 .smashtop {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 .front .smashtop {
-  margin-bottom: 35px;
+  margin-bottom: 0px;
 }
 .smashtop .block {
   margin-bottom: 0;
