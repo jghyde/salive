@@ -7121,6 +7121,9 @@ ul.quicktabs-tabs {
 #header {
   margin-top: 71px;
 }
+.breaking #header {
+  margin-top: 155px;
+}
 #logo {
   margin: 0;
   text-align: center;
@@ -7143,21 +7146,19 @@ ul.quicktabs-tabs {
   display: none;
 }
 .breaking.not-logged-in #block-livebreaking-breaking {
-  position: fixed;
   margin: 0 0 0 0;
   z-index: 1;
 }
 .breaking.admin-menu #block-livebreaking-breaking {
-  position: fixed;
-  margin: 25px 0 0 0;
   z-index: 1;
+  margin: 0 0 0 0;
 }
 #nav {
   background: #000000;
   border: none;
   font-size: 1.500em;
   position: fixed;
-  height: 32px;
+  height: 37px;
   top: 0;
   width: 100%;
   z-index: 113;
@@ -7217,7 +7218,7 @@ ul.quicktabs-tabs {
 }
 #nav ul.sf-menu li.sf-depth-1 ul {
   background: #ffffff;
-  margin-top: -14px;
+  margin-top: -7px;
 }
 @media (max-width: 1584px) {
   #nav ul.sf-menu li.sf-item-2 ul {
@@ -7410,6 +7411,10 @@ ul#main-menu-links li a {
 }
 .admin-menu #nav {
   margin-top: 29px;
+}
+.breaking #nav {
+  height: 126px;
+  background-color: #000000;
 }
 .node .submitted .profile2-image {
   float: left;

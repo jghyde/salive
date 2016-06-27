@@ -1,9 +1,10 @@
-<?php
-if (!empty($page['breaking'])) {
-  print render($page['breaking']);
-}
-?>
+
 <div id="nav">
+  <?php
+  if (!empty($page['breaking'])) {
+    print render($page['breaking']);
+  }
+?>
   <div class="container">
     <div class="row">
       <?php if ($logo): ?>
