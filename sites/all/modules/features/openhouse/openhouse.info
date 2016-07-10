@@ -69,4 +69,5 @@ features[variable][] = menu_parent_openhouse
 features[variable][] = node_options_openhouse
 features[variable][] = node_preview_openhouse
 features[variable][] = node_submitted_openhouse
+features[variable][] = pathauto_node_openhouse_pattern
 features[views_view][] = openhouse

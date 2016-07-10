@@ -10,7 +10,7 @@
 function openhouse_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_address'
+  // Exported field_base: 'field_address'.
   $field_bases['field_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -27,7 +27,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'addressfield',
   );
 
-  // Exported field_base: 'field_agent_phone'
+  // Exported field_base: 'field_agent_phone'.
   $field_bases['field_agent_phone'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -49,7 +49,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_agent_web_address'
+  // Exported field_base: 'field_agent_web_address'.
   $field_bases['field_agent_web_address'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -71,7 +71,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_asking'
+  // Exported field_base: 'field_asking'.
   $field_bases['field_asking'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -88,7 +88,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_listing'
+  // Exported field_base: 'field_listing'.
   $field_bases['field_listing'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -118,7 +118,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'link_field',
   );
 
-  // Exported field_base: 'field_map'
+  // Exported field_base: 'field_map'.
   $field_bases['field_map'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -135,7 +135,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'geofield',
   );
 
-  // Exported field_base: 'field_openhouse_date'
+  // Exported field_base: 'field_openhouse_date'.
   $field_bases['field_openhouse_date'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -166,7 +166,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'datetime',
   );
 
-  // Exported field_base: 'field_property_images'
+  // Exported field_base: 'field_property_images'.
   $field_bases['field_property_images'] = array(
     'active' => 1,
     'cardinality' => 10,
@@ -189,7 +189,7 @@ function openhouse_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_real_estate_agent'
+  // Exported field_base: 'field_real_estate_agent'.
   $field_bases['field_real_estate_agent'] = array(
     'active' => 1,
     'cardinality' => 1,

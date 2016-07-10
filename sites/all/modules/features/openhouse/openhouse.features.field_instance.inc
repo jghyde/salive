@@ -10,7 +10,7 @@
 function openhouse_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-openhouse-body'
+  // Exported field_instance: 'node-openhouse-body'.
   $field_instances['node-openhouse-body'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -65,7 +65,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_address'
+  // Exported field_instance: 'node-openhouse-field_address'.
   $field_instances['node-openhouse-field_address'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -140,7 +140,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_agent_phone'
+  // Exported field_instance: 'node-openhouse-field_agent_phone'.
   $field_instances['node-openhouse-field_agent_phone'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -191,7 +191,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_agent_web_address'
+  // Exported field_instance: 'node-openhouse-field_agent_web_address'.
   $field_instances['node-openhouse-field_agent_web_address'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -242,7 +242,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_asking'
+  // Exported field_instance: 'node-openhouse-field_asking'.
   $field_instances['node-openhouse-field_asking'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -300,7 +300,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_listing'
+  // Exported field_instance: 'node-openhouse-field_listing'.
   $field_instances['node-openhouse-field_listing'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -370,7 +370,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_map'
+  // Exported field_instance: 'node-openhouse-field_map'.
   $field_instances['node-openhouse-field_map'] = array(
     'bundle' => 'openhouse',
     'deleted' => 0,
@@ -476,7 +476,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_openhouse_date'
+  // Exported field_instance: 'node-openhouse-field_openhouse_date'.
   $field_instances['node-openhouse-field_openhouse_date'] = array(
     'bundle' => 'openhouse',
     'deleted' => 0,
@@ -497,6 +497,7 @@ function openhouse_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
@@ -511,6 +512,7 @@ function openhouse_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
@@ -525,6 +527,7 @@ function openhouse_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
@@ -560,7 +563,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_property_images'
+  // Exported field_instance: 'node-openhouse-field_property_images'.
   $field_instances['node-openhouse-field_property_images'] = array(
     'bundle' => 'openhouse',
     'deleted' => 0,
@@ -656,7 +659,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_real_estate_agent'
+  // Exported field_instance: 'node-openhouse-field_real_estate_agent'.
   $field_instances['node-openhouse-field_real_estate_agent'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
@@ -726,7 +729,7 @@ function openhouse_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-openhouse-field_venue'
+  // Exported field_instance: 'node-openhouse-field_venue'.
   $field_instances['node-openhouse-field_venue'] = array(
     'bundle' => 'openhouse',
     'default_value' => NULL,
