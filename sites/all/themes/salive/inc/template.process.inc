@@ -34,7 +34,6 @@ function salive_preprocess_html(&$vars) {
 
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.min.js');
   drupal_add_js(drupal_get_path('theme', 'salive') . '/js/jquery.cycle2.carousel.js');
-  drupal_add_js(libraries_get_path('xbreadcrumbs') . '/js/jquery-xbreadcrumbs-2.1.0.min.js');
 
   // Remove no-sidebars class.
   if ($index = array_search('no-sidebars', $vars['classes_array'])) {
@@ -504,12 +503,16 @@ function salive_form_user_register_form_alter(&$form, &$form_state, $form_id) {
   $form['mailchimp_lists']['mailchimp_san_angelo_live_daily']['title']['#markup'] = '';
   $form['mailchimp_lists']['mailchimp_san_angelo_live_daily']['title']['#description'] = 'Delivered daily to thousands wanting to be the first to know what is going on in the San Angelo region. Emailed direct to your inbox daily, except Sunday.';
   $form['actions']['submit']['#value'] = 'Subscribe';
+
   $form['#prefix'] = '<div class="subscribe-now-words">';
+  $form['#prefix'] .= '<p>In just two steps you can become a member of San Angelo LIVE! All members receive the LIVE! Daily Email sent 6 times per week to your email, Monday through Saturday.</p>';
+  /*
   $form['#prefix'] .= '<p>Claiming our famous <a href="/deals">Daily Deals</a> and participating in the rants, or comments, requires that you join San Angelo LIVE! by subscribing.</p>';
   $form['#prefix'] .= '<p>The San Angelo LIVE! Daily is a newspaper delivered via email to thousands of residents interested in learning first what is happening in the San Angelo region.';
   $form['#prefix'] .= ' We are a local independent online news organization owned and operated by <a href="http://hydeinteractive.com/" target="_blank">local San Angeloans</a> and not affiliated with any other media company.</p>';
   $form['#prefix'] .= '<p>It is completely <strong>FREE</strong> to subscribe. Once subscribed, you may log-in this website and post comments on stories as well.</p>';
   $form['#prefix'] .= '<p>Your email address is a closely-guarded secret and not shared with anyone. We work hard to maintain a very good reputation with all subscribers. You may unsubscribe from this email any time. Just follow the unsubscribe link in the email itself. Welcome aboard!</p>';
+  */
   $form['#prefix'] .= '</div>';
   drupal_set_title('Subscribe to San Angelo LIVE!');
 }
@@ -558,6 +561,14 @@ function salive_breadcrumb($variables) {
   $output = '';
   if (drupal_is_front_page()) {
     return $output;
+  }
+  if ($_GET['q'] == 'user/register/profile') {
+    $breadcrumbs = '<ul class="breadcrumb">';
+    $breadcrumbs .= '<li>User</li>';
+    $breadcrumbs .= '<li>Register</li>';
+    $breadcrumbs .= '<li>Profile</li>';
+    $breadcrumbs .= '</ul>';
+    return $breadcrumbs;
   }
   $output = '';
   $add_to_path = '';

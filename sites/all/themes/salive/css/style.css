@@ -7063,10 +7063,6 @@ img {
 .links .comment_forbidden {
   display: none;
 }
-.table-condensed tr td {
-  font-size: 0.5em;
-  font-size: 0.5rem;
-}
 .node-game .table-condensed tr td {
   font-size: 0.9em;
   font-size: 0.9rem;
@@ -7657,6 +7653,15 @@ a.imgbody.right.active {
   left: 0;
   width: 100%;
   height: 100%;
+}
+.not-front #main-content .content-inner {
+  padding: 0 10px 10px;
+}
+.not-front #main-content .col-md-8 .content-inner {
+  padding: 0;
+}
+.panel-heading {
+  padding: 5px 0 0;
 }
 #footer {
   background: #222222;
