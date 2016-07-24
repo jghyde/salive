@@ -16,7 +16,7 @@ function liveadcontext_default_dfp_tag() {
   $tag->machinename = '300x600_rail';
   $tag->slot = '300x600 Rail';
   $tag->adunit = '300x600Rail';
-  $tag->size = '300x600,180x150';
+  $tag->size = '300x600';
   $tag->block = 1;
   $tag->settings = array(
     'out_of_page' => 0,
@@ -34,14 +34,6 @@ function liveadcontext_default_dfp_tag() {
     'targeting' => array(),
     'breakpoints' => array(
       0 => array(
-        'browser_size' => '1200x200',
-        'ad_sizes' => '300x600',
-      ),
-      1 => array(
-        'browser_size' => '992x200',
-        'ad_sizes' => '180x150',
-      ),
-      2 => array(
         'browser_size' => '0x0',
         'ad_sizes' => '300x600',
       ),
@@ -253,10 +245,6 @@ function liveadcontext_default_dfp_tag() {
         'ad_sizes' => '580x112',
       ),
       2 => array(
-        'browser_size' => '674x100',
-        'ad_sizes' => '300x250',
-      ),
-      3 => array(
         'browser_size' => '0x0',
         'ad_sizes' => '300x250',
       ),
@@ -889,14 +877,6 @@ function liveadcontext_default_dfp_tag() {
         'browser_size' => '0x0',
         'ad_sizes' => '300x250',
       ),
-      1 => array(
-        'browser_size' => '1200x200',
-        'ad_sizes' => '300x250',
-      ),
-      2 => array(
-        'browser_size' => '992x200',
-        'ad_sizes' => '180x150',
-      ),
     ),
   );
   $export['clone_of_clone_of_clone_of_clone_of_salive_b_rail_1'] = $tag;
@@ -970,14 +950,6 @@ function liveadcontext_default_dfp_tag() {
       0 => array(
         'browser_size' => '0x0',
         'ad_sizes' => '300x250',
-      ),
-      1 => array(
-        'browser_size' => '1200x200',
-        'ad_sizes' => '300x250',
-      ),
-      2 => array(
-        'browser_size' => '992x200',
-        'ad_sizes' => '180x150',
       ),
     ),
   );
@@ -1134,14 +1106,6 @@ function liveadcontext_default_dfp_tag() {
       0 => array(
         'browser_size' => '0x0',
         'ad_sizes' => '300x250',
-      ),
-      1 => array(
-        'browser_size' => '1200x200',
-        'ad_sizes' => '300x250',
-      ),
-      2 => array(
-        'browser_size' => '992x200',
-        'ad_sizes' => '180x150',
       ),
     ),
   );
@@ -1961,14 +1925,6 @@ function liveadcontext_default_dfp_tag() {
         'browser_size' => '0x0',
         'ad_sizes' => '300x250',
       ),
-      1 => array(
-        'browser_size' => '1200x200',
-        'ad_sizes' => '300x250',
-      ),
-      2 => array(
-        'browser_size' => '992x200',
-        'ad_sizes' => '180x150',
-      ),
     ),
   );
   $export['salive_b_rail_1'] = $tag;
@@ -2127,10 +2083,10 @@ function liveadcontext_default_dfp_tag() {
       ),
       1 => array(
         'browser_size' => '1199x200',
-        'ad_sizes' => '240x80',
+        'ad_sizes' => '190x63',
       ),
       2 => array(
-        'browser_size' => '991x200',
+        'browser_size' => '0x0',
         'ad_sizes' => '300x100',
       ),
     ),
@@ -2202,6 +2158,14 @@ function liveadcontext_default_dfp_tag() {
       1 => array(
         'browser_size' => '758x200',
         'ad_sizes' => '728x90',
+      ),
+      2 => array(
+        'browser_size' => '1200x200',
+        'ad_sizes' => '970x250',
+      ),
+      3 => array(
+        'browser_size' => '992x200',
+        'ad_sizes' => '930x180',
       ),
     ),
   );
