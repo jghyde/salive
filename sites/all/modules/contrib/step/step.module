@@ -180,8 +180,12 @@ function step_form_user_register_form_alter(&$form, &$form_state) {
   // Remove default form buttons.
   unset($form['actions']);
   // Add the CTools submit callback.
+  $user_register = 'user_register_submit';
+  if (in_array('logintoboggan_user_register_submit', $form['#submit'])) {
+    $user_register = 'logintoboggan_user_register_submit';
+  }
   $step_submits = array(
-    'user_register_submit',
+    $user_register,
     'ctools_wizard_submit',
     'step_user_register_submit',
   );

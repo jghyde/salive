@@ -28,8 +28,8 @@ function livelogin_menu() {
 function livelogin_buy($arg) {
   if (user_is_anonymous()){
     setcookie('buy', 'node/add/' . $arg, time() + 36000, '/');
-    drupal_set_message('You must first create an account on San Angelo LIVE!', 'status');
-    drupal_goto('user/register');
+    drupal_set_message('You must first log in or create an account on San Angelo LIVE!', 'status');
+    drupal_goto('user');
   }
   else {
     drupal_goto('node/add/' . $arg);
@@ -89,7 +89,7 @@ function livelogin_form_alter(&$form, &$form_state, $form_id) {
 /**
  * Implements hook_page_build()
  */
-function livelogin_page_build(&$page) {
+function livelogin_page_alter(&$page) {
   if (isset($_COOKIE['buy'])) {
     drupal_set_message('You can continue to post your paid post @here.', array('@here' => l('here', $_COOKIE['buy'])));
   }
