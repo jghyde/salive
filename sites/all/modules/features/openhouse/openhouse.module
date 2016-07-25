@@ -12,9 +12,11 @@ include_once 'openhouse.features.inc';
 function openhouse_form_node_form_alter(&$form, &$form_state, $form_id) {
   // We will autogenerate the title later, just hide the title field in the
   // meanwhile.
-  $form['title']['#value'] = 'ant';
-  $form['title']['#type'] = 'value';
-  $form['title']['#required'] = FALSE;
+  if ($form['#bundle'] == 'openhouse') {
+    $form['title']['#value'] = 'ant';
+    $form['title']['#type'] = 'value';
+    $form['title']['#required'] = FALSE;
+  }
 }
 
 /**
