@@ -7114,6 +7114,14 @@ ul.quicktabs-tabs {
 .btn {
   font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
 }
+div.messages.commerce-add-to-cart-confirmation {
+  width: 600px;
+}
+@media (max-width: 400px) {
+  div.messages.commerce-add-to-cart-confirmation {
+    width: 300px;
+  }
+}
 #header {
   margin-top: 71px;
 }
@@ -7662,6 +7670,9 @@ a.imgbody.right.active {
 }
 .panel-heading {
   padding: 5px 0 0;
+}
+#edit-pre-actions {
+  display: none;
 }
 #footer {
   background: #222222;

@@ -5,3 +5,29 @@
  */
 
 include_once 'openhouse.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the node form.
+ */
+function openhouse_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // We will autogenerate the title later, just hide the title field in the
+  // meanwhile.
+  $form['title']['#value'] = 'ant';
+  $form['title']['#type'] = 'value';
+  $form['title']['#required'] = FALSE;
+}
+
+/**
+ * Implements hook_node_submit().
+ *
+ * Generate the node title as soon as the form has been submitted. That way
+ * the node preview is shown right too.
+ */
+function openhouse_node_submit($node, $form, &$form_state) {
+  if ($node->type == 'openhouse') {
+    $title = $node->field_address[LANGUAGE_NONE][0]['thoroughfare'] . ', ' . $node->field_address[LANGUAGE_NONE][0]['locality'] . ', ' .
+      $node->field_address['und'][0]['administrative_area'] . ' ' . $node->field_address[LANGUAGE_NONE][0]['postal_code'];
+    $node->title = $title;
+  }
+}
+
