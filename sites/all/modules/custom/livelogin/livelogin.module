@@ -90,8 +90,8 @@ function livelogin_form_alter(&$form, &$form_state, $form_id) {
  * Implements hook_page_build()
  */
 function livelogin_page_build(&$page) {
-  if ($_COOKIE['buy']) {
-    drupal_set_message('You can post your real estate open house listing @here', array('@here' => l('node/add/openhouse')));
+  if (isset($_COOKIE['buy'])) {
+    drupal_set_message('You can continue to post your paid post @here.', array('@here' => l('here', $_COOKIE['buy'])));
   }
 }
 /**
