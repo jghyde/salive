@@ -52,8 +52,6 @@
       </script>
     </div>
 
-    </div>
-
   </footer>
 
   <div id="comments">
