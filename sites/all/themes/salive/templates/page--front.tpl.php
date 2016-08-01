@@ -92,4 +92,3 @@
 	<?php include 'page.footer.inc'; ?>
 
 </div>
-<script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=720099"></script>
