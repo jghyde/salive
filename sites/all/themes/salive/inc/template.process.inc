@@ -124,7 +124,6 @@ function salive_preprocess_page(&$vars) {
       $vars['title_suffix']['obit_dates']['#markup'] = '<span class="obit-dates">' . $birth . ' - ' . $death . '</span>';
     }
     if ($vars['node']->type == 'article') {
-      drupal_add_js(libraries_get_path('addtocopy') . '/addtocopy.js');
       if ($vars['node']->field_category['und'][0]['tid'] == 22) {
         $vars['title_suffix']['category']['#markup'] = '<span class="obit-dates">Opinion</span>';
       }
