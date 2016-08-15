@@ -17754,6 +17754,30 @@ ul li.leaf {
 #block-views-editorspick-block .blcontent {
   padding: 0 15px;
 }
+.field-name-body .block.block-dfp .blcontent > .dfp-tag-wrapper:first-child::after,
+#dfp-ad-clone_of_clone_of_clone_of_clone_of_salive_b_rail_1-wrapper::after,
+#dfp-ad-clone_of_clone_of_clone_of_salive_b_rail_1-wrapper::after,
+#dfp-ad-clone_of_clone_of_salive_b_rail_1-wrapper::after,
+#dfp-ad-salive_b_rail_1-wrapper::after,
+#dfp-ad-clone_of_salive_b_rail_1-wrapper::after,
+#dfp-ad-salive_bw_bottom-wrapper::after,
+#dfp-ad-clone_of_clone_of_clone_of_clone_of_clone_of_clone_of_clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-clone_of_clone_of_clone_of_clone_of_clone_of_clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-clone_of_clone_of_clone_of_clone_of_clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-clone_of_clone_of_clone_of_clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-clone_of_clone_of_clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-clone_of_clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-clone_of_salive_blw_hot_rants-wrapper::after,
+#dfp-ad-300x600_rail-wrapper::after,
+#dfp-ad-salive_blw_hot_rants-wrapper::after,
+#dfp-ad-salive_bst_weather-wrapper::after,
+#dfp-ad-salive_blw_most_recent_-wrapper::after,
+#dfp-ad-salive_bw_top-wrapper::after {
+  content: 'Advertisement';
+  color: #cccccc;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-variant: all-small-caps;
+}
 #comments .ajax-comment-wrapper,
 .view-rants .ajax-comment-wrapper,
 #comments .comment,
