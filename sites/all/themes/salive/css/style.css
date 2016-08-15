@@ -7122,6 +7122,37 @@ div.messages.commerce-add-to-cart-confirmation {
     width: 300px;
   }
 }
+div.messages.commerce-add-to-cart-confirmation {
+  min-width: 600px;
+  min-height: 300px;
+  top: 10%;
+  border-color: #8c0017;
+}
+div.messages.commerce-add-to-cart-confirmation .view-id-confirm_message_product_display .view-content {
+  width: 65%;
+}
+div.messages.commerce-add-to-cart-confirmation .view-id-confirm_message_product_display .view-content .views-field .field-content {
+  color: #000000;
+}
+div.messages.commerce-add-to-cart-confirmation .message-inner .added-product-title {
+  width: 65%;
+  color: #000000;
+}
+div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper {
+  width: 35%;
+  background-color: #8C0017;
+}
+div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper .button.checkout {
+  background-color: #ffffff;
+  color: #000000;
+}
+div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper .button.checkout a {
+  color: #000000;
+}
+div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper .button.continue {
+  color: #ffffff;
+  background-color: #000000;
+}
 #header {
   margin-top: 71px;
 }
@@ -18904,6 +18935,8 @@ fieldset.search-advanced {
   margin-bottom: 0 !important;
 }
 .news-insert {
+  width: 100%;
+  clear: both;
   margin-bottom: 15px;
 }
 #block-quicktabs-accordion_block .ui-accordion-content {

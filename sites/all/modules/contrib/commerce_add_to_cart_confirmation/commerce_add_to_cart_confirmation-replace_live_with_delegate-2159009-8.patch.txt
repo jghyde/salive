@@ -1,0 +1,13 @@
+diff --git a/js/commerce_add_to_cart_confirmation.js b/js/commerce_add_to_cart_confirmation.js
+index 9eed2d6..cfbe0a2 100644
+--- a/js/commerce_add_to_cart_confirmation.js
++++ b/js/commerce_add_to_cart_confirmation.js
+@@ -20,7 +20,7 @@
+         $(overlayParentSelector).append('<div class="' + overlayClass + '"></div>');
+ 
+         // Enable the close link.
+-        $('.commerce-add-to-cart-confirmation-close').live('click touchend', function(e) {
++        $(document).delegate('.commerce-add-to-cart-confirmation-close', 'click touchend', function(e) {
+           e.preventDefault();
+           $('.commerce-add-to-cart-confirmation').remove();
+           $('.' + overlayClass).remove();
