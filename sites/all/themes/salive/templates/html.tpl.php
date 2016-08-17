@@ -4,7 +4,6 @@
   <script src="https://use.typekit.net/bgs6mvy.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <meta charset="utf-8">
-  <meta name='ir-site-verification-token' value='1527433008' />
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
