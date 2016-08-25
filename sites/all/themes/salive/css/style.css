@@ -18996,6 +18996,25 @@ fieldset.search-advanced {
   width: 100%;
   height: auto;
 }
+.page-type-team .field-name-field-team-photo img {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  background-color: #efefef;
+  border: 1px solid #cccccc;
+}
+.page-type-team .field-name-field-team-photo figcaption {
+  display: block;
+  text-align: center;
+}
+.page-type-team .field-name-field-team-helmet .content img {
+  width: 250px;
+  height: auto;
+  margin: 10px auto;
+}
+.page-type-team .field-name-body {
+  margin-bottom: 1.5em;
+}
 .view-events h3 {
   font-size: 1.8em;
   background-color: #f1f1f1;

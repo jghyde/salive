@@ -169,6 +169,10 @@ function salive_preprocess_field(&$vars, $hook) {
   if ($vars['field_name_css'] == 'field-name-field-article-bullets') {
     $vars['classes_array'][] = 'well';
   }
+  if ($vars['field_name_css'] == 'field-team-photo') {
+    $vars['classes_array'][] = 'thumbnail';
+
+  }
 }
 
 /**

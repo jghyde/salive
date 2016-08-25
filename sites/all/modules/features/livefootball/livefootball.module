@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the livefootball feature.
+ */
+
+include_once 'livefootball.features.inc';
