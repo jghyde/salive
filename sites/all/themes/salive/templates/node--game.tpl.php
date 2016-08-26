@@ -88,14 +88,13 @@ $ad_home = preg_replace('/\&amp;/', '', $ad_home);
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_home);
         print render($block['content']);
-        print '<br />' . $ad_home . '&nbsp;';
+        //print '<br />' . $ad_home . '&nbsp;';
         ?>
     </div>
     <div class="fb-visitor-sponsor col-md-6 col-sm-12">
       <?php
       $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_visitor);
       print render($block['content']);
-      print '<br />' . $ad_visitor . '&nbsp;';
       ?>
     </div>
   </div>
