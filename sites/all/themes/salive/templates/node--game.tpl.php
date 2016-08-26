@@ -34,6 +34,8 @@ else {
 
 ?>
 <?php if ($page): ?>
+  <?php
+  /*
 <?php foreach ((array)$field_image as $item) { ?>
 <div class="game-image text-center">
 <?php $file = file_load($node->field_image['und'][0]['fid']); ?>
@@ -41,6 +43,10 @@ else {
 </div>
 <?php } ?>
 <?php endif; ?>
+<?php
+  */
+  ?>
+
   <?php
   $quarter = $content['field_game_quarter'][0]['#markup'];
   if (empty($content['field_game_quarter'][0]['#markup']) || !isset($content['field_game_quarter'][0]['#markup'])) {
@@ -51,7 +57,7 @@ else {
 <table class="table table-striped">
 <tr>
 <th class="game-team">Team (<?php print $quarter; ?>)<?php print  ' ' . $evrybit; ?></th>
-<?php if ($content['field_final_score'][0]['#markup'] == 1) {
+<?php if ($quarter == 'Final') {
   $tclass= 'success';
 }
 else {
@@ -80,12 +86,14 @@ else {
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_home);
         print render($block['content']);
+        print '<br />' . $ad_home; ?>
         ?>
       </div>
       <div class="football-visitor pull-left">
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_visitor);
         print render($block['content']);
+        print '<br />' . $ad_visitor; ?>
         ?>
       </div>
     </td>
