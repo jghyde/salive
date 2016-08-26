@@ -161,7 +161,7 @@ function livefootball_views_default_views() {
     3 => 0,
     4 => 0,
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Content: Final Score (field_final_score) */
   $handler->display->display_options['filters']['field_final_score_value']['id'] = 'field_final_score_value';
   $handler->display->display_options['filters']['field_final_score_value']['table'] = 'field_data_field_final_score';
   $handler->display->display_options['filters']['field_final_score_value']['field'] = 'field_final_score_value';
@@ -175,11 +175,6 @@ function livefootball_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'West Central Texas High School Football Scores';
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Text area */
-  $handler->display->display_options['header']['area']['id'] = 'area';
-  $handler->display->display_options['header']['area']['table'] = 'views';
-  $handler->display->display_options['header']['area']['field'] = 'area';
-  $handler->display->display_options['header']['area']['format'] = 'panopoly_wysiwyg_text';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   /* Footer: Global: Text area */
   $handler->display->display_options['footer']['area']['id'] = 'area';
@@ -463,7 +458,7 @@ function livefootball_views_default_views() {
     3 => 0,
     4 => 0,
   );
-  /* Filter criterion: Broken/missing handler */
+  /* Filter criterion: Content: Final Score (field_final_score) */
   $handler->display->display_options['filters']['field_final_score_value']['id'] = 'field_final_score_value';
   $handler->display->display_options['filters']['field_final_score_value']['table'] = 'field_data_field_final_score';
   $handler->display->display_options['filters']['field_final_score_value']['field'] = 'field_final_score_value';
