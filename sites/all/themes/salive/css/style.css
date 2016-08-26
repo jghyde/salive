@@ -19015,6 +19015,10 @@ fieldset.search-advanced {
 .page-type-team .field-name-body {
   margin-bottom: 1.5em;
 }
+.fb-sponsors .col-md-6 .dfp-tag-wrapper {
+  width: 300px;
+  margin: 0 au;
+}
 .view-events h3 {
   font-size: 1.8em;
   background-color: #f1f1f1;

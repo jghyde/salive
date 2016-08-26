@@ -81,26 +81,26 @@ $ad_home = preg_replace('/\&amp;/', '', $ad_home);
 <td class="game-home"><?php print $content['field_home_team'][0]['#markup']; ?> (Home)</td>
 <td class="<?php print $tclass; ?>" width="30%"><?php print (($hscore == '' || $hscore === 0) ? '0' :$hscore); ?></td>
 </tr>
-  <tr>
-    <td colspan="2">
-      <div class="football-home pull-left">
+
+</table>
+  <div class="row fb-sponsors">
+    <div class="fb-home-sponsor col-md-6 col-sm-12">
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_home);
         print render($block['content']);
         print '<br />' . $ad_home . '&nbsp;';
         ?>
-      </div>
-      <div class="football-visitor pull-left">
-        <?php
-        $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_visitor);
-        print render($block['content']);
-        print '<br />' . $ad_visitor . '&nbsp;';
-        ?>
-      </div>
-    </td>
-  </tr>
-</table>
+    </div>
+    <div class="fb-visitor-sponsor col-md-6 col-sm-12">
+      <?php
+      $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_visitor);
+      print render($block['content']);
+      print '<br />' . $ad_visitor . '&nbsp;';
+      ?>
+    </div>
+  </div>
 <div class="status">
+
 This score last updated at <?php print date('M j, Y \a\t h:i', $node->revision_timestamp) . ' '; ?>
 <?php if ($is_admin): ?>
 <?php
