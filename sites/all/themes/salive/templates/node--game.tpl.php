@@ -86,14 +86,14 @@ else {
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_home);
         print render($block['content']);
-        print '<br />' . $ad_home; ?>
+        print '<br />' . $ad_home;
         ?>
       </div>
       <div class="football-visitor pull-left">
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_visitor);
         print render($block['content']);
-        print '<br />' . $ad_visitor; ?>
+        print '<br />' . $ad_visitor;
         ?>
       </div>
     </td>
