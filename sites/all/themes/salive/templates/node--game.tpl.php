@@ -68,6 +68,8 @@ else {
   $ad_home = strtolower($content['field_home_team'][0]['#markup']);
   $ad_visitor = preg_replace('/\s+/', '', $ad_visitor);
   $ad_home = preg_replace('/\s+/', '', $ad_home);
+$ad_visitor = preg_replace('/\&+/', '', $ad_visitor);
+$ad_home = preg_replace('/\&+/', '', $ad_home);
 ?>
 <th class="<?php print $tclass; ?>"><?php print $total; ?></th>
 </tr>
