@@ -42,12 +42,11 @@ else {
 <img alt="<?php print $title; ?>" src="<?php print file_create_url($file->uri); ?>" />
 </div>
 <?php } ?>
+    */
+  ?>
 <?php endif; ?>
 <?php
-  */
-  ?>
 
-  <?php
   $quarter = $content['field_game_quarter'][0]['#markup'];
   if (empty($content['field_game_quarter'][0]['#markup']) || !isset($content['field_game_quarter'][0]['#markup'])) {
     $quarter = 'Before Kickoff';
@@ -122,5 +121,3 @@ if ($page) {
 ?>
 
 </article> <!-- /.node -->
-
-
