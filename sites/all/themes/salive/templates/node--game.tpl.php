@@ -111,7 +111,7 @@ $revision_author = user_load($revision_uid);
 print  ' by ' . $revision_author->name;
 
 if (!$page) {
-  print ' ' . l('Edit', 'node/' . $node->nid . '/edit', array('query' => array('destination' => 'scores-new' )));
+  print ' ' . l('Edit', 'node/' . $node->nid . '/edit', array('query' => array('destination' => 'scores' )));
 }
 endif;
 ?>

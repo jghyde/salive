@@ -7850,6 +7850,9 @@ a.imgbody.right.active {
 #edit-pre-actions {
   display: none;
 }
+.smashtop .blcontent {
+  background-color: transparent;
+}
 #footer {
   background: #222222;
   border-top: 1px solid #333333;
@@ -19017,7 +19020,7 @@ fieldset.search-advanced {
 }
 .fb-sponsors .col-md-6 .dfp-tag-wrapper {
   width: 300px;
-  margin: 0 au;
+  margin: 0 auto;
 }
 .view-events h3 {
   font-size: 1.8em;
