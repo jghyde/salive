@@ -83,6 +83,7 @@ $ad_home = preg_replace('/\&amp;/', '', $ad_home);
 </tr>
 
 </table>
+  <?php if ($view_mode == 'full'): ?>
   <div class="row fb-sponsors">
     <div class="fb-home-sponsor col-md-6 col-sm-12">
         <?php
@@ -98,6 +99,9 @@ $ad_home = preg_replace('/\&amp;/', '', $ad_home);
       ?>
     </div>
   </div>
+  <?php
+  endif;
+  ?>
 <div class="status">
 
 This score last updated at <?php print date('M j, Y \a\t h:i', $node->revision_timestamp) . ' '; ?>
