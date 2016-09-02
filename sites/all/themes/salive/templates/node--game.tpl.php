@@ -26,7 +26,7 @@ else {
   $vscore = $content['field_visitors_total'][0]['#markup'];
 }
 if (isset($field_evrybit[0]['value'])) {
-  $evrybit = l(' <em><strong>LIVE!</strong> Stream</em> <span class="glyphicons facetime_video"></span>', 'node/' . $node->nid, array('html' => TRUE));
+  $evrybit = l(' <span style="color:#cc0000;"><em><strong>Watch LIVE!</strong> Stream</em></span> <span class="glyphicons facetime_video"></span>', 'node/' . $node->nid, array('html' => TRUE));
 }
 else {
   $evrybit = '';
