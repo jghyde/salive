@@ -85,18 +85,12 @@ $ad_home = preg_replace('/\&amp;/', '', $ad_home);
 </table>
   <?php if ($view_mode == 'full'): ?>
   <div class="row fb-sponsors">
-    <div class="fb-home-sponsor col-md-6 col-sm-12">
+    <div class="fb-home-sponsor col-md-12 col-sm-12">
         <?php
         $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_home);
         print render($block['content']);
         //print '<br />' . $ad_home . '&nbsp;';
         ?>
-    </div>
-    <div class="fb-visitor-sponsor col-md-6 col-sm-12">
-      <?php
-      $block = module_invoke('dfp', 'block_view', 'fb_' . $ad_visitor);
-      print render($block['content']);
-      ?>
     </div>
   </div>
   <?php
