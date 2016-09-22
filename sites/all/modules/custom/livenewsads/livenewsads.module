@@ -255,11 +255,9 @@ EOT;
       // Place ads into the story body:
       if (strlen($node->content['body'][0]['#markup']) > 550) {
         $aol = <<<EOT
-
 <!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
-<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16">
-<script type="text/javascript" src="//delivery.vidible.tv/jsonp/
-pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16.js"></script>
+<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" style="width: 100%;text-align:center;">
+<script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16.js"></script>
 </div>
 <!-- TAG END { date: 01/03/16 } --> 
 EOT;
@@ -277,11 +275,11 @@ EOT;
           $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
         }
         // Add AOL test code:
-        $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 2);
+        $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 3);
         $banner_added = $string . $aol;
         $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
         // End AOL code test
-        
+
         $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 4);
         // Add the banner ad code
         $banner_added = $string . $adspot[1];
