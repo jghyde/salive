@@ -251,16 +251,15 @@ EOT;
             break;
         }
       }
-
-      // Place ads into the story body:
-      if (strlen($node->content['body'][0]['#markup']) > 550) {
-        $aol = <<<EOT
+      $aol = <<<EOT
 <!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
-<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" style="width: 100%;text-align:center;">
-<script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16.js"></script>
+<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.position=3&m.selector=%26p402_premium%20p">
+<script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16.js?m.o2inline=inview&m.position=3&m.selector=%26p402_premium%20p"></script>
 </div>
 <!-- TAG END { date: 01/03/16 } --> 
 EOT;
+      // Place ads into the story body:
+      if (strlen($node->content['body'][0]['#markup']) > 550) {
         $dom = new simple_html_dom();
         $dom->load($node->content['body'][0]['#markup']);
         // Determine the number of ads
@@ -274,11 +273,11 @@ EOT;
           $block = block_load('dfp', 'newsbody_' . $x);
           $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
         }
-        // Add AOL test code:
+        /* Add AOL test code:
         $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 3);
         $banner_added = $string . $aol;
         $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
-        // End AOL code test
+        // End AOL code test // --*/
 
         $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 4);
         // Add the banner ad code
@@ -347,7 +346,7 @@ AOL" - BEINJS } -->
 
 
     $prefix = '<div class="p402_premium">';
-    $suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>";
+    $suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>" . $aol;
     $node->content['body'][0]['#markup'] = $prefix . $node->content['body'][0]['#markup'] . $suffix;
     $thumbs = views_embed_view('news_thumbs', 'block');
     $node->content['body'][0]['#markup'] .= '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';
