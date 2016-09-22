@@ -321,14 +321,22 @@ EOT;
 try { _402_Show(); } catch(e) {}
 EOT;
     // AOL One Video Player
-    $aol = <<<EOT
-<!-- TAG START { player: "14568-769816-IS: Outstream Test 20160520a", owner: "ONE Video by AOL", for: "ONE Video by
+    /**
+     * <!-- TAG START { player: "14568-769816-IS: Outstream Test 20160520a", owner: "ONE Video by AOL", for: "ONE Video by
 AOL" - BEINJS } -->
 <div id="573f97b0e4b0f2c768b60943" class="vdb_player vdb_573f97b0e4b0f2c768b6094356bcd17ce4b018167fea5539"
-vdb_params="m.o2inline=inview&m.position=2&m.selector=%23lipsum%20p"> <script type="text/javascript"
-src="//delivery.vidible.tv/jsonp/pid=573f97b0e4b0f2c768b60943/56bcd17ce4b018167fea5539_bein.js?m.selector=%23p402_premium%20p&m.
-position=5"></script></div>
-<!-- TAG END { date: 05/20/16 } -->
+    vdb_params="m.o2inline=inview&m.position=2&m.selector=%23lipsum%20p"> <script type="text/javascript"
+    src="//delivery.vidible.tv/jsonp/pid=573f97b0e4b0f2c768b60943/56bcd17ce4b018167fea5539_bein.js?m.selector=%23p402_premium%20p&m.
+    position=5"></script></div>
+    <!-- TAG END { date: 05/20/16 } -->
+     */
+    $aol = <<<EOT
+
+<!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
+<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.position=2&m.selector=%23p402_premium%20p">
+   <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js?m.o2inline=inview&m.position=2&m.selector=%p402_premium%20p"></script>
+</div>
+<!-- TAG END { date: 01/19/16 } -->   
 EOT;
 
     $prefix = '<div class="p402_premium">';
