@@ -260,8 +260,8 @@ EOT;
 EOT;
     $aoltag = <<<EOT
 <script type="text/javascript">
-var mobile = '<script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js"></script>';
-var desktop = '<script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js"></script>';
+var mobile = '<sc' + 'ript type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js"></sc' + 'ript>';
+var desktop = '<sc' + 'ript type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js"></sc' + 'ript>';
 if (isMobile()) {
   document.getElementById('57e44c51e3bb5672f8a3f5e9').id = '57e44c7ee3bb5672f8a3f5f8';
   document.getElementById("57e44c7ee3bb5672f8a3f5f8").innerHTML = mobile;
