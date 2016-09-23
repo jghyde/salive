@@ -258,6 +258,7 @@ EOT;
 EOT;
     $aoltag = <<<EOT
 <script type="text/javascript">
+var classadd = '';
 var mobile = {
   id: '57e44c7ee3bb5672f8a3f5f8',
   class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
@@ -271,13 +272,13 @@ var desktop = {
 if (isMobile()) {
   document.getElementById("aol").setAttribute("id", mobile.id);
   document.getElementById(mobile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
-  var class = ' ' + mobile.class;
+  classadd = ' ' + mobile.class;
   document.getElementById(mobile.id).className += class;
 }
 else {
   document.getElementById("aol").setAttribute("id", desktop.id);
   document.getElementById(desktop.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
-  var class = ' ' + desktop.class;
+  classadd = ' ' + desktop.class;
   document.getElementById(desktop.id).className += class;
 }
 function isMobile() {
