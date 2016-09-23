@@ -253,20 +253,30 @@ EOT;
       }
       $aol = <<<EOT
 <!-- TAG START { player: "19538-835303-Hyde Outstream Desktop", owner: "ONE Video by AOL", for: "ONE Video by AOL" - BEINJS } -->
+<div id="aol"></div>
+<!-- TAG END -->
 EOT;
     $aoltag = <<<EOT
 <script type="text/javascript">
-var mobile = '<div id="57e44c7ee3bb5672f8a3f5f8" class="vdb_player vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539">
-  <sc' + 'ript type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js"></sc' + 'ript>
-</div>';
-var desktop = '<div id="57e44c51e3bb5672f8a3f5e9" class="vdb_player vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539">
-  <sc' + 'ript type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js">
-</sc' + 'ript></div>';
+var mobile = {
+  id: '57e44c7ee3bb5672f8a3f5f8',
+  class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
+  script: '//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js',
+}
+var desktop = {
+  id: '57e44c51e3bb5672f8a3f5e9',
+  class: 'vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539',
+  script: '//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js',
+}
 if (isMobile()) {
-  document.write(mobile);
+  document.getElementById("aol").setAttribute("id", mobile.id);
+  document.getElementById(modile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
+  document.getElementById(modile.id).className += ' ' + mobile.class;
 }
 else {
-  document.write(desktop);
+  document.getElementById("aol").setAttribute("id", desktop.id);
+  document.getElementById(modile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
+  document.getElementById(modile.id).className += ' ' + desktop.class;
 }
 function isMobile() {
   try{ document.createEvent("TouchEvent"); return true; }
