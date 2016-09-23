@@ -252,11 +252,22 @@ EOT;
         }
       }
       $aol = <<<EOT
-<!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
-<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.position=3&m.selector=%26p402_premium%20p">
-<script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16.js?m.o2inline=inview&m.position=3&m.selector=%26p402_premium%20p"></script>
+<!-- TAG START { player: "19538-835303-Hyde Outstream Desktop", owner: "ONE Video by AOL", for: "ONE Video by AOL" - BEINJS } -->
+<div id="57e44c51e3bb5672f8a3f5e9" class="vdb_player vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539">
+  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js"></script>
 </div>
-<!-- TAG END { date: 01/03/16 } --> 
+<!-- TAG END { date: 09/22/16 } -->
+EOT;
+    $aoltag = <<<EOT
+<script type="text/javascript">
+if (isMobile()) {
+  document.getElementById('57e44c51e3bb5672f8a3f5e9').id = '57e44c7ee3bb5672f8a3f5f8';
+}
+function isMobile() {
+  try{ document.createEvent("TouchEvent"); return true; }
+  catch(e){ return false; }
+}
+</script>
 EOT;
       // Place ads into the story body:
       if (strlen($node->content['body'][0]['#markup']) > 550) {
@@ -273,7 +284,7 @@ EOT;
           $block = block_load('dfp', 'newsbody_' . $x);
           $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
         }
-        /* Add AOL test code:
+        // Add AOL test code:
         $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 3);
         $banner_added = $string . $aol;
         $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
@@ -333,20 +344,9 @@ EOT;
     $js = <<<EOT
 try { _402_Show(); } catch(e) {}
 EOT;
-    // AOL One Video Player
-    /**
-     * <!-- TAG START { player: "14568-769816-IS: Outstream Test 20160520a", owner: "ONE Video by AOL", for: "ONE Video by
-AOL" - BEINJS } -->
-<div id="573f97b0e4b0f2c768b60943" class="vdb_player vdb_573f97b0e4b0f2c768b6094356bcd17ce4b018167fea5539"
-    vdb_params="m.o2inline=inview&m.position=2&m.selector=%23lipsum%20p"> <script type="text/javascript"
-    src="//delivery.vidible.tv/jsonp/pid=573f97b0e4b0f2c768b60943/56bcd17ce4b018167fea5539_bein.js?m.selector=%23p402_premium%20p&m.
-    position=5"></script></div>
-    <!-- TAG END { date: 05/20/16 } -->
-     */
-
 
     $prefix = '<div class="p402_premium">';
-    $suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>" . $aol;
+    $suffix = "</div><script type=\"text/javascript\">\n" . $js . "\n" . "</script>";
     $node->content['body'][0]['#markup'] = $prefix . $node->content['body'][0]['#markup'] . $suffix;
     $thumbs = views_embed_view('news_thumbs', 'block');
     $node->content['body'][0]['#markup'] .= '<div id="block-views-news-thumbs-block" class="clearfix"><h2>Recommended for You</h2>' . $thumbs . '</div>';
