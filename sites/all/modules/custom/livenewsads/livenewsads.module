@@ -270,13 +270,13 @@ var desktop = {
 }
 if (isMobile()) {
   document.getElementById("aol").setAttribute("id", mobile.id);
-  document.getElementById(modile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
-  document.getElementById(modile.id).className += ' ' + mobile.class;
+  document.getElementById(mobile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
+  document.getElementById(mobile.id).className += ' ' + mobile.class;
 }
 else {
   document.getElementById("aol").setAttribute("id", desktop.id);
-  document.getElementById(modile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
-  document.getElementById(modile.id).className += ' ' + desktop.class;
+  document.getElementById(desktop.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
+  document.getElementById(desktop.id).className += ' ' + desktop.class;
 }
 function isMobile() {
   try{ document.createEvent("TouchEvent"); return true; }
