@@ -284,9 +284,11 @@ EOT;
           $block = block_load('dfp', 'newsbody_' . $x);
           $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
         }
-        // Add AOL test code:
-        $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 3);
-        $banner_added = $string . $aol;
+        // Add AOL LIVE code:
+        $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 5);
+        $banner_added = $string;
+        $banner_added .= $aol;
+        $banner_added .= $aoltag;
         $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
         // End AOL code test // --*/
 
