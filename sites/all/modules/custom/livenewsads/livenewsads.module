@@ -285,12 +285,12 @@ EOT;
           $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
         }
         // Add AOL LIVE code:
-        $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 5);
+        $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 6);
         $banner_added = $string;
         $banner_added .= $aol;
         $banner_added .= $aoltag;
         $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
-        // End AOL code test // --*/
+        // End AOL code LIVE // --*/
 
         $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 4);
         // Add the banner ad code
