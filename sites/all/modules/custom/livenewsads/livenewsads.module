@@ -269,7 +269,7 @@ var desktop = {
   script: '//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js',
 }
 console.log(isMobile());
-if (isMobile()) {
+if (isMobile() != false) {
   document.getElementById("aol").setAttribute("id", mobile.id);
   document.getElementById(mobile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
   document.getElementById(desktop.id).classList.add(mobile.class);
