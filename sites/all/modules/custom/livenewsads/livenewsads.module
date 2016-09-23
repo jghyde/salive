@@ -258,7 +258,7 @@ EOT;
 EOT;
     $aoltag = <<<EOT
 <script type="text/javascript">
-var classadd = '';
+var classadd;
 var mobile = {
   id: '57e44c7ee3bb5672f8a3f5f8',
   class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
