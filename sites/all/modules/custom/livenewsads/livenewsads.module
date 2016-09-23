@@ -253,12 +253,11 @@ EOT;
       }
       $aol = <<<EOT
 <!-- TAG START { player: "19538-835303-Hyde Outstream Desktop", owner: "ONE Video by AOL", for: "ONE Video by AOL" - BEINJS } -->
-<div id="aol"></div>
+<div id="aol" class="vdb_player"></div>
 <!-- TAG END -->
 EOT;
     $aoltag = <<<EOT
 <script type="text/javascript">
-var classadd;
 var mobile = {
   id: '57e44c7ee3bb5672f8a3f5f8',
   class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
@@ -272,14 +271,13 @@ var desktop = {
 if (isMobile()) {
   document.getElementById("aol").setAttribute("id", mobile.id);
   document.getElementById(mobile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
-  classadd = ' ' + mobile.class;
-  document.getElementById(mobile.id).className += class;
+  document.getElementById(desktop.id).classList.add(mobile.class);
 }
 else {
   document.getElementById("aol").setAttribute("id", desktop.id);
   document.getElementById(desktop.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
-  classadd = ' ' + desktop.class;
-  document.getElementById(desktop.id).className += class;
+  document.getElementById(desktop.id).classList.add(desktop.class);
+  
 }
 function isMobile() {
   try{ document.createEvent("TouchEvent"); return true; }
