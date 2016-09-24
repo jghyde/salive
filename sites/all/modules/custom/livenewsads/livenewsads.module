@@ -260,12 +260,12 @@ EOT;
 <script type="text/javascript">
 var mobile = {
   id: '57e44c7ee3bb5672f8a3f5f8',
-  class: 'vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16',
+  class: 'vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16',
   script: '//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js',
 }
 var desktop = {
   id: '57e44c51e3bb5672f8a3f5e9',
-  class: 'vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16',
+  class: 'vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16',
   script: '//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js',
 }
 console.log(isMobile());
