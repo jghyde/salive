@@ -256,17 +256,17 @@ EOT;
 <div id="aol" class="vdb_player"></div>
 <!-- TAG END -->
 EOT;
-    $aoltag = <<<EOT
+/*      $aoltag = <<<EOT
 <script type="text/javascript">
 var mobile = {
   id: '57e44c7ee3bb5672f8a3f5f8',
-  class: 'vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16',
-  script: '//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js',
+  class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
+  script: '//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js',
 }
 var desktop = {
   id: '57e44c51e3bb5672f8a3f5e9',
-  class: 'vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16',
-  script: '//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js',
+  class: 'vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539',
+  script: '//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js',
 }
 console.log(isMobile());
 if (isMobile() != false) {
@@ -286,6 +286,36 @@ function isMobile() {
 }
 </script>
 EOT;
+*/
+      $js_aol = <<<EOT
+var mobile = {
+  id: '57e44c7ee3bb5672f8a3f5f8',
+  class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
+  script: '//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js',
+}
+var desktop = {
+  id: '57e44c51e3bb5672f8a3f5e9',
+  class: 'vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539',
+  script: '//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js',
+}
+console.log(isMobile());
+if (isMobile() != false) {
+  document.getElementById("aol").setAttribute("id", mobile.id);
+  document.getElementById(mobile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
+  document.getElementById(mobile.id).classList.add(mobile.class);
+}
+else {
+  document.getElementById("aol").setAttribute("id", desktop.id);
+  document.getElementById(desktop.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
+  document.getElementById(desktop.id).classList.add(desktop.class);
+  
+}
+function isMobile() {
+  try{ document.createEvent("TouchEvent"); return true; }
+  catch(e){ return false; }
+}      
+EOT;
+      drupal_add_js($js_aol, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
       // Place ads into the story body:
       if (strlen($node->content['body'][0]['#markup']) > 550) {
         $dom = new simple_html_dom();
