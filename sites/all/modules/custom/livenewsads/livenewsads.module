@@ -350,14 +350,14 @@ EOT;
             if ($x % 4 == 0) {
               $string = $paras[$x];
               if ($aolinserted == 0) {
-                $banner_added = $aol . $aoltag;
+                $banner_added = $aol . $string;
                 $i = 2;
                 $aolinserted = 1;
               }
               else {
                 $banner_added = $adspot[$i] . $string;
               }
-              $happy = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
+              //$happy = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
               $node->content['body'][0]['#markup'] = str_replace($string, $banner_added, $node->content['body'][0]['#markup']);
               $i++;
             }
