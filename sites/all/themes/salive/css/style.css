@@ -7856,13 +7856,13 @@ a.imgbody.right.active {
 @media (min-width: 480px) {
   .vdb_player {
     max-width: 300px;
-    margin: 10px auto;
+    margin: 0 auto;
   }
 }
 @media (min-width: 768px) {
   .vdb_player {
     max-width: 640px;
-    margin: 10px auto;
+    margin: 0 auto;
   }
 }
 #footer {
