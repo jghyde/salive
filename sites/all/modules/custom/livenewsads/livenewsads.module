@@ -253,8 +253,8 @@ EOT;
       }
       $aol = <<<EOT
 <!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
-<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16">
-   <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js"></script>
+<div class="vdb_player vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539" id="57e44c51e3bb5672f8a3f5e9">
+   <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js"></script>
 </div>
 <!-- TAG END { date: 01/19/16 } -->
 EOT;
