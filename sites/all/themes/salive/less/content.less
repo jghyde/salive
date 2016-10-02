@@ -226,9 +226,16 @@ ul.social-icons {
 		background-color: transparent;
 	}
 }
-@media (min-width: @screen-sm-max) {
+@media (min-width: @screen-phone) { //480
 	.vdb_player {
-		min-width: 450px;
+		max-width: 300px;
 		margin: 10px auto;
 	}
+}
+//768 @screen-tablet
+@media (min-width: @screen-tablet) { //480
+  .vdb_player {
+    max-width: 640px;
+    margin: 10px auto;
+  }
 }

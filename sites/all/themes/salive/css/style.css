@@ -7853,9 +7853,15 @@ a.imgbody.right.active {
 .smashtop .blcontent {
   background-color: transparent;
 }
-@media (min-width: 991px) {
+@media (min-width: 480px) {
   .vdb_player {
-    min-width: 450px;
+    max-width: 300px;
+    margin: 10px auto;
+  }
+}
+@media (min-width: 768px) {
+  .vdb_player {
+    max-width: 640px;
     margin: 10px auto;
   }
 }
