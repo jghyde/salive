@@ -252,10 +252,18 @@ EOT;
         }
       }
       $aol = <<<EOT
+<!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
+<div class="vdb_player vdb_568927c7e4b098feda361f34554203dbe4b064656db31e16" vdb_params="m.o2inline=inview&m.position=5&m.selector=%23lipsum%20p">
+   <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=568927c7e4b098feda361f34/554203dbe4b064656db31e16_bein.js"></script>
+</div>
+<!-- TAG END { date: 01/19/16 } -->
+EOT;
+      /*
+      $aol = <<<EOT
 <!-- TAG START { player: "19538-835303-Hyde Outstream Desktop", owner: "ONE Video by AOL", for: "ONE Video by AOL" - BEINJS } -->
 <div id="aol" class="vdb_player"></div>
 <!-- TAG END -->
-EOT;
+EOT; // --*/
 /*      $aoltag = <<<EOT
 <script type="text/javascript">
 var mobile = {
@@ -315,7 +323,7 @@ function isMobile() {
   catch(e){ return false; }
 }      
 EOT;
-      drupal_add_js($js_aol, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
+      //drupal_add_js($js_aol, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
       // Place ads into the story body:
       if (strlen($node->content['body'][0]['#markup']) > 550) {
         $dom = new simple_html_dom();

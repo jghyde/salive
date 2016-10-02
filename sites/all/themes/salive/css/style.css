@@ -7853,6 +7853,12 @@ a.imgbody.right.active {
 .smashtop .blcontent {
   background-color: transparent;
 }
+@media (min-width: 991px) {
+  .vdb_player {
+    min-width: 450px;
+    margin: 10px auto;
+  }
+}
 #footer {
   background: #222222;
   border-top: 1px solid #333333;
