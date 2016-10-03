@@ -252,47 +252,35 @@ EOT;
         }
       }
       $aol = <<<EOT
-<!-- TAG START { player: "Generic Outstream Demo (ad only)", owner: "BeOn", for: "BeOn" } -->
-<div class="vdb_player vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539" id="57e44c51e3bb5672f8a3f5e9">
-   <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js"></script>
+<!-- TAG START { player: "19538-835306-Hyde Outstream Mobile", owner: "ONE Video by AOL", for: "ONE Video by AOL" - BEINJS } -->
+<div id="57e44c7ee3bb5672f8a3f5f8" class="vdb_player vdb_mobile vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539">
+  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js"></script>
 </div>
-<!-- TAG END { date: 01/19/16 } -->
-EOT;
-/*      $aol = <<<EOT
+<!-- TAG END { date: 09/22/16 } -->
 <!-- TAG START { player: "19538-835303-Hyde Outstream Desktop", owner: "ONE Video by AOL", for: "ONE Video by AOL" - BEINJS } -->
-<div id="aol" class="vdb_player"></div>
-<!-- TAG END -->
-EOT; // --*/
-
-      $js_aol = <<<EOT
-var mobile = {
-  id: '57e44c7ee3bb5672f8a3f5f8',
-  class: 'vdb_57e44c7ee3bb5672f8a3f5f856bcd17ce4b018167fea5539',
-  script: '//delivery.vidible.tv/jsonp/pid=57e44c7ee3bb5672f8a3f5f8/56bcd17ce4b018167fea5539_bein.js',
-}
-var desktop = {
-  id: '57e44c51e3bb5672f8a3f5e9',
-  class: 'vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539',
-  script: '//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js',
-}
-console.log(isMobile());
-if (isMobile() != false) {
-  document.getElementById("aol").setAttribute("id", mobile.id);
-  document.getElementById(mobile.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + mobile.script + '"></sc' + 'ript></div>';
-  document.getElementById(mobile.id).classList.add(mobile.class);
-}
-else {
-  document.getElementById("aol").setAttribute("id", desktop.id);
-  document.getElementById(desktop.id).innerHTML= '<sc' + 'ript type="text/javascript" src="' + desktop.script + '"></sc' + 'ript></div>';
-  document.getElementById(desktop.id).classList.add(desktop.class);
-  
-}
+<div id="57e44c51e3bb5672f8a3f5e9" class="vdb_player vdb_desktop vdb_57e44c51e3bb5672f8a3f5e956bcd17ce4b018167fea5539">
+  <script type="text/javascript" src="//delivery.vidible.tv/jsonp/pid=57e44c51e3bb5672f8a3f5e9/56bcd17ce4b018167fea5539_bein.js">
+</script></div><!-- TAG END { date: 09/22/16 } -->
+EOT;
+$js_aol = <<<EOT
+(function ($) {
+  console.log(isMobile());
+  if (isMobile() == false) {
+    // Remove Mobile version
+    $('#57e44c7ee3bb5672f8a3f5f8').remove();
+  }
+  else {
+    // Remove the Desktop version
+    $('#57e44c51e3bb5672f8a3f5e9').remove();
+  }
+}(jQuery));
 function isMobile() {
   try{ document.createEvent("TouchEvent"); return true; }
   catch(e){ return false; }
-}      
+}     
+
 EOT;
-      //drupal_add_js($js_aol, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
+      drupal_add_js($js_aol, array('type' => 'inline', 'scope' => 'footer', 'weight' => 5));
       // Place ads into the story body:
       if (strlen($node->content['body'][0]['#markup']) > 550) {
         $dom = new simple_html_dom();
