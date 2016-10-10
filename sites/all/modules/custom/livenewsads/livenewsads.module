@@ -286,7 +286,7 @@ function isMobile() {
 EOT;
 
       // Place ads into the story body:
-      if (strlen($node->content['body'][0]['#markup']) > 550 && $citylumber = 0) {
+      if (strlen($node->content['body'][0]['#markup']) > 550 && $citylumber == 0) {
 
         $dom = new simple_html_dom();
         $dom->load($node->content['body'][0]['#markup']);
