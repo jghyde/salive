@@ -13,9 +13,9 @@ function get_count_facebook($url) {
   $count = 0;
   $response = _social_share_counter_parse("http://graph.facebook.com/?id=" . $url);
   $result = json_decode($response);
-  if (isset($result->shares)) {
-    $result->shares = formatNumberAbbreviation($result->shares);
-    $count = $result->shares;
+  if (isset($result->share)) {
+    $result->share = formatNumberAbbreviation($result->share);
+    $count = $result->share;
   }
 
   return $count;
