@@ -228,7 +228,7 @@ function social_share_counter_share() {
 
   if (isset($_GET['url']) && filter_var($_GET['url'], FILTER_VALIDATE_URL)) {
     $json['url'] = $_GET['url'];
-    $url = urlencode($_GET['url']);
+    $url = urlencode($json['url']);
     $service = urlencode($_GET['service']);
     include_once 'social_share_counter.inc';
     $json['count'] = call_user_func("get_count_{$service}", $url);
