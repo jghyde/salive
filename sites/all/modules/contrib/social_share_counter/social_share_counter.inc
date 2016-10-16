@@ -11,7 +11,8 @@
  */
 function get_count_facebook($url) {
   $count = 0;
-  $response = _social_share_counter_parse("http://graph.facebook.com/?id=" . $url);
+  $token = '163144447177|_UNDQYS5ucUGg9Vz_ipqc7Tv-WY';
+  $response = _social_share_counter_parse("https://graph.facebook.com/v2.7/?id=" . $url . '&access_token=' . $token);
   $result = json_decode($response);
   if (isset($result->share)) {
     $tt = (int) $result->share->share_count + (int) $result->share->comment_count;
@@ -26,8 +27,12 @@ function get_count_facebook($url) {
  * @param string $url
  */
 function get_count_twitter($url) {
+  /* Twitter stopped allowing its API for share counts to be accessed in Nov. 2015.
+   * The service newsharecounts.com is the best I've found, but you need to register
+   * your domain there first in order for this feature to work.
+   */
   $count = 0;
-  $response = _social_share_counter_parse("http://urls.api.twitter.com/1/urls/count.json?url=" . $url);
+  $response = _social_share_counter_parse("http://public.newsharecounts.com/count.json?url=" . $url);
   $result = json_decode($response);
   if (isset($result->count)) {
     $result->count = formatNumberAbbreviation($result->count);
