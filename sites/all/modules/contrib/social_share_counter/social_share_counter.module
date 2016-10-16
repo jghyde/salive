@@ -225,7 +225,7 @@ function social_share_counter_share() {
     $url = urlencode($_GET['url']);
     $service = urlencode($_GET['service']);
     include_once 'social_share_counter.inc';
-    $json['count'] = call_user_func("get_count_{$service}", $url);
+    $json['count'] .= call_user_func("get_count_{$service}", $url);
   }
   //echo str_replace('\\/', '/', json_encode($json));
   drupal_json_output($json);
