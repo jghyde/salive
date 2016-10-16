@@ -286,7 +286,7 @@ function isMobile() {
 EOT;
 
       // Place ads into the story body:
-      if (strlen($node->content['body'][0]['#markup']) > 550 && $citylumber == 0) {
+      if (isset($node->content['body'][0]['#markup']) && strlen($node->content['body'][0]['#markup']) > 550 && $citylumber == 0) {
 
         $dom = new simple_html_dom();
         $dom->load($node->content['body'][0]['#markup']);
@@ -322,7 +322,7 @@ EOT;
               $string = $paras[$x];
               if ($aolinserted == 0) {
                 $banner_added = $aol . $string;
-                $i = 2;
+                //$i = 2;
                 $aolinserted = 1;
               }
               else {

@@ -4,8 +4,8 @@ core = 7.x
 dependencies[] = jquery_update
 
 ; Information added by Drupal.org packaging script on 2016-03-29
-version = "7.x-1.0-alpha8"
+version = "7.x-1.0-alpha8+0-dev"
 core = "7.x"
 project = "social_share_counter"
-datestamp = "1459229940"
+datestamp = "1459229641"
 
