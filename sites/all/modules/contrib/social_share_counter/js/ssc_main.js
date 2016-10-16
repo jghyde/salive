@@ -153,6 +153,7 @@ $(function ($) {
 
                     if (count) {
                         $.getJSON(Drupal.settings.SSC.share + 'url=' + $URL + '&service=facebook', function (resultdata) {
+                            console.log('Facebook Share data: ' + resultdata);
                             totalShare += (isNaN(parseInt(resultdata.count))) ? 0 : parseInt(resultdata.count);
                             if (parametres.total != null && i == nbButtons && totalShare != 0)
                                 $(parametres.total).text(shorterTotal(totalShare));
