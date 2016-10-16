@@ -152,6 +152,7 @@ $(function ($) {
                     shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
 
                     if (count) {
+                        console.log(Drupal.settings.SSC.share);
                         $.getJSON(Drupal.settings.SSC.share + 'url=' + $URL + '&service=facebook', function (resultdata) {
                             console.log('Facebook Share data: ');
                             console.log(resultdata);
