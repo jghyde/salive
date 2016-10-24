@@ -1,0 +1,1 @@
+!function($){Drupal.behaviors.carbricks={attach:function(e,i){function n(){var e=$(".node-content").width();console.log(e);var i=e/3;$(".field-name-field-vehicle-image .field-items").masonry({itemSelector:".field-item",columnWidth:i,percentPosition:!0,originLeft:!0,resize:!0})}n(),$(window).resize(function(){n()})}}}(jQuery);

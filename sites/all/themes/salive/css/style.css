@@ -7301,6 +7301,9 @@ div.messages.commerce-add-to-cart-confirmation .message-inner .button-wrapper .b
 #header {
   margin-top: 71px;
 }
+@media (max-width: 992px) {
+  margin-top: 0px;
+}
 .breaking #header {
   margin-top: 155px;
 }
@@ -7564,6 +7567,11 @@ ul#main-menu-links li a {
 .smashtop #block-dfp-salive_bw_top .blcontent {
   background-color: transparent;
   background: transparent;
+}
+@media (max-width: 991px) {
+  .smashtop {
+    margin-top: 1em;
+  }
 }
 .smashtop .block {
   margin-bottom: 0;
@@ -7864,6 +7872,31 @@ a.imgbody.right.active {
     max-width: 640px;
     margin: 0 auto;
   }
+}
+.page-type-vehicle .field {
+  margin-bottom: 1.5em;
+}
+.page-type-vehicle .field-name-field-vehicle-image .field-items .field-item {
+  float: left;
+  width: 33.3333%;
+  height: auto;
+}
+.page-type-vehicle .field-name-field-vehicle-image .field-items .field-item a {
+  display: inline-block;
+  margin: 0;
+}
+.page-type-vehicle .field-name-field-vehicle-image .field-items .field-item a img {
+  width: 100%;
+  height: auto;
+  margin: 0 0 -7px 0;
+  padding: 0;
+}
+.page-type-vehicle .field-name-field-vehicle-image .field-items .field-item:first-child {
+  width: 66.667%;
+  height: auto;
+}
+.page-type-vehicle .field-name-field-description {
+  clear: both;
 }
 #footer {
   background: #222222;

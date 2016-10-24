@@ -1,0 +1,73 @@
+<?php
+/**
+ * @file
+ * Code for the LIVEVehicles feature.
+ */
+
+include_once 'livevehicles.features.inc';
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the node form.
+ */
+function livevehicles_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // We will autogenerate the title later, just hide the title field in the
+  // meanwhile.
+  if ($form['#bundle'] == 'vehicle') {
+    $form['title']['#value'] = 'ant';
+    $form['title']['#type'] = 'value';
+    $form['title']['#required'] = FALSE;
+    global $user;
+    $form['field_contact_email'][LANGUAGE_NONE][0]['value']['#default_value'] = $user->mail;
+    if (!in_array('administrator', array_values($user->roles))) {
+      $form['scheduler_settings']['#type'] = 'value';
+      $form['scheduler_settings']['unpublish_on']['#type'] = 'value';
+      $form['scheduler_settings']['unpublish_on']['#value']['date'] = 'ant';
+      $form['scheduler_settings']['unpublish_on']['#value']['time'] = 'ant';
+      $form['scheduler_settings']['unpublish_on']['#required'] = FALSE;
+    }
+    else {
+      //$form['scheduler_settings']['#type'] = 'value';
+      //$form['scheduler_settings']['unpublish_on']['#type'] = 'value';
+      $date = new DateTime();
+      $date->modify('+1 week');
+      $expire_day = $date->format('Y-m-d');
+      $expire_time = $date->format('H:i:s');
+      $form['scheduler_settings']['unpublish_on']['#value']['date'] = $expire_day;
+      $form['scheduler_settings']['unpublish_on']['#value']['time'] = $expire_time;
+      $form['scheduler_settings']['unpublish_on']['#required'] = FALSE;
+    }
+    if ($user->data['contact'] != 0) {
+      $form['field_contact_email']['#prefix'] = t('Potential customers may contact you via email using our website contact form that will forward inquiries to !email. Leave this email field blank if you want to use this blind email feature.',
+        array('!email' => l($user->mail, 'user/' . $user->uid . '/contact')));
+    }
+    else {
+      $form['field_contact_email']['#prefix'] = t('We have a feature that allows potential customers to contact you via a website form that shields your real email address. In order to use this feature, you will need to turn on your personal contact form !here. If you do !there, leave this field blank and the system will use your personal contact form on San Angelo LIVE!',
+      array('!here' => l('on your profile edit page', 'user/' . $user->uid . '/edit'), '!there' => l('turn on your contact form (settings are here)', 'user/' . $user->uid . '/edit')));
+    }
+  }
+}
+
+/**
+ * Implements hook_node_submit().
+ *
+ * Generate the node title as soon as the form has been submitted. That way
+ * the node preview is shown right too.
+ */
+function livevehicles_node_submit($node, $form, &$form_state) {
+  if ($node->type == 'vehicle') {
+    if (!in_array('administrator', array_values($user->roles))) {
+      $date = new DateTime();
+      $date->modify('+1 week');
+      $expire = $date->format('Y-m-d H:i:s');
+      $form_state['values']['unpublish_on'] = $expire;
+    }
+    $condition = 'New';
+    if ($node->field_condition[LANGUAGE_NONE][0]['value'] == 1) {
+      $condition = 'Used';
+    }
+    $title = $condition . ' ' . $node->field_year[LANGUAGE_NONE][0]['value'] . ' ' . $node->field_make[LANGUAGE_NONE][0]['value'] . ' ' .
+      $node->field_model[LANGUAGE_NONE][0]['value'];
+    $node->title = $title;
+  }
+}
+

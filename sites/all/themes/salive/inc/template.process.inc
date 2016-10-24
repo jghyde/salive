@@ -366,6 +366,10 @@ function salive_preprocess_node(&$vars) {
 
 
   }
+  if ($vars['type'] == 'vehicle') {
+    drupal_add_js(libraries_get_path('masonry') . '/dist/masonry.pkgd.min.js', array('file'), array('scope' => 'footer', 'weight' => 18));
+    drupal_add_js(drupal_get_path('theme','salive') . '/js/carbricks.js', array('file'), array('scope' => 'footer', 'weight' => 20));
+  }
 }
 
 /**
