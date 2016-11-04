@@ -43,7 +43,7 @@ function livelogin_comment_form($form, &$form_state) {
   $query = drupal_get_destination();
   $form = array();
   $form['#title'] = t('Sign up and comment');
-  $form['#action'] = 'https://secure.sanangelolive.com/user/register?destination=' . $query['destination'];
+  $form['#action'] = 'https://sanangelolive.com/user/register?destination=' . $query['destination'];
   $form['username'] = array(
     '#type' => 'textfield',
     '#title' => t('Username'),
