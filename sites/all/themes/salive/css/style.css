@@ -7900,8 +7900,8 @@ a.imgbody.right.active {
 }
 .view-display-id-page .view-content .views-row {
   position: relative;
-  height: 300px;
   overflow: hidden;
+  min-height: 300px;
   margin-bottom: 1em;
 }
 .view-display-id-page .view-content .views-row h3.car-title {
@@ -19662,4 +19662,24 @@ fieldset.search-advanced {
 }
 .view-rants .new {
   display: none;
+}
+.view-vehicles .view-filters {
+  background-color: #efefef;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1.5em;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+.view-vehicles .view-filters .views-exposed-form .views-exposed-widget .btn {
+  margin-top: 2.2em;
+}
+.view-vehicles .views-row {
+  height: auto!important;
+  font-family: "tablet-gothic-condensed", Helvetica, Arial, sans-serif;
+}
+.view-vehicles .views-row img {
+  height: auto;
+  width: 100%;
 }
