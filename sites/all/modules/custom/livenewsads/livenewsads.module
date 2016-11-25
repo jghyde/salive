@@ -299,7 +299,7 @@ EOT;
         $adspot = [];
         for ($x = 1; $x <= $ad_count; $x++) {
           if ($node->nid == '16407') {
-            $block = block_load('dfp', 'newsbody_football_1');
+            $block = block_load('dfp', 'newsbody_football_' . $x);
             $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
           }
           else {
