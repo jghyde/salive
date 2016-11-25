@@ -298,8 +298,14 @@ EOT;
         $ad_count = ceil((int) count($paras) / 4);
         $adspot = [];
         for ($x = 1; $x <= $ad_count; $x++) {
-          $block = block_load('dfp', 'newsbody_' . $x);
-          $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
+          if ($node->nid == '16407') {
+            $block = block_load('dfp', 'newsbody_football_1');
+            $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
+          }
+          else {
+            $block = block_load('dfp', 'newsbody_' . $x);
+            $adspot[$x] = drupal_render(_block_get_renderable_array(_block_render_blocks([$block])));
+          }
         }
         $string = substr($node->content['body'][0]['#markup'], 0, strpos($node->content['body'][0]['#markup'], "</p>") + 4);
         // Add the banner ad code
@@ -336,7 +342,12 @@ EOT;
         }
       }
       $copyright = '<div class="copyright"> &copy; ' . date('Y') . ' Copyright Hyde Interactive, Inc. All rights reserved. This material may not be published, broadcast, rewritten, or redistributed.</div>';
-      $ad = block_load('dfp', 'article_bottom_' . $t);
+      if ($node->nid == '16407') {
+        $ad = block_load('dfp', 'article_bottom_football');
+      }
+      else {
+        $ad = block_load('dfp', 'article_bottom_' . $t);
+      }
       $node->content['body'][0]['#markup'] .= drupal_render(_block_get_renderable_array(_block_render_blocks([$ad]))) . $copyright;
       // Add the "Recommended for You" block of stories:
       //$thumbs = views_embed_view('news_thumbs', 'block');
