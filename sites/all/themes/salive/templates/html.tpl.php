@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="<?php print $language->language; ?>">
 <head>
+  <script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=31145"></script>
   <script src="https://use.typekit.net/bgs6mvy.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <meta charset="utf-8">
