@@ -2,6 +2,13 @@
 <html lang="<?php print $language->language; ?>">
 <head>
   <script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=31145"></script>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-0297859658733160",
+      enable_page_level_ads: true
+    });
+  </script>
   <script src="https://use.typekit.net/bgs6mvy.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <meta charset="utf-8">
