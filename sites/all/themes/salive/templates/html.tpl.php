@@ -2,13 +2,6 @@
 <html lang="<?php print $language->language; ?>">
 <head>
   <script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=31145"></script>
-  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-0297859658733160",
-      enable_page_level_ads: true
-    });
-  </script>
   <script src="https://use.typekit.net/bgs6mvy.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <meta charset="utf-8">
@@ -42,5 +35,6 @@ src="https://www.facebook.com/tr?id=1092781257421142&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
   <script async src="https://cdn.onthe.io/io.js/WGdEhlDjfRu8"></script>
+  <script src="//go.mobstitialtag.com/notice.php?p=932295&interstitial=1"></script>
 </body>
 </html>
