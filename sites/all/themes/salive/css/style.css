@@ -7831,6 +7831,13 @@ a.imgbody.right.active {
 .view-openhouse .views-row-even {
   margin-bottom: 0.5em;
 }
+.view-openhouse.view-id-openhouse.view-display-id-page .row .views-row a {
+  display: block;
+}
+.view-openhouse.view-id-openhouse.view-display-id-page .row .views-row a img {
+  width: 100%;
+  height: auto;
+}
 .media-youtube-video {
   margin-bottom: 1em;
   position: relative;
@@ -7901,7 +7908,6 @@ a.imgbody.right.active {
 .view-display-id-page .view-content .views-row {
   position: relative;
   overflow: hidden;
-  min-height: 300px;
   margin-bottom: 1em;
 }
 .view-display-id-page .view-content .views-row h3.car-title {

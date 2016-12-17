@@ -26,14 +26,22 @@ function openhouse_field_default_field_instances() {
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 3,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'text_default',
         'weight' => 3,
       ),
@@ -61,7 +69,7 @@ function openhouse_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
+      'weight' => 15,
     ),
   );
 
@@ -82,6 +90,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'addressfield',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             0 => 'address',
           ),
@@ -94,6 +105,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'addressfield',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'format_handlers' => array(
             'address' => 'address',
           ),
@@ -112,7 +126,7 @@ function openhouse_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_address',
     'label' => 'Open House Address',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
@@ -136,7 +150,7 @@ function openhouse_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 7,
+      'weight' => 3,
     ),
   );
 
@@ -156,14 +170,22 @@ function openhouse_field_default_field_instances() {
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'text_default',
         'weight' => 15,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'text_default',
         'weight' => 2,
       ),
@@ -177,7 +199,7 @@ function openhouse_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_agent_phone',
     'label' => 'Agent Phone',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'text_processing' => 0,
       'user_register_form' => FALSE,
@@ -187,7 +209,7 @@ function openhouse_field_default_field_instances() {
       'module' => 'html5_tools',
       'settings' => array(),
       'type' => 'telwidget',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -207,14 +229,22 @@ function openhouse_field_default_field_instances() {
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'text_default',
         'weight' => 16,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'text_default',
         'weight' => 3,
       ),
@@ -238,7 +268,7 @@ function openhouse_field_default_field_instances() {
       'module' => 'html5_tools',
       'settings' => array(),
       'type' => 'urlwidget',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
@@ -254,6 +284,9 @@ function openhouse_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'prefix_suffix' => 1,
           'scale' => 0,
           'thousand_separator' => ',',
@@ -266,6 +299,9 @@ function openhouse_field_default_field_instances() {
         'module' => 'number',
         'settings' => array(
           'decimal_separator' => '.',
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'prefix_suffix' => TRUE,
           'scale' => 0,
           'thousand_separator' => ' ',
@@ -316,14 +352,22 @@ function openhouse_field_default_field_instances() {
       'default' => array(
         'label' => 'inline',
         'module' => 'link',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'link_default',
         'weight' => 15,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'link',
-        'settings' => array(),
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
         'type' => 'link_label',
         'weight' => 4,
       ),
@@ -386,6 +430,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'geofield_map',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'geofield_map_baselayers_hybrid' => 1,
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
@@ -405,12 +452,15 @@ function openhouse_field_default_field_instances() {
           'geofield_map_zoom' => 8,
         ),
         'type' => 'geofield_map_map',
-        'weight' => 9,
+        'weight' => 4,
       ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'geofield_map',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'geofield_map_baselayers_hybrid' => 1,
           'geofield_map_baselayers_map' => 1,
           'geofield_map_baselayers_physical' => 0,
@@ -473,6 +523,101 @@ function openhouse_field_default_field_instances() {
       ),
       'type' => 'geocoder',
       'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance: 'node-openhouse-field_mls_number'.
+  $field_instances['node-openhouse-field_mls_number'] = array(
+    'bundle' => 'openhouse',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'For real estate listings on MLS, all we need is the date of the open house and the MLS number. We will do the rest, including capturing the photos, description, price and etc. If you wish to override what is in MLS, click the "Click Here to Enter Optional Listing Information" link below.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
+        ),
+        'type' => 'text_default',
+        'weight' => 18,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_mls_number',
+    'label' => 'MLS Number',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-openhouse-field_notes'.
+  $field_instances['node-openhouse-field_notes'] = array(
+    'bundle' => 'openhouse',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'These notes will not be displayed on the open house listing. It is to add additional instructions to our publisher before the listing goes live. Please include a cell phone number in case we have questions.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_notes',
+    'label' => 'Notes',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 4,
     ),
   );
 
@@ -579,6 +724,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'image_link' => '',
           'image_style' => '',
         ),
@@ -589,6 +737,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'image_link' => '',
           'image_style' => 'nodewide',
         ),
@@ -599,6 +750,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'image_link' => 'content',
           'image_style' => '',
         ),
@@ -609,7 +763,7 @@ function openhouse_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_property_images',
     'label' => 'Property Images',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 1,
       'alt_field_default' => '[node:title]',
@@ -624,6 +778,7 @@ function openhouse_field_default_field_instances() {
         'file_name' => array(
           'options' => array(
             'pathauto' => 0,
+            'slashes' => 0,
             'transliterate' => 0,
           ),
           'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
@@ -631,10 +786,12 @@ function openhouse_field_default_field_instances() {
         'file_path' => array(
           'options' => array(
             'pathauto' => 0,
+            'slashes' => 0,
             'transliterate' => 0,
           ),
           'value' => '',
         ),
+        'redirect' => 0,
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 1,
@@ -655,7 +812,7 @@ function openhouse_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 4,
+      'weight' => 14,
     ),
   );
 
@@ -676,6 +833,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => 1,
         ),
         'type' => 'entityreference_label',
@@ -685,6 +845,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => 1,
         ),
         'type' => 'entityreference_label',
@@ -694,6 +857,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -725,7 +891,7 @@ function openhouse_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -746,6 +912,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -755,6 +924,9 @@ function openhouse_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
+          'field_multiple_limit' => -1,
+          'field_multiple_limit_offset' => 0,
+          'field_multiple_limit_order' => 0,
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
@@ -792,7 +964,7 @@ function openhouse_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 6,
+      'weight' => 16,
     ),
   );
 
@@ -803,7 +975,10 @@ function openhouse_field_default_field_instances() {
   t('Asking');
   t('Description of the property');
   t('Enter the San Angelo LIVE! username of the real estate agent for this property. There is an autocomplete widget to help you find the agent. If the agent does not have an account on San Angelo LIVE!, we will use your profile as the owner of this open house listing.');
+  t('For real estate listings on MLS, all we need is the date of the open house and the MLS number. We will do the rest, including capturing the photos, description, price and etc. If you wish to override what is in MLS, click the "Click Here to Enter Optional Listing Information" link below.');
+  t('MLS Number');
   t('Map');
+  t('Notes');
   t('Open House Address');
   t('Please enter the address of the home which is assumed to be the location of the open house event.');
   t('Property Images');
@@ -814,6 +989,7 @@ function openhouse_field_default_field_instances() {
   t('The asking price');
   t('The phone number that is the best way to get into contact with the agent holding this open house.');
   t('The web page address, starting with \'http://\' of the agent holding this open house. This can be linked to the agent\'s broker\'s website, the agent page within the broker\'s website, or a standalone agent website or Facebook page.');
+  t('These notes will not be displayed on the open house listing. It is to add additional instructions to our publisher before the listing goes live. Please include a cell phone number in case we have questions.');
   t('This can be a cut and paste from the MLS listing or your own description.');
   t('URL directly to listing');
   t('Upload at least one image of the property. Multiple images will be displayed in a slideshow for our audience. The first image is the representative image and will be used when the list of open houses is published on San Angelo LIVE!, on social media, and in the San Angelo LIVE! email.');

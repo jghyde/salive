@@ -113,6 +113,9 @@ function openhouse_strongarm() {
         'xmlsitemap' => array(
           'weight' => '9',
         ),
+        'commerce_node_checkout' => array(
+          'weight' => '6',
+        ),
       ),
       'display' => array(),
     ),

@@ -24,8 +24,8 @@ function openhouse_field_group_info() {
     'weight' => '11',
     'children' => array(
       0 => 'field_address',
-      1 => 'field_listing',
-      2 => 'field_asking',
+      1 => 'field_asking',
+      2 => 'field_listing',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -91,10 +91,10 @@ function openhouse_field_group_info() {
     'label' => 'Agent',
     'weight' => '13',
     'children' => array(
-      0 => 'field_venue',
-      1 => 'field_real_estate_agent',
-      2 => 'field_agent_phone',
-      3 => 'field_agent_web_address',
+      0 => 'field_agent_phone',
+      1 => 'field_agent_web_address',
+      2 => 'field_real_estate_agent',
+      3 => 'field_venue',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -191,30 +191,32 @@ function openhouse_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = '';
   $field_group->data = array(
-    'label' => 'motherhood',
-    'weight' => '2',
+    'label' => 'Click Here to Enter Optional Listing Information',
+    'weight' => '5',
     'children' => array(
-      0 => 'field_address',
-      1 => 'field_real_estate_agent',
-      2 => 'field_agent_phone',
-      3 => 'field_agent_web_address',
+      0 => 'body',
+      1 => 'field_agent_phone',
+      2 => 'field_agent_web_address',
+      3 => 'field_asking',
       4 => 'field_listing',
-      5 => 'field_asking',
+      5 => 'field_property_images',
+      6 => 'field_real_estate_agent',
+      7 => 'field_venue',
     ),
     'format_type' => 'div',
     'format_settings' => array(
-      'label' => 'motherhood',
+      'label' => 'Click Here to Enter Optional Listing Information',
       'instance_settings' => array(
         'required_fields' => 1,
         'id' => '',
-        'classes' => 'group-motherhood field-group-div',
+        'classes' => '',
         'description' => '',
-        'show_label' => '0',
+        'show_label' => '1',
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
       ),
-      'formatter' => 'open',
+      'formatter' => 'collapsed',
     ),
   );
   $field_groups['group_motherhood|node|openhouse|form'] = $field_group;
@@ -290,6 +292,7 @@ function openhouse_field_group_info() {
   t('Address Info');
   t('Agent');
   t('Agent Information');
+  t('Click Here to Enter Optional Listing Information');
   t('motherhood');
   t('openhousewords');
 

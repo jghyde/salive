@@ -71,6 +71,22 @@ function openhouse_image_default_styles() {
     ),
   );
 
+  // Exported image style: openhouse-views.
+  $styles['openhouse-views'] = array(
+    'label' => 'openhouse-views',
+    'effects' => array(
+      134 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 480,
+          'height' => 360,
+          'retinafy' => 1,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="<?php print $language->language; ?>">
 <head>
-  <script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=31145"></script>
   <script src="https://use.typekit.net/bgs6mvy.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <meta charset="utf-8">
@@ -27,7 +26,6 @@ n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','//connect.facebook.net/en_US/fbevents.js');
-
 fbq('init', '1092781257421142');
 fbq('track', "PageView");</script>
 <noscript><img height="1" width="1" style="display:none"
