@@ -87,5 +87,6 @@ features[variable][] = node_preview_event_paid
 features[variable][] = node_submitted_event
 features[variable][] = node_submitted_event_free
 features[variable][] = node_submitted_event_paid
+features[variable][] = pathauto_taxonomy_term_event_type_pattern
 features[views_view][] = eventblocks
 features[views_view][] = events

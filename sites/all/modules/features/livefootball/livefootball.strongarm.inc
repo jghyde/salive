@@ -145,22 +145,22 @@ function livefootball_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '13',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '12',
-        ),
-        'redirect' => array(
-          'weight' => '11',
-        ),
-        'locations' => array(
           'weight' => '14',
         ),
+        'redirect' => array(
+          'weight' => '13',
+        ),
+        'locations' => array(
+          'weight' => '16',
+        ),
         'xmlsitemap' => array(
-          'weight' => '15',
+          'weight' => '17',
         ),
       ),
       'display' => array(),

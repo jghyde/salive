@@ -38,7 +38,6 @@ features[field_instance][] = node-article-field_image
 features[field_instance][] = node-article-field_insert_ads
 features[field_instance][] = node-article-field_radioactivity
 features[field_instance][] = node-article-field_tags
-features[field_instance][] = taxonomy_term-site_section-field_dfp_ad_categories
 features[image][] = cinema_thumb
 features[image][] = iosslider_node
 features[node][] = article

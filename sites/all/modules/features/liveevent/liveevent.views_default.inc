@@ -454,6 +454,7 @@ function liveevent_views_default_views() {
   $handler->display->display_options['fields']['field_date']['field'] = 'field_date';
   $handler->display->display_options['fields']['field_date']['ui_name'] = 'When Date';
   $handler->display->display_options['fields']['field_date']['label'] = '';
+  $handler->display->display_options['fields']['field_date']['alter']['text'] = '[field_date]';
   $handler->display->display_options['fields']['field_date']['element_type'] = '0';
   $handler->display->display_options['fields']['field_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_date']['element_wrapper_type'] = '0';
