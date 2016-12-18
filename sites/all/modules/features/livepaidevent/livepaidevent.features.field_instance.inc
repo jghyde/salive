@@ -10,7 +10,7 @@
 function livepaidevent_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-paid_event-body'
+  // Exported field_instance: 'node-paid_event-body'.
   $field_instances['node-paid_event-body'] = array(
     'bundle' => 'paid_event',
     'default_value' => NULL,
@@ -68,7 +68,7 @@ function livepaidevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-paid_event-field_artist'
+  // Exported field_instance: 'node-paid_event-field_artist'.
   $field_instances['node-paid_event-field_artist'] = array(
     'bundle' => 'paid_event',
     'default_value' => NULL,
@@ -132,7 +132,7 @@ function livepaidevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-paid_event-field_date'
+  // Exported field_instance: 'node-paid_event-field_date'.
   $field_instances['node-paid_event-field_date'] = array(
     'bundle' => 'paid_event',
     'deleted' => 0,
@@ -153,6 +153,7 @@ function livepaidevent_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => 1,
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'hide',
         ),
         'type' => 'date_default',
@@ -173,6 +174,7 @@ function livepaidevent_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => 1,
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'hide',
         ),
         'type' => 'date_default',
@@ -208,7 +210,7 @@ function livepaidevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-paid_event-field_event_category'
+  // Exported field_instance: 'node-paid_event-field_event_category'.
   $field_instances['node-paid_event-field_event_category'] = array(
     'bundle' => 'paid_event',
     'default_value' => NULL,
@@ -257,7 +259,7 @@ function livepaidevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-paid_event-field_image'
+  // Exported field_instance: 'node-paid_event-field_image'.
   $field_instances['node-paid_event-field_image'] = array(
     'bundle' => 'paid_event',
     'deleted' => 0,
@@ -374,21 +376,10 @@ function livepaidevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-paid_event-field_submitted_address'
+  // Exported field_instance: 'node-paid_event-field_submitted_address'.
   $field_instances['node-paid_event-field_submitted_address'] = array(
     'bundle' => 'paid_event',
-    'default_value' => array(
-      0 => array(
-        'element_key' => 'node|paid_event|field_submitted_address|und|0',
-        'thoroughfare' => '',
-        'premise' => '',
-        'locality' => 'San Angelo',
-        'administrative_area' => 'TX',
-        'postal_code' => 76903,
-        'country' => 'US',
-        'name_line' => '',
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -442,8 +433,11 @@ function livepaidevent_field_default_field_instances() {
           'address' => 'address',
           'address-hide-country' => 'address-hide-country',
           'name-oneline' => 'name-oneline',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
           'organisation' => 0,
           'name-full' => 0,
+          'address-optional' => 0,
         ),
       ),
       'type' => 'addressfield_standard',
@@ -451,7 +445,7 @@ function livepaidevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-paid_event-field_venue'
+  // Exported field_instance: 'node-paid_event-field_venue'.
   $field_instances['node-paid_event-field_venue'] = array(
     'bundle' => 'paid_event',
     'default_value' => NULL,
@@ -492,7 +486,7 @@ function livepaidevent_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_venue',
     'label' => 'Where',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'behaviors' => array(
         'test_instance_behavior' => array(

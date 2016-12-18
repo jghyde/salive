@@ -10,7 +10,7 @@
 function liveevent_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-event-body'
+  // Exported field_instance: 'node-event-body'.
   $field_instances['node-event-body'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -60,7 +60,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_artist'
+  // Exported field_instance: 'node-event-field_artist'.
   $field_instances['node-event-field_artist'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -122,7 +122,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_attached'
+  // Exported field_instance: 'node-event-field_attached'.
   $field_instances['node-event-field_attached'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -229,7 +229,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_date'
+  // Exported field_instance: 'node-event-field_date'.
   $field_instances['node-event-field_date'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -250,6 +250,7 @@ function liveevent_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => 1,
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'hide',
         ),
         'type' => 'date_default',
@@ -264,6 +265,7 @@ function liveevent_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
@@ -299,7 +301,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_event_category'
+  // Exported field_instance: 'node-event-field_event_category'.
   $field_instances['node-event-field_event_category'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -342,7 +344,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_image'
+  // Exported field_instance: 'node-event-field_image'.
   $field_instances['node-event-field_image'] = array(
     'bundle' => 'event',
     'deleted' => 0,
@@ -447,7 +449,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event-field_venue'
+  // Exported field_instance: 'node-event-field_venue'.
   $field_instances['node-event-field_venue'] = array(
     'bundle' => 'event',
     'default_value' => NULL,
@@ -510,7 +512,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_free-body'
+  // Exported field_instance: 'node-event_free-body'.
   $field_instances['node-event_free-body'] = array(
     'bundle' => 'event_free',
     'default_value' => NULL,
@@ -561,7 +563,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_free-field_date'
+  // Exported field_instance: 'node-event_free-field_date'.
   $field_instances['node-event_free-field_date'] = array(
     'bundle' => 'event_free',
     'deleted' => 0,
@@ -577,11 +579,12 @@ function liveevent_field_default_field_instances() {
         'label' => 'inline',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'long',
+          'format_type' => 'small_date_time',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => 0,
           'show_repeat_rule' => 'show',
         ),
         'type' => 'date_default',
@@ -623,7 +626,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_free-field_event_category'
+  // Exported field_instance: 'node-event_free-field_event_category'.
   $field_instances['node-event_free-field_event_category'] = array(
     'bundle' => 'event_free',
     'default_value' => NULL,
@@ -666,7 +669,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_free-field_image'
+  // Exported field_instance: 'node-event_free-field_image'.
   $field_instances['node-event_free-field_image'] = array(
     'bundle' => 'event_free',
     'deleted' => 0,
@@ -849,7 +852,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_free-field_venue'
+  // Exported field_instance: 'node-event_free-field_venue'.
   $field_instances['node-event_free-field_venue'] = array(
     'bundle' => 'event_free',
     'default_value' => NULL,
@@ -882,7 +885,7 @@ function liveevent_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_venue',
     'label' => 'Where',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'behaviors' => array(
         'test_instance_behavior' => array(
@@ -908,7 +911,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_paid-body'
+  // Exported field_instance: 'node-event_paid-body'.
   $field_instances['node-event_paid-body'] = array(
     'bundle' => 'event_paid',
     'default_value' => NULL,
@@ -958,7 +961,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_paid-field_date'
+  // Exported field_instance: 'node-event_paid-field_date'.
   $field_instances['node-event_paid-field_date'] = array(
     'bundle' => 'event_paid',
     'deleted' => 0,
@@ -979,6 +982,7 @@ function liveevent_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => 1,
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
           'show_repeat_rule' => 'hide',
         ),
         'type' => 'date_default',
@@ -1020,7 +1024,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_paid-field_event_category'
+  // Exported field_instance: 'node-event_paid-field_event_category'.
   $field_instances['node-event_paid-field_event_category'] = array(
     'bundle' => 'event_paid',
     'default_value' => NULL,
@@ -1063,7 +1067,7 @@ function liveevent_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-event_paid-field_image'
+  // Exported field_instance: 'node-event_paid-field_image'.
   $field_instances['node-event_paid-field_image'] = array(
     'bundle' => 'event_paid',
     'deleted' => 0,
@@ -1186,7 +1190,7 @@ If you prefer for us to craft a representative image for you, please leave this 
     ),
   );
 
-  // Exported field_instance: 'node-event_paid-field_venue'
+  // Exported field_instance: 'node-event_paid-field_venue'.
   $field_instances['node-event_paid-field_venue'] = array(
     'bundle' => 'event_paid',
     'default_value' => NULL,

@@ -30,12 +30,6 @@ function livearticles_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 2,
       ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'full' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -120,12 +114,6 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'file_default',
         'weight' => 8,
-      ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -264,12 +252,6 @@ function livearticles_field_default_field_instances() {
         'type' => 'taxonomy_term_reference_link',
         'weight' => 6,
       ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'full' => array(
         'label' => 'above',
         'settings' => array(),
@@ -340,12 +322,6 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 4,
-      ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'full' => array(
         'label' => 'hidden',
@@ -424,6 +400,7 @@ function livearticles_field_default_field_instances() {
         'file_name' => array(
           'options' => array(
             'pathauto' => 0,
+            'slashes' => 0,
             'transliterate' => 0,
           ),
           'value' => '[file:ffp-name-only-original].[file:ffp-extension-original]',
@@ -431,10 +408,12 @@ function livearticles_field_default_field_instances() {
         'file_path' => array(
           'options' => array(
             'pathauto' => 0,
+            'slashes' => 0,
             'transliterate' => 0,
           ),
           'value' => '',
         ),
+        'redirect' => 0,
         'retroactive_update' => 0,
       ),
       'filefield_paths_enabled' => 0,
@@ -454,9 +433,10 @@ function livearticles_field_default_field_instances() {
         'allowed_schemes' => array(
           'private' => 0,
           'public' => 'public',
+          'youtube' => 'youtube',
         ),
         'allowed_types' => array(
-          'audio' => 0,
+          'audio' => 'audio',
           'document' => 0,
           'image' => 'image',
           'video' => 'video',
@@ -464,18 +444,9 @@ function livearticles_field_default_field_instances() {
         'browser_plugins' => array(
           'media_default--media_browser_1' => 'media_default--media_browser_1',
           'media_default--media_browser_my_files' => 'media_default--media_browser_my_files',
+          'media_internet' => 0,
           'upload' => 'upload',
         ),
-        'manualcrop_crop_info' => 1,
-        'manualcrop_default_crop_area' => 1,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
-        'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => 1,
-        'manualcrop_require_cropping' => array(),
-        'manualcrop_styles_list' => array(),
-        'manualcrop_styles_mode' => 'exclude',
-        'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
       'weight' => 2,
@@ -505,12 +476,6 @@ function livearticles_field_default_field_instances() {
         'settings' => array(),
         'type' => 'list_default',
         'weight' => 9,
-      ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
       ),
       'full' => array(
         'label' => 'above',
@@ -596,12 +561,6 @@ function livearticles_field_default_field_instances() {
         'type' => 'radioactivity_combo_formatter',
         'weight' => 7,
       ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'full' => array(
         'label' => 'above',
         'module' => 'radioactivity',
@@ -682,12 +641,6 @@ function livearticles_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 5,
       ),
-      'drupalgap' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
       'full' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -743,37 +696,6 @@ function livearticles_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'taxonomy_term-site_section-field_dfp_ad_categories'.
-  $field_instances['taxonomy_term-site_section-field_dfp_ad_categories'] = array(
-    'bundle' => 'site_section',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_dfp_ad_categories',
-    'label' => 'DFP Ad Category',
-    'required' => FALSE,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 41,
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Attach *pdfs to the node');
@@ -781,7 +703,6 @@ function livearticles_field_default_field_instances() {
   t('Body');
   t('Category');
   t('Check this box to strip all ads in the body of the article except for the first news body ad.');
-  t('DFP Ad Category');
   t('Don\'t Insert Ads');
   t('Enter a comma-separated list of words to describe your content.');
   t('Image');

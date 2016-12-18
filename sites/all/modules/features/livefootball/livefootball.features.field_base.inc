@@ -187,6 +187,7 @@ function livefootball_field_default_field_bases() {
         'Weather Delayed' => 'Weather Delayed',
         'Rescheduled' => 'Rescheduled',
         'Overtime' => 'Overtime',
+        'Cancelled' => 'Cancelled',
       ),
       'allowed_values_function' => '',
       'profile2_private' => FALSE,

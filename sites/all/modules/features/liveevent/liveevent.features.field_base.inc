@@ -10,7 +10,7 @@
 function liveevent_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_artist'
+  // Exported field_base: 'field_artist'.
   $field_bases['field_artist'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -49,7 +49,7 @@ function liveevent_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_date'
+  // Exported field_base: 'field_date'.
   $field_bases['field_date'] = array(
     'active' => 1,
     'cardinality' => -1,
@@ -80,7 +80,7 @@ function liveevent_field_default_field_bases() {
     'type' => 'date',
   );
 
-  // Exported field_base: 'field_event_category'
+  // Exported field_base: 'field_event_category'.
   $field_bases['field_event_category'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -107,7 +107,7 @@ function liveevent_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_venue'
+  // Exported field_base: 'field_venue'.
   $field_bases['field_venue'] = array(
     'active' => 1,
     'cardinality' => 1,

@@ -56,6 +56,7 @@ features[variable][] = menu_parent_paid_event
 features[variable][] = node_options_paid_event
 features[variable][] = node_preview_paid_event
 features[variable][] = node_submitted_paid_event
+features[variable][] = pathauto_node_paid_event_pattern
 features_exclude[dependencies][date] = date
 features_exclude[dependencies][entityreference] = entityreference
 features_exclude[dependencies][features] = features

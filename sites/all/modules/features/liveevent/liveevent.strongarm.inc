@@ -241,6 +241,9 @@ function liveevent_strongarm() {
       'classified' => array(
         'custom_settings' => TRUE,
       ),
+      'print' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(),
@@ -418,6 +421,13 @@ function liveevent_strongarm() {
   $strongarm->name = 'node_submitted_event_paid';
   $strongarm->value = 0;
   $export['node_submitted_event_paid'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_event_type_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_event_type_pattern'] = $strongarm;
 
   return $export;
 }
