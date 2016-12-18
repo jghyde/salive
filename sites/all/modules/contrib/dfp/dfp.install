@@ -50,6 +50,27 @@ function dfp_schema() {
         'default' => '',
         'description' => "The tag's unique name.",
       ),
+      'ezoic' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'The open DIV tag of the Ezoic Wrapper',
+      ),
+      'ezoic_comment_top' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'The Top Comment from Ezoic Wrapper'
+      ),
+      'ezoic_comment_bottom' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'The Bottom Comment from Ezoic Wrapper'
+      ),
       'slot' => array(
         'type' => 'varchar',
         'length' => 255,
@@ -266,3 +287,36 @@ function dfp_update_7003() {
 function dfp_update_7004() {
   variable_set('dfp_slug_placement', 0);
 }
+
+/**
+ * Ad new column to dfp_tags for Ezoic wrapper div
+ */
+function dfp_update_7005() {
+  $spec = array(
+    'type' => 'varchar',
+    'description' => 'Ezoic Wrapper',
+    'length' => 255,
+    'not null' => FALSE,
+  );
+  db_add_field('dfp_tags', 'ezoic', $spec);
+}
+/**
+ * Ad new column to dfp_tags for Ezoic wrapper comment
+ */
+function dfp_update_7006() {
+  $spec = array(
+    'type' => 'varchar',
+    'description' => 'Ezoic Comment Wrapper Top',
+    'length' => 255,
+    'not null' => FALSE,
+  );
+  db_add_field('dfp_tags', 'ezoic_comment_top', $spec);
+  $spec = array(
+    'type' => 'varchar',
+    'description' => 'Ezoic Comment Wrapper Bottom',
+    'length' => 255,
+    'not null' => FALSE,
+  );
+  db_add_field('dfp_tags', 'ezoic_comment_bottom', $spec);
+}
+

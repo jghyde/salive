@@ -943,6 +943,13 @@ function template_preprocess_dfp_tag(&$variables) {
   $tag->size = dfp_format_size($tag->size);
   $tag->slug = dfp_format_slug($tag->slug);
 
+  // Add Ezoic stuff if it exists
+  if (!empty($tag->ezoic) && !empty($tag->ezoic_comment_top) && !empty($tag->ezoic_comment_bottom)) {
+    //Ezoic wrapper is defined
+    $variables['ezoic_wrapper']['#prefix'] = $variables['tag']->ezoic_comment_top . "\n" . $variables['tag']->ezoic;
+    $variables['ezoic_wrapper']['#suffix'] = '</div>' . "\n" . $variables['tag']->ezoic_comment_bottom;
+  }
+
   // Create the attributes for the wrapper div and placeholder div.
   $variables['placeholder_attributes'] = array(
     'id' => $tag->placeholder_id,

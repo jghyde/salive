@@ -89,6 +89,30 @@ function dfp_tag_form(&$form, &$form_state) {
     ),
   ) + $form['info']['machinename'];
   unset($form['info']);
+  $form['tag_settings']['ezoic'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Ezoic Ad Tester Display Ad Unit placeholder ID',
+    '#description' => 'The opening DIV tag of the Ezoic wrapper found in Ad Tester Ad Unit Code for specific corresponding ad unit, e.g. &lt;div id=&quot;ezoic-pub-ad-placeholder-104&quot;&gt;',
+    '#required' => FALSE,
+    '#maxlength' => 255,
+    '#default_value' => $tag->ezoic,
+  );
+  $form['tag_settings']['ezoic_comment_top'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Ezoic Top Comment',
+    '#description' => 'The top HTML comment that opens an Ezoic Wrapper',
+    '#required' => FALSE,
+    '#maxlength' => 255,
+    '#default_value' => $tag->ezoic_comment_top,
+  );
+  $form['tag_settings']['ezoic_comment_bottom'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Ezoic Bottom Comment',
+    '#description' => 'The bottom HTML comment that closed an Ezoic Wrapper',
+    '#required' => FALSE,
+    '#maxlength' => 255,
+    '#default_value' => $tag->ezoic_comment_bottom,
+  );
   $form['tag_settings']['out_of_page'] = array(
     '#type' => 'checkbox',
     '#title' => t('Out of page (interstitial) ad slot'),
