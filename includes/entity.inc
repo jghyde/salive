@@ -295,7 +295,7 @@ class DrupalDefaultEntityController implements DrupalEntityControllerInterface {
     }
 
     // Add fields from the {entity} table.
-    $entity_fields = $this->entityInfo['schema_fields_sql']['base table'];
+    $entity_fields = !empty($this->entityInfo['schema_fields_sql']['base table']) ? $this->entityInfo['schema_fields_sql']['base table'] : array();
 
     if ($this->revisionKey) {
       // Add all fields from the {entity_revision} table.

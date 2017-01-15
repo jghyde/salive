@@ -1,0 +1,13 @@
+diff --git a/includes/entity.inc b/includes/entity.inc
+index 25f7584..971bfb1 100644
+--- a/includes/entity.inc
++++ b/includes/entity.inc
+@@ -257,7 +257,7 @@ class DrupalDefaultEntityController implements DrupalEntityControllerInterface {
+     }
+ 
+     // Add fields from the {entity} table.
+-    $entity_fields = $this->entityInfo['schema_fields_sql']['base table'];
++    $entity_fields = !empty($this->entityInfo['schema_fields_sql']['base table']) ? $this->entityInfo['schema_fields_sql']['base table'] : array();
+ 
+     if ($this->revisionKey) {
+       // Add all fields from the {entity_revision} table.
